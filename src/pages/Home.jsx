@@ -32,7 +32,7 @@ const Home = () => {
   <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12">
     {/* Text Content */}
     <div className="flex-1 max-w-2xl order-2 lg:order-1 text-center lg:text-left">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold home-sub-head leading-tight mb-6">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold home-sub-head leading-tight mb-6 uppercase">
         Custom Product & Software Development Focused On Your Success
       </h1>
 
