@@ -1,3 +1,4 @@
+/* Dark Theme Contact Us Styles */
 .contact-us-sub-left {
     background: url("../assets/Frame1.png");
 }
@@ -31,4 +32,331 @@
     border-color: var(--theme);
     font-size: 15px;
     color:var(--theme);
+}
+
+/* Custom Animations */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Dark Theme Contact Form Enhancements */
+.contact-form-container {
+    background: #111827;
+    border: 1px solid #8b5cf6;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme input focus effects */
+.dark-input:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+/* Purple accent hover effects */
+.purple-hover:hover {
+    background-color: rgba(139, 92, 246, 0.1);
+    border-color: #8b5cf6;
+}
+
+/* Service button animations */
+.service-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.service-button.selected {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+/* Dark theme scrollbar */
+.dark-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 10px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #8b5cf6, #a855f7);
+    border-radius: 10px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #a855f7, #c084fc);
+}
+
+/* Enhanced form field focus states for dark theme */
+.form-field-dark:focus {
+    transform: scale(1.01);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+/* Purple glow animation */
+@keyframes purple-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+    }
+}
+
+.purple-glow {
+    animation: purple-glow 2s ease-in-out infinite;
+}
+
+/* Responsive design for dark theme */
+@media (max-width: 768px) {
+    .contact-form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Loading state for dark theme */
+@keyframes dark-shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+.dark-loading-shimmer {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200px 100%;
+    animation: dark-shimmer 1.5s infinite;
+}
+
+/* Enhanced button states for dark theme */
+.btn-dark-enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-dark-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-dark-enhanced:hover::before {
+    left: 100%;
+}
+
+/* Card hover effects for dark theme */
+.card-dark-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-dark-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Text reveal animation for dark theme */
+@keyframes dark-text-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dark-text-reveal {
+    animation: dark-text-reveal 0.8s ease-out forwards;
+}
+
+/* Icon rotation on hover for dark theme */
+.icon-dark-rotate {
+    transition: transform 0.3s ease;
+}
+
+.icon-dark-rotate:hover {
+    transform: rotate(360deg);
+    color: #8b5cf6;
+}
+
+/* Enhanced social media icons for dark theme */
+.social-icon-dark {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.social-icon-dark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(45deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon-dark:hover::after {
+    opacity: 1;
+}
+
+.social-icon-dark:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* Gradient text animation for dark theme */
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.gradient-text-animated {
+    background: linear-gradient(-45deg, #8b5cf6, #a855f7, #c084fc, #8b5cf6);
+    background-size: 400% 400%;
+    animation: gradient-shift 3s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Backdrop blur effects for dark theme */
+.backdrop-blur-dark {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Enhanced focus states for dark theme */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    transform: scale(1.01);
+}
+
+/* Modern glass morphism effect for dark theme */
+.glass-morphism-dark {
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Purple accent borders */
+.purple-border {
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.purple-border:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Enhanced hover effects for dark theme */
+.hover-lift-dark {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift-dark:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+}
+
+/* Glowing effect for interactive elements in dark theme */
+.glow-on-hover-dark {
+    transition: all 0.3s ease;
+}
+
+.glow-on-hover-dark:hover {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
 }
