@@ -1,92 +1,209 @@
 import React from "react";
-// import Navbar from './Navbar'
-import "../styles/home.css";
-import IMGC from "../assets/web-development-services.gif";
-import WhyChooseUs from "./WhyChooseUs";
-// import Delivers from './Delivers'
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import ClientReview from "./ClientReview";
 import Pricing from "./Pricing";
 import ContactUs from "./ContactUs";
-import { Link } from "react-router-dom";
+
+const topImages = [
+  "/images/img1.jpg",
+  "/images/img2.jpg",
+  "/images/img3.jpg",
+  "/images/img4.jpg",
+  "/images/img15.jpg",
+];
+
+const bottomImages = [
+  "/images/img5.jpg",
+  "/images/img6.jpg",
+  "/images/img7.jpg",
+  "/images/img8.jpg",
+  "/images/img16.jpg",
+];
+
+const services = [
+  {
+    title: "SDE Tradition",
+    description:
+      "Simplified campaign management with one view and regular updates. Pause, start or uplift with a single click. Manage your growth and results on the go.",
+    image: "/images/img11.jpg",
+  },
+  {
+    title: "Dashboard",
+    description:
+      "We have designed a set of robust strategies that are delivered for all our preforamnce campaigns. We also keep up-to-date with new technologies, to always be a step ahead.",
+    image: "/images/img12.jpg",
+  },
+  {
+    title: "Innovation",
+    description:
+      "We have revolutionized traditional marketing strategies. We offer result-oriented marketing campaigns so you achieve your goals faster.",
+    image: "/images/img13.jpg",
+  },
+  {
+    title: "Data Driven",
+    description:
+      "We collate and analyze your data, for meaningful insights to decvelop tailored user acquisition strategies. Deep dive into your data and unlock hyper-growth.",
+    image: "/images/img14.jpg",
+  },
+];
+
+// Reusable section wrapper with pop animation
+const PopInSection = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.96, y: 30 }}
+    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: "easeOut" }}
+    viewport={{ once: true, amount: 0.2 }}
+  >
+    {children}
+  </motion.div>
+);
+
+const MarqueeRow = ({ images, direction }) => {
+  return (
+    <div className="overflow-hidden w-full">
+      <div
+        className={`flex w-max ${
+          direction === "left"
+            ? "animate-marquee-left"
+            : "animate-marquee-right"
+        }`}
+      >
+        {images.map((src, idx) => (
+          <div
+            key={`first-${idx}`}
+            className="w-[300px] h-[180px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3"
+          >
+            <img src={src} alt="" className="w-full h-full object-cover" />
+          </div>
+        ))}
+        {images.map((src, idx) => (
+          <div
+            key={`second-${idx}`}
+            className="w-[300px] h-[180px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3"
+          >
+            <img src={src} alt="" className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Home = () => {
   return (
     <>
-      {/* Hero Section */}
-      <div className="w-full mb-12 sm:mb-12 md:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8">
-        {/* Search Bar - Hidden by default */}
-        <div className="hidden w-full justify-center mt-2 px-4">
-          <div className="flex w-full max-w-2xl mx-auto items-center h-16 sm:h-12 bg-white home-search-main radius smtext px-4 sm:px-6">
-            <input
-              className="flex-1 outline-none border-none text-sm sm:text-base"
-              placeholder="Enter Your Message"
-            />
-            <div className="btn ml-4 px-6 h-12 sm:h-10 flex items-center justify-center textsize smtext whitespace-nowrap sm:px-4 text-sm sm:text-base">
-              Search
-            </div>
+      {/* Hero + Marquee Section */}
+      <div className="bg-gradient-to-br from-[#090014] via-[#14002E] to-[#1B0058] text-white min-h-screen flex flex-col justify-center items-center py-20 overflow-hidden">
+        <MarqueeRow images={topImages} direction="left" />
+        <div className="text-center max-w-4xl px-4 my-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-tight text-white">
+            Custom Product & <br />
+            Software Development Focused on your Success
+          </h1>
+          <div className="mt-10">
+            <Link
+              to="/contactus"
+              className="bg-white text-black font-semibold py-3 px-6 rounded-lg text-lg hover:scale-105 transition-transform duration-300"
+            >
+              Contact Us
+            </Link>
           </div>
         </div>
-
-        {/* Main Hero Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16 pb-0">
-  <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12">
-    {/* Text Content */}
-    <div className="flex-1 max-w-2xl order-2 lg:order-1 text-center lg:text-left">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold home-sub-head leading-tight mb-6 uppercase">
-        Custom Product & Software Development Focused On Your Success
-      </h1>
-
-      <div className="flex justify-center lg:justify-start">
-        <Link 
-          to="/contactus"
-          className="btn text-lg sm:text-xl px-6 sm:px-8 h-12 sm:h-14 flex items-center justify-center button-home rounded-lg transition-all duration-300 hover:transform hover:scale-105"
-        >
-          Contact Us
-        </Link>
-      </div>
-    </div>
-
-    {/* Image Content */}
-    <div className="flex-1 max-w-lg order-1 lg:order-2 w-full pr-0 lg:pr-8">
-      <div className="relative w-full">
-        <img 
-  src={IMGC} 
-  alt="Web Development Services" 
-  className="w-full object-contain max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[600px]"
-  style={{ borderRadius: '0px', boxShadow: 'none' }}
-/>
-
-      </div>
-    </div>
-  </div>
-</div>
-
+        <MarqueeRow images={bottomImages} direction="right" />
       </div>
 
-      {/* Sections with proper spacing */}
-      <div className="w-full">
-        <div className="mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8">
-  <WhyChooseUs />
-</div>
+      {/* WHY CHOOSE US Section */}
+      <PopInSection>
+        <div className="mb-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto bg-[#0f0f1a] rounded-3xl shadow-xl p-8 sm:p-12 text-center text-white why-choose-us">
+            {/* Section Heading */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-4 py-1 rounded-full border border-gray-600">
+                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold mt-4">
+                Why Choose Us
+              </h2>
+            </div>
 
-<div className="mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8">
-  <ClientReview />
-</div>
+            {/* Swiper Carousel */}
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="pb-14" // Increased bottom padding to move dots down
+            >
+              {services.map((service, index) => (
+                <SwiperSlide key={index}>
+                  <div className="bg-[#1a1a2e] rounded-xl shadow-lg overflow-hidden transform hover:-rotate-2 hover:scale-105 transition-all duration-300">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-56 object-cover"
+                    />
+                    <div className="p-6 text-center">
+                      <h3 className="text-lg font-bold text-white">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-300 mt-2 text-sm">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      </PopInSection>
 
-<div className="mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8">
-  <Pricing />
-</div>
+      {/* Other sections */}
+      <PopInSection>
+        <div className="mb-20 px-4 sm:px-6 lg:px-8">
+          <ClientReview />
+        </div>
+      </PopInSection>
 
+      <PopInSection>
+        <div className="mb-20 px-4 sm:px-6 lg:px-8">
+          <Pricing />
+        </div>
+      </PopInSection>
 
+      <PopInSection>
         <div className="px-4 sm:px-6 lg:px-8">
           <ContactUs />
         </div>
-      </div>
+      </PopInSection>
 
-      {/* Commented out section */}
-      {/*
-        <Delivers />
-      */}
+      {/* Swiper Pagination Dots Styling */}
+      <style>{`
+        .why-choose-us .swiper-pagination {
+          bottom: -5px !important;
+        }
+        .why-choose-us .swiper-pagination-bullet {
+          background: #888 !important;
+          opacity: 0.8;
+        }
+        .why-choose-us .swiper-pagination-bullet-active {
+          background: #a855f7 !important;
+          opacity: 1;
+        }
+      `}</style>
     </>
   );
 };
