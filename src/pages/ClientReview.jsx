@@ -101,31 +101,31 @@ const ClientReview = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
+    <section className="py-20 px-4 bg-black relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-50">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-purple-900/10"></div>
+      <div className="absolute inset-0 opacity-70">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 to-purple-950/20"></div>
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 30px 30px, rgba(255,255,255,0.03) 2px, transparent 2px)`,
+          backgroundImage: `radial-gradient(circle at 30px 30px, rgba(59, 130, 246, 0.08) 2px, transparent 2px)`,
           backgroundSize: '60px 60px'
         }}></div>
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-purple-950/30 to-indigo-950/30"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 space-y-6">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/30 mb-6">
-            <span className="text-blue-400 text-sm font-medium"> Clients Review</span>
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-full border border-blue-500/50 mb-6 backdrop-blur-sm">
+            <span className="text-blue-300 text-sm font-medium"> Clients Review</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
             What Our Clients Say
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
               About Us
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
           Don't just take our word for it - hear from our satisfied clients who have experienced success with our services
           </p>
         </div>
@@ -142,31 +142,31 @@ const ClientReview = () => {
                   <div className="grid md:grid-cols-2 gap-8 lg:gap-12 px-4">
                     {testimonials.slice(slideIndex * 2, slideIndex * 2 + 2).map((testimonial, index) => (
                       <div key={index} className="group">
-                        <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-500/20">
+                        <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-3xl p-8 border border-gray-800/70 hover:border-blue-500/70 transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-500/30">
                           {/* Glow Effect */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                           
                           {/* Content */}
                           <div className="relative z-10 space-y-6">
                             {/* Quote Icon */}
-                            <div className="text-4xl text-blue-400/60 mb-4">"</div>
+                            <div className="text-4xl text-blue-300/70 mb-4">"</div>
                             
-                            <p className="text-gray-200 text-lg leading-relaxed">
+                            <p className="text-gray-100 text-lg leading-relaxed">
                               {testimonial.text}
                             </p>
 
                             <StarRating rating={testimonial.rating} />
 
                             {/* Author */}
-                            <div className="pt-6 border-t border-gray-700/50">
+                            <div className="pt-6 border-t border-gray-800/70">
                               <div className="flex items-center space-x-4">
-                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-2xl">
+                                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center text-2xl">
                                   {testimonial.avatar}
                                 </div>
                                 <div>
                                   <h4 className="text-xl font-bold text-white">{testimonial.name}</h4>
-                                  <p className="text-blue-400 font-medium">{testimonial.role}</p>
-                                  <p className="text-gray-400 text-sm">{testimonial.company}</p>
+                                  <p className="text-blue-300 font-medium">{testimonial.role}</p>
+                                  <p className="text-gray-300 text-sm">{testimonial.company}</p>
                                 </div>
                               </div>
                             </div>
@@ -183,7 +183,7 @@ const ClientReview = () => {
           {/* Navigation Arrows */}
           <button 
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800/80 hover:bg-gray-700/80 text-blue-400 hover:text-blue-300 rounded-full p-4 backdrop-blur-sm border border-gray-600/50 hover:border-blue-500/50 transition-all duration-300 group"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-900/90 hover:bg-gray-800/90 text-blue-300 hover:text-blue-200 rounded-full p-4 backdrop-blur-sm border border-gray-700/70 hover:border-blue-500/70 transition-all duration-300 group"
           >
             <svg className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -192,7 +192,7 @@ const ClientReview = () => {
           
           <button 
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800/80 hover:bg-gray-700/80 text-blue-400 hover:text-blue-300 rounded-full p-4 backdrop-blur-sm border border-gray-600/50 hover:border-blue-500/50 transition-all duration-300 group"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-900/90 hover:bg-gray-800/90 text-blue-300 hover:text-blue-200 rounded-full p-4 backdrop-blur-sm border border-gray-700/70 hover:border-blue-500/70 transition-all duration-300 group"
           >
             <svg className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -210,31 +210,31 @@ const ClientReview = () => {
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="w-full flex-shrink-0 px-4">
                   <div className="group">
-                    <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50">
+                    <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-3xl p-8 border border-gray-800/70">
                       {/* Glow Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Content */}
                       <div className="relative z-10 space-y-6">
                         {/* Quote Icon */}
-                        <div className="text-3xl text-blue-400/60 mb-4">"</div>
+                        <div className="text-3xl text-blue-300/70 mb-4">"</div>
                         
-                        <p className="text-gray-200 text-base leading-relaxed">
+                        <p className="text-gray-100 text-base leading-relaxed">
                           {testimonial.text}
                         </p>
 
                         <StarRating rating={testimonial.rating} />
 
                         {/* Author */}
-                        <div className="pt-6 border-t border-gray-700/50">
+                        <div className="pt-6 border-t border-gray-800/70">
                           <div className="flex items-center space-x-4">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-xl">
+                            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center text-xl">
                               {testimonial.avatar}
                             </div>
                             <div>
                               <h4 className="text-lg font-bold text-white">{testimonial.name}</h4>
-                              <p className="text-blue-400 font-medium text-sm">{testimonial.role}</p>
-                              <p className="text-gray-400 text-xs">{testimonial.company}</p>
+                              <p className="text-blue-300 font-medium text-sm">{testimonial.role}</p>
+                              <p className="text-gray-300 text-xs">{testimonial.company}</p>
                             </div>
                           </div>
                         </div>
@@ -256,7 +256,7 @@ const ClientReview = () => {
               className={`transition-all duration-300 ${
                 currentSlide === index 
                   ? 'w-8 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full' 
-                  : 'w-3 h-3 bg-gray-600 hover:bg-gray-500 rounded-full'
+                  : 'w-3 h-3 bg-gray-700 hover:bg-gray-600 rounded-full'
               }`}
             />
           ))}
@@ -264,7 +264,7 @@ const ClientReview = () => {
 
         {/* Auto-slide progress bar */}
         <div className="mt-8 max-w-md mx-auto">
-          <div className="bg-gray-700/50 rounded-full h-1 overflow-hidden backdrop-blur-sm">
+          <div className="bg-gray-800/70 rounded-full h-1 overflow-hidden backdrop-blur-sm">
             <div 
               className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all ease-linear"
               style={{
@@ -284,11 +284,11 @@ const ClientReview = () => {
             { number: '24/7', label: 'Support Available' }
           ].map((stat, index) => (
             <div key={index} className="text-center group">
-              <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+              <div className="bg-gradient-to-br from-gray-900/70 to-black/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 hover:border-blue-500/70 transition-all duration-300 hover:transform hover:scale-105">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
-                <div className="text-gray-300 text-sm font-medium">
+                <div className="text-gray-200 text-sm font-medium">
                   {stat.label}
                 </div>
               </div>
