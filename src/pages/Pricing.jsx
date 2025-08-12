@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Add this import
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Pricing = () => {
-  const navigate = useNavigate(); // Add this hook
+  const navigate = useNavigate();
 
   const plans = [
     {
@@ -11,7 +11,8 @@ const Pricing = () => {
         "Front-end Development (HTML, CSS, JavaScript, frameworks like React, Angular, Vue)",
         "Back-end Development (Node.js, Python, Ruby on Rails, PHP, Java)",
         "Full-Stack Development"
-      ]
+      ],
+      color: "border-green-500"
     },
     {
       title: "Mobile App Development",
@@ -19,7 +20,8 @@ const Pricing = () => {
         "Progressive Web Apps (PWAs)",
         "Native App Development (iOS, Android)",
         "Cross-Platform App Development"
-      ]
+      ],
+      color: "border-red-500"
     },
     {
       title: "Web Design",
@@ -27,7 +29,8 @@ const Pricing = () => {
         "UI/UX Design",
         "Responsive Design",
         "Branding and Visual Design"
-      ]
+      ],
+      color: "border-blue-500"
     },
     {
       title: "Digital Marketing",
@@ -38,87 +41,65 @@ const Pricing = () => {
         "SEO",
         "Content Marketing",
         "Meta and Google Ads"
-      ]
+      ],
+      color: "border-purple-500"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-16 px-4">
+    <section className="bg-black py-20 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+        {/* Section Title */}
+        <div className="mb-12">
+          <h3 className="text-sm font-medium text-purple-400 tracking-wide uppercase mb-2">
+            Pricing
+          </h3>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
             Transparent Pricing for You
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Start saving time today and choose your best plan
-          </p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12 max-w-7xl mx-auto">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 flex flex-col h-full"
+              className={`relative bg-black border ${plan.color} rounded-xl p-8 flex flex-col justify-between`}
+              style={{
+                clipPath: "polygon(0 0, 90% 0, 100% 10%, 100% 100%, 0% 100%)"
+              }}
             >
-              {/* Card Content */}
-              <div className="p-8 flex flex-col flex-grow">
-                {/* Title */}
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight">
-                    {plan.title}
-                  </h3>
-                </div>
+              {/* Title */}
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  {plan.title}
+                </h3>
 
                 {/* Features */}
-                <div className="flex-grow">
-                  <ul className="space-y-4">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start">
-                        <div className="flex-shrink-0 w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
-                          <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700 text-sm leading-relaxed">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Button - Always at bottom */}
-                <div className="mt-8 pt-6">
-                  <button 
-                    className="w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg bg-[#030538] text-white hover:bg-[#020426]"
-                    onClick={() => {
-                      // Navigate to /form with selected plan data
-                      navigate('/form', { 
-                        state: { selectedPlan: plan.title } 
-                      });
-                    }}
-                  >
-                    Choose Plan
-                  </button>
-                </div>
+                <ul className="space-y-3 text-gray-300 text-sm mb-6">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className="w-2 h-2 mt-2 rounded-full bg-gray-500 mr-3"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
+
+              {/* Button */}
+              <button
+                className="mt-auto inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition-colors duration-300"
+                onClick={() =>
+                  navigate("/form", { state: { selectedPlan: plan.title } })
+                }
+              >
+                Choose Plan
+              </button>
             </div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-gray-600 mb-4">
-            Need a custom solution? We're here to help.
-          </p>
-          <button className="text-blue-600 hover:text-blue-700 font-semibold underline decoration-2 underline-offset-4 hover:decoration-blue-700 transition-colors duration-200">
-            Contact us for enterprise pricing
-          </button>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
