@@ -103,7 +103,7 @@ const Home = () => {
       <div className="bg-gradient-to-br from-[#090014] via-[#14002E] to-[#1B0058] text-white min-h-screen flex flex-col justify-center items-center py-20 overflow-hidden">
         <MarqueeRow images={topImages} direction="left" />
         <div className="text-center max-w-4xl px-4 my-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase leading-tight text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-tight text-white">
             Custom Product & <br />
             Software Development Focused on your Success
           </h1>

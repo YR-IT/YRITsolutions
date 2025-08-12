@@ -1,7 +1,21 @@
-.footer-content{
-font-size: 14px;
-font-weight: 400;
-line-height: 22.4px;
-text-align: left;
-color:#6A6A6A;
+.footer-content {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.4px;
+    color: white;
+    
+    /* Center for block layout */
+    text-align: center;
+
+    /* Center for flex/grid layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+    justify-content: start; /* align columns to left */
+    gap: 40px;
 }

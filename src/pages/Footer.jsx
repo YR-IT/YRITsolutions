@@ -43,37 +43,39 @@ export const Footer = ({ state, setState }) => {
                     </div>
                 </div>
                 <div className=''>
-                    <div className='w-[406px] flex gap-[156px] max-[844px]:gap-[1%] max-[844px]:w-[fit-content]'>
+                    <div className='w-[px] flex gap-[156px] max-[844px]:gap-[1%] max-[844px]:w-[fit-content]'>
                         <div className=' '>
                             <div className='w-[100px] max-[500px]:w-[150px] max-[500px]:pl-10'>
-                                <div className='text-[#060336] mb-3 text-[16px]' style={{ fontWeight: "600", fontSize: "15px", lineHeight: "22.4px" }}>
-                                    Explore
-                                </div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
+                            <div className="text-purple-500 mb-3 text-[16px]"
+                             style={{ fontWeight: "600", fontSize: "15px", lineHeight: "22.4px" }}>
+                                 Explore
+                                 </div>
+
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
                                     <div onClick={() => { setState(0); goto("/") }}>
                                         Home
                                     </div>
                                 </div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
                                     <div onClick={() => { setState(1); goto("/aboutus") }}>
 
 
                                         About Us
                                     </div>
                                 </div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}><div onClick={() => { setState(2); goto("/ourservices") }}>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}><div onClick={() => { setState(2); goto("/ourservices") }}>
 
 
                                     Services
                                 </div>
                                 </div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}><div onClick={() => { setState(3); goto("/pricing") }}>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}><div onClick={() => { setState(3); goto("/pricing") }}>
 
 
                                     Pricing
                                 </div>
                                 </div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}><div onClick={() => { setState(4); goto("/contactus") }}>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}><div onClick={() => { setState(4); goto("/contactus") }}>
 
 
                                     Contact Us
@@ -81,22 +83,44 @@ export const Footer = ({ state, setState }) => {
                                 </div>
                             </div>
                         </div>
+
                         <div className=''>
                             <div className='w-[150px]'>
-                                <div className='text-[#060336] mb-3 ' style={{ fontWeight: "600", fontSize: "15px", lineHeight: "22.4px" }}>Help Center</div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Community</div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Knowledge</div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
+                                <div className='text-purple-500 mb-3 ' style={{ fontWeight: "600", fontSize: "15px", lineHeight: "22.4px" }}>Services</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Wev Development</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>App Development</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
+                                   
+                                      UI/UX Development
+                                   
+                                </div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }} onClick={() => { setState(-1) }}><Link to="/privacy">
+                               Digital Marketing
+                                </Link></div>
+
+                            </div>
+                        </div>
+                        
+                        <div className=''>
+                            <div className='w-[150px]'>
+                                <div className='text-purple-500 mb-3 ' style={{ fontWeight: "600", fontSize: "15px", lineHeight: "22.4px" }}>Help Center</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Community</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Knowledge</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>
                                     <Link to="/termsandconditions">
                                         Terms and Conditions
                                     </Link>
                                 </div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }} onClick={() => { setState(-1) }}><Link to="/privacy">
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }} onClick={() => { setState(-1) }}><Link to="/privacy">
                                     Privacy
                                 </Link></div>
-                                <div className='text-[#444444] mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Support</div>
+                                <div className='text-white mb-3 cursor-pointer text-[14px] hover:text-[var(--theme)]' style={{ fontWeight: "400", fontSize: "14px", lineHeight: "22.4px" }}>Support</div>
                             </div>
                         </div>
+                        
+
+                        
+                  
                     </div>
                     <div className='flex max-[500px]:items-center max-[500px]:justify-center gap-4 cursor-pointer min-[500px]:hidden max-[500px]:mt-[1rem] '>
                         <div className='  rounded-sm -full pt-[0px] px-[3px]' onClick={()=>{window.location.href="https://www.linkedin.com/in/yrit-solutions-755549371?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"}}>
