@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  background-color: #000; /* Full-page black background */
+  color: #fff; /* Default text color white */
   font-family: "Plus Jakarta Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
 }
 
 code {
@@ -49,4 +53,10 @@ code {
 }
 .animate-float4 {
   animation: float4 6s ease-in-out infinite;
+}
+
+html, body, #root {
+  height: 100%;
+  background-color: black !important;
+  color: white;
 }
