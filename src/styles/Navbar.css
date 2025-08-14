@@ -1,91 +1,125 @@
-.navbar-back{
+/* Overlay background for mobile menu */
+.navbar-back {
     background-color: black;
     opacity: 50%;
 }
-.nav-side-main{
+
+/* Side menu animations */
+.nav-side-main {
     transition: 1000ms;
 }
-.nav-side-main-sub1{
+
+.nav-side-main-sub1 {
     transition: 500ms;
-    width:100%;
+    width: 100%;
     animation: hidden2 500ms forwards;
 }
 
-.nav-side-main-sub2{
+.nav-side-main-sub2 {
     animation: hidden1 500ms forwards;
     transition: 500ms;
-    width:0%;
-    border:0;
+    width: 0%;
+    border: 0;
 }
+
 @keyframes hidden1 {
     0% {
-        width:100%;
-        display:block;
+        width: 100%;
+        display: block;
     }
     100% {
-        width:0%;
+        width: 0%;
         display: none;
     }
 }
 
 @keyframes hidden2 {
     0% {
-        width:0%;
-        display:none;
+        width: 0%;
+        display: none;
     }
     100% {
         display: block;
-        width:100%;
+        width: 100%;
     }
 }
-.nav-boxes{
-    border:solid;
+
+/* Nav link styles */
+.nav-boxes {
+    border: solid;
     border-width: 2px 0px;
-    padding-left:0.5rem;
+    padding-left: 0.5rem;
     cursor: pointer;
 }
-.nav-boxes-inactive{
-    border:solid;
+
+.nav-boxes-inactive {
+    border: solid;
     border-width: 2px 0px;
-    padding-left:0.5rem;
+    padding-left: 0.5rem;
     border-color: rgb(220, 220, 220);
-    padding-top:0.5rem;
-    padding-bottom:0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     font-weight: 500;
     font-size: 18px;
     border-top: 0;
     cursor: pointer;
 }
-.nav-side-contact{
+
+/* Mobile contact button */
+.nav-side-contact {
     background-color: var(--theme);
-    color:white;
-    margin:0px 10px;
+    color: white;
+    margin: 0px 10px;
     border-radius: 10px;
     text-align: center;
-    width:60%;
+    width: 60%;
     justify-items: center;
     cursor: pointer;
 }
-.nav-meeting-btn{
+
+/* Mobile meeting button */
+.nav-meeting-btn {
     background-color: black;
-    color:white;
-    margin:0px 10px;
+    color: white;
+    margin: 0px 10px;
     border-radius: 10px;
     text-align: center;
-    width:60%;
+    width: 60%;
     justify-items: center;
     cursor: pointer;
 }
-.nav-bottom-box-side{
-    margin:0px 10px;
+
+/* Bottom info box inside side nav */
+.nav-bottom-box-side {
+    margin: 0px 10px;
     border-radius: 10px;
     text-align: center;
-    width:80%;
+    width: 80%;
     justify-items: center;
     cursor: pointer;
-    margin:auto;
+    margin: auto;
     justify-items: center;
-    padding:15px 20px;
-    text-align:justify;
-    border:solid 1px var(--theme);
+    padding: 15px 20px;
+    text-align: justify;
+    border: solid 1px var(--theme);
+}
+
+/* ===== Transparent-to-dark Navbar on Scroll ===== */
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar-transparent {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+}
+
+.navbar-dark {
+    background: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
