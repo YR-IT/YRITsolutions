@@ -104,7 +104,8 @@ const ClientReview = () => {
     <section className="py-20 px-4 bg-black relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-70">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 to-purple-950/20"></div>
+      <div className="absolute inset-0 bg-black/20"></div>
+
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 30px 30px, rgba(59, 130, 246, 0.08) 2px, transparent 2px)`,
           backgroundSize: '60px 60px'
@@ -112,7 +113,8 @@ const ClientReview = () => {
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-purple-950/30 to-indigo-950/30"></div>
+      <div className="absolute inset-0 bg-black"></div>
+
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 space-y-6">
