@@ -222,7 +222,7 @@ const Form = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`text-center py-4 px-6 rounded-2xl font-semibold text-white text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/20 ${
+              className={`w-full text-center py-4 px-6 rounded-2xl font-semibold text-white text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/20 ${
                 isLoading
                   ? 'bg-gray-600 cursor-not-allowed transform scale-95'
                   : 'bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 shadow-lg hover:shadow-xl'
