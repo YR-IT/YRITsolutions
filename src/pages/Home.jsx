@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,6 +9,9 @@ import "swiper/css/autoplay";
 import ClientReview from "./ClientReview";
 import Pricing from "./Pricing";
 import ContactUs from "./ContactUs";
+import Loader from "../components/Loader";
+
+
 
 const topImages = [
   "/images/img1.jpg",
@@ -53,7 +56,6 @@ const services = [
   },
 ];
 
-// Reusable section wrapper with pop animation
 const PopInSection = ({ children }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.96, y: 30 }}
@@ -97,13 +99,17 @@ const MarqueeRow = ({ images, direction }) => {
 };
 
 const Home = () => {
-  // 👇 Scroll to top when Home mounts
+  const [showLoader, setShowLoader] = useState(true);
+
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // change to "auto" if you want instant
-    });
-  }, []);
+    if (!showLoader) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [showLoader]);
+
+  if (showLoader) {
+    return <Loader onFinish={() => setShowLoader(false)} />;
+  }
 
   return (
     <>
@@ -131,7 +137,6 @@ const Home = () => {
       <PopInSection>
         <div className="mb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto bg-[#0f0f1a] rounded-3xl shadow-xl p-8 sm:p-12 text-center text-white why-choose-us">
-            {/* Section Heading */}
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-4 py-1 rounded-full border border-gray-600">
                 <span className="w-2 h-2 rounded-full bg-purple-500"></span>
@@ -141,7 +146,6 @@ const Home = () => {
               </h2>
             </div>
 
-            {/* Swiper Carousel */}
             <Swiper
               modules={[Autoplay, Pagination]}
               spaceBetween={30}
@@ -179,7 +183,6 @@ const Home = () => {
         </div>
       </PopInSection>
 
-      {/* Other sections */}
       <PopInSection>
         <div className="mb-20 px-4 sm:px-6 lg:px-8">
           <ClientReview />
@@ -198,7 +201,6 @@ const Home = () => {
         </div>
       </PopInSection>
 
-      {/* Swiper Pagination Dots Styling */}
       <style>{`
         .why-choose-us .swiper-pagination {
           bottom: -5px !important;
