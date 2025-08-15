@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -36,7 +36,7 @@ const services = [
   {
     title: "Dashboard",
     description:
-      "We have designed a set of robust strategies that are delivered for all our preforamnce campaigns. We also keep up-to-date with new technologies, to always be a step ahead.",
+      "We have designed a set of robust strategies that are delivered for all our performance campaigns. We also keep up-to-date with new technologies, to always be a step ahead.",
     image: "/images/img12.jpg",
   },
   {
@@ -48,7 +48,7 @@ const services = [
   {
     title: "Data Driven",
     description:
-      "We collate and analyze your data, for meaningful insights to decvelop tailored user acquisition strategies. Deep dive into your data and unlock hyper-growth.",
+      "We collate and analyze your data, for meaningful insights to develop tailored user acquisition strategies. Deep dive into your data and unlock hyper-growth.",
     image: "/images/img14.jpg",
   },
 ];
@@ -97,11 +97,18 @@ const MarqueeRow = ({ images, direction }) => {
 };
 
 const Home = () => {
+  // 👇 Scroll to top when Home mounts
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // change to "auto" if you want instant
+    });
+  }, []);
+
   return (
     <>
       {/* Hero + Marquee Section */}
       <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-20 overflow-hidden">
-
         <MarqueeRow images={topImages} direction="left" />
         <div className="text-center max-w-4xl px-4 my-12">
           <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-tight text-white">
@@ -146,7 +153,7 @@ const Home = () => {
                 640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
               }}
-              className="pb-14" // Increased bottom padding to move dots down
+              className="pb-14"
             >
               {services.map((service, index) => (
                 <SwiperSlide key={index}>

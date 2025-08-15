@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import project1 from '../assets/project1.png';
 import project2 from '../assets/project2.png';
 import project3 from '../assets/law.png';
@@ -59,10 +59,17 @@ const projects = [
 ];
 
 const Portfolio = () => {
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="min-h-screen px-6 py-12 bg-black text-white">
-    <h2 className="text-5xl font-bold text-center mb-6 text-white">Projects We Successfully Developed</h2><br></br>
-    <h3 className="text-2xl text-center mb-6 text-gray-300">One look is worth a thousand words</h3>
+      <h2 className="text-5xl font-bold text-center mb-6 text-white">Projects We Successfully Developed</h2>
+      <br />
+      <h3 className="text-2xl text-center mb-6 text-gray-300">One look is worth a thousand words</h3>
+      
       <div className="flex justify-center mb-12">
         <Link to="/contactUs">
           <button className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">
@@ -77,24 +84,24 @@ const Portfolio = () => {
             key={index}
             className="flex flex-col lg:flex-row items-center border border-gray-700 rounded-xl shadow-2xl hover:shadow-blue-500/20 transition p-6 sm:mx-2 md:mx-4 lg:mx-12 bg-gradient-to-br from-black via-gray-900 to-blue-900"
           >
-           
+            {/* Text Section */}
             <div className={`w-full lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-6' : 'lg:pl-6 lg:order-2'}`}>
               <h2 className="text-2xl font-semibold mb-6 text-white">{project.title}</h2>
               <p className="text-lg mb-2 text-gray-200 leading-relaxed">{project.description}</p>
             </div>
 
-           
+            {/* Image Section */}
             <div className={`w-full lg:w-1/2 mt-6 lg:mt-0 ${index % 2 === 0 ? '' : 'lg:order-1'}`}>
-            <a
-             href={project.link}
-             target="_blank"
-             rel="noopener noreferrer"
-               >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="rounded-lg w-full object-cover shadow-lg transform transition-transform duration-300 hover:scale-105 border border-gray-600"
-              />
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="rounded-lg w-full object-cover shadow-lg transform transition-transform duration-300 hover:scale-105 border border-gray-600"
+                />
               </a>
             </div>
           </div>

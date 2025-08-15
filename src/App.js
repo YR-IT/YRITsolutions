@@ -28,6 +28,7 @@ function App() {
 
   return (
     <>
+    
       {/* Fixed Navbar */}
       <Navbar 
         state={state} 

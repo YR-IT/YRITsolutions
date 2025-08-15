@@ -7,6 +7,7 @@ import AppImg from '../assets/android-app-development-in-lucknow.gif';
 import UIUXImg from '../assets/web-developmen-design-1.gif';
 import DigitalImg from '../assets/Demystifying-The-Role-of-Analytics-1.gif';
 
+
 const Services = () => {
   const [selectedService, setSelectedService] = useState('web');
 
@@ -42,6 +43,7 @@ const Services = () => {
     };
 
     const current = content[selectedService];
+    
 
     return (
       <div className="space-y-6">
