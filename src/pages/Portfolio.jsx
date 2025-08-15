@@ -59,14 +59,16 @@ const projects = [
 ];
 
 const Portfolio = () => {
-  // Scroll to top when this component mounts
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <div className="min-h-screen px-6 py-12 bg-black text-white">
-      <h2 className="text-5xl font-bold text-center mb-6 text-white">Projects We Successfully Developed</h2>
+      <div className="pt-16">
+        <h2 className="text-5xl font-bold text-center mb-6 text-white">Projects We Successfully Developed</h2>
+      </div>
       <br />
       <h3 className="text-2xl text-center mb-6 text-gray-300">One look is worth a thousand words</h3>
       
@@ -84,13 +86,13 @@ const Portfolio = () => {
             key={index}
             className="flex flex-col lg:flex-row items-center border border-gray-700 rounded-xl shadow-2xl hover:shadow-blue-500/20 transition p-6 sm:mx-2 md:mx-4 lg:mx-12 bg-gradient-to-br from-black via-gray-900 to-blue-900"
           >
-            {/* Text Section */}
+            
             <div className={`w-full lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-6' : 'lg:pl-6 lg:order-2'}`}>
               <h2 className="text-2xl font-semibold mb-6 text-white">{project.title}</h2>
               <p className="text-lg mb-2 text-gray-200 leading-relaxed">{project.description}</p>
             </div>
 
-            {/* Image Section */}
+            
             <div className={`w-full lg:w-1/2 mt-6 lg:mt-0 ${index % 2 === 0 ? '' : 'lg:order-1'}`}>
               <a
                 href={project.link}

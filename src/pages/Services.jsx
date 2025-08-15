@@ -46,23 +46,24 @@ const Services = () => {
     
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 animate-fadeIn">
         <div className="space-y-4">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight animate-slideInLeft">
             {current.title}
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+          <p className="text-lg text-gray-300 leading-relaxed max-w-2xl animate-slideInLeft animation-delay-200">
             {current.description}
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-          <button className="group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            <span className="relative z-10">Schedule a Meeting</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4 animate-slideInUp animation-delay-400">
+          <button className="group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0">
+            <span className="relative z-10 transition-all duration-300 group-hover:text-white">Schedule a Meeting</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-110 group-hover:scale-100"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </button>
-          <button className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 border-2 border-blue-600 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            Contact Us
+          <button className="group bg-transparent hover:bg-gray-800 text-white px-8 py-4 border-2 border-blue-600 rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 hover:border-purple-600">
+            <span className="transition-all duration-300 group-hover:text-purple-400">Contact Us</span>
           </button>
         </div>
       </div>
@@ -122,7 +123,7 @@ const Services = () => {
         },
         {
           title: "Custom Web Designing",
-          description: "Tailored websites that reflect your brand’s identity and speak directly to your audience. We focus on originality, usability, and purpose-driven design.",
+          description: "Tailored websites that reflect your brand's identity and speak directly to your audience. We focus on originality, usability, and purpose-driven design.",
         },
         {
           title: "Landing Page Design",
@@ -164,18 +165,23 @@ const Services = () => {
     return (
       <div className="space-y-6">
         {serviceDetails[selectedService].map((item, index) => (
-          <div key={index} className="group p-6 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300 text-center lg:text-left">
+          <div 
+            key={index} 
+            className="group p-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl border border-gray-700 hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] text-center lg:text-left cursor-pointer"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
             <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-4">
-              <div className="flex-shrink-0 w-2 h-2 bg-blue-600 rounded-full mt-1 lg:mt-3 group-hover:scale-150 transition-transform duration-300"></div>
+              <div className="flex-shrink-0 w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-1 lg:mt-3 group-hover:scale-150 group-hover:rotate-180 transition-all duration-500 shadow-lg group-hover:shadow-blue-500/50"></div>
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-500">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                   {item.description}
                 </p>
               </div>
             </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
           </div>
         ))}
       </div>
@@ -196,7 +202,7 @@ const Services = () => {
         { title: "Mobile App Design", description: "Engaging UI and intuitive UX that enhance adoption and user satisfaction.", icon: "🎨" },
         { title: "App Integration", description: "Securely connect with third-party APIs, payment systems, and cloud services.", icon: "🔌" },
         { title: "Digital Transformation", description: "Leverage AI, IoT, and cloud to digitize workflows and enhance mobile capabilities.", icon: "🌐" },
-        { title: "App Store Optimization (ASO)", description: "Boost your app’s discoverability and downloads with ASO strategies and keyword targeting.", icon: "🚀" }
+        { title: "App Store Optimization (ASO)", description: "Boost your app's discoverability and downloads with ASO strategies and keyword targeting.", icon: "🚀" }
       ],
       uiux: [
         { title: "eCommerce Website Design", description: "Conversion-focused online stores with intuitive layouts, smooth navigation, and secure payment integration for better sales.", icon: "🛒" },
@@ -217,16 +223,22 @@ const Services = () => {
     return (
       <div className="space-y-4">
         {rightContent[selectedService].map((item, index) => (
-          <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-1 text-center lg:text-left">
-            <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-2 lg:space-y-0 lg:space-x-4">
-              <div className="text-2xl">{item.icon}</div>
+          <div 
+            key={index} 
+            className="group p-6 bg-gray-900 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/20 border border-gray-700 hover:border-blue-500 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.03] text-center lg:text-left cursor-pointer relative overflow-hidden"
+            style={{ animationDelay: `${index * 150}ms` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-2 lg:space-y-0 lg:space-x-4 relative z-10">
+              <div className="text-2xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">{item.icon}</div>
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 uppercase tracking-wide">
+                <h3 className="text-lg font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 uppercase tracking-wide transition-all duration-500">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
+                <p className="text-gray-300 text-sm group-hover:text-gray-200 transition-colors duration-300">{item.description}</p>
               </div>
             </div>
+            <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-500 rounded-t-full"></div>
           </div>
         ))}
       </div>
@@ -244,41 +256,41 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen bg-black">
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-6">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight animate-fadeIn">
               We Strive To Deliver
-              <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
                 Development Services
               </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed animate-fadeIn animation-delay-300">
               We specialize in creating visually appealing, high-quality, and user-friendly applications that drive business growth.
             </p>
           </div>
 
-          {/* Service Navigation */}
+          
           <div className="mb-12">
-            {/* Desktop */}
+            
             <div className="hidden md:flex justify-center">
-              <div className="bg-white rounded-2xl p-2 shadow-lg border border-gray-200">
+              <div className="bg-gray-900 rounded-2xl p-2 shadow-xl border border-gray-700 hover:shadow-2xl transition-all duration-500">
                 <div className="flex space-x-2">
                   {services.map((service) => (
                     <button
                       key={service.id}
                       onClick={() => handleServiceChange(service.id)}
-                      className={`relative px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center space-x-3 ${
+                      className={`relative px-6 py-4 rounded-xl font-semibold transition-all duration-500 flex items-center space-x-3 group ${
                         selectedService === service.id
-                          ? 'bg-blue-600 text-white shadow-lg transform scale-105'
-                          : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl transform scale-105 hover:scale-110'
+                          : 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 hover:scale-105'
                       }`}
                     >
-                      <span className="text-xl">{service.icon}</span>
+                      <span className="text-xl group-hover:scale-125 transition-transform duration-300">{service.icon}</span>
                       <span>{service.label}</span>
                       {selectedService === service.id && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-80 -z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-80 -z-10 animate-pulse"></div>
                       )}
                     </button>
                   ))}
@@ -286,12 +298,12 @@ const Services = () => {
               </div>
             </div>
 
-            {/* Mobile */}
+            
             <div className="md:hidden flex justify-center">
-              <div className="bg-white rounded-2xl p-4 shadow-lg border border-gray-200 w-full">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Choose Service:</label>
+              <div className="bg-gray-900 rounded-2xl p-4 shadow-xl border border-gray-700 w-full hover:shadow-2xl transition-all duration-500">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">Choose Service:</label>
                 <select
-                  className="w-full p-2 md:p-3 text-sm md:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-2 md:p-3 text-sm md:text-base border border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-400 bg-gray-800 text-white"
                   onChange={(e) => handleServiceChange(e.target.value)}
                   value={selectedService}
                 >
@@ -306,21 +318,22 @@ const Services = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left Text */}
+            
             <div className="space-y-8 order-2 lg:order-1 flex flex-col items-center text-center lg:items-start lg:text-left">
               {renderHomeContent()}
             </div>
 
-            {/* Right Image */}
+            
             <div className="order-1 lg:order-2 flex justify-center">
-              <div className="relative group w-full max-w-md">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-                <div className="relative bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
+              <div className="relative group w-full max-w-md animate-fadeIn animation-delay-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-all duration-700 animate-pulse"></div>
+                <div className="relative bg-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700 hover:shadow-blue-500/25 transition-all duration-500 transform group-hover:scale-105 group-hover:-rotate-1">
                   <img
                     src={getHeroImage()}
                     alt="Service Illustration"
-                    className="w-full h-auto max-h-[24rem] object-contain rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-auto max-h-[24rem] object-contain rounded-2xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
             </div>
@@ -328,26 +341,26 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services Detail Section */}
-      <section className="pt-0 pb-20 px-4 bg-white">
+      
+      <section className="pt-0 pb-20 px-4 bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 lg:p-12 shadow-xl border border-gray-100">
+          <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-700 hover:shadow-blue-500/10 transition-all duration-500">
             <div className="grid lg:grid-cols-2 gap-12">
-              {/* Left */}
+              
               <div className="space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left">
-                <div className="space-y-4">
-                  <h2 className="text-4xl font-bold text-gray-900">
+                <div className="space-y-4 animate-fadeIn">
+                  <h2 className="text-4xl font-bold text-white">
                     We work with you for
-                    <span className="block text-blue-600">growth</span>
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">growth</span>
                   </h2>
-                  <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+                  <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft"></div>
                 </div>
                 {renderServiceContent()}
               </div>
 
-              {/* Right */}
-              <div className="space-y-12 space-x-4 py-4 text-center lg:text-left">
-                <h3 className="text-4xl font-bold text-gray-900 mb-8">Our Specializations</h3>
+              
+              <div className="space-y-12 space-x-4 py-4 text-center lg:text-left animate-fadeIn animation-delay-300">
+                <h3 className="text-4xl font-bold text-white mb-8">Our Specializations</h3>
                 {renderServiceRightContent()}
               </div>
             </div>
