@@ -30,7 +30,7 @@ const ContactUs = () => {
                     <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-pink-500/15 to-purple-500/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '3s' }}></div>
                 </div>
 
-                <div className='relative z-10 w-full flex flex-col justify-center items-center px-4 pt-8 pb-6'>
+                <div className='relative z-10 w-full flex flex-col justify-center items-center px-4 pt-24 pb-6'>
                     <div className='w-full max-w-7xl mx-auto space-y-12'>
                         
                         {/* Page Header */}
@@ -39,7 +39,7 @@ const ContactUs = () => {
                                 <div className='w-16 h-16 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-all duration-500 animate-bounce'>
                                     <FaRocket size={24} className="text-white" />
                                 </div>
-                                <div className='bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent text-3xl md:text-4xl lg:text-5xl font-bold mb-3 animate-pulse'>
+                                <div className='bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent text-3xl md:text-4xl lg:text-5xl font-bold animate-pulse'>
                                     Get In Touch
                                 </div>
                             </div>
@@ -111,7 +111,7 @@ const ContactUs = () => {
                                         </div>
 
                                         {/* Business Hours */}
-                                        <div className='group flex items-center gap-4 p-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20'>
+                                        {/* <div className='group flex items-center gap-4 p-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20'>
                                             <div className='p-2 bg-purple-500/20 rounded-lg'>
                                                 <FaClock size={16} className='text-purple-300' />
                                             </div>
@@ -121,7 +121,7 @@ const ContactUs = () => {
                                                     Mon - Fri: 9:00 AM - 6:00 PM
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
 
@@ -146,6 +146,10 @@ const ContactUs = () => {
                                         <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
                                             <span className='text-sm text-gray-300'>Digital Marketing</span>
+                                        </div>
+                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                            <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
+                                            <span className='text-sm text-gray-300'>Cloud Services</span>
                                         </div>
                                     </div>
                                 </div>
@@ -195,29 +199,30 @@ const ContactUs = () => {
                                 </div>
 
                                                       {/* Social Media Card */}
-                                                      <div >
-    <h3 className='text-base font-bold mb-2 text-purple-300'>Follow Us</h3>
-    <div className='flex gap-2.5'>
+                                                      <div className="flex flex-col items-center text-center">
+    <h3 className="text-base font-bold mb-2 text-purple-300">Follow Us</h3>
+    <div className="flex gap-2.5 justify-center">
         <div 
-            className='p-2.5 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110' 
+            className="p-4 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110" 
             onClick={() => {window.location.href="https://www.linkedin.com/in/yrit-solutions-755549371"}}
         >
-            <FaLinkedin size={18} className='text-purple-300' />
+            <FaLinkedin size={24} className="text-purple-300" />
         </div>
         <div 
-            className='p-2.5 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110' 
+            className="p-4 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110" 
             onClick={() => {window.location.href="https://www.instagram.com/yritsolutions2025"}}
         >
-            <FaInstagram size={18} className='text-purple-300' />
+            <FaInstagram size={24} className="text-purple-300" />
         </div>
         <div 
-            className='p-2.5 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110' 
+            className="p-4 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110" 
             onClick={() => {window.location.href="https://youtube.com/@yritsolutions"}}
         >
-            <FaYoutube size={18} className='text-purple-300' />
+            <FaYoutube size={24} className="text-purple-300" />
         </div>
     </div>
 </div>
+
 
                             </div>
 

@@ -68,11 +68,11 @@ const Form = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <div className="bg-gray-900/90 backdrop-blur-sm rounded-3xl p-8 lg:p-10 shadow-2xl border border-purple-500/20 transform hover:scale-[1.02] transition-all duration-500 animate-slide-in-right">
+      <div className="bg-gray-900/90 backdrop-blur-sm rounded-3xl  pt-4 lg:p-10 shadow-2xl border border-purple-500/20 transform hover:scale-[1.02] transition-all duration-500 animate-slide-in-right">
         {/* Enhanced Header */}
-        <div className="text-center mb-8 animate-fade-in">
-          <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-violet-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-all duration-300">
-            <FaPaperPlane size={32} className="text-white" />
+        <div className="text-center mb-4 animate-fade-in">
+          <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-all duration-300">
+            <FaPaperPlane size={28} className="text-white" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
             Send Us a Message
@@ -218,11 +218,11 @@ const Form = () => {
           </div>
 
           {/* Enhanced Submit Button */}
-          <div className="pt-6 animate-slide-up" style={{animationDelay: '0.7s'}}>
+          <div className="pt-6 animate-slide-up flex justify-center" style={{animationDelay: '0.7s'}}>
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-4 px-6 rounded-2xl font-semibold text-white text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/20 ${
+              className={`text-center py-4 px-6 rounded-2xl font-semibold text-white text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/20 ${
                 isLoading
                   ? 'bg-gray-600 cursor-not-allowed transform scale-95'
                   : 'bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 shadow-lg hover:shadow-xl'

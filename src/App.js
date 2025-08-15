@@ -38,7 +38,7 @@ function App() {
       />
       
       {/* Main Content Container */}
-      <div className={`min-h-screen flex flex-col ${show ? "h-screen overflow-hidden" : ""}`}>
+      <div className={`min-h-screen flex flex-col overflow-hidden ${show ? "h-screen overflow-hidden" : ""}`}>
         
         {/* Main Content Area */}
         <main className="flex-1 w-full">
