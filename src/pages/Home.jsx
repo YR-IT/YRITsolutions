@@ -134,54 +134,56 @@ const Home = () => {
       </div>
 
       {/* WHY CHOOSE US Section */}
-      <PopInSection>
-        <div className="mb-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto bg-[#0f0f1a] rounded-3xl shadow-xl p-8 sm:p-12 text-center text-white why-choose-us">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-4 py-1 rounded-full border border-gray-600">
-                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold mt-4">
-                Why Choose Us
-              </h2>
-            </div>
-
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              spaceBetween={30}
-              slidesPerView={1}
-              loop={true}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              pagination={{ clickable: true }}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              className="pb-14"
-            >
-              {services.map((service, index) => (
-                <SwiperSlide key={index}>
-                  <div className="bg-[#1a1a2e] rounded-xl shadow-lg overflow-hidden transform hover:-rotate-2 hover:scale-105 transition-all duration-300">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-56 object-cover"
-                    />
-                    <div className="p-6 text-center">
-                      <h3 className="text-lg font-bold text-white">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-300 mt-2 text-sm">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+     {/* WHY CHOOSE US Section */}
+<PopInSection>
+  <div className="mb-20 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-[90rem] mx-auto bg-[#0f0f1a] rounded-3xl shadow-xl p-8 sm:p-12 text-center text-white why-choose-us">
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-4 py-1 rounded-full border border-gray-600">
+          <span className="w-2 h-2 rounded-full bg-purple-500"></span>
         </div>
-      </PopInSection>
+        <h2 className="text-3xl md:text-4xl font-extrabold mt-4">
+          Why Choose Us
+        </h2>
+      </div>
+
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        spaceBetween={40} // Increased from 30
+        slidesPerView={1}
+        loop={true}
+        autoplay={{ delay: 2500, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          640: { slidesPerView: 2, spaceBetween: 40 },
+          1024: { slidesPerView: 3, spaceBetween: 50 }, // More space between cards on large screens
+        }}
+        className="pb-14"
+      >
+        {services.map((service, index) => (
+          <SwiperSlide key={index}>
+            <div className="bg-[#1a1a2e] rounded-xl shadow-lg overflow-hidden transform hover:-rotate-2 hover:scale-105 transition-all duration-300 mx-2">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6 text-center">
+                <h3 className="text-lg font-bold text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-300 mt-2 text-sm">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  </div>
+</PopInSection>
+
 
       <PopInSection>
         <div className="mb-20 px-4 sm:px-6 lg:px-8">

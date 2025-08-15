@@ -43,7 +43,7 @@ const Loader = ({ onFinish }) => {
               opacity: [0.2, 1, 0.8, 1],
               scale: [0.95, 1.05, 1],
               textShadow: [
-                '0 0 5px #00F0FF, 0 0 10px #00F0FF, 0 0 20px #00F0FF, 0 0 40px #00F0FF',
+                '0 0 5pxrgb(17, 0, 255), 0 0 10pxrgb(0, 13, 255), 0 0 20px #00F0FF, 0 0 40px #00F0FF',
                 '0 0 10px #00D4FF, 0 0 20px #00D4FF, 0 0 30px #00D4FF, 0 0 60px #00D4FF',
                 '0 0 5pxrgb(4, 0, 255), 0 0 10pxrgb(0, 4, 255), 0 0 20pxrgb(0, 8, 255), 0 0 40pxrgb(0, 55, 255)',
               ],
