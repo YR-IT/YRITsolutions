@@ -1,46 +1,63 @@
-import React from 'react'
-import PI from "../assets/PI12.png"
-import { Link } from 'react-router-dom'
+import React from "react";
+import PI from "../assets/PI12.png";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const HaveAQues = () => {
-    return (
-        <>
-            <div className=' max-[1236px]:ml-10 max-[800px]:ml-0 flex justify-center items-center mb-[10rem] max-[500px]:mb-[17rem] max-[780px]:mb-[22rem]'>
-                <div className='h-[405px] flex  max-[780px]:flex-col max-[780px]:items-center '>
-                    <div className='h-[405px] w-[608px] max-md:justify-center max-md:items-center max-md:flex max-[600px]:w-[98%]  max-[1085px]:w-[100%] max-[600px]:h-[auto]'>
-                        <img src={PI} alt="" className='h-[405px] w-[608px] max-[600px]:w-[98%] max-[600px]:h-[auto] max-[1085px]:w-[100%]' />
-                    </div>
-                    <div className='px-10 max-[1240px]:px-0 max-[600px]:px-10 py-6 max-[600px]:py-1'>
-                        <div className='pricingM-right-box2 p-4'>
-                            <div className='text-[var(--theme)] text-[25px] mt-2 max-[630px]:text-[23px]'>
-                                Have a question?
-                            </div>
-                            <div className='mt-4 max-[600px]:mt-1 haveaques-head' style={{
+  return (
+    <motion.section
+      className="py-16 px-6 bg-gray-900 rounded-3xl shadow-lg shadow-black/50 max-w-6xl mx-auto"
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <div className="flex flex-col md:flex-row items-center gap-10">
+        {/* Left Image */}
+        <motion.div
+          className="flex-shrink-0 w-full md:w-1/2"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            src={PI}
+            alt="Have a Question"
+            className="w-full h-auto rounded-xl shadow-lg shadow-black/40 transition-transform duration-500"
+          />
+        </motion.div>
 
-                            }}>
-                                Contact Us
-                            </div>
-                            <div className='haveaques-head-sub' style={{
-                                fontSize: "20px",
-                                fontWeight: "400",
-                                lineHeight: "32px",
-                                textAlign: "justified",
-                                color: "#6A6A6A",
+        {/* Right Content */}
+        <div className="w-full md:w-1/2 space-y-5 text-center md:text-left">
+          <motion.h3
+            className="text-purple-400 text-4xl md:text-5xl font-semibold"
+            whileHover={{ color: "#D8B4FE" }}
+            transition={{ duration: 0.3 }}
+          >
+            Have a Question?
+          </motion.h3>
 
-                            }}>
-                                We just do more than just connect with the clients, we relate to their business and try to provide them with the best possible and also cost-effective solution.
-                            </div>
-                            <div className='btn px-16 h-[57px] rounded-[8px] txet-[20px] w-[fit-content] mt-7'>
-                                <Link to="/meetingform">
-                                    Schedule a Meeting
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Contact Us
+          </h2>
 
-export default HaveAQues
+          <p className="text-gray-300 text-lg leading-relaxed">
+            We do more than just connect with our clients — we truly relate to
+            their business and strive to provide the most effective and
+            cost-efficient solutions possible.
+          </p>
+
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <Link
+              to="/meetingform"
+              className="inline-block px-10 py-4 bg-purple-700/80 hover:bg-purple-600 text-white font-semibold rounded-lg shadow-lg transition-all duration-300"
+            >
+              Schedule a Meeting
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
+  );
+};
+
+export default HaveAQues;
