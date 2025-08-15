@@ -149,7 +149,7 @@ const ContactUs = () => {
                                         </div>
                                         <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>Cloud Services</span>
+                                            <span className='text-sm text-gray-300'>SEO Services</span>
                                         </div>
                                     </div>
                                 </div>
