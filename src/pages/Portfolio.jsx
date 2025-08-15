@@ -46,7 +46,7 @@ const projects = [
     title: "Istiyaq Facility",
     description:
       "Modern interior design website for Istiyaq Facility, showcasing premium design services and transformations. Built to highlight creativity, expertise, and client success. Sleek visuals, responsive layout, and fast-loading experience for users seeking beautiful, functional spaces they'll love.",
-    link: "https://istyaqfacility.vercel.app/",
+    link: "https://istyaqfacility.netlify.app/",
     image:"/images/image18.jpg",
   },
   {
