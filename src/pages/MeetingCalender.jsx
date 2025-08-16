@@ -90,7 +90,7 @@ const MeetingCalender = () => {
             if (emailResult.success) {
                 notifySuccess();
                 
-                // Reset form after successful submission
+                
                 setTimeout(() => {
                     setState({
                         firstName: "",
@@ -103,7 +103,7 @@ const MeetingCalender = () => {
                     setDuration("30 minutes");
                     setDate(new Date());
                     
-                    // Scroll to top
+                    
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }, 2000);
             } else {

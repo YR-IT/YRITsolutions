@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ClientReview from './ClientReview';
 
 // Import assets
@@ -9,7 +10,9 @@ import DigitalImg from '../assets/Demystifying-The-Role-of-Analytics-1.gif';
 
 
 const Services = () => {
+  const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState('web');
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleServiceChange = (service) => {
     setSelectedService(service);
@@ -48,22 +51,64 @@ const Services = () => {
     return (
       <div className="space-y-6 animate-fadeIn">
         <div className="space-y-4">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight animate-slideInLeft">
-            {current.title}
-          </h2>
+          <div className="relative">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight animate-slideInLeft relative z-10">
+              {current.title}
+            </h2>
+            <div className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft animation-delay-200"></div>
+          </div>
           <p className="text-lg text-gray-300 leading-relaxed max-w-2xl animate-slideInLeft animation-delay-200">
             {current.description}
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4 animate-slideInUp animation-delay-400">
-          <button className="group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 border-0">
+        <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4 animate-slideInUp animation-delay-400">
+          <button 
+            onClick={(event) => {
+              if (isNavigating) return;
+              setIsNavigating(true);
+              
+              
+              const button = event.target.closest('button');
+              button.style.transform = 'scale(0.95)';
+              
+            
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              
+              
+              setTimeout(() => {
+                navigate('/meetingform');
+                setIsNavigating(false);
+              }, 400);
+            }}
+            className={`group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 shadow-2xl hover:shadow-blue-500/30 border-0 button-click ${isNavigating ? 'opacity-75 cursor-not-allowed navigation-loading' : ''}`}
+          >
             <span className="relative z-10 transition-all duration-300 group-hover:text-white">Schedule a Meeting</span>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-110 group-hover:scale-100"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl blur opacity-0 group-hover:opacity-75 transition-all duration-500"></div>
           </button>
-          <button className="group bg-transparent hover:bg-gray-800 text-white px-8 py-4 border-2 border-blue-600 rounded-xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 hover:border-purple-600">
-            <span className="transition-all duration-300 group-hover:text-purple-400">Contact Us</span>
+          <button 
+            onClick={(event) => {
+              if (isNavigating) return; 
+              setIsNavigating(true);
+              
+              
+              const button = event.target.closest('button');
+              button.style.transform = 'scale(0.95)';
+              
+            
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              
+              
+              setTimeout(() => {
+                navigate('/contactus');
+                setIsNavigating(false);
+              }, 400);
+            }}
+            className={`group relative bg-transparent hover:bg-gray-800/50 text-white px-10 py-4 border-2 border-blue-600 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 shadow-2xl hover:shadow-blue-500/25 hover:border-purple-600 overflow-hidden button-click ${isNavigating ? 'opacity-75 cursor-not-allowed navigation-loading' : ''}`}
+          >
+            <span className="relative z-10 transition-all duration-300 group-hover:text-purple-400">Contact Us</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
           </button>
         </div>
       </div>
@@ -163,25 +208,33 @@ const Services = () => {
     };
 
     return (
-      <div className="space-y-6">
+      <div className="grid gap-4">
         {serviceDetails[selectedService].map((item, index) => (
           <div 
             key={index} 
-            className="group p-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl border border-gray-700 hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] text-center lg:text-left cursor-pointer"
-            style={{ animationDelay: `${index * 100}ms` }}
+            className="group relative p-6 bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 transform hover:-translate-y-3 hover:scale-[1.02] text-center lg:text-left cursor-pointer overflow-hidden"
+            style={{ animationDelay: `${index * 150}ms` }}
           >
-            <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-4">
-              <div className="flex-shrink-0 w-3 h-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mt-1 lg:mt-3 group-hover:scale-150 group-hover:rotate-180 transition-all duration-500 shadow-lg group-hover:shadow-blue-500/50"></div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-500">
-                  {item.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                  {item.description}
-                </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+            <div className="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-b from-blue-600 to-purple-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-700 origin-bottom"></div>
+            
+            <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-4 relative z-10">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 shadow-lg group-hover:shadow-blue-500/50 relative">
+                <div className="text-xl font-bold text-white">{(index + 1).toString().padStart(2, '0')}</div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl animate-ping opacity-20"></div>
               </div>
+                             <div className="space-y-2 flex-1">
+                 <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-700">
+                   {item.title}
+                 </h3>
+                 <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-500">
+                   {item.description}
+                 </p>
+               </div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+            
+            <div className="absolute -bottom-1 -right-1 w-20 h-20 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full blur-xl group-hover:scale-150 transition-all duration-700"></div>
           </div>
         ))}
       </div>
@@ -221,24 +274,31 @@ const Services = () => {
     };
 
     return (
-      <div className="space-y-4">
+      <div className="grid gap-4">
         {rightContent[selectedService].map((item, index) => (
           <div 
             key={index} 
-            className="group p-6 bg-gray-900 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/20 border border-gray-700 hover:border-blue-500 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.03] text-center lg:text-left cursor-pointer relative overflow-hidden"
-            style={{ animationDelay: `${index * 150}ms` }}
+            className="group relative p-6 bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl shadow-2xl hover:shadow-blue-500/30 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-700 transform hover:-translate-y-4 hover:scale-[1.03] text-center lg:text-left cursor-pointer overflow-hidden"
+            style={{ animationDelay: `${index * 200}ms` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-2 lg:space-y-0 lg:space-x-4 relative z-10">
-              <div className="text-2xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">{item.icon}</div>
-              <div className="space-y-1">
-                <h3 className="text-lg font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 uppercase tracking-wide transition-all duration-500">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+            <div className="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-b from-blue-600 to-purple-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-700 origin-bottom"></div>
+            
+            <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-4 relative z-10">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 shadow-lg group-hover:shadow-blue-500/50 relative">
+                <div className="text-xl">{item.icon}</div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl blur-lg group-hover:scale-150 transition-all duration-700"></div>
+              </div>
+              <div className="space-y-2 flex-1">
+                <h3 className="text-lg font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 uppercase tracking-wide transition-all duration-700">
                   {item.title}
                 </h3>
-                <p className="text-gray-300 text-sm group-hover:text-gray-200 transition-colors duration-300">{item.description}</p>
+                <p className="text-gray-300 text-sm group-hover:text-gray-200 transition-colors duration-500">{item.description}</p>
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-500 rounded-t-full"></div>
+            
+            <div className="absolute -bottom-2 -right-2 w-24 h-24 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full blur-xl group-hover:scale-150 transition-all duration-700"></div>
           </div>
         ))}
       </div>
@@ -257,16 +317,20 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 space-y-6">
-            <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight animate-fadeIn">
-              We Strive To Deliver
-              <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
-                Development Services
-              </span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed animate-fadeIn animation-delay-300">
+      <section className="pt-32 pb-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12 space-y-6">
+            <div className="relative">
+              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight animate-fadeIn">
+                We Strive To Deliver
+                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-gradient">
+                  Development Services
+                </span>
+              </h1>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft animation-delay-300"></div>
+            </div>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fadeIn animation-delay-300">
               We specialize in creating visually appealing, high-quality, and user-friendly applications that drive business growth.
             </p>
           </div>
@@ -275,22 +339,23 @@ const Services = () => {
           <div className="mb-12">
             
             <div className="hidden md:flex justify-center">
-              <div className="bg-gray-900 rounded-2xl p-2 shadow-xl border border-gray-700 hover:shadow-2xl transition-all duration-500">
-                <div className="flex space-x-2">
+              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl border border-gray-700 hover:shadow-blue-500/20 transition-all duration-700 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-all duration-700"></div>
+                <div className="flex space-x-3 relative z-10">
                   {services.map((service) => (
                     <button
                       key={service.id}
                       onClick={() => handleServiceChange(service.id)}
-                      className={`relative px-6 py-4 rounded-xl font-semibold transition-all duration-500 flex items-center space-x-3 group ${
+                      className={`relative px-8 py-5 rounded-2xl font-semibold transition-all duration-700 flex items-center space-x-4 group overflow-hidden ${
                         selectedService === service.id
                           ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl transform scale-105 hover:scale-110'
                           : 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 hover:scale-105'
                       }`}
                     >
-                      <span className="text-xl group-hover:scale-125 transition-transform duration-300">{service.icon}</span>
-                      <span>{service.label}</span>
+                      <span className="text-2xl group-hover:scale-125 transition-transform duration-500">{service.icon}</span>
+                      <span className="font-semibold">{service.label}</span>
                       {selectedService === service.id && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-80 -z-10 animate-pulse"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-80 -z-10 animate-pulse"></div>
                       )}
                     </button>
                   ))}
@@ -300,10 +365,10 @@ const Services = () => {
 
             
             <div className="md:hidden flex justify-center">
-              <div className="bg-gray-900 rounded-2xl p-4 shadow-xl border border-gray-700 w-full hover:shadow-2xl transition-all duration-500">
-                <label className="block text-sm font-semibold text-gray-300 mb-2">Choose Service:</label>
+              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700 w-full hover:shadow-blue-500/20 transition-all duration-700">
+                <label className="block text-sm font-semibold text-gray-300 mb-3">Choose Service:</label>
                 <select
-                  className="w-full p-2 md:p-3 text-sm md:text-base border border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-400 bg-gray-800 text-white"
+                  className="w-full p-4 text-base border border-gray-600 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-500 hover:border-blue-400 bg-gray-800 text-white"
                   onChange={(e) => handleServiceChange(e.target.value)}
                   value={selectedService}
                 >
@@ -317,7 +382,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
             <div className="space-y-8 order-2 lg:order-1 flex flex-col items-center text-center lg:items-start lg:text-left">
               {renderHomeContent()}
@@ -325,15 +390,15 @@ const Services = () => {
 
             
             <div className="order-1 lg:order-2 flex justify-center">
-              <div className="relative group w-full max-w-md animate-fadeIn animation-delay-500">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-all duration-700 animate-pulse"></div>
-                <div className="relative bg-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700 hover:shadow-blue-500/25 transition-all duration-500 transform group-hover:scale-105 group-hover:-rotate-1">
+              <div className="relative group w-full max-w-lg animate-fadeIn animation-delay-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-all duration-1000 animate-pulse"></div>
+                <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-8 shadow-2xl border border-gray-700 hover:shadow-blue-500/30 transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                   <img
                     src={getHeroImage()}
                     alt="Service Illustration"
-                    className="w-full h-auto max-h-[24rem] object-contain rounded-2xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                    className="w-full h-auto max-h-[28rem] object-contain rounded-2xl transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2 relative z-10"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
             </div>
@@ -342,25 +407,31 @@ const Services = () => {
       </section>
 
       
-      <section className="pt-0 pb-20 px-4 bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-700 hover:shadow-blue-500/10 transition-all duration-500">
-            <div className="grid lg:grid-cols-2 gap-12">
+             <section className="pt-0 pb-16 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="bg-gradient-to-br from-gray-800/50 via-gray-900/50 to-black/50 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-700/50 hover:shadow-blue-500/20 transition-all duration-700 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-all duration-700"></div>
+            <div className="grid lg:grid-cols-2 gap-12 relative z-10">
               
               <div className="space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left">
-                <div className="space-y-4 animate-fadeIn">
-                  <h2 className="text-4xl font-bold text-white">
-                    We work with you for
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">growth</span>
-                  </h2>
-                  <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft"></div>
+                <div className="space-y-6 animate-fadeIn">
+                  <div className="relative">
+                    <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                      We work with you for
+                      <span className="block gradient-text">growth</span>
+                    </h2>
+                  </div>
                 </div>
                 {renderServiceContent()}
               </div>
 
               
-              <div className="space-y-12 space-x-4 py-4 text-center lg:text-left animate-fadeIn animation-delay-300">
-                <h3 className="text-4xl font-bold text-white mb-8">Our Specializations</h3>
+                             <div className="space-y-6 py-4 text-center lg:text-left animate-fadeIn animation-delay-300">
+                <div className="relative">
+                  <h3 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Specializations</h3>
+                  <div className="absolute -bottom-2 left-0 w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft animation-delay-200"></div>
+                </div>
                 {renderServiceRightContent()}
               </div>
             </div>
