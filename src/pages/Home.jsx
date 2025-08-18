@@ -79,7 +79,7 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-2"
+            className="w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
           >
             <img src={src} alt="" className="w-full h-full object-cover" />
           </div>
@@ -113,14 +113,24 @@ const Home = () => {
       Custom Product & <br />
       Software Development Focused on your Success
     </h1>
-    <div className="mt-5 sm:mt-7">
-      <Link
-        to="/contactus"
-        className="bg-white text-black font-semibold py-2 px-5 rounded-lg text-base sm:text-lg hover:scale-105 transition-transform duration-300"
-      >
-        Contact Us
-      </Link>
-    </div>
+  {/* Contact Button in Hero Section */}
+<div className="mt-5 sm:mt-7">
+  <Link
+    to="/contactus"
+    className="relative inline-block px-6 py-3 font-semibold text-base sm:text-lg rounded-xl 
+               bg-gradient-to-r from-purple-500 via-purple-500 to-violet-500 text-white
+               shadow-lg shadow-purple-500/30
+               transition-all duration-300 hover:scale-110 hover:shadow-xl
+               hover:shadow-pink-500/40"
+  >
+    <span className="relative z-10">Contact Us</span>
+    <span
+      className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-red-600
+                 opacity-0 hover:opacity-100 transition-opacity duration-300"
+    ></span>
+  </Link>
+</div>
+
   </div>
 
   <MarqueeRow images={bottomImages} direction="right" />
@@ -179,7 +189,7 @@ const Home = () => {
 
       {/* Clients Review */}
       <PopInSection>
-        <div className="my-2 px-4 sm:px-6 lg:px-8">
+        <div className="my-6 px-4 sm:px-6 lg:px-8">
           <ClientReview />
         </div>
       </PopInSection>
