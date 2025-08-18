@@ -30,7 +30,7 @@ const TechStack = () => {
     const world = engine.world;
 
     const width = window.innerWidth;
-    const height = 500;
+    const height = 600;
 
     // Create renderer
     const render = Render.create({
