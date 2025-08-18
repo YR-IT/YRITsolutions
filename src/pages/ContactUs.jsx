@@ -36,7 +36,7 @@ const ContactUs = () => {
                         {/* Page Header */}
                         <div className='text-center animate-fade-in'>
                             <div className='inline-block mb-6'>
-                                <div className='w-16 h-16 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-all duration-500 animate-bounce'>
+                                <div className='w-20 h-20 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-all duration-500 animate-bounce'>
                                     <FaRocket size={24} className="text-white" />
                                 </div>
                                 <div className='bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent text-3xl md:text-4xl lg:text-5xl font-bold animate-pulse'>
@@ -53,7 +53,7 @@ const ContactUs = () => {
                         </div>
 
                         {/* Main Content Grid */}
-                        <div className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
+                        <div className='grid grid-cols-1 xl:grid-cols-3 gap-1'>
                             
                             {/* Left Column - Contact Information & Why Choose Us */}
                             <div className='xl:col-span-1 space-y-6'>

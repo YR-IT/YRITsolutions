@@ -52,7 +52,7 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="bg-black py-20 px-6">
+    <section className="bg-black py-1 px-1">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="mb-12">

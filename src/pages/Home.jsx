@@ -10,8 +10,7 @@ import ClientReview from "./ClientReview";
 import Pricing from "./Pricing";
 import ContactUs from "./ContactUs";
 import Loader from "../components/Loader";
-
-
+import TechStack from "./TechStack";
 
 const topImages = [
   "/images/img1.jpg",
@@ -77,18 +76,10 @@ const MarqueeRow = ({ images, direction }) => {
             : "animate-marquee-right"
         }`}
       >
-        {images.map((src, idx) => (
+        {images.concat(images).map((src, idx) => (
           <div
-            key={`first-${idx}`}
-            className="w-[300px] h-[180px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3"
-          >
-            <img src={src} alt="" className="w-full h-full object-cover" />
-          </div>
-        ))}
-        {images.map((src, idx) => (
-          <div
-            key={`second-${idx}`}
-            className="w-[300px] h-[180px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3"
+            key={idx}
+            className="w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-2"
           >
             <img src={src} alt="" className="w-full h-full object-cover" />
           </div>
@@ -114,95 +105,111 @@ const Home = () => {
   return (
     <>
       {/* Hero + Marquee Section */}
-      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-20 overflow-hidden">
-        <MarqueeRow images={topImages} direction="left" />
-        <div className="text-center max-w-4xl px-4 my-12">
-          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-tight text-white">
-            Custom Product & <br />
-            Software Development Focused on your Success
-          </h1>
-          <div className="mt-10">
-            <Link
-              to="/contactus"
-              className="bg-white text-black font-semibold py-3 px-6 rounded-lg text-lg hover:scale-105 transition-transform duration-300"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-        <MarqueeRow images={bottomImages} direction="right" />
-      </div>
+      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
+  <MarqueeRow images={topImages} direction="left" />
 
-      {/* WHY CHOOSE US Section */}
-     {/* WHY CHOOSE US Section */}
-<PopInSection>
-  <div className="mb-20 px-4 sm:px-6 lg:px-8">
-    <div className="max-w-[90rem] mx-auto bg-[#0f0f1a] rounded-3xl shadow-xl p-8 sm:p-12 text-center text-white why-choose-us">
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-4 py-1 rounded-full border border-gray-600">
-          <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-        </div>
-        <h2 className="text-3xl md:text-4xl font-extrabold mt-4">
-          Why Choose Us
-        </h2>
-      </div>
-
-      <Swiper
-        modules={[Autoplay, Pagination]}
-        spaceBetween={40} // Increased from 30
-        slidesPerView={1}
-        loop={true}
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          640: { slidesPerView: 2, spaceBetween: 40 },
-          1024: { slidesPerView: 3, spaceBetween: 50 }, // More space between cards on large screens
-        }}
-        className="pb-14"
+  <div className="text-center max-w-4xl px-4 my-6 sm:my-8">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase leading-snug text-white animate-float">
+      Custom Product & <br />
+      Software Development Focused on your Success
+    </h1>
+    <div className="mt-5 sm:mt-7">
+      <Link
+        to="/contactus"
+        className="bg-white text-black font-semibold py-2 px-5 rounded-lg text-base sm:text-lg hover:scale-105 transition-transform duration-300"
       >
-        {services.map((service, index) => (
-          <SwiperSlide key={index}>
-            <div className="bg-[#1a1a2e] rounded-xl shadow-lg overflow-hidden transform hover:-rotate-2 hover:scale-105 transition-all duration-300 mx-2">
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-56 object-cover"
-              />
-              <div className="p-6 text-center">
-                <h3 className="text-lg font-bold text-white">
-                  {service.title}
-                </h3>
-                <p className="text-gray-300 mt-2 text-sm">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        Contact Us
+      </Link>
     </div>
   </div>
-</PopInSection>
+
+  <MarqueeRow images={bottomImages} direction="right" />
+</div>
 
 
+      {/* WHY CHOOSE US Section */}
       <PopInSection>
-        <div className="mb-20 px-4 sm:px-6 lg:px-8">
+        <div className="mb-4 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[90rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-center text-white why-choose-us">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-2 py-1 rounded-full border border-gray-600">
+                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-3">
+                Why Choose Us
+              </h2>
+            </div>
+
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              spaceBetween={20}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 30 },
+              }}
+              className="pb-8"
+            >
+              {services.map((service, index) => (
+                <SwiperSlide key={index}>
+                  <div className="bg-[#1a1a2e] rounded-xl shadow-lg overflow-hidden transform hover:-rotate-2 hover:scale-105 transition-all duration-300 mx-1">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-44 sm:h-52 object-cover"
+                    />
+                    <div className="p-4 text-center">
+                      <h3 className="text-lg font-bold text-white">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-300 mt-2 text-sm">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      </PopInSection>
+
+      {/* Clients Review */}
+      <PopInSection>
+        <div className="my-2 px-4 sm:px-6 lg:px-8">
           <ClientReview />
         </div>
       </PopInSection>
 
+
+        {/* Tech Stack */}
+        <PopInSection>
+        <div className="my-2 px-4 sm:px-6 lg:px-8">
+          <TechStack />
+        </div>
+      </PopInSection>
+
+
+      {/* Pricing */}
       <PopInSection>
-        <div className="mb-20 px-4 sm:px-6 lg:px-8">
+        <div className="my-2 px-2 sm:px-6 lg:px-8">
           <Pricing />
         </div>
       </PopInSection>
 
+      
+
+      {/* Contact */}
       <PopInSection>
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="my-2 px-4 sm:px-3 lg:px-5">
           <ContactUs />
         </div>
       </PopInSection>
 
+      {/* Swiper Styles */}
       <style>{`
         .why-choose-us .swiper-pagination {
           bottom: -5px !important;

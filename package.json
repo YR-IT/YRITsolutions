@@ -15,6 +15,7 @@
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.515.0",
     "mail-sender-package": "^1.0.31",
+    "matter-js": "^0.20.0",
     "printfirst": "^1.0.0",
     "react": "^18.3.1",
     "react-animated-numbers": "^0.18.0",
