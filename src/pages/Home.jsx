@@ -108,6 +108,8 @@ const Home = () => {
   return (
     <>
       {/* Hero + Marquee Section */}
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
+
       <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
   <MarqueeRow images={topImages} direction="left" />
 
