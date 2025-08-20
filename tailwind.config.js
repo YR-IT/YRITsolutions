@@ -13,8 +13,8 @@ module.exports = {
         },
       },
       animation: {
-        "marquee-left": "marqueeLeft 40s linear infinite",
-        "marquee-right": "marqueeRight 40s linear infinite",
+        "marquee-left": "marqueeLeft 70s linear infinite",  // slowed down
+        "marquee-right": "marqueeRight 70s linear infinite", // slowed down
       },
     },
   },
