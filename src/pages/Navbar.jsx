@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../assets/10logo-nobg.png';
+import Logo from '../assets/YRLogo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { FiPhone } from 'react-icons/fi';
 
@@ -63,12 +63,12 @@ const Navbar = ({ state, setState, setshow, show }) => {
       {/* -------- Top Navbar -------- */}
 
 <div
-  className={`navbar-container z-[10000] w-full h-[100px] flex justify-between items-center fixed top-0 left-0 px-8 transition-all duration-300 
+  className={`navbar-container z-[10000] w-full h-[100px] flex justify-between items-center fixed top-3 left-0 px-8 transition-all duration-300 
   ${isScrolled ? 'bg-black shadow-md' : 'bg-transparent'} text-white`}
 >
   {/* Logo */}
   <Link to="/" onClick={() => setState(0)}>
-    <img src={Logo} alt="logo" className="h-[75px] cursor-pointer" />
+    <img src={Logo} alt="logo" className="h-[120px] cursor-pointer" />
   </Link>
 
   {/* Right side buttons */}

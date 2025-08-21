@@ -30,6 +30,15 @@ const bottomImages = [
   "/images/img16.jpg",
 ];
 
+const logos = [
+  "/logos/logo1.png",
+  "/logos/logo2.png",
+  "/logos/logo3.png",
+  "/logos/logo4.png",
+  "/logos/logo5.png",
+  "/logos/logo6.png",
+];
+
 const services = [
   {
     title: "SDE Tradition",
@@ -92,9 +101,49 @@ const MarqueeRow = ({ images, direction }) => {
   );
 };
 
+// ✅ Logos Marquee (Right → Left)
+const LogosMarquee = ({ items }) => {
+  return (
+    <div className="w-full overflow-hidden bg-black py-8">
+      <div className="flex items-center">
+        <div className="flex marquee-track space-x-16">
+          {items.map((logo, idx) => (
+            <img
+              key={idx}
+              src={logo}
+              alt="brand"
+              className="h-12 sm:h-16 object-contain"
+            />
+          ))}
+          {/* duplicate set for smooth infinite scroll */}
+          {items.map((logo, idx) => (
+            <img
+              key={`dup-${idx}`}
+              src={logo}
+              alt="brand"
+              className="h-12 sm:h-16 object-contain"
+            />
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marqueeScroll 20s linear infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
+
 const Home = () => {
   const [showLoader, setShowLoader] = useState(true);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (!showLoader) {
@@ -108,8 +157,6 @@ const Home = () => {
 
   return (
     <>
-      
-
       {/* Hero + Marquee Section */}
       <div className="absolute bottom-0 right-0 w-[400px] h-[600px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
 
@@ -121,12 +168,12 @@ const Home = () => {
             Custom Product & <br />
             Software Development Focused on your Success
           </h1>
-
-       
         </div>
 
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
+
+     
 
       {/* WHY CHOOSE US Section */}
       <PopInSection>
@@ -178,6 +225,9 @@ const Home = () => {
         </div>
       </PopInSection>
 
+       {/* ✅ Logos Moving Section */}
+       <LogosMarquee items={logos} />
+
       {/* Clients Review */}
       <PopInSection>
         <div className="my-6 px-4 sm:px-6 lg:px-8">
@@ -211,13 +261,19 @@ const Home = () => {
         .why-choose-us .swiper-pagination {
           bottom: -5px !important;
         }
-        .why-choose-us .swiper-pagination-bullet {
-          background: #888 !important;
-          opacity: 0.8;
+        .animate-marquee-left {
+          animation: marquee-left 20s linear infinite;
         }
-        .why-choose-us .swiper-pagination-bullet-active {
-          background: #a855f7 !important;
-          opacity: 1;
+        .animate-marquee-right {
+          animation: marquee-right 20s linear infinite;
+        }
+        @keyframes marquee-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
         }
       `}</style>
     </>
