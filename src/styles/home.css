@@ -7,6 +7,30 @@
 }
 
 
+.industry-card {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden; 
+}
+
+.industry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px; 
+    height: 15px; 
+    background: linear-gradient(135deg, transparent 50%, #1a1a2e 50%);
+    z-index: 1;
+    border-top-right-radius: 0.75rem;
+}
+
+
+.industry-card:hover::before {
+    background: linear-gradient(135deg, transparent 50%, white 50%);
+}
+
+
 @media (min-width: 1536px) {}
 
 @media (min-width: 1024px) {}

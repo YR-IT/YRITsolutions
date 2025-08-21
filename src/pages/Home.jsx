@@ -157,6 +157,7 @@ const Home = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
       {/* Hero + Marquee Section */}
       <div className="absolute bottom-0 right-0 w-[400px] h-[600px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
 
@@ -173,12 +174,63 @@ const Home = () => {
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
 
+=======
+<<<<<<< HEAD
+      
+      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
+        <MarqueeRow images={topImages} direction="left" />
+
+        <div className="text-center max-w-4xl px-6 sm:px-8 md:px-10 my-6 sm:my-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase leading-snug text-white animate-float">
+            Custom Product & <br />
+            Software Development Focused on your Success
+          </h1>
+          
+          <div className="mt-5 sm:mt-7">
+            <Link
+              to="/contactus"
+              className="relative inline-block px-6 py-3 font-semibold text-base sm:text-lg rounded-xl 
+               bg-gradient-to-r from-purple-500 via-purple-500 to-violet-500 text-white
+               shadow-lg shadow-purple-500/30
+               transition-all duration-300 hover:scale-110 hover:shadow-xl
+               hover:shadow-pink-500/40"
+            >
+              <span className="relative z-10">Contact Us</span>
+              <span
+                className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-red-600
+                 opacity-0 hover:opacity-100 transition-opacity duration-300"
+              ></span>
+            </Link>
+          </div>
+=======
+      {/* Hero + Marquee Section */}
+      <div className="absolute bottom-0 right-0 w-[400px] h-[600px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
+
+      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
+        <MarqueeRow images={topImages} direction="left" />
+
+        <div className="text-center max-w-4xl px-4 my-7 sm:mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-snug text-white animate-float">
+            Custom Product & <br />
+            Software Development Focused on your Success
+          </h1>
+>>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
+        </div>
+
+        <MarqueeRow images={bottomImages} direction="right" />
+      </div>
+
+<<<<<<< HEAD
+      
+=======
+>>>>>>> Stashed changes
      
 
       {/* WHY CHOOSE US Section */}
+>>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
-        <div className="mb-4 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-[90rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-center text-white why-choose-us">
+        <div className="mb-4 px-6 sm:px-10 md:px-16 lg:px-20">
+          <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-center text-white why-choose-us">
             <div className="text-center mb-6">
               <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-2 py-1 rounded-full border border-gray-600">
                 <span className="w-2 h-2 rounded-full bg-purple-500"></span>
@@ -225,38 +277,209 @@ const Home = () => {
         </div>
       </PopInSection>
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+      
+=======
+>>>>>>> Stashed changes
        {/* ✅ Logos Moving Section */}
        <LogosMarquee items={logos} />
 
       {/* Clients Review */}
+>>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
-        <div className="my-6 px-4 sm:px-6 lg:px-8">
+        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
           <ClientReview />
         </div>
       </PopInSection>
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+      
+      <PopInSection>
+        <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
+=======
+>>>>>>> Stashed changes
       {/* Tech Stack */}
       <PopInSection>
         <div className="my-2 px-4 sm:px-6 lg:px-8">
+>>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
           <TechStack />
         </div>
       </PopInSection>
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+      {/* Industries Section */}
+=======
+>>>>>>> Stashed changes
       {/* Pricing */}
+>>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
-        <div className="my-2 px-2 sm:px-6 lg:px-8">
+        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
+          <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-white">
+            <div className="text-left mb-6">
+              <div className="inline-block relative">
+                <div className="inline-flex items-center gap-2 px-6 py-3 mb-4 relative overflow-hidden">
+                  <span className="w-3 h-3 rounded-full bg-purple-500"></span>
+                  <h2 className="text-xl font-extrabold text-white">
+                    INDUSTRIES
+                  </h2>
+                  <div className="absolute inset-0 border-2 border-white animate-border-rotate"></div>
+                </div>
+              </div>
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6 mb-6 text-white">
+                SECTOR-SAVVY SOLUTIONS <br /> FROM OUR EXPERTS
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+              {/* Industry - Real Estate & Property */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon6.png" alt="Real Estate" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Real Estate & Property</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop applications for buying, selling, and managing properties efficiently.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - On-Demand Solutions */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon7.png" alt="On-Demand Solutions" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">On-Demand Solutions</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create instant access services that connect users with providers seamlessly.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Social Networking */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon8.png" alt="Social Networking" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Social Networking</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build platforms for sharing, connecting, and engaging within communities online.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Food & Restaurant */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon10.png" alt="Food & Restaurant" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Food & Restaurant</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Design systems for ordering, reservations, and reviews to enhance dining.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Banking, Finance, & Insurance */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon11.png" alt="Banking & Finance" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Banking, Finance, & Insurance</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Implement secure solutions for transactions, investments, and claims management efficiently.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Education & Training */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon12.png" alt="Education & Training" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Education & Training</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop online platforms offering courses, certifications, and personalized learning experiences.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - eCommerce, Retail, and B2B */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon9.png" alt="eCommerce & Retail" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">eCommerce, Retail, and B2B</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create integrated solutions for online shopping and inventory management seamlessly.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Healthcare & Fitness */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon13.png" alt="Healthcare & Fitness" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Healthcare & Fitness</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Design tools for telehealth, appointments, and fitness tracking for wellness.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Media & Entertainment */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon1.png" alt="Media & Entertainment" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Media & Entertainment</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build platforms for streaming, gaming, and engaging content experiences effectively.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Transport & Automotive */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/icon2.png" alt="Transport & Automotive" className="w-10 h-10 transition-all duration-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Transport & Automotive</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop apps for ride-sharing, navigation, and vehicle maintenance solutions.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <div className="bg-black p-6 rounded-xl inline-block max-w-2xl mx-auto border border-white m-2">
+                <h3 className="text-xl font-bold mb-3">Looking for a Software Development?</h3>
+                <p className="text-gray-300 mb-4">Get your software designed and deployed with post deployment services.</p>
+                <Link
+                  to="/contactus"
+                  className="inline-block px-6 py-3 font-semibold text-base rounded-xl 
+                           bg-gradient-to-r from-purple-500 via-purple-500 to-violet-500 text-white
+                           shadow-lg shadow-purple-500/30
+                           transition-all duration-300 hover:scale-110 hover:shadow-xl
+                           hover:shadow-pink-500/40"
+                >
+                  Request a Callback
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </PopInSection>
+
+    
+      <PopInSection>
+        <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
           <Pricing />
         </div>
       </PopInSection>
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+      
+=======
+>>>>>>> Stashed changes
       {/* Contact */}
+>>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
-        <div className="my-2 px-4 sm:px-3 lg:px-5">
+        <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
           <ContactUs />
         </div>
       </PopInSection>
 
-      {/* Swiper Styles */}
+      
       <style>{`
         .why-choose-us .swiper-pagination {
           bottom: -5px !important;
@@ -274,6 +497,16 @@ const Home = () => {
         @keyframes marquee-right {
           0% { transform: translateX(-50%); }
           100% { transform: translateX(0); }
+<<<<<<< Updated upstream
+=======
+        }
+        .industry-clip-card {
+          clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%);
+          transition: clip-path 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .industry-clip-card:hover, .industry-clip-card:focus, .industry-clip-card:active {
+          clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 100%, 0 100%);
+>>>>>>> Stashed changes
         }
       `}</style>
     </>
