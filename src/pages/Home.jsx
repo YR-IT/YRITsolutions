@@ -19,7 +19,6 @@ const topImages = [
   "/images/img4.jpg",
   "/images/img5.jpg",
   "/images/img6.jpg",
-  
 ];
 
 const bottomImages = [
@@ -82,7 +81,8 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
+            className="w-[260px] sm:w-[270px] h-[200px] sm:h-[200px] 
+                       overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-6"
           >
             <img src={src} alt="" className="w-full h-full object-cover" />
           </div>
@@ -94,6 +94,7 @@ const MarqueeRow = ({ images, direction }) => {
 
 const Home = () => {
   const [showLoader, setShowLoader] = useState(true);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (!showLoader) {
@@ -107,40 +108,25 @@ const Home = () => {
 
   return (
     <>
+      
+
       {/* Hero + Marquee Section */}
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-[400px] h-[600px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
 
       <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
-  <MarqueeRow images={topImages} direction="left" />
+        <MarqueeRow images={topImages} direction="left" />
 
-  <div className="text-center max-w-4xl px-4 my-6 sm:my-8">
-    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase leading-snug text-white animate-float">
-      Custom Product & <br />
-      Software Development Focused on your Success
-    </h1>
-  {/* Contact Button in Hero Section */}
-<div className="mt-5 sm:mt-7">
-  <Link
-    to="/contactus"
-    className="relative inline-block px-6 py-3 font-semibold text-base sm:text-lg rounded-xl 
-               bg-gradient-to-r from-purple-500 via-purple-500 to-violet-500 text-white
-               shadow-lg shadow-purple-500/30
-               transition-all duration-300 hover:scale-110 hover:shadow-xl
-               hover:shadow-pink-500/40"
-  >
-    <span className="relative z-10">Contact Us</span>
-    <span
-      className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-red-600
-                 opacity-0 hover:opacity-100 transition-opacity duration-300"
-    ></span>
-  </Link>
-</div>
+        <div className="text-center max-w-4xl px-4 my-7 sm:mb-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-snug text-white animate-float">
+            Custom Product & <br />
+            Software Development Focused on your Success
+          </h1>
 
-  </div>
+       
+        </div>
 
-  <MarqueeRow images={bottomImages} direction="right" />
-</div>
-
+        <MarqueeRow images={bottomImages} direction="right" />
+      </div>
 
       {/* WHY CHOOSE US Section */}
       <PopInSection>
@@ -199,14 +185,12 @@ const Home = () => {
         </div>
       </PopInSection>
 
-
-        {/* Tech Stack */}
-        <PopInSection>
+      {/* Tech Stack */}
+      <PopInSection>
         <div className="my-2 px-4 sm:px-6 lg:px-8">
           <TechStack />
         </div>
       </PopInSection>
-
 
       {/* Pricing */}
       <PopInSection>
@@ -214,8 +198,6 @@ const Home = () => {
           <Pricing />
         </div>
       </PopInSection>
-
-      
 
       {/* Contact */}
       <PopInSection>
