@@ -30,15 +30,6 @@ const bottomImages = [
   "/images/img16.jpg",
 ];
 
-const logos = [
-  "/logos/logo1.png",
-  "/logos/logo2.png",
-  "/logos/logo3.png",
-  "/logos/logo4.png",
-  "/logos/logo5.png",
-  "/logos/logo6.png",
-];
-
 const services = [
   {
     title: "SDE Tradition",
@@ -90,54 +81,12 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-[260px] sm:w-[270px] h-[200px] sm:h-[200px] 
-                       overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-6"
+            className="w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
           >
             <img src={src} alt="" className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
-    </div>
-  );
-};
-
-// ✅ Logos Marquee (Right → Left)
-const LogosMarquee = ({ items }) => {
-  return (
-    <div className="w-full overflow-hidden bg-black py-8">
-      <div className="flex items-center">
-        <div className="flex marquee-track space-x-16">
-          {items.map((logo, idx) => (
-            <img
-              key={idx}
-              src={logo}
-              alt="brand"
-              className="h-12 sm:h-16 object-contain"
-            />
-          ))}
-          {/* duplicate set for smooth infinite scroll */}
-          {items.map((logo, idx) => (
-            <img
-              key={`dup-${idx}`}
-              src={logo}
-              alt="brand"
-              className="h-12 sm:h-16 object-contain"
-            />
-          ))}
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes marqueeScroll {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          display: flex;
-          width: max-content;
-          animation: marqueeScroll 20s linear infinite;
-        }
-      `}</style>
     </div>
   );
 };
@@ -157,25 +106,6 @@ const Home = () => {
 
   return (
     <>
-<<<<<<< Updated upstream
-      {/* Hero + Marquee Section */}
-      <div className="absolute bottom-0 right-0 w-[400px] h-[600px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
-
-      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
-        <MarqueeRow images={topImages} direction="left" />
-
-        <div className="text-center max-w-4xl px-4 my-7 sm:mb-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-snug text-white animate-float">
-            Custom Product & <br />
-            Software Development Focused on your Success
-          </h1>
-        </div>
-
-        <MarqueeRow images={bottomImages} direction="right" />
-      </div>
-
-=======
-<<<<<<< HEAD
       
       <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
         <MarqueeRow images={topImages} direction="left" />
@@ -202,32 +132,12 @@ const Home = () => {
               ></span>
             </Link>
           </div>
-=======
-      {/* Hero + Marquee Section */}
-      <div className="absolute bottom-0 right-0 w-[400px] h-[600px] bg-blue-600 rounded-full blur-[90px] opacity-40 pointer-events-none"></div>
-
-      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
-        <MarqueeRow images={topImages} direction="left" />
-
-        <div className="text-center max-w-4xl px-4 my-7 sm:mb-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-snug text-white animate-float">
-            Custom Product & <br />
-            Software Development Focused on your Success
-          </h1>
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
         </div>
 
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
 
-<<<<<<< HEAD
       
-=======
->>>>>>> Stashed changes
-     
-
-      {/* WHY CHOOSE US Section */}
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
         <div className="mb-4 px-6 sm:px-10 md:px-16 lg:px-20">
           <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-center text-white why-choose-us">
@@ -277,47 +187,21 @@ const Home = () => {
         </div>
       </PopInSection>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
       
-=======
->>>>>>> Stashed changes
-       {/* ✅ Logos Moving Section */}
-       <LogosMarquee items={logos} />
-
-      {/* Clients Review */}
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
           <ClientReview />
         </div>
       </PopInSection>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
       
       <PopInSection>
         <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
-=======
->>>>>>> Stashed changes
-      {/* Tech Stack */}
-      <PopInSection>
-        <div className="my-2 px-4 sm:px-6 lg:px-8">
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
           <TechStack />
         </div>
       </PopInSection>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
       {/* Industries Section */}
-=======
->>>>>>> Stashed changes
-      {/* Pricing */}
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
           <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-white">
@@ -465,14 +349,7 @@ const Home = () => {
         </div>
       </PopInSection>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
       
-=======
->>>>>>> Stashed changes
-      {/* Contact */}
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
       <PopInSection>
         <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
           <ContactUs />
@@ -484,21 +361,13 @@ const Home = () => {
         .why-choose-us .swiper-pagination {
           bottom: -5px !important;
         }
-        .animate-marquee-left {
-          animation: marquee-left 20s linear infinite;
+        .why-choose-us .swiper-pagination-bullet {
+          background: #888 !important;
+          opacity: 0.8;
         }
-        .animate-marquee-right {
-          animation: marquee-right 20s linear infinite;
-        }
-        @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-right {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-<<<<<<< Updated upstream
-=======
+        .why-choose-us .swiper-pagination-bullet-active {
+          background: #a855f7 !important;
+          opacity: 1;
         }
         .industry-clip-card {
           clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%);
@@ -506,7 +375,6 @@ const Home = () => {
         }
         .industry-clip-card:hover, .industry-clip-card:focus, .industry-clip-card:active {
           clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 100%, 0 100%);
->>>>>>> Stashed changes
         }
       `}</style>
     </>

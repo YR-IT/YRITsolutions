@@ -51,11 +51,6 @@ module.exports = {
         },
       },
       animation: {
-<<<<<<< Updated upstream
-        "marquee-left": "marqueeLeft 10s linear infinite",  // slowed down
-        "marquee-right": "marqueeRight 10s linear infinite", // slowed down
-=======
-<<<<<<< HEAD
         "marquee-left": "marqueeLeft 40s linear infinite",
         "marquee-right": "marqueeRight 40s linear infinite",
         "float": "float 3s ease-in-out infinite",
@@ -63,11 +58,6 @@ module.exports = {
         "glow": "glow 2s ease-in-out infinite",
         "shimmer": "shimmer 3s linear infinite",
         "border-rotate": "borderRotate 4s linear infinite",
-=======
-        "marquee-left": "marqueeLeft 10s linear infinite",  // slowed down
-        "marquee-right": "marqueeRight 10s linear infinite", // slowed down
->>>>>>> d4228aaf1004a05f4f9e4fabbc6938a2e4ba03e8
->>>>>>> Stashed changes
       },
     },
   },
