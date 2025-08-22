@@ -1,79 +1,83 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/autoplay";
+import "swiper/css/pagination";
 
-const ServicesSlider = () => {
+const ServicesSection = () => {
+  const services = [
+    {
+      img: "https://via.placeholder.com/300x300?text=DevOps",
+      title: "DevOps",
+      desc: "Streamlined deployment and integration services for faster innovation.",
+    },
+    {
+      img: "https://via.placeholder.com/300x300?text=Networking",
+      title: "Networking",
+      desc: "Robust IT infrastructure for seamless connectivity and communication.",
+    },
+    {
+      img: "https://via.placeholder.com/300x300?text=AI",
+      title: "AI Development",
+      desc: "AI integration services for enhanced software experience and process automation.",
+    },
+    {
+      img: "https://via.placeholder.com/300x300?text=Cloud",
+      title: "Cloud Solutions",
+      desc: "Scalable cloud infrastructure and management solutions for modern businesses.",
+    },
+    {
+      img: "https://via.placeholder.com/300x300?text=Team",
+      title: "IT Consulting",
+      desc: "Expert IT consulting services for strategic technology adoption.",
+    },
+  ];
+
   return (
-    <div className="bg-white py-10">
-      {/* Section Title */}
-      <div className="text-center mb-10">
-        <p className="text-sm font-medium text-gray-500 tracking-widest">OUR SERVICES</p>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mt-2">
-          A RANGE OF IT SERVICES DESIGNED FOR IMPACT
-        </h2>
-        <p className="mt-4 text-lg font-semibold">Software as a Service</p>
-        <p className="text-gray-500 max-w-xl mx-auto">
-          Custom SaaS development solutions to optimize and innovate your processes.
-        </p>
+    <section className="w-full bg-white py-16 px-4 md:px-12 text-center">
+      {/* Label */}
+      <div className="flex justify-center mb-4">
+        <span className="relative inline-block px-4 py-1 text-sm font-medium border rounded-full">
+          <span className="absolute left-2 top-1/2 -translate-y-1/2 w-2 h-2 bg-purple-600 rounded-full"></span>
+          OUR SERVICES
+        </span>
       </div>
 
-      {/* Swiper Coverflow */}
+      {/* Heading */}
+      <h2 className="text-3xl md:text-4xl font-extrabold leading-tight mb-6">
+        A RANGE OF IT SERVICES <br /> DESIGNED FOR IMPACT
+      </h2>
+
+      {/* Subheading */}
+      <h3 className="text-lg font-bold mb-2">AI Development</h3>
+      <p className="text-gray-600 max-w-lg mx-auto mb-12">
+        AI integration services for enhanced software experience and process automation.
+      </p>
+
+      {/* Swiper Slider */}
       <Swiper
-        effect="coverflow"
-        grabCursor={true}
-        centeredSlides={true}
+        modules={[Autoplay, Pagination]}
+        spaceBetween={30}
+        slidesPerView={3}
         loop={true}
-        slidesPerView={"auto"}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
+        autoplay={{ delay: 2500, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 3 },
         }}
-        coverflowEffect={{
-          rotate: 0,       // no tilt
-          stretch: -30,    // tighter spacing
-          depth: 200,      // stronger 3D
-          modifier: 1.5,   // intensity of effect
-          scale: 0.85,     // shrink side slides
-          slideShadows: false,
-        }}
-        modules={[EffectCoverflow, Autoplay]}
-        className="w-full max-w-6xl"
+        className="max-w-5xl mx-auto"
       >
-        {/* Slides */}
-        <SwiperSlide className="w-64 h-64">
-          <img
-            src="/images/service1.jpg"
-            alt="Service 1"
-            className="rounded-xl w-full h-full object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-64 h-64">
-          <img
-            src="/images/service2.jpg"
-            alt="Service 2"
-            className="rounded-xl w-full h-full object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-64 h-64">
-          <img
-            src="/images/service3.jpg"
-            alt="Service 3"
-            className="rounded-xl w-full h-full object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-64 h-64">
-          <img
-            src="/images/service4.jpg"
-            alt="Service 4"
-            className="rounded-xl w-full h-full object-cover"
-          />
-        </SwiperSlide>
+        {services.map((service, idx) => (
+          <SwiperSlide key={idx}>
+            <div className="bg-white rounded-2xl shadow-md overflow-hidden transform hover:-translate-y-2 transition duration-300">
+              <img src={service.img} alt={service.title} className="w-full h-64 object-cover" />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
-export default ServicesSlider;
+export default ServicesSection;
