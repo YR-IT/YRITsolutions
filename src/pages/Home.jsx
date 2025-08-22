@@ -83,7 +83,7 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-[220px] sm:w-[260px] h-[350px] sm:h-[220px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
+            className="w-[220px] sm:w-[270px] h-[380px] sm:h-[260px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
           >
             <img src={src} alt="" className="w-full h-full object-cover" />
           </div>

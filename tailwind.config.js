@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -12,13 +11,6 @@ module.exports = {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0)" },
         },
-
-        // ✅ NEW for logos (full smooth scroll right → left)
-        logoMarquee: {
-          "0%": { transform: "translateX(100%)" },
-          "100%": { transform: "translateX(-100%)" },
-        },
-
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
@@ -36,44 +28,35 @@ module.exports = {
           "100%": { backgroundPosition: "200% 0" },
         },
         borderRotate: {
-          "0%": {
+          "0%": { 
             backgroundPosition: "0% 0%",
-            borderColor:
-              "rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3)",
+            borderColor: "rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3)"
           },
-          "25%": {
+          "25%": { 
             backgroundPosition: "100% 0%",
-            borderColor:
-              "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3)",
+            borderColor: "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3)"
           },
-          "50%": {
+          "50%": { 
             backgroundPosition: "100% 100%",
-            borderColor:
-              "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3)",
+            borderColor: "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3)"
           },
-          "75%": {
+          "75%": { 
             backgroundPosition: "0% 100%",
-            borderColor:
-              "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 1)",
+            borderColor: "rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 1)"
           },
-          "100%": {
+          "100%": { 
             backgroundPosition: "0% 0%",
-            borderColor:
-              "rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3)",
-          },
+            borderColor: "rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3)"
+          }
         },
       },
       animation: {
-        "marquee-left": "marqueeLeft 60s linear infinite",
-        "marquee-right": "marqueeRight 60s linear infinite",
-
-        // ✅ Use this for logos
-        "logo-marquee": "logoMarquee 40s linear infinite",
-
-        float: "float 3s ease-in-out infinite",
-        pulse: "pulse 2s ease-in-out infinite",
-        glow: "glow 2s ease-in-out infinite",
-        shimmer: "shimmer 3s linear infinite",
+        "marquee-left": "marqueeLeft 100s linear infinite",
+        "marquee-right": "marqueeRight 100s linear infinite",
+        "float": "float 3s ease-in-out infinite",
+        "pulse": "pulse 2s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite",
+        "shimmer": "shimmer 3s linear infinite",
         "border-rotate": "borderRotate 4s linear infinite",
       },
     },
@@ -88,3 +71,4 @@ module.exports = {
     },
   ],
 };
+
