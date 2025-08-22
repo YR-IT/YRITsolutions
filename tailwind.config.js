@@ -51,8 +51,8 @@ module.exports = {
         },
       },
       animation: {
-        "marquee-left": "marqueeLeft 40s linear infinite",
-        "marquee-right": "marqueeRight 40s linear infinite",
+        "marquee-left": "marqueeLeft 60s linear infinite",
+        "marquee-right": "marqueeRight 60s linear infinite",
         "float": "float 3s ease-in-out infinite",
         "pulse": "pulse 2s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",

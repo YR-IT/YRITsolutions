@@ -10,7 +10,8 @@ import ClientReview from "./ClientReview";
 import Pricing from "./Pricing";
 import ContactUs from "./ContactUs";
 import Loader from "../components/Loader";
-import TechStack from "./TechStack";
+import Effect from "./Effect";
+
 
 const topImages = [
   "/images/img1.jpg",
@@ -81,7 +82,7 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-[220px] sm:w-[260px] h-[140px] sm:h-[160px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
+            className="w-[220px] sm:w-[260px] h-[350px] sm:h-[220px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
           >
             <img src={src} alt="" className="w-full h-full object-cover" />
           </div>
@@ -107,85 +108,22 @@ const Home = () => {
   return (
     <>
       
-      <div className="bg-black text-white min-h-screen flex flex-col justify-center items-center py-10 sm:py-14 lg:py-16 overflow-hidden">
+      <div className="bg-black text-white flex flex-col items-center pt-2 pb-6 overflow-hidden">
+
+
         <MarqueeRow images={topImages} direction="left" />
 
-        <div className="text-center max-w-4xl px-6 sm:px-8 md:px-10 my-6 sm:my-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase leading-snug text-white animate-float">
+        <div className="text-center max-w-4xl px-6 sm:px-8 md:px-10 my-6 sm:my-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-snug text-white animate-float">
             Custom Product & <br />
             Software Development Focused on your Success
           </h1>
-          
-          <div className="mt-5 sm:mt-7">
-            <Link
-              to="/contactus"
-              className="relative inline-block px-6 py-3 font-semibold text-base sm:text-lg rounded-xl 
-               bg-gradient-to-r from-purple-500 via-purple-500 to-violet-500 text-white
-               shadow-lg shadow-purple-500/30
-               transition-all duration-300 hover:scale-110 hover:shadow-xl
-               hover:shadow-pink-500/40"
-            >
-              <span className="relative z-10">Contact Us</span>
-              <span
-                className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-red-600
-                 opacity-0 hover:opacity-100 transition-opacity duration-300"
-              ></span>
-            </Link>
-          </div>
+        
         </div>
 
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
 
-      
-      <PopInSection>
-        <div className="mb-4 px-6 sm:px-10 md:px-16 lg:px-20">
-          <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-center text-white why-choose-us">
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-2 bg-[#1a1a2e] px-2 py-1 rounded-full border border-gray-600">
-                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-3">
-                Why Choose Us
-              </h2>
-            </div>
-
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              spaceBetween={20}
-              slidesPerView={1}
-              loop={true}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              pagination={{ clickable: true }}
-              breakpoints={{
-                640: { slidesPerView: 2, spaceBetween: 20 },
-                1024: { slidesPerView: 3, spaceBetween: 30 },
-              }}
-              className="pb-8"
-            >
-              {services.map((service, index) => (
-                <SwiperSlide key={index}>
-                  <div className="bg-[#1a1a2e] rounded-xl shadow-lg overflow-hidden transform hover:-rotate-2 hover:scale-105 transition-all duration-300 mx-1">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-44 sm:h-52 object-cover"
-                    />
-                    <div className="p-4 text-center">
-                      <h3 className="text-lg font-bold text-white">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-300 mt-2 text-sm">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-      </PopInSection>
 
       
       <PopInSection>
@@ -194,12 +132,14 @@ const Home = () => {
         </div>
       </PopInSection>
 
-      
       <PopInSection>
-        <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
-          <TechStack />
+        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
+          <Effect />
         </div>
       </PopInSection>
+
+
+    
 
       {/* Industries Section */}
       <PopInSection>
