@@ -11,6 +11,7 @@ import Pricing from "./Pricing";
 import ContactUs from "./ContactUs";
 import Loader from "../components/Loader";
 import Effect from "./Effect";
+import Logo from "./Logo";
 
 
 const topImages = [
@@ -125,7 +126,12 @@ const Home = () => {
       </div>
 
 
-      
+      <PopInSection>
+        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
+          <Logo />
+        </div>
+      </PopInSection>
+
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
           <ClientReview />
