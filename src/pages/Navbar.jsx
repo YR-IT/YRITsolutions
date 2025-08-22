@@ -26,6 +26,14 @@ const menuData = {
   ],
 };
 
+// Backgrounds for each section
+const bgGradients = {
+  COMPANY: 'from-[#0A1E47] via-[#1D2671] to-[#0C1235]',
+  SERVICES: 'from-[#2E0249] via-[#570A57] to-[#1B1A55]',
+  SOLUTIONS: 'from-[#0F2027] via-[#203A43] to-[#2C5364]',
+  'HIRE RESOURCE': 'from-[#42275a] via-[#734b6d] to-[#0f0c29]',
+};
+
 const Navbar = ({ state, setState, setshow, show }) => {
   const [loc, changeloc] = React.useState('/');
   const [activeSection, setActiveSection] = React.useState('COMPANY');
@@ -85,7 +93,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
 
       {/* -------- Full-screen Menu -------- */}
       <div
-        className={`fixed top-0 right-0 h-full w-full bg-gradient-to-b from-[#0A1E47] to-[#0C1235] text-white transform transition-transform duration-300 z-[10001] 
+        className={`fixed top-0 right-0 h-full w-full bg-gradient-to-b ${bgGradients[activeSection]} text-white transform transition-all duration-500 z-[10001] 
         ${show ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* Close Btn */}
@@ -108,7 +116,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
                     className={`text-left px-4 py-2 rounded-md transition 
                       ${
                         activeSection === section
-                          ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white'
+                          ? 'bg-gradient-to-r from-purple-400 via-blue-400 to-pink-500 text-white'
                           : 'hover:bg-white/10'
                       }`}
                   >
