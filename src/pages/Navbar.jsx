@@ -66,7 +66,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
         <div className="flex items-center gap-8">
           {/* Gradient Button */}
           <button
-            className="hidden md:block px-7 py-3 bg-gradient-to-r from-[#6C63FF] to-[#3B82F6] text-white rounded-md shadow-md font-medium transition-transform transform hover:scale-105 text-[16px]"
+            className="hidden md:block px-6 py-2 bg-gradient-to-r from-[#6C63FF] to-[#3B82F6] text-white rounded-md shadow-md font-medium transition-transform transform hover:scale-105 text-[16px]"
             onClick={() => (window.location.href = '/meetingform')}
           >
             Let&apos;s Discuss
