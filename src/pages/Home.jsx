@@ -134,23 +134,14 @@ const Home = () => {
 
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
-          <ClientReview />
-        </div>
-      </PopInSection>
-
-      <PopInSection>
-        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
           <Effect />
         </div>
       </PopInSection>
 
-
-    
-
       {/* Industries Section */}
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
-          <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-white">
+          <div className="max-w-[80rem] mx-auto rounded-2xl shadow-xl p-5 sm:p-8 text-white">
             <div className="text-left mb-6">
               <div className="inline-block relative">
                 <div className="inline-flex items-center gap-2 px-6 py-3 mb-4 relative overflow-hidden">
@@ -288,13 +279,22 @@ const Home = () => {
         </div>
       </PopInSection>
 
-    
       <PopInSection>
         <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
           <Pricing />
         </div>
       </PopInSection>
 
+
+      <PopInSection>
+        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
+          <ClientReview />
+        </div>
+      </PopInSection>
+
+
+    
+    
       
       <PopInSection>
         <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
