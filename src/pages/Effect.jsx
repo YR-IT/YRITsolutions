@@ -59,12 +59,11 @@ const ServicesSection = () => {
   return (
     <section className="relative w-full bg-black py-16 px-4 md:px-12 text-center mt-15 overflow-hidden">
       {/* Label */}
-      <div className="flex justify-center mb-4">
-        <span className="relative inline-block px-5 py-2 text-sm font-medium border rounded-full text-white border-purple-600">
-          <span className="absolute left-2 top-1/2 -translate-y-1/2 w-2 h-2 bg-purple-600 rounded-full"></span>
-          OUR SERVICES
-        </span>
-      </div>
+      <div className="relative inline-flex items-center gap-2 px-6 py-3 mb-4 border-flow">
+  <span className="w-3 h-3 rounded-full bg-purple-500"></span>
+  <h2 className="text-xl font-extrabold text-white">Services</h2>
+</div>
+
 
       {/* Heading */}
       <h2 className="text-3xl md:text-6xl font-extrabold leading-tight mb-10 text-white">

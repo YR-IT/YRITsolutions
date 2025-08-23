@@ -105,8 +105,30 @@ const Home = () => {
           </h1>
         </div>
 
+
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
+
+      {/* Stats Section */}
+      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { number: '500+', label: 'Happy Clients' },
+            { number: '1000+', label: 'Projects Delivered' },
+            { number: '98%', label: 'Client Satisfaction' },
+            { number: '24/7', label: 'Support Available' }
+          ].map((stat, index) => (
+            <div key={index} className="text-center group">
+              <div className="bg-gradient-to-br from-gray-900/70 to-black/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 hover:border-blue-500/70 transition-all duration-300 hover:transform hover:scale-105">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-200 text-sm font-medium">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">

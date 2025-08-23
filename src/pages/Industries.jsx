@@ -11,11 +11,11 @@ const Industries = () => {
           {/* Heading */}
           <div className="text-left mb-6">
             <div className="inline-block relative">
-              <div className="inline-flex items-center gap-2 px-6 py-3 mb-4 relative overflow-hidden">
-                <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-                <h2 className="text-xl font-extrabold text-white">INDUSTRIES</h2>
-                <div className="absolute inset-0 border-2 border-white animate-border-rotate"></div>
-              </div>
+            <div className="relative inline-flex items-center gap-2 px-6 py-3 mb-4 border-flow">
+  <span className="w-3 h-3 rounded-full bg-purple-500"></span>
+  <h2 className="text-xl font-extrabold text-white">Industries</h2>
+</div>
+
             </div>
             <p className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6 mb-6 text-white">
               SECTOR-SAVVY SOLUTIONS <br /> FROM OUR EXPERTS
