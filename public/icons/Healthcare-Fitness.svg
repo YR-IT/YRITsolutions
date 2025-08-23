@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="110.463" height="95" viewBox="0 0 110.463 95">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="1.475" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#065071"/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="health-care-love-svgrepo-com" transform="translate(-2.032 -3.981)">
+    <path id="Path_49798" data-name="Path 49798" d="M10.74,13.018a31.164,31.164,0,0,0,0,43.217L48.8,95.382a11.778,11.778,0,0,0,16.95,0C72.647,88.291,103.787,56.2,103.787,56.2a31.164,31.164,0,0,0,0-43.217h0a29.372,29.372,0,0,0-42.327,0l-4.212,4.33-4.18-4.3a29.372,29.372,0,0,0-42.327,0m5.671,5.517a21.456,21.456,0,0,1,30.985,0l7.016,7.213a3.954,3.954,0,0,0,5.671,0L67.13,18.5a21.465,21.465,0,0,1,30.985,0,.393.393,0,0,0,.04.044,23.253,23.253,0,0,1-.04,32.148S66.976,82.779,60.083,89.869a3.871,3.871,0,0,1-5.608,0L16.411,50.722a23.251,23.251,0,0,1,0-32.187" transform="translate(0 0)" fill-rule="evenodd" fill="url(#radial-gradient)"/>
+    <path id="Path_49799" data-name="Path 49799" d="M17.728,17.733H13.912a1.911,1.911,0,0,0,0,3.822h3.816v3.816a1.911,1.911,0,0,0,3.822,0V21.555h3.816a1.911,1.911,0,0,0,0-3.822H21.55V13.917a1.911,1.911,0,0,0-3.822,0v3.816Z" transform="translate(37.624 31.891)" fill-rule="evenodd" fill="url(#radial-gradient)"/>
+  </g>
+</svg>

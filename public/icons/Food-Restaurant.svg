@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="116.132" height="76.431" viewBox="0 0 116.132 76.431">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="2.359" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8b2fc8"/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="restaurant-plate-svgrepo-com" transform="translate(0 -87.515)">
+    <g id="Group_8052" data-name="Group 8052" transform="translate(0 87.515)">
+      <g id="Group_8051" data-name="Group 8051" transform="translate(0 0)">
+        <path id="Path_49771" data-name="Path 49771" d="M17.945,87.515v15.447a5.394,5.394,0,0,1-1.841,4.059V87.515H8.973v19.506a5.4,5.4,0,0,1-1.841-4.059V87.515H0v15.447a12.559,12.559,0,0,0,8.973,12.019v5a12.052,12.052,0,0,1,7.132,0v-5a12.558,12.558,0,0,0,8.973-12.019V87.515Z" transform="translate(0 -87.515)" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_8054" data-name="Group 8054" transform="translate(106.365 91.081)">
+      <g id="Group_8053" data-name="Group 8053" transform="translate(0 0)">
+        <path id="Path_49772" data-name="Path 49772" d="M473.825,103.237a4.883,4.883,0,0,0-4.883,4.883v21.091a4.862,4.862,0,0,0,1.121,3.113,11.968,11.968,0,0,1,7.524,0,4.862,4.862,0,0,0,1.121-3.113V108.12A4.884,4.884,0,0,0,473.825,103.237Z" transform="translate(-468.942 -103.237)" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_8056" data-name="Group 8056" transform="translate(7.639 126.57)">
+      <g id="Group_8055" data-name="Group 8055" transform="translate(0 0)">
+        <path id="Path_49773" data-name="Path 49773" d="M38.578,259.7a4.9,4.9,0,0,0-4.9,4.9v27.578a4.9,4.9,0,0,0,9.8,0V264.6A4.9,4.9,0,0,0,38.578,259.7Z" transform="translate(-33.679 -259.699)" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_8058" data-name="Group 8058" transform="translate(106.365 126.693)">
+      <g id="Group_8057" data-name="Group 8057">
+        <path id="Path_49774" data-name="Path 49774" d="M473.824,260.241a4.883,4.883,0,0,0-4.883,4.883v27.487a4.883,4.883,0,0,0,9.766,0V265.124A4.883,4.883,0,0,0,473.824,260.241Z" transform="translate(-468.941 -260.241)" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_8060" data-name="Group 8060" transform="translate(39.54 103.385)">
+      <g id="Group_8059" data-name="Group 8059" transform="translate(0 0)">
+        <path id="Path_49775" data-name="Path 49775" d="M196.669,157.482a22.346,22.346,0,1,0,22.346,22.346A22.371,22.371,0,0,0,196.669,157.482Z" transform="translate(-174.323 -157.482)" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_8062" data-name="Group 8062" transform="translate(23.855 87.701)">
+      <g id="Group_8061" data-name="Group 8061" transform="translate(0 0)">
+        <path id="Path_49776" data-name="Path 49776" d="M181.144,123.786a38.029,38.029,0,1,0-75.611,7.8q.131.95.308,1.885a38.031,38.031,0,0,0,74.839-.641c.016-.093.031-.187.047-.28a38.111,38.111,0,0,0,.506-6.185C181.233,125.5,181.2,124.638,181.144,123.786ZM143.2,155.84a29.477,29.477,0,1,1,29.477-29.477A29.51,29.51,0,0,1,143.2,155.84Z" transform="translate(-105.173 -88.333)" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

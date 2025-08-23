@@ -141,7 +141,7 @@ const Home = () => {
       {/* Industries Section */}
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
-          <div className="max-w-[80rem] mx-auto rounded-2xl shadow-xl p-5 sm:p-8 text-white">
+          <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-white">
             <div className="text-left mb-6">
               <div className="inline-block relative">
                 <div className="inline-flex items-center gap-2 px-6 py-3 mb-4 relative overflow-hidden">
@@ -159,19 +159,19 @@ const Home = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
               {/* Industry - Real Estate & Property */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon6.png" alt="Real Estate" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Real-Estate-Property.svg" alt="Real Estate & Property" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Real Estate & Property</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop applications for buying, selling, and managing properties efficiently.</p>
                 <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
+              </div> */}
 
               {/* Industry - On-Demand Solutions */}
               <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon7.png" alt="On-Demand Solutions" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/On-Demand-Solutions.svg" alt="On-Demand Solutions" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">On-Demand Solutions</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create instant access services that connect users with providers seamlessly.</p>
@@ -181,7 +181,7 @@ const Home = () => {
               {/* Industry - Social Networking */}
               <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon8.png" alt="Social Networking" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Social-Networking.svg" alt="Social Networking" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Social Networking</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build platforms for sharing, connecting, and engaging within communities online.</p>
@@ -191,7 +191,7 @@ const Home = () => {
               {/* Industry - Food & Restaurant */}
               <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon10.png" alt="Food & Restaurant" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Food-Restaurant.svg" alt="Food & Restaurant" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Food & Restaurant</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Design systems for ordering, reservations, and reviews to enhance dining.</p>
@@ -199,19 +199,19 @@ const Home = () => {
               </div>
 
               {/* Industry - Banking, Finance, & Insurance */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon11.png" alt="Banking & Finance" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Banking-Finance-Insurance.svg" alt="Banking, Finance, & Insurance" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Banking, Finance, & Insurance</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Implement secure solutions for transactions, investments, and claims management efficiently.</p>
                 <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
+              </div> */}
 
               {/* Industry - Education & Training */}
               <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon12.png" alt="Education & Training" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Education-Training.svg" alt="Education & Training" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Education & Training</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop online platforms offering courses, certifications, and personalized learning experiences.</p>
@@ -221,7 +221,7 @@ const Home = () => {
               {/* Industry - eCommerce, Retail, and B2B */}
               <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon9.png" alt="eCommerce & Retail" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Ecommerce-Retail-B2B.svg" alt="eCommerce, Retail, and B2B" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">eCommerce, Retail, and B2B</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create integrated solutions for online shopping and inventory management seamlessly.</p>
@@ -231,7 +231,7 @@ const Home = () => {
               {/* Industry - Healthcare & Fitness */}
               <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon13.png" alt="Healthcare & Fitness" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Healthcare-Fitness.svg" alt="Healthcare & Fitness" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Healthcare & Fitness</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Design tools for telehealth, appointments, and fitness tracking for wellness.</p>
@@ -239,22 +239,62 @@ const Home = () => {
               </div>
 
               {/* Industry - Media & Entertainment */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon1.png" alt="Media & Entertainment" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Media-Entertainment.svg" alt="Media & Entertainment" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Media & Entertainment</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build platforms for streaming, gaming, and engaging content experiences effectively.</p>
                 <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
+              </div> */}
 
               {/* Industry - Transport & Automotive */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
                 <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/icon2.png" alt="Transport & Automotive" className="w-10 h-10 transition-all duration-500" />
+                  <img src="/icons/Transport-Automotive.svg" alt="Transport & Automotive" className="w-10 h-10 object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Transport & Automotive</h3>
                 <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop apps for ride-sharing, navigation, and vehicle maintenance solutions.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div> */}
+
+              {/* Industry - Architect Design */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/Architect-Design.svg" alt="Architect Design" className="w-10 h-10 object-contain" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Architect Design</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create innovative design solutions for architectural projects and spatial planning.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Service Expert */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/Service-Expert.svg" alt="Service Expert" className="w-10 h-10 object-contain" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Service Expert</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Deliver professional consulting and expert services across various industries.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Legal Firms */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/Legal-Firms.svg" alt="Legal Firms" className="w-10 h-10 object-contain" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Legal Firms</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build comprehensive legal management systems for case tracking and client services.</p>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
+              </div>
+
+              {/* Industry - Education Sector */}
+              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
+                  <img src="/icons/Education-Sector.svg" alt="Education Sector" className="w-10 h-10 object-contain" />
+                </div>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Education Sector</h3>
+                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop comprehensive educational platforms for schools, colleges, and training institutes.</p>
                 <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
               </div>
             </div>
@@ -321,6 +361,20 @@ const Home = () => {
         }
         .industry-clip-card:hover, .industry-clip-card:focus, .industry-clip-card:active {
           clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 100%, 0 100%);
+        }
+         .industry-card:hover img {
+          animation: bounce 0.6s ease-in-out;
+        }
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          60% {
+            transform: translateY(-5px);
+          }
         }
       `}</style>
     </>

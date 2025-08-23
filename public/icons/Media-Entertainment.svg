@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.425" height="73.645" viewBox="0 0 100.425 73.645">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="1.271" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8b2fc8"/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="film-entertainment-svgrepo-com" transform="translate(-0.002 -68.269)">
+    <path id="Union_30" data-name="Union 30" d="M83.687,73.645V53.56h16.738V73.645Zm-56.907,0V0H73.644V73.645ZM0,73.645V53.56H16.737V73.645ZM83.687,46.864V26.78h16.738V46.864ZM0,46.864V26.78H16.737V46.864Zm83.687-26.78V0h16.738V20.084ZM0,20.084V0H16.737V20.084Z" transform="translate(0.002 68.269)" fill="url(#radial-gradient)"/>
+  </g>
+</svg>

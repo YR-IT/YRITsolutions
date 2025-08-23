@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F2937;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#111827;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#991B1B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Graduation cap -->
+  <polygon points="50,20 25,30 75,30" fill="url(#capGrad)"/>
+  <rect x="45" y="15" width="10" height="8" fill="url(#capGrad)" rx="2"/>
+  
+  <!-- Cap button -->
+  <circle cx="50" cy="19" r="2" fill="#FFD700"/>
+  
+  <!-- Tassel -->
+  <line x1="65" y1="25" x2="72" y2="32" stroke="#FFD700" stroke-width="2"/>
+  <circle cx="72" cy="32" r="2" fill="#FFD700"/>
+  <rect x="70" y="34" width="4" height="6" fill="#FFD700"/>
+  
+  <!-- Books stack -->
+  <rect x="30" y="45" width="40" height="6" fill="url(#bookGrad)" rx="1"/>
+  <rect x="32" y="52" width="36" height="5" fill="#3B82F6" rx="1"/>
+  <rect x="34" y="58" width="32" height="5" fill="#10B981" rx="1"/>
+  
+  <!-- Book spines details -->
+  <rect x="35" y="46" width="2" height="4" fill="#FFFFFF"/>
+  <rect x="40" y="46" width="2" height="4" fill="#FFFFFF"/>
+  <rect x="37" y="53" width="2" height="3" fill="#FFFFFF"/>
+  <rect x="42" y="53" width="2" height="3" fill="#FFFFFF"/>
+  
+  <!-- Open book -->
+  <path d="M20 70 Q35 65 50 70 Q65 65 80 70 L80 85 Q65 80 50 85 Q35 80 20 85 Z" fill="#FFFFFF"/>
+  <line x1="50" y1="70" x2="50" y2="85" stroke="#6B7280" stroke-width="1"/>
+  
+  <!-- Text lines on book -->
+  <line x1="25" y1="73" x2="45" y2="73" stroke="#1F2937" stroke-width="1"/>
+  <line x1="25" y1="76" x2="43" y2="76" stroke="#1F2937" stroke-width="1"/>
+  <line x1="25" y1="79" x2="44" y2="79" stroke="#1F2937" stroke-width="1"/>
+  
+  <line x1="55" y1="73" x2="75" y2="73" stroke="#1F2937" stroke-width="1"/>
+  <line x1="55" y1="76" x2="73" y2="76" stroke="#1F2937" stroke-width="1"/>
+  <line x1="55" y1="79" x2="74" y2="79" stroke="#1F2937" stroke-width="1"/>
+  
+  <!-- Academic symbols -->
+  <circle cx="15" cy="40" r="5" fill="#10B981"/>
+  <text x="15" y="43" text-anchor="middle" fill="#FFFFFF" font-size="6" font-weight="bold">A+</text>
+  
+  <circle cx="85" cy="40" r="5" fill="#FFD700"/>
+  <polygon points="85,37 86,39 89,39 87,41 88,44 85,42 82,44 83,41 81,39 84,39" fill="#DC2626"/>
+  
+  <!-- Apple for teacher -->
+  <circle cx="15" cy="65" r="6" fill="#DC2626"/>
+  <rect x="14" y="59" width="2" height="4" fill="#10B981"/>
+  <ellipse cx="16" cy="60" rx="2" ry="1" fill="#10B981"/>
+  
+  <!-- Pencil -->
+  <rect x="80" y="65" width="12" height="3" fill="#F59E0B"/>
+  <polygon points="92,65 95,66.5 92,68" fill="#FCD34D"/>
+  <rect x="80" y="66" width="2" height="1" fill="#EC4899"/>
+</svg>

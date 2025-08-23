@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDE68A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="suitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F2937;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#111827;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Professional figure head -->
+  <circle cx="50" cy="25" r="12" fill="url(#skinGrad)"/>
+  
+  <!-- Suit body -->
+  <rect x="38" y="35" width="24" height="30" fill="url(#suitGrad)" rx="3"/>
+  
+  <!-- Shirt -->
+  <rect x="44" y="37" width="12" height="25" fill="#FFFFFF"/>
+  
+  <!-- Tie -->
+  <polygon points="50,37 47,45 53,45" fill="#DC2626"/>
+  <rect x="49" y="45" width="2" height="15" fill="#DC2626"/>
+  
+  <!-- Arms -->
+  <rect x="30" y="40" width="8" height="20" fill="url(#suitGrad)" rx="4"/>
+  <rect x="62" y="40" width="8" height="20" fill="url(#suitGrad)" rx="4"/>
+  
+  <!-- Hands -->
+  <circle cx="34" cy="62" r="3" fill="url(#skinGrad)"/>
+  <circle cx="66" cy="62" r="3" fill="url(#skinGrad)"/>
+  
+  <!-- Briefcase -->
+  <rect x="72" y="45" width="15" height="10" fill="#8B4513" rx="2"/>
+  <rect x="74" y="47" width="11" height="6" fill="#D2691E"/>
+  <circle cx="79" cy="50" r="1" fill="#FFD700"/>
+  <rect x="77" y="45" width="4" height="2" fill="#8B4513"/>
+  
+  <!-- Service icons around -->
+  <circle cx="20" cy="30" r="4" fill="#3B82F6"/>
+  <rect x="18" y="28" width="4" height="4" fill="#FFFFFF"/>
+  
+  <circle cx="80" cy="25" r="4" fill="#10B981"/>
+  <polygon points="78,23 82,23 80,27" fill="#FFFFFF"/>
+  
+  <!-- Excellence badge -->
+  <circle cx="50" cy="75" r="12" fill="#FFD700"/>
+  <polygon points="50,68 52,72 57,72 53,76 55,81 50,78 45,81 47,76 43,72 48,72" fill="#DC2626"/>
+  
+  <!-- Additional professional elements -->
+  <rect x="15" y="70" width="8" height="12" fill="#6B7280" rx="1"/>
+  <rect x="16" y="72" width="6" height="8" fill="#FFFFFF"/>
+  <line x1="17" y1="74" x2="21" y2="74" stroke="#3B82F6" stroke-width="0.5"/>
+  <line x1="17" y1="76" x2="21" y2="76" stroke="#3B82F6" stroke-width="0.5"/>
+</svg>

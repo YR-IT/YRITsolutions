@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="102.52" height="67.032" viewBox="0 0 102.52 67.032">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="1.597" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#715106"/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path id="truck-svgrepo-com_1_" data-name="truck-svgrepo-com (1)" d="M43.047,72.65a9.858,9.858,0,1,1-9.858,9.858A9.858,9.858,0,0,1,43.047,72.65Zm55.2,0a9.858,9.858,0,1,1-9.858,9.858A9.858,9.858,0,0,1,98.25,72.65ZM60.79,76.594V25.333h59.146v51.26h-7.061a15.779,15.779,0,0,0-29.252,0Zm-43.374,0V52.935L33.189,37.163H56.847v37.7a15.778,15.778,0,0,0-28.427,1.727Z" transform="translate(-17.417 -25.333)" fill="url(#radial-gradient)"/>
+</svg>
