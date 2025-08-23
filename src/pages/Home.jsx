@@ -139,11 +139,6 @@ const Home = () => {
         </div>
       </PopInSection>
 
-      <PopInSection>
-        <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
-          <ContactUs />
-        </div>
-      </PopInSection>
 
       <style>{`
         .why-choose-us .swiper-pagination {

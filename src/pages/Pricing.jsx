@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 const Pricing = () => {
   const navigate = useNavigate();
 
-  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -14,11 +13,10 @@ const Pricing = () => {
     {
       title: "Web Development",
       features: [
-        "Front-end Development (HTML, CSS, JavaScript, frameworks like React, Angular, Vue)",
-        "Back-end Development (Node.js, Python, Ruby on Rails, PHP, Java)",
+        "Front-end Development (React, Angular, Vue)",
+        "Back-end Development (Node.js, Python, PHP)",
         "Full-Stack Development",
       ],
-      color: "border-green-500",
     },
     {
       title: "Mobile App Development",
@@ -27,44 +25,37 @@ const Pricing = () => {
         "Native App Development (iOS, Android)",
         "Cross-Platform App Development",
       ],
-      color: "border-red-500",
     },
     {
       title: "Web Design",
-      features: [
-        "UI/UX Design",
-        "Responsive Design",
-        "Branding and Visual Design",
-      ],
-      color: "border-blue-500",
+      features: ["UI/UX Design", "Responsive Design", "Branding & Visual Design"],
     },
     {
       title: "Digital Marketing",
       features: [
         "Social Media Marketing",
-        "Email Marketing",
-        "Pay-Per-Click (PPC) Advertising",
-        "SEO",
-        "Content Marketing",
-        "Meta and Google Ads",
+        "SEO & Content Marketing",
+        "Meta & Google Ads",
       ],
-      color: "border-purple-500",
     },
   ];
 
   return (
-    <section className="bg-black py-16 px-10">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative bg-black py-20 px-10 overflow-hidden">
+      {/* Soft glow at bottom for depth */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[200px] bg-gradient-to-t from-red-900/30 via-purple-900/20 rounded-full blur-3xl"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
         <motion.div
-          className="mb-12 text-center"
+          className="mb-16 text-center"
           initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
         >
-          <h3 className="text-sm font-medium text-purple-400 tracking-wide uppercase mb-2">
-            Pricing
+          <h3 className="inline-flex items-center text-sm font-semibold text-purple-400 tracking-wider uppercase mb-4 relative">
+            <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+            Our Pricing
           </h3>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
             Transparent Pricing for You
@@ -72,59 +63,51 @@ const Pricing = () => {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
-              className={`relative bg-[#0f0f1a] border ${plan.color} rounded-xl p-8 flex flex-col justify-between group`}
-              style={{
-                clipPath: "polygon(0 0, 90% 0, 100% 10%, 100% 100%, 0% 100%)",
-              }}
+              className="relative bg-[#111] rounded-2xl p-8 flex flex-col items-start justify-between shadow-[0_0_30px_rgba(255,255,255,0.05)] transition duration-500"
               initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              animate={{ y: [0, -10, 0] }}
+              animate={{ 
+                opacity: 1, 
+                y: [0, -15, 0],
+                x: [0, 5, 0, -5, 0], // gentle wobble
+              }}
               transition={{
-                duration: 3,
+                duration: 5 + Math.random() * 2,
                 repeat: Infinity,
                 repeatType: "loop",
                 ease: "easeInOut",
-                delay: index * 0.2, // stagger floating
               }}
               whileHover={{ scale: 1.05 }}
             >
-              {/* Glow Effect on Hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl bg-gradient-to-tr from-purple-600/30 to-pink-600/20 blur-xl -z-10"></div>
-
               {/* Title */}
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-4">
-                  {plan.title}
-                </h3>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                {plan.title}
+              </h3>
 
-                {/* Features */}
-                <ul className="space-y-3 text-gray-300 text-sm mb-6">
-                  {plan.features.map((feature, i) => (
-                    <motion.li
-                      key={i}
-                      className="flex items-start"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: i * 0.15 }}
-                      viewport={{ once: true }}
-                    >
-                      <span className="w-2 h-2 mt-2 rounded-full bg-purple-500 mr-3"></span>
-                      {feature}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
+              {/* Features */}
+              <ul className="space-y-4 text-gray-300 text-sm mb-8">
+                {plan.features.map((feature, i) => (
+                  <motion.li
+                    key={i}
+                    className="flex items-start"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <span className="w-2 h-2 mt-2 rounded-full bg-purple-500 mr-3"></span>
+                    {feature}
+                  </motion.li>
+                ))}
+              </ul>
 
               {/* Button */}
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-auto inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition-colors duration-300 shadow-md hover:shadow-purple-500/40"
+                className="mt-auto inline-block px-5 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg text-sm font-semibold transition-colors duration-300 shadow-md"
                 onClick={() =>
                   navigate("/form", { state: { selectedPlan: plan.title } })
                 }

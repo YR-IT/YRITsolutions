@@ -141,15 +141,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
             </div>
           </div>
 
-          {/* Bottom Stats */}
-          <div className="absolute bottom-6 left-0 w-full">
-            <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm">
-              <div className="rounded-lg bg-white/5 border border-white/10 py-3">10+ YEAR&apos;S</div>
-              <div className="rounded-lg bg-white/5 border border-white/10 py-3">150+ EMPLOYEES</div>
-              <div className="rounded-lg bg-white/5 border border-white/10 py-3">850+ PROJECTS</div>
-              <div className="rounded-lg bg-white/5 border border-white/10 py-3">200+ CLIENTS</div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </>
