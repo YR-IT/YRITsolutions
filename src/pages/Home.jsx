@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,10 +9,9 @@ import "swiper/css/autoplay";
 import ClientReview from "./ClientReview";
 import Pricing from "./Pricing";
 import ContactUs from "./ContactUs";
-import Loader from "../components/Loader";
 import Effect from "./Effect";
 import Logo from "./Logo";
-
+import Industries from "./Industries";
 
 const topImages = [
   "/images/img1.jpg",
@@ -94,24 +93,9 @@ const MarqueeRow = ({ images, direction }) => {
 };
 
 const Home = () => {
-  const [showLoader, setShowLoader] = useState(true);
-
-  useEffect(() => {
-    if (!showLoader) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [showLoader]);
-
-  if (showLoader) {
-    return <Loader onFinish={() => setShowLoader(false)} />;
-  }
-
   return (
     <>
-      
       <div className="bg-black text-white flex flex-col items-center pt-2 pb-6 overflow-hidden">
-
-
         <MarqueeRow images={topImages} direction="left" />
 
         <div className="text-center max-w-4xl px-6 sm:px-8 md:px-10 my-6 sm:my-10">
@@ -119,12 +103,10 @@ const Home = () => {
             Custom Product & <br />
             Software Development Focused on your Success
           </h1>
-        
         </div>
 
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
-
 
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
@@ -138,186 +120,12 @@ const Home = () => {
         </div>
       </PopInSection>
 
-      {/* Industries Section */}
       <PopInSection>
-        <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
-          <div className="max-w-[80rem] mx-auto bg-[#0f0f1a] rounded-2xl shadow-xl p-5 sm:p-8 text-white">
-            <div className="text-left mb-6">
-              <div className="inline-block relative">
-                <div className="inline-flex items-center gap-2 px-6 py-3 mb-4 relative overflow-hidden">
-                  <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-                  <h2 className="text-xl font-extrabold text-white">
-                    INDUSTRIES
-                  </h2>
-                  <div className="absolute inset-0 border-2 border-white animate-border-rotate"></div>
-                </div>
-              </div>
-              <p className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6 mb-6 text-white">
-                SECTOR-SAVVY SOLUTIONS <br /> FROM OUR EXPERTS
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-              {/* Industry - Real Estate & Property */}
-              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Real-Estate-Property.svg" alt="Real Estate & Property" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Real Estate & Property</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop applications for buying, selling, and managing properties efficiently.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div> */}
-
-              {/* Industry - On-Demand Solutions */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/On-Demand-Solutions.svg" alt="On-Demand Solutions" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">On-Demand Solutions</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create instant access services that connect users with providers seamlessly.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Social Networking */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Social-Networking.svg" alt="Social Networking" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Social Networking</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build platforms for sharing, connecting, and engaging within communities online.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Food & Restaurant */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Food-Restaurant.svg" alt="Food & Restaurant" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Food & Restaurant</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Design systems for ordering, reservations, and reviews to enhance dining.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Banking, Finance, & Insurance */}
-              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Banking-Finance-Insurance.svg" alt="Banking, Finance, & Insurance" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Banking, Finance, & Insurance</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Implement secure solutions for transactions, investments, and claims management efficiently.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div> */}
-
-              {/* Industry - Education & Training */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Education-Training.svg" alt="Education & Training" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Education & Training</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop online platforms offering courses, certifications, and personalized learning experiences.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - eCommerce, Retail, and B2B */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Ecommerce-Retail-B2B.svg" alt="eCommerce, Retail, and B2B" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">eCommerce, Retail, and B2B</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create integrated solutions for online shopping and inventory management seamlessly.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Healthcare & Fitness */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Healthcare-Fitness.svg" alt="Healthcare & Fitness" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Healthcare & Fitness</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Design tools for telehealth, appointments, and fitness tracking for wellness.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Media & Entertainment */}
-              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Media-Entertainment.svg" alt="Media & Entertainment" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Media & Entertainment</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build platforms for streaming, gaming, and engaging content experiences effectively.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div> */}
-
-              {/* Industry - Transport & Automotive */}
-              {/* <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Transport-Automotive.svg" alt="Transport & Automotive" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Transport & Automotive</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop apps for ride-sharing, navigation, and vehicle maintenance solutions.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div> */}
-
-              {/* Industry - Architect Design */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Architect-Design.svg" alt="Architect Design" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Architect Design</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Create innovative design solutions for architectural projects and spatial planning.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Service Expert */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Service-Expert.svg" alt="Service Expert" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Service Expert</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Deliver professional consulting and expert services across various industries.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Legal Firms */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Legal-Firms.svg" alt="Legal Firms" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Legal Firms</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Build comprehensive legal management systems for case tracking and client services.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-
-              {/* Industry - Education Sector */}
-              <div className="bg-black p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white m-2 rounded-3xl industry-clip-card">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
-                  <img src="/icons/Education-Sector.svg" alt="Education Sector" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-purple-600 transition-colors duration-500 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-purple-500 group-hover:after:w-full after:transition-all after:duration-300">Education Sector</h3>
-                <p className="text-base text-gray-400 mt-3 group-hover:text-gray-700 transition-colors duration-500">Develop comprehensive educational platforms for schools, colleges, and training institutes.</p>
-                <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-              </div>
-            </div>
-
-            <div className="mt-10 text-center">
-              <div className="bg-black p-6 rounded-xl inline-block max-w-2xl mx-auto border border-white m-2">
-                <h3 className="text-xl font-bold mb-3">Looking for a Software Development?</h3>
-                <p className="text-gray-300 mb-4">Get your software designed and deployed with post deployment services.</p>
-                <Link
-                  to="/contactus"
-                  className="inline-block px-6 py-3 font-semibold text-base rounded-xl 
-                           bg-gradient-to-r from-purple-500 via-purple-500 to-violet-500 text-white
-                           shadow-lg shadow-purple-500/30
-                           transition-all duration-300 hover:scale-110 hover:shadow-xl
-                           hover:shadow-pink-500/40"
-                >
-                  Request a Callback
-                </Link>
-              </div>
-            </div>
-          </div>
+        <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
+          <Industries />
         </div>
       </PopInSection>
+
 
       <PopInSection>
         <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
@@ -325,24 +133,18 @@ const Home = () => {
         </div>
       </PopInSection>
 
-
       <PopInSection>
         <div className="my-6 px-6 sm:px-10 md:px-16 lg:px-20">
           <ClientReview />
         </div>
       </PopInSection>
 
-
-    
-    
-      
       <PopInSection>
         <div className="my-2 px-6 sm:px-10 md:px-16 lg:px-20">
           <ContactUs />
         </div>
       </PopInSection>
 
-      
       <style>{`
         .why-choose-us .swiper-pagination {
           bottom: -5px !important;
@@ -362,7 +164,7 @@ const Home = () => {
         .industry-clip-card:hover, .industry-clip-card:focus, .industry-clip-card:active {
           clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 100%, 0 100%);
         }
-         .industry-card:hover img {
+        .industry-card:hover img {
           animation: bounce 0.6s ease-in-out;
         }
         @keyframes bounce {
