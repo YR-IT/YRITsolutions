@@ -52,9 +52,8 @@ const Pricing = () => {
 </div>
 
 
-        <div className="mb-16 text-center">
+        <div className="mb-16 text-left">
           <h3 className="inline-flex items-center text-sm font-semibold text-purple-400 tracking-wider uppercase mb-4 relative">
-           
       
           </h3>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
