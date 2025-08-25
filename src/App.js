@@ -21,6 +21,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Portfolio from './pages/Portfolio'; 
 import Blog from './pages/Blog';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import About from './pages/About';
 
 function App() {
   const [state, setState] = React.useState(0);
@@ -54,6 +55,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/termsandconditions" element={<TermsOfUse />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/About" element={<About />} />
           </Routes>
         </main>
 
