@@ -14,6 +14,7 @@ const categoryIcons = {
   "Healthcare & Pharmacy": "🏥",
   "Bakery": "🍰",
   "Government Official Websites": "🏛️",
+  "Education": "📚",
   "Ecommerce": "🛒"
 };
 
@@ -32,7 +33,7 @@ const projects = [
       "A visually captivating website tailored for an interior design studio. This fully responsive platform highlights elegant layouts, premium design aesthetics, and smooth scrolling animations. It effectively presents services, past work, and client testimonials—making it an ideal tool for lead generation in the home decor and interior styling industry.",
     link: "https://www.teekshagupta.com/",
     image: project2,
-    category: "Interior Design"
+    category: "Architecture"
   },
   {
     title: "Law Firm – Legal Services Website",
@@ -56,7 +57,7 @@ const projects = [
       "Modern business chamber website showcasing national initiatives, events, and member services. Designed for All India Chamber of Commerce to highlight trade support, policy advocacy, and networking. Sleek, responsive layout with fast performance and easy content management.",
     link: "https://aicee-main.vercel.app/",
     image:"/images/image 17.jpg",
-    category: "Ecommerce"
+    category: "Government Official Websites"
   },
   {
     title: "Istiyaq Facility",
@@ -64,7 +65,7 @@ const projects = [
       "Modern interior design website for Istiyaq Facility, showcasing premium design services and transformations. Built to highlight creativity, expertise, and client success. Sleek visuals, responsive layout, and fast-loading experience for users seeking beautiful, functional spaces they'll love.",
     link: "https://istyaqfacility.netlify.app/",
     image:"/images/image18.jpg",
-    category: "Interior Design"
+    category: "Architecture"
   },
   {
     title: "Swarattan Homes",
@@ -72,11 +73,35 @@ const projects = [
       "Modern website for Swarattan Homes, showcasing premium interior design expertise and elegant home makeovers. Built to reflect their modern aesthetic and attention to detail. Clean design, seamless responsiveness, and optimized performance for clients seeking stylish, functional living spaces they'll love.",
     link: "https://www.swarattanhomes.in/",
     image:"/images/image19.jpg",
-    category: "Interior Design"
+    category: "Ecommerce"
+  },
+  {
+    title: "Friends Baker - Artisan Bakery",
+    description:
+      "A delightful bakery website showcasing fresh-baked goods, artisan breads, and custom cakes. Features an elegant design with mouth-watering visuals, online ordering system, and seamless user experience. Perfect for showcasing bakery products and driving local business growth.",
+    link: "https://friends-baker-flax.vercel.app/",
+    image:"/images/Friends Baker - Artisan Bakery.png",
+    category: "Bakery"
+  },
+  {
+    title: "eKnowledge - Educational Platform",
+    description:
+      "Comprehensive educational and government services platform designed to provide knowledge resources, training programs, and official information. Features modern UI/UX design, responsive layout, and user-friendly navigation for seamless learning and information access.",
+    link: "https://eknowledge.vercel.app/",
+    image:"/images/eKnowledge - Educational Platform.png",
+    category: ["Education", "Government Official Websites"]
+  },
+  {
+    title: "BPRPVTITI - Educational Institute",
+    description:
+      "Professional educational institute website showcasing academic programs, courses, and training opportunities. Built with modern design principles, responsive layout, and optimized performance to attract students and provide comprehensive information about educational services.",
+    link: "https://bprpvtiti.vercel.app/v",
+    image:"/images/BPRPVTITI - Educational Institute.png",
+    category: "Education"
   }
 ];
 
-const categories = ["All", "Architecture", "Interior Design", "Legal Firms", "Healthcare & Pharmacy", "Bakery", "Government Official Websites", "Ecommerce"];
+const categories = ["All", "Architecture", "Interior Design", "Legal Firms", "Healthcare & Pharmacy", "Bakery", "Government Official Websites", "Education", "Ecommerce"];
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -90,7 +115,12 @@ const Portfolio = () => {
     if (selectedCategory === "All") {
       setFilteredProjects(projects);
     } else {
-      setFilteredProjects(projects.filter(project => project.category === selectedCategory));
+      setFilteredProjects(projects.filter(project => {
+        if (Array.isArray(project.category)) {
+          return project.category.includes(selectedCategory);
+        }
+        return project.category === selectedCategory;
+      }));
     }
   }, [selectedCategory]);
 
@@ -174,9 +204,19 @@ const Portfolio = () => {
                 {/* Content Section */}
                 <div className={`w-full lg:w-1/2 z-10 ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8 lg:order-2'}`}>
                   <div className="mb-4">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
-                      {categoryIcons[project.category]} {project.category}
-                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {Array.isArray(project.category) ? (
+                        project.category.map((cat, idx) => (
+                          <span key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
+                            {categoryIcons[cat]} {cat}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
+                          {categoryIcons[project.category]} {project.category}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   
                   <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
@@ -210,7 +250,9 @@ const Portfolio = () => {
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="relative rounded-2xl w-full h-64 lg:h-80 object-cover shadow-2xl transform transition-all duration-500 group-hover:scale-105 border border-gray-600/50 group-hover:border-purple-500/50"
+                        className={`relative rounded-2xl w-full h-64 lg:h-80 shadow-2xl transform transition-all duration-500 group-hover:scale-105 border border-gray-600/50 group-hover:border-purple-500/50 ${
+                          project.title.includes("Friends Baker") ? "object-contain bg-white" : "object-cover"
+                        }`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </a>
