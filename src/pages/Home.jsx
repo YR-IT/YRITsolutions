@@ -12,6 +12,7 @@ import ContactUs from "./ContactUs";
 import Effect from "./Effect";
 import Logo from "./Logo";
 import Industries from "./Industries";
+import ContactButton from "../components/ContactButton";
 
 const topImages = [
   "/images/img1.jpg",
@@ -160,6 +161,14 @@ const Home = () => {
           <ClientReview />
         </div>
       </PopInSection>
+
+      <PopInSection>
+        <div className="my-6 px-6 sm:px-4 md:px-4 lg:px-4">
+          <ContactButton />
+        </div>
+      </PopInSection>
+
+
 
 
       <style>{`
