@@ -177,7 +177,7 @@ const AboutPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-10 pt-[60px]">
+      <section className="relative min-h-screen flex items-center justify-center px-10 pt-[0px]">
 
         <div className="max-w-11xl mx-auto text-center relative z-10">
           <motion.div
@@ -191,21 +191,22 @@ const AboutPage = () => {
           </motion.div>
 
           <motion.h1
-            className="text-8xl md:text-8xl font-black mb-8 leading-none"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="block bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
-              CRAFTING
-            </span>
-            <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent">
-              THE FUTURE
-            </span>
-          </motion.h1>
+  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight text-center"
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+>
+  <span className="block bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
+    CRAFTING
+  </span>
+  <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent">
+    THE FUTURE
+  </span>
+</motion.h1>
+
 
           <motion.p
-            className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12"
+           className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
