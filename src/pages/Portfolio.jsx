@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 const categoryIcons = {
   "All": "🌟",
   "Architecture": "🏗️",
-  "Interior Design": "🏠",
   "Legal Firms": "⚖️",
   "Healthcare & Pharmacy": "🏥",
   "Bakery": "🍰",
@@ -101,7 +100,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "Architecture", "Interior Design", "Legal Firms", "Healthcare & Pharmacy", "Bakery", "Government Official Websites", "Education", "Ecommerce"];
+const categories = ["All", "Architecture", "Legal Firms", "Healthcare & Pharmacy", "Bakery", "Government Official Websites", "Education", "Ecommerce"];
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
