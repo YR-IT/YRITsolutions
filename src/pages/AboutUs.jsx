@@ -10,12 +10,16 @@ import {
   Shield,
   Mail,
   Linkedin,
-  Heart
+  Heart,
+  Award,
+  TrendingUp,
+  Globe,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Group01 from "../assets/Group01.png";
 
 // Utility hook for intersection observer
 function useInView(threshold = 0.25, rootMargin = "0px 0px -10% 0px") {
@@ -41,10 +45,8 @@ function useInView(threshold = 0.25, rootMargin = "0px 0px -10% 0px") {
 }
 
 // Count up animation utility
-// Count up animation utility
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
-// remove the TypeScript interface, just use plain JS
 function CountUp({ end = 0, duration = 1200, startOn = false, className = "" }) {
   const [val, setVal] = useState(0);
   const rafRef = useRef(0);
@@ -72,13 +74,14 @@ function CountUp({ end = 0, duration = 1200, startOn = false, className = "" }) 
   );
 }
 
-
 const AboutPage = () => {
   useEffect(() => {
     AOS.init({ duration: 1200, once: true });
   }, []);
 
   const [statsRef, statsInView] = useInView(0.25, "0px 0px -20% 0px");
+  const [achievementStatsRef, achievementStatsInView] = useInView(0.25, "0px 0px -20% 0px");
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const missionImages = [
     {
@@ -138,6 +141,68 @@ const AboutPage = () => {
     "Zero-downtime deployment record for enterprise clients",
     "24/7 dedicated support with <2hr response time",
   ];
+
+  // Founder Achievement Data
+  const founderAchievements = [
+    {
+      id: 1,
+      image: "https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Tech Innovation Awards",
+      description: "Recognized as 'Young Innovator of the Year' for breakthrough AI solutions",
+      stats: [
+        { number: 15, label: "AWARDS WON", suffix: "+" },
+        { number: 5, label: "YEARS EXPERIENCE", suffix: "" },
+        { number: 20, label: "INDUSTRIES SERVED", suffix: "+" }
+      ]
+    },
+    {
+      id: 2,
+      image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Global Leadership",
+      description: "Led international teams across 10+ countries to deliver world-class solutions",
+      stats: [
+        { number: 100, label: "TEAM MEMBERS", suffix: "+" },
+        { number: 10, label: "COUNTRIES", suffix: "+" },
+        { number: 500, label: "PROJECTS LED", suffix: "+" }
+      ]
+    },
+    {
+      id: 3,
+      image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Revenue Growth",
+      description: "Achieved 300% year-over-year growth through strategic innovation and client satisfaction",
+      stats: [
+        { number: 300, label: "GROWTH RATE", suffix: "%" },
+        { number: 50, label: "CLIENTS SERVED", suffix: "+" },
+        { number: 99, label: "CLIENT RETENTION", suffix: "%" }
+      ]
+    },
+    {
+      id: 4,
+      image: "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Industry Recognition",
+      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
+      stats: [
+        { number: 25, label: "MEDIA FEATURES", suffix: "+" },
+        { number: 50, label: "SPEAKING EVENTS", suffix: "+" },
+        { number: 10, label: "PUBLISHED ARTICLES", suffix: "+" }
+      ]
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % founderAchievements.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + founderAchievements.length) % founderAchievements.length);
+  };
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
@@ -477,7 +542,7 @@ const AboutPage = () => {
               <div className="relative bg-gray-900/50 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm max-w-md text-center group-hover:bg-gray-900/80 transition-all duration-500">
                 <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-purple-500/50 group-hover:border-purple-400 transition-colors">
                   <img
-                      src={Group01}
+                    src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400"
                     alt="Yashika Sharma"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -503,6 +568,133 @@ const AboutPage = () => {
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-600/10 to-pink-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Achievements Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
+        {/* Geometric shapes background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-purple-600 transform rotate-45 rounded-lg" />
+          <div className="absolute top-40 right-20 w-24 h-24 bg-pink-600 transform rotate-12 rounded-lg" />
+          <div className="absolute bottom-40 left-1/4 w-40 h-40 bg-blue-600 transform -rotate-45 rounded-lg" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-purple-500/10 border border-purple-500/30 backdrop-blur-lg mb-8">
+              <Award className="w-5 h-5 text-purple-400 mr-2" />
+              <span className="text-purple-300 font-semibold">FOUNDER'S JOURNEY</span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-bold mb-8">
+              LEADERSHIP <span className="text-purple-400">ACHIEVEMENTS</span>
+            </h2>
+          </motion.div>
+
+          {/* Swiper Container */}
+          <div className="relative">
+            <div className="overflow-hidden rounded-3xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ x: 300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -300, opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="w-full"
+                >
+                  <div className="bg-gray-900/50 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                      {/* Image Section */}
+                      <div className="relative h-96 lg:h-auto overflow-hidden">
+                        <img
+                          src={founderAchievements[currentSlide].image}
+                          alt={founderAchievements[currentSlide].title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+                      </div>
+
+                      {/* Content Section */}
+                      <div className="p-8 lg:p-12 flex flex-col justify-center">
+                        <motion.div
+                          ref={achievementStatsRef}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                          <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+                            {founderAchievements[currentSlide].title}
+                          </h3>
+                          
+                          <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                            {founderAchievements[currentSlide].description}
+                          </p>
+
+                          {/* Statistics Grid */}
+                          <div className="grid grid-cols-3 gap-6">
+                            {founderAchievements[currentSlide].stats.map((stat, idx) => (
+                              <div key={idx} className="text-center">
+                                <div className="text-3xl lg:text-4xl font-black mb-2">
+                                  <CountUp
+                                    end={stat.number}
+                                    duration={1500}
+                                    startOn={achievementStatsInView}
+                                    className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text"
+                                  />
+                                  <span className="text-purple-400">{stat.suffix}</span>
+                                </div>
+                                <p className="text-gray-400 text-sm font-medium uppercase tracking-wider">
+                                  {stat.label}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/80 rounded-full backdrop-blur-sm transition-all duration-300 group z-10"
+            >
+              <ChevronLeft className="w-6 h-6 text-white group-hover:text-purple-400 transition-colors" />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/80 rounded-full backdrop-blur-sm transition-all duration-300 group z-10"
+            >
+              <ChevronRight className="w-6 h-6 text-white group-hover:text-purple-400 transition-colors" />
+            </button>
+
+            {/* Slide Indicators */}
+            <div className="flex justify-center mt-8 gap-3">
+              {founderAchievements.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSlide === idx
+                      ? "bg-purple-400 scale-125"
+                      : "bg-gray-600 hover:bg-gray-500"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
