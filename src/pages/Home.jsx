@@ -111,7 +111,7 @@ const Home = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 px-16">
           {[
             { number: '500+', label: 'Happy Clients' },
             { number: '1000+', label: 'Projects Delivered' },

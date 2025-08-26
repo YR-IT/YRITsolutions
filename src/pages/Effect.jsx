@@ -94,9 +94,9 @@ const ServicesSection = () => {
         centeredSlides={true}
         slidesPerView={3}
         loop={true}
-        speed={2000} // smooth transition duration
+        speed={1000} // smooth transition duration
         autoplay={{
-          delay: 3500, // wait before switching
+          delay: 1500, // wait before switching
           disableOnInteraction: false,
         }}
         pagination={{
