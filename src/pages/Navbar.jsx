@@ -70,7 +70,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
   <img
     src={Logo}
     alt="logo"
-    className="h-16 sm:h-24 w-auto cursor-pointer max-w-full"
+    className="h-16 sm:h-28 w-auto cursor-pointer max-w-full"
   />
 </Link>
 
