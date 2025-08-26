@@ -126,9 +126,9 @@ const AboutPage = () => {
   ];
 
   const statsData = [
-    { num: 2, label: "Years of Excellence", suffix: "+" },
-    { num: 150, label: "Happy Clients", suffix: "+" },
-    { num: 500, label: "Projects Delivered", suffix: "+" },
+    { num: 1, label: "Founded Since 2024", suffix: "+" },
+    { num: 50, label: "Happy Clients", suffix: "+" },
+    { num: 300, label: "Projects Delivered", suffix: "+" },
     { num: 24, label: "Hours Support", suffix: "/7" },
   ];
 
