@@ -83,15 +83,20 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-[220px] sm:w-[270px] h-[380px] sm:h-[260px] overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-8"
+            className="w-36 sm:w-56 md:w-64 h-44 sm:h-56 md:h-64 overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3 sm:mx-6"
           >
-            <img src={src} alt="" className="w-full h-full object-cover" />
+            <img
+              src={src}
+              alt=""
+              className="w-full h-full object-cover"
+            />
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 
 const Home = () => {
   return (

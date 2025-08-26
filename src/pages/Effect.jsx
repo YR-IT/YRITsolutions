@@ -82,49 +82,66 @@ const ServicesSection = () => {
 
       {/* Swiper */}
       <Swiper
-        modules={[Autoplay, Pagination, EffectCoverflow]}
-        effect="coverflow"
-        coverflowEffect={{
-          rotate: 20,
-          stretch: 0,
-          depth: 200,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        centeredSlides={true}
-        slidesPerView={3}
-        loop={true}
-        speed={1000} // smooth transition duration
-        autoplay={{
-          delay: 1500, // wait before switching
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-          type: "progressbar",
-          el: ".custom-progressbar",
-        }}
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="max-w-5xl mx-auto"
+  modules={[Autoplay, Pagination, EffectCoverflow]}
+  effect="coverflow"
+  coverflowEffect={{
+    rotate: 20,
+    stretch: 0,
+    depth: 200,
+    modifier: 1,
+    slideShadows: false,
+  }}
+  centeredSlides={true}
+  loop={true}
+  speed={1200} // faster transition
+  autoplay={{
+    delay: 2000, // faster change
+    disableOnInteraction: false,
+  }}
+  pagination={{
+    clickable: true,
+    type: "progressbar",
+    el: ".custom-progressbar",
+  }}
+  onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+  className="max-w-5xl mx-auto"
+  breakpoints={{
+    0: {
+      slidesPerView: 1, // Mobile
+    },
+    640: {
+      slidesPerView: 2, // Tablet
+    },
+    1024: {
+      slidesPerView: 3, // Desktop
+    },
+  }}
+>
+  {services.map((service, idx) => (
+    <SwiperSlide key={idx}>
+      <div
+        className={`
+          transition-all duration-700 ease-in-out
+          ${activeIndex === idx ? "scale-105 opacity-100 shadow-2xl" : "scale-90 opacity-50"}
+          bg-white rounded-2xl overflow-hidden
+        `}
       >
-        {services.map((service, idx) => (
-          <SwiperSlide key={idx}>
-            <div
-              className={`
-                transition-all duration-1000 ease-in-out
-                ${activeIndex === idx ? "scale-105 opacity-100 shadow-2xl" : "scale-90 opacity-50"}
-                bg-white rounded-2xl overflow-hidden
-              `}
-            >
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-64 object-cover rounded-xl"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <img
+  src={service.img}
+  alt={service.title}
+  className="
+    w-full 
+    h-40 sm:h-56 md:h-64 lg:h-72 
+    object-contain sm:object-cover 
+    rounded-xl
+  "
+/>
+
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
 
       {/* Custom Progress Bar */}
       <div className="custom-progressbar w-full max-w-4xl mx-auto mt-6 h-1 bg-gray-200 rounded-full relative">
