@@ -67,8 +67,12 @@ const Navbar = ({ state, setState, setshow, show }) => {
       >
         {/* Logo */}
         <Link to="/" onClick={() => setState(0)}>
-          <img src={Logo} alt="logo" className="h-[100px] cursor-pointer" />
-        </Link>
+  <img
+    src={Logo}
+    alt="logo"
+    className="h-16 sm:h-24 w-auto cursor-pointer max-w-full"
+  />
+</Link>
 
         {/* Right side buttons */}
         <div className="flex items-center gap-8">
