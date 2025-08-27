@@ -80,11 +80,11 @@ const PricingMain = () => {
                             {allColumns.map((column, colIdx) => (
                                 <div
                                     key={colIdx}
-                                    className={`w-full sm:w-[280px] lg:w-[325px] ${colIdx === 0 ? 'pt-20 sm:pt-28' : 'pt-8 sm:pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20
+                                    className={`w-[280px] sm:w-[280px] lg:w-[325px] ${colIdx === 0 ? 'pt-20 sm:pt-28' : 'pt-8 sm:pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20
                                                 ${colIdx === 0 ? 'bg-gradient-to-b from-gray-900/50 to-gray-800/30 border border-gray-700' : 
                                                   colIdx === 1 ? 'bg-gradient-to-b from-purple-900/40 to-gray-900/60 border border-gray-700 relative overflow-hidden' :
                                                   'bg-gradient-to-b from-gray-900/60 to-gray-800/40 border border-gray-700 hover:border-gray-600'}
-                                                ${colIdx !== 1 ? 'hidden sm:block' : 'block'}
+                                                block
                                                 backdrop-blur-sm`}
                                 >
 
