@@ -1,13 +1,18 @@
 import React from 'react';
 import Logo from '../assets/YRLogo.png';
 import { Link, useLocation } from 'react-router-dom';
+import { ArrowRight } from "lucide-react";
 
 // Menu data
 const menuData = {
   COMPANY: [
     { label: 'About Us', href: '/aboutus' },
     { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Contact', href: '/contactus' },
+    { label: 'Contact us', href: '/contactus' },
+    { label: 'Team', href: '/team' },
+    { label: 'Blogs', href: '/blogs' },
+    { label: 'Products', href: '/products' },
+    { label: 'Careers', href: '/careers' },
   ],
   SERVICES: [
     { label: 'Our Services', href: '/ourservices' },
@@ -24,14 +29,6 @@ const menuData = {
     { label: 'Hire Designers', href: '/ourservices#hire-design' },
     { label: 'Schedule Meeting', href: '/meetingform' },
   ],
-};
-
-// Backgrounds for each section
-const bgGradients = {
-  COMPANY: 'from-[#0A1E47] via-[#1D2671] to-[#0C1235]',
-  SERVICES: 'from-[#2E0249] via-[#570A57] to-[#1B1A55]',
-  SOLUTIONS: 'from-[#0F2027] via-[#203A43] to-[#2C5364]',
-  'HIRE RESOURCE': 'from-[#42275a] via-[#734b6d] to-[#0f0c29]',
 };
 
 const Navbar = ({ state, setState, setshow, show }) => {
@@ -67,12 +64,12 @@ const Navbar = ({ state, setState, setshow, show }) => {
       >
         {/* Logo */}
         <Link to="/" onClick={() => setState(0)}>
-  <img
-    src={Logo}
-    alt="logo"
-    className="h-16 sm:h-28 w-auto cursor-pointer max-w-full"
-  />
-</Link>
+          <img
+            src={Logo}
+            alt="logo"
+            className="h-16 sm:h-28 w-auto cursor-pointer max-w-full mt-4"
+          />
+        </Link>
 
         {/* Right side buttons */}
         <div className="flex items-center gap-8">
@@ -97,9 +94,9 @@ const Navbar = ({ state, setState, setshow, show }) => {
 
       {/* -------- Full-screen Menu -------- */}
       <div
-        className={`fixed top-0 right-0 h-full w-full bg-gradient-to-b ${bgGradients[activeSection]} text-white transform transition-all duration-500 z-[10001] 
-        ${show ? 'translate-x-0' : 'translate-x-full'}`}
-      >
+  className={`fixed top-0 left-0 h-full w-full bg-gradient-to-br from-[#163D82] to-[#0B1B3A]  text-white transform transition-transform duration-500 z-[10001] 
+  ${show ? 'translate-y-0' : '-translate-y-full'}`}
+>
         {/* Close Btn */}
         <div className="absolute top-6 right-8 cursor-pointer" onClick={() => setshow(false)}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
@@ -108,44 +105,79 @@ const Navbar = ({ state, setState, setshow, show }) => {
         </div>
 
         {/* Content */}
-        <div className="max-w-7xl mx-auto h-full pt-24 px-6">
+        <div className="max-w-full mx-auto h-full px-6">
+          {/* Logo top-left inside menu */}
+          <div className="mb-10">
+            <Link to="/" onClick={() => setshow(false)}>
+              <img src={Logo} alt="logo" className="h-16 sm:h-28 w-auto cursor-pointer max-w-full mt-2" />
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 h-[70%]">
             {/* Left Sections */}
             <div className="md:col-span-1">
-              <div className="flex flex-col gap-4 text-lg font-semibold">
-                {Object.keys(menuData).map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => setActiveSection(section)}
-                    className={`text-left px-4 py-2 rounded-md transition 
-                      ${
-                        activeSection === section
-                          ? 'bg-gradient-to-r from-purple-400 via-blue-400 to-pink-500 text-white'
-                          : 'hover:bg-white/10'
-                      }`}
-                  >
-                    {section}
-                  </button>
-                ))}
-              </div>
-            </div>
+  <div className="flex flex-col text-xl font-bold uppercase tracking-wide  border-r-0 md:border-r border-white/20">
+    {Object.keys(menuData).map((section, idx) => (
+      <React.Fragment key={section}>
+<button
+  onClick={() => setActiveSection(section)}
+  className={`group w-full text-left py-6 pl-4 pr-6 relative transition flex items-center
+    ${
+      activeSection === section
+        ? 'text-white bg-gradient-to-r from-transparent via-[#0b2a66] to-[#6A1FB0] after:absolute after:top-0 after:right-0 after:h-full after:w-[5px] after:bg-gradient-to-b after:from-purple-500 after:to-red-400'
+        : 'text-gray-300 hover:text-white'
+    }`}
+>
+  <span className="relative inline-block">
+    {section}
+    {/* ArrowRight Icon */}
+    <ArrowRight
+      className="absolute w-4 h-4 opacity-0 -right-5 top-1/2 -translate-y-1/2 transform transition-all duration-300 group-hover:opacity-100 group-hover:right-[-1.25rem]"
+    />
+  </span>
+</button>
+
+        {/* Divider line only visible on md+ */}
+        {idx < Object.keys(menuData).length - 1 && (
+          <div className="hidden md:block border-b border-white/10"></div>
+        )}
+      </React.Fragment>
+    ))}
+  </div>
+</div>
+
 
             {/* Right Links */}
-            <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-4 content-start">
-              {menuData[activeSection].map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  onClick={() => setshow(false)}
-                  className="block rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-3 transition"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+            <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-6 content-start">
+  {menuData[activeSection].map((item) => (
+    <Link
+      key={item.label}
+      to={item.href}
+      onClick={() => setshow(false)}
+      className="group relative inline-flex items-center gap-1 text-gray-400 hover:text-white transition text-base w-fit"
+    >
+      {/* Text wrapper */}
+      <span className="relative inline-block">
+        {item.label}
+        {/* Gradient underline only as wide as text */}
+        <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+      </span>
 
-          
+      {/* Arrow Icon */}
+      <svg
+        className="w-3 h-3 opacity-0 group-hover:opacity-100 translate-x-0.5 -translate-y-0.5 transition"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5h10M19 5v10M19 5L5 19" />
+      </svg>
+    </Link>
+  ))}
+</div>
+
+          </div>
         </div>
       </div>
     </>
