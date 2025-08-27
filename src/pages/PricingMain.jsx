@@ -53,9 +53,9 @@ const PricingMain = () => {
                 <Pricing />
 
                 {/* Contact CTA */}
-               <div className='radius flex mt-[4rem] items-center justify-center'>
-                 <Link to="/contactus" className='w-[320px] max-[500px]:w-[65%] max-[500px]:mx-auto group'>
-                 <div className='rounded-xl h-[70px] w-full max-[500px]:h-auto max-[500px]:text-[14px] bg-gradient-to-r from-[var(--theme)] to-purple-600 text-white font-semibold text-[20px] flex flex-col justify-center items-center text-center 
+               <div className='flex mt-16 items-center justify-center px-4'>
+                 <Link to="/contactus" className='w-full max-w-sm group'>
+                 <div className='rounded-xl h-16 sm:h-20 w-full bg-gradient-to-r from-[var(--theme)] to-purple-600 text-white font-semibold text-base sm:text-lg lg:text-xl flex flex-col justify-center items-center text-center px-4 py-2
                    hover:from-white hover:to-gray-100 hover:text-[var(--theme)] transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25'>
                    <span className='group-hover:animate-pulse'>Need a Customized Plan?</span>
                    <span className='group-hover:animate-pulse'>Please Contact Us</span>
@@ -63,28 +63,28 @@ const PricingMain = () => {
                      </Link>
                     </div>
                 {/* Subheading */}
-<div className='w-full flex justify-center items-center mt-8'>
-  <div className='w-[650px] flex justify-center items-center'>
-    <div className='text-center text-4xl leading-relaxed font-medium text-white drop-shadow-lg' style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+<div className='w-full flex justify-center items-center mt-12 px-4'>
+  <div className='max-w-4xl mx-auto'>
+    <div className='text-center text-2xl sm:text-3xl lg:text-4xl leading-relaxed font-medium text-white drop-shadow-lg px-4' style={{fontFamily: 'Space Grotesk, sans-serif'}}>
       We took the best parts of an agency and freelance marketplace
     </div>
   </div>
 </div>
                 {/* Table with Horizontal Scroll for Mobile */}
-                <div className='mt-[4rem] overflow-x-auto w-full py-12 relative'>
+                <div className='mt-16 overflow-x-auto w-full py-8 sm:py-12 relative'>
                     {/* Background gradient effect */}
                     <div className='absolute inset-0 bg-gradient-to-r from-transparent via-purple-900/10 to-transparent opacity-50'></div>
                     
-                    <div className='min-w-[1200px] w-fit mx-auto px-[1rem] relative z-10'>
-                        <div className='flex gap-8'>
+                    <div className='min-w-[320px] sm:min-w-[768px] lg:min-w-[1200px] w-fit mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+                        <div className='flex gap-4 sm:gap-6 lg:gap-8 justify-center'>
                             {allColumns.map((column, colIdx) => (
                                 <div
                                     key={colIdx}
-                                    className={`w-[325px] ${colIdx === 0 ? 'pt-28' : 'pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20
+                                    className={`w-full sm:w-[280px] lg:w-[325px] ${colIdx === 0 ? 'pt-20 sm:pt-28' : 'pt-8 sm:pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20
                                                 ${colIdx === 0 ? 'bg-gradient-to-b from-gray-900/50 to-gray-800/30 border border-gray-700' : 
-                                                  colIdx === 1 ? 'bg-gradient-to-b from-purple-900/40 to-gray-900/60 border-2 border-[var(--theme)] relative overflow-hidden' :
+                                                  colIdx === 1 ? 'bg-gradient-to-b from-purple-900/40 to-gray-900/60 border border-gray-700 relative overflow-hidden' :
                                                   'bg-gradient-to-b from-gray-900/60 to-gray-800/40 border border-gray-700 hover:border-gray-600'}
-                                                ${colIdx !== 1 ? 'max-[768px]:hidden' : 'max-[768px]:block'}
+                                                ${colIdx !== 1 ? 'hidden sm:block' : 'block'}
                                                 backdrop-blur-sm`}
                                 >
 
@@ -94,8 +94,8 @@ const PricingMain = () => {
                                     )}
 
                                     {headings[colIdx] && (
-                                        <div className='text-center mb-8 relative z-10'>
-                                            <h3 className={`text-2xl font-bold transition-colors duration-300
+                                        <div className='text-center mb-6 sm:mb-8 relative z-10 px-2'>
+                                            <h3 className={`text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-300
                                                 ${colIdx === 1 ? 'text-[var(--theme)] drop-shadow-lg' : 
                                                   colIdx === 0 ? 'text-[var(--theme)] drop-shadow-lg' : 'text-white'}`}>
                                                 {headings[colIdx]}
@@ -103,15 +103,15 @@ const PricingMain = () => {
                                         </div>
                                     )}
 
-                                    <div className='flex flex-col gap-4 w-[280px] mx-auto py-6 relative z-10'>
+                                    <div className='flex flex-col gap-3 sm:gap-4 w-full max-w-[280px] mx-auto py-4 sm:py-6 px-2 relative z-10'>
                                         {column.map((item, rowIdx) => (
                                             <div 
                                                 key={rowIdx} 
-                                                className={`flex items-start pl-4 gap-4 group p-3 rounded-xl transition-all duration-300 hover:transform hover:translateX-2
+                                                className={`flex items-start pl-2 sm:pl-4 gap-2 sm:gap-4 group p-2 sm:p-3 rounded-xl transition-all duration-300 hover:transform hover:translateX-2
                                                     ${colIdx === 1 ? 'hover:bg-purple-800/30 hover:shadow-lg' : 'hover:bg-gray-700/50'}
-                                                    ${item.ok ? 'border-l-4 border-green-500/50' : 'border-l-4 border-red-500/50'}`}
+                                                    ${item.ok ? 'border-l-2 sm:border-l-4 border-green-500/50' : 'border-l-2 sm:border-l-4 border-red-500/50'}`}
                                             >
-                                                <div className='w-6 h-6 mt-0.5 flex-shrink-0 relative flex items-center justify-center'>
+                                                <div className='w-5 h-5 sm:w-6 sm:h-6 mt-0.5 flex-shrink-0 relative flex items-center justify-center'>
                                                     {item.ok ? (
                                                         <div className='w-5 h-5 rounded-full bg-green-500 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:bg-green-400 group-hover:shadow-lg group-hover:shadow-green-400/50'>
                                                             <svg className='w-3 h-3 text-white font-bold' fill='currentColor' viewBox='0 0 20 20'>
@@ -127,7 +127,7 @@ const PricingMain = () => {
                                                     )}
                                                     <div className={`absolute inset-0 rounded-full scale-0 group-hover:scale-150 transition-transform duration-300 ${item.ok ? 'bg-green-400/20' : 'bg-red-400/20'}`}></div>
                                                 </div>
-                                                <div className={`text-sm leading-relaxed transition-colors duration-300 font-medium
+                                                <div className={`text-xs sm:text-sm leading-relaxed transition-colors duration-300 font-medium
                                                     ${item.ok ? 'text-gray-200 group-hover:text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>
                                                     {item.name}
                                                 </div>
