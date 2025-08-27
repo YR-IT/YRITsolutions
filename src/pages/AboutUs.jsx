@@ -311,7 +311,7 @@ const AboutPage = () => {
               <span className="text-purple-300 font-semibold text-lg">OUR MISSION</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto">
               WE ARE COMMITTED TO EMPOWERING BUSINESSES AND INDIVIDUALS WITH{" "}
               <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
                 INNOVATIVE SOFTWARE SOLUTIONS
