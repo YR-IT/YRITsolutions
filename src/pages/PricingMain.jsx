@@ -49,99 +49,172 @@ const PricingMain = () => {
 
     return (
         <>
-            <div>
+            <div className='bg-black text-white min-h-screen'>
                 <Pricing />
 
                 {/* Contact CTA */}
-               <div className='radius flex mt-[2rem] items-center justify-center'>
-                 <Link to="/contactus" className='w-[320px] max-[500px]:w-[65%] max-[500px]:mx-auto'>
-                 <div className='rounded-xl h-[70px] w-full max-[500px]:h-auto max-[500px]:text-[14px] bg-[var(--theme)] text-white font-semibold text-[20px] flex flex-col justify-center items-center text-center 
-                   hover:bg-white hover:text-[var(--theme)] transition-all duration-300'>
-                   <span>Need a Customized Plan?</span>
-                   <span>Please Contact Us</span>
+               <div className='radius flex mt-[4rem] items-center justify-center'>
+                 <Link to="/contactus" className='w-[320px] max-[500px]:w-[65%] max-[500px]:mx-auto group'>
+                 <div className='rounded-xl h-[70px] w-full max-[500px]:h-auto max-[500px]:text-[14px] bg-gradient-to-r from-[var(--theme)] to-purple-600 text-white font-semibold text-[20px] flex flex-col justify-center items-center text-center 
+                   hover:from-white hover:to-gray-100 hover:text-[var(--theme)] transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25'>
+                   <span className='group-hover:animate-pulse'>Need a Customized Plan?</span>
+                   <span className='group-hover:animate-pulse'>Please Contact Us</span>
                      </div>
                      </Link>
                     </div>
                 {/* Subheading */}
-                {/* Subheading */}
-<div className='w-full flex justify-center items-center mt-5'>
+<div className='w-full flex justify-center items-center mt-8'>
   <div className='w-[650px] flex justify-center items-center'>
-
-    {/* Mobile-only extra left text */}
-    <div className='hidden max-[768px]:block text-[14px] mr-2 text-gray-500'>
-    </div>
-
-    <div className='pricingM-sub2 text-center'>
+    <div className='text-center text-4xl leading-relaxed font-medium text-white drop-shadow-lg' style={{fontFamily: 'Space Grotesk, sans-serif'}}>
       We took the best parts of an agency and freelance marketplace
     </div>
-
-    {/* Mobile-only extra right text */}
-    <div className='hidden max-[768px]:block text-[14px] ml-2 text-gray-500'>
-    </div>
-
   </div>
 </div>
                 {/* Table with Horizontal Scroll for Mobile */}
-                <div className='mt-[0rem] overflow-x-auto w-full'>
-                    <div className='min-w-[1200px] w-fit mx-auto px-[1rem]'>
-                        <div className='flex gap-4'>
-
+                <div className='mt-[4rem] overflow-x-auto w-full py-12 relative'>
+                    {/* Background gradient effect */}
+                    <div className='absolute inset-0 bg-gradient-to-r from-transparent via-purple-900/10 to-transparent opacity-50'></div>
+                    
+                    <div className='min-w-[1200px] w-fit mx-auto px-[1rem] relative z-10'>
+                        <div className='flex gap-8'>
                             {allColumns.map((column, colIdx) => (
                                 <div
                                     key={colIdx}
-                                    className={`w-[325px] pt-10 
-                                                ${colIdx !== 0 ? 'bg-white shadow-lg' : ''}
-                                    ${colIdx !== 1 ? 'max-[768px]:hidden' : 'max-[768px]:block'}`}
+                                    className={`w-[325px] ${colIdx === 0 ? 'pt-28' : 'pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20
+                                                ${colIdx === 0 ? 'bg-gradient-to-b from-gray-900/50 to-gray-800/30 border border-gray-700' : 
+                                                  colIdx === 1 ? 'bg-gradient-to-b from-purple-900/40 to-gray-900/60 border-2 border-[var(--theme)] relative overflow-hidden' :
+                                                  'bg-gradient-to-b from-gray-900/60 to-gray-800/40 border border-gray-700 hover:border-gray-600'}
+                                                ${colIdx !== 1 ? 'max-[768px]:hidden' : 'max-[768px]:block'}
+                                                backdrop-blur-sm`}
                                 >
-                                    <div className='text-center mb-[2.8rem] text-[20px] font-bold h-[24px]'>
-                                        {headings[colIdx]}
-                                    </div>
 
-                                    <div className='flex flex-col gap-[2.2rem] w-[322px] mx-auto'>
+                                    {/* Animated background for popular column */}
+                                    {colIdx === 1 && (
+                                        <div className='absolute inset-0 bg-gradient-to-br from-purple-600/10 via-transparent to-[var(--theme)]/10 rounded-2xl'></div>
+                                    )}
+
+                                    {headings[colIdx] && (
+                                        <div className='text-center mb-8 relative z-10'>
+                                            <h3 className={`text-2xl font-bold transition-colors duration-300
+                                                ${colIdx === 1 ? 'text-[var(--theme)] drop-shadow-lg' : 
+                                                  colIdx === 0 ? 'text-[var(--theme)] drop-shadow-lg' : 'text-white'}`}>
+                                                {headings[colIdx]}
+                                            </h3>
+                                        </div>
+                                    )}
+
+                                    <div className='flex flex-col gap-4 w-[280px] mx-auto py-6 relative z-10'>
                                         {column.map((item, rowIdx) => (
-                                            <div key={rowIdx} className='flex items-center pl-3 gap-4'>
-                                                <div className='w-[28px] h-[28px]'>
-                                                    <img src={item.ok ? OK : NOK} alt="" className='w-[28px] h-[28px]' />
+                                            <div 
+                                                key={rowIdx} 
+                                                className={`flex items-start pl-4 gap-4 group p-3 rounded-xl transition-all duration-300 hover:transform hover:translateX-2
+                                                    ${colIdx === 1 ? 'hover:bg-purple-800/30 hover:shadow-lg' : 'hover:bg-gray-700/50'}
+                                                    ${item.ok ? 'border-l-4 border-green-500/50' : 'border-l-4 border-red-500/50'}`}
+                                            >
+                                                <div className='w-6 h-6 mt-0.5 flex-shrink-0 relative flex items-center justify-center'>
+                                                    {item.ok ? (
+                                                        <div className='w-5 h-5 rounded-full bg-green-500 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:bg-green-400 group-hover:shadow-lg group-hover:shadow-green-400/50'>
+                                                            <svg className='w-3 h-3 text-white font-bold' fill='currentColor' viewBox='0 0 20 20'>
+                                                                <path fillRule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clipRule='evenodd' />
+                                                            </svg>
+                                                        </div>
+                                                    ) : (
+                                                        <div className='w-5 h-5 rounded-full bg-red-500 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:bg-red-400 group-hover:shadow-lg group-hover:shadow-red-400/50'>
+                                                            <svg className='w-3 h-3 text-white font-bold' fill='currentColor' viewBox='0 0 20 20'>
+                                                                <path fillRule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clipRule='evenodd' />
+                                                            </svg>
+                                                        </div>
+                                                    )}
+                                                    <div className={`absolute inset-0 rounded-full scale-0 group-hover:scale-150 transition-transform duration-300 ${item.ok ? 'bg-green-400/20' : 'bg-red-400/20'}`}></div>
                                                 </div>
-                                                <div className='pricingM-sub-txt'>{item.name}</div>
+                                                <div className={`text-sm leading-relaxed transition-colors duration-300 font-medium
+                                                    ${item.ok ? 'text-gray-200 group-hover:text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>
+                                                    {item.name}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
+
+                                    {/* Bottom glow effect for popular column */}
+                                    {colIdx === 1 && (
+                                        <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-[var(--theme)] to-transparent rounded-full opacity-60'></div>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom CTA Section - Centered in Phone */}
-                <div className='mt-[4rem]'>
-                    <div className='flex justify-center'>
-                        <div className='w-[80%] max-[1100px]:w-[90%] max-[860px]:w-[97%]'>
+                {/* Bottom CTA Section - Modern Card Design */}
+                <div className='mt-24 mb-32 relative'>
+                    {/* Subtle Background */}
+                    <div className='absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900'></div>
+                    
+                    {/* Floating Elements */}
+                    <div className='absolute inset-0 overflow-hidden pointer-events-none'>
+                        <div className='absolute top-20 left-20 w-2 h-2 bg-[var(--theme)] rounded-full animate-pulse opacity-60'></div>
+                        <div className='absolute bottom-32 right-32 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-1000 opacity-40'></div>
+                        <div className='absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse delay-2000 opacity-50'></div>
+                    </div>
+                    
+                    {/* Main Content */}
+                    <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
+                        {/* Header Card */}
+                        <div className='bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-700/50 rounded-3xl px-8 py-16 sm:px-12 sm:py-20 mb-16 text-center group hover:border-[var(--theme)]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--theme)]/10'>
+                            <div className='relative max-w-4xl mx-auto'>
+                                <h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-relaxed mb-8 group-hover:scale-105 transition-transform duration-500' style={{lineHeight: '1.3', paddingBottom: '8px'}}>
+                                    Ready to get started?
+                                </h2>
+                                <p className='text-gray-300 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed mb-8 group-hover:text-gray-200 transition-colors duration-500'>
+                                    Choose the perfect plan for your business needs and take the first step towards success
+                                </p>
+                                <div className='w-24 h-1 bg-gradient-to-r from-[var(--theme)] to-purple-600 mx-auto rounded-full group-hover:w-32 transition-all duration-500'></div>
+                            </div>
+                        </div>
+                        
+                        {/* Content Cards */}
+                        <div className='space-y-12'>
                             {datad.map((item, index) => (
                                 <div
                                     key={index}
-                                    className={`flex ${index % 2 === 1 ? 'flex-row-reverse' : ''} gap-12 w-full mb-[10rem] max-[780px]:flex-col max-[780px]:items-center`}
+                                    className={`flex ${index % 2 === 1 ? 'flex-row-reverse' : ''} gap-8 lg:gap-16 w-full max-[780px]:flex-col max-[780px]:items-center group bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm border border-gray-700/30 rounded-2xl p-6 sm:p-8 lg:p-12 hover:border-[var(--theme)]/20 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--theme)]/5`}
                                 >
-                                    <div className='h-[408px] w-[490px] max-[600px]:w-[98%] max-[600px]:h-[auto]'>
-                                        <img src={item.img} alt="" className='h-[408px] w-[490px] max-[600px]:w-[98%] max-[600px]:h-[auto]' />
+                                    {/* Image Container */}
+                                    <div className='flex-shrink-0 w-full sm:w-[450px] lg:w-[500px] h-[300px] sm:h-[350px] lg:h-[400px] relative overflow-hidden rounded-2xl group-hover:scale-105 transition-transform duration-500'>
+                                        <img 
+                                            src={item.img} 
+                                            alt="" 
+                                            className='w-full h-full object-cover rounded-2xl shadow-2xl group-hover:brightness-110 transition-all duration-500' 
+                                        />
+                                        <div className='absolute inset-0 bg-gradient-to-tr from-[var(--theme)]/20 via-transparent to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl'></div>
                                     </div>
-                                    <div className='flex flex-col w-[601px] max-[600px]:w-[98%] max-[600px]:items-center text-center'>
-                                        <div className='text-[25px] text-[var(--theme)] max-[630px]:text-[20px]'>
+                                    
+                                    {/* Content */}
+                                    <div className='flex flex-col flex-1 justify-center text-center lg:text-left max-[780px]:text-center space-y-6'>
+                                        <div className='text-xl sm:text-2xl lg:text-[25px] text-[var(--theme)] font-medium'>
                                             Own an App? Grow like Crazy with us.
                                         </div>
-                                        <div className='text-[35px] max-[630px]:text-[25px] font-semibold'>
+                                        <div className='text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-tight'>
                                             <p>{item.heading}</p>
                                         </div>
-                                        <div className='text-center pt-3 pricingM-subpart3 max-[600px]:px-2'>
+                                        <div className='text-gray-300 leading-relaxed text-base sm:text-lg pricingM-subpart3'>
                                             {item.desc}
                                         </div>
-                                        <div className='flex gap-6 flex-wrap justify-center'>
-                                            <div className='btn mt-10 h-[57px] w-[228px] text-[20px] px-[16px]'>
-                                                <a href="https://wa.me/7404890806" target="_blank" rel="noopener noreferrer">Chat With Us</a>
-                                            </div>
-                                            <div className='radius pricingM-btn2 mt-10 h-[57px] w-[228px] text-[20px] px-[16px]'>
-                                                <Link to="/contactus">Send Enquiry</Link>
-                                            </div>
+                                        <div className='flex gap-4 sm:gap-6 flex-wrap justify-center lg:justify-start max-[780px]:justify-center pt-4'>
+                                            <a 
+                                                href="https://wa.me/7404890806" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className='group btn h-12 sm:h-14 w-48 sm:w-56 text-base sm:text-lg font-medium rounded-xl bg-gradient-to-r from-[var(--theme)] to-purple-600 hover:from-white hover:to-gray-100 hover:text-[var(--theme)] transition-all duration-500 flex items-center justify-center transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25'
+                                            >
+                                                <span className='group-hover:animate-pulse'>💬 Chat With Us</span>
+                                            </a>
+                                            <Link 
+                                                to="/contactus"
+                                                className='group h-12 sm:h-14 w-48 sm:w-56 text-base sm:text-lg font-medium rounded-xl border-2 border-[var(--theme)] text-white hover:bg-gradient-to-r hover:from-[var(--theme)] hover:to-purple-600 hover:border-transparent transition-all duration-500 flex items-center justify-center transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25'
+                                            >
+                                                <span className='group-hover:animate-pulse'>📧 Send Enquiry</span>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +224,7 @@ const PricingMain = () => {
                 </div>
 
                 {/* Review Section */}
-                <div className='max-[505px]:mt-[-13rem] max-[705px]:mt-[-8rem]'>
+                <div className='mt-8 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-24'>
                     <ClientReview />
                 </div>
             </div>
@@ -159,4 +232,4 @@ const PricingMain = () => {
     )
 }
 
-export default PricingMain
+export default PricingMain;
