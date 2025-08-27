@@ -113,7 +113,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 h-[70%]">
+          <div className="grid grid-cols-1 md:grid-cols-3 sm:gap-10 h-[70%]">
             {/* Left Sections */}
             <div className="md:col-span-1">
   <div className="flex flex-col text-xl font-bold uppercase tracking-wide  border-r-0 md:border-r border-white/20">
