@@ -232,7 +232,8 @@ const AboutPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-10 pt-[0px]">
+      <section className="relative py-18 sm:py-20 px-10">
+
 
         <div className="max-w-11xl mx-auto text-center relative z-10">
           <motion.div
@@ -270,6 +271,7 @@ const AboutPage = () => {
             <span className="text-purple-400 font-bold">extraordinary digital experiences</span>{" "}
             that drive innovation, growth, and lasting success.
           </motion.p>
+
 
           <motion.div
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
@@ -319,6 +321,8 @@ const AboutPage = () => {
               THAT DRIVE GROWTH, EFFICIENCY, AND SUCCESS.
             </h2>
           </motion.div>
+
+          
 
           {/* Tilted Cards */}
           <div className="flex flex-wrap justify-center gap-8 mt-16">
