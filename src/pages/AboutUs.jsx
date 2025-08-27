@@ -299,7 +299,7 @@ const AboutPage = () => {
       </section>
 
       {/* Mission Section with Tilted Cards */}
-      <section className="py-18 relative">
+      <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -314,11 +314,11 @@ const AboutPage = () => {
             </div>
 
             <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto">
-              WE ARE COMMITTED TO EMPOWERING BUSINESSES AND INDIVIDUALS WITH{" "}
+              We are committed to empowering businesses and idividuals with {" "}
               <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
                 INNOVATIVE SOFTWARE SOLUTIONS
               </span>{" "}
-              THAT DRIVE GROWTH, EFFICIENCY, AND SUCCESS.
+              that drive growth, efficiency, and success. 
             </h2>
           </motion.div>
 
