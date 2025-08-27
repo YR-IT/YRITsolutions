@@ -618,15 +618,17 @@ const AboutPage = () => {
                 >
                   <div className="bg-gray-900/50 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                      {/* Image Section */}
-                      <div className="relative h-96 lg:h-auto overflow-hidden">
-                        <img
-                          src={founderAchievements[currentSlide].image}
-                          alt={founderAchievements[currentSlide].title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
-                      </div>
+                    
+                     {/* Image Section */}
+<div className="relative h-80 md:h-[500px] overflow-hidden flex-shrink-0">
+  <img
+    src={founderAchievements[currentSlide].image}
+    alt={founderAchievements[currentSlide].title}
+    className="w-full h-full object-cover"
+  />
+  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+</div>
+
 
                       {/* Content Section */}
                       <div className="p-8 lg:p-12 flex flex-col justify-center">
