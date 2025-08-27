@@ -53,7 +53,7 @@ const PricingMain = () => {
                 <Pricing />
 
                 {/* Contact CTA */}
-               <div className='flex mt-16 items-center justify-center px-4'>
+               <div className='flex mt-8 sm:mt-16 items-center justify-center px-4'>
                  <Link to="/contactus" className='w-full max-w-sm group'>
                  <div className='rounded-xl h-16 sm:h-20 w-full bg-gradient-to-r from-[var(--theme)] to-purple-600 text-white font-semibold text-base sm:text-lg lg:text-xl flex flex-col justify-center items-center text-center px-4 py-2
                    hover:from-white hover:to-gray-100 hover:text-[var(--theme)] transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25'>
@@ -63,7 +63,7 @@ const PricingMain = () => {
                      </Link>
                     </div>
                 {/* Subheading */}
-<div className='w-full flex justify-center items-center mt-12 px-4'>
+<div className='w-full flex justify-center items-center mt-6 sm:mt-12 px-4'>
   <div className='max-w-4xl mx-auto'>
     <div className='text-center text-2xl sm:text-3xl lg:text-4xl leading-relaxed font-medium text-white drop-shadow-lg px-4' style={{fontFamily: 'Space Grotesk, sans-serif'}}>
       We took the best parts of an agency and freelance marketplace
@@ -71,7 +71,7 @@ const PricingMain = () => {
   </div>
 </div>
                 {/* Table with Horizontal Scroll for Mobile */}
-                <div className='mt-16 overflow-x-auto w-full py-8 sm:py-12 relative'>
+                <div className='mt-8 sm:mt-16 overflow-x-auto w-full py-6 sm:py-8 lg:py-12 relative'>
                     {/* Background gradient effect */}
                     <div className='absolute inset-0 bg-gradient-to-r from-transparent via-purple-900/10 to-transparent opacity-50'></div>
                     
@@ -146,7 +146,7 @@ const PricingMain = () => {
                 </div>
 
                 {/* Bottom CTA Section - Modern Card Design */}
-                <div className='mt-24 mb-32 relative'>
+                <div className='mt-4 sm:mt-24 mb-8 sm:mb-32 relative'>
                     {/* Subtle Background */}
                     <div className='absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900'></div>
                     
@@ -158,9 +158,9 @@ const PricingMain = () => {
                     </div>
                     
                     {/* Main Content */}
-                    <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
+                    <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20'>
                         {/* Header Card */}
-                        <div className='bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-700/50 rounded-3xl px-8 py-16 sm:px-12 sm:py-20 mb-16 text-center group hover:border-[var(--theme)]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--theme)]/10'>
+                        <div className='bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-700/50 rounded-3xl px-6 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20 mb-8 sm:mb-16 text-center group hover:border-[var(--theme)]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--theme)]/10'>
                             <div className='relative max-w-4xl mx-auto'>
                                 <h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-relaxed mb-8 group-hover:scale-105 transition-transform duration-500' style={{lineHeight: '1.3', paddingBottom: '8px'}}>
                                     Ready to get started?
@@ -224,7 +224,7 @@ const PricingMain = () => {
                 </div>
 
                 {/* Review Section */}
-                <div className='mt-8 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-24'>
+                <div className='mt-0'>
                     <ClientReview />
                 </div>
             </div>
