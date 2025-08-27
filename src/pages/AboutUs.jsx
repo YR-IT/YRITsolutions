@@ -232,7 +232,8 @@ const AboutPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-10 pt-[0px]">
+      <section className="relative py-18 sm:py-20 px-10">
+
 
         <div className="max-w-11xl mx-auto text-center relative z-10">
           <motion.div
@@ -271,6 +272,7 @@ const AboutPage = () => {
             that drive innovation, growth, and lasting success.
           </motion.p>
 
+
           <motion.div
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             initial={{ opacity: 0, y: 30 }}
@@ -297,7 +299,7 @@ const AboutPage = () => {
       </section>
 
       {/* Mission Section with Tilted Cards */}
-      <section className="py-18 relative">
+      <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -311,14 +313,16 @@ const AboutPage = () => {
               <span className="text-purple-300 font-semibold text-lg">OUR MISSION</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto">
-              WE ARE COMMITTED TO EMPOWERING BUSINESSES AND INDIVIDUALS WITH{" "}
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto">
+              We are committed to empowering businesses and idividuals with {" "}
               <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
                 INNOVATIVE SOFTWARE SOLUTIONS
               </span>{" "}
-              THAT DRIVE GROWTH, EFFICIENCY, AND SUCCESS.
+              that drive growth, efficiency, and success. 
             </h2>
           </motion.div>
+
+          
 
           {/* Tilted Cards */}
           <div className="flex flex-wrap justify-center gap-8 mt-16">
@@ -437,34 +441,43 @@ const AboutPage = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {valuesData.map((value, idx) => (
-              <motion.div
-                key={idx}
-                className="group relative"
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: idx * 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative bg-gray-900/50 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm hover:bg-gray-900/80 transition-all duration-500 group-hover:scale-[1.02] h-full">
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${value.color} mb-6`}>
-                    <value.icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
-                    {value.title}
-                  </h3>
-                  
-                  <p className="text-gray-300 text-lg leading-relaxed">
-                    {value.description}
-                  </p>
+  {valuesData.map((value, idx) => (
+    <motion.div
+      key={idx}
+      className="group relative"
+      initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: idx * 0.2 }}
+      viewport={{ once: true }}
+    >
+      <div className="relative bg-gray-900/50 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm hover:bg-gray-900/80 transition-all duration-500 group-hover:scale-[1.02] h-full text-center md:text-left">
+        
+        {/* Icon */}
+        <div
+          className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${value.color} mb-6 mx-auto md:mx-0`}
+        >
+          <value.icon className="w-8 h-8 text-white" />
+        </div>
 
-                  {/* Hover glow effect */}
-                  <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${value.color} blur-xl -z-10`} />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        {/* Title */}
+        <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
+          {value.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-300 text-lg leading-relaxed">
+          {value.description}
+        </p>
+
+        {/* Hover glow effect */}
+        <div
+          className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${value.color} blur-xl -z-10`}
+        />
+      </div>
+    </motion.div>
+  ))}
+</div>
+
         </div>
       </section>
 
