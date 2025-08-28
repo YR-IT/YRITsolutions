@@ -21,6 +21,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Portfolio from './pages/Portfolio'; 
 import Blog from './pages/Blog';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import AdminPanel from "./pages/admin/AdminPanel";
+
 
 
 function App() {
@@ -55,7 +57,8 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/termsandconditions" element={<TermsOfUse />} />
             <Route path="/blog" element={<Blog />} />
-           
+            <Route path="/admin" element={<AdminPanel />} />
+
           </Routes>
         </main>
 
