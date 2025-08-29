@@ -50,7 +50,7 @@ const Services = () => {
 
     return (
       <div className="space-y-6 animate-fadeIn">
-        <div className="space-y-4">
+        <div className="space-y-8">
           <div className="relative">
             <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight animate-slideInLeft relative z-10">
               {current.title}
@@ -319,10 +319,10 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <section className="pt-32 pb-16 px-4 relative overflow-hidden">
+      <section className="pt-12 pb-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12 space-y-6">
+          <div className="text-center mb-12 space-y-10">
             <div className="relative">
               <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight animate-fadeIn">
                 We Strive To Deliver
@@ -343,7 +343,7 @@ const Services = () => {
             <div className="hidden md:flex justify-center">
               <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl border border-gray-700 hover:shadow-blue-500/20 transition-all duration-700 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-all duration-700"></div>
-                <div className="flex space-x-3 relative z-10">
+                <div className="flex space-x-6 relative z-10">
                   {services.map((service) => (
                     <button
                       key={service.id}
@@ -384,7 +384,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center mt-16">
             
             <div className="space-y-8 order-2 lg:order-1 flex flex-col items-center text-center lg:items-start lg:text-left">
               {renderHomeContent()}

@@ -199,7 +199,7 @@ const Industries = () => {
             </div> */}
 
             {/* eCommerce, Retail, and B2B */}
-            <div className="bg-black p-4 sm:p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card">
+            {/* <div className="bg-black p-4 sm:p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card">
               <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-purple-500/10 rounded-full flex items-center justify-center transition-transform duration-500">
                 <img
                   src="/icons/Ecommerce-Retail-B2B.svg"
@@ -215,7 +215,7 @@ const Industries = () => {
                 management seamlessly.
               </p>
               <div className="absolute inset-0 border border-transparent group-hover:border-purple-500/30 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"></div>
-            </div>
+            </div> */}
 
             {/* Healthcare & Fitness */}
             <div className="bg-black p-4 sm:p-6 shadow-lg transform transition-all duration-500 group hover:bg-white min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card border border-white mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card">
