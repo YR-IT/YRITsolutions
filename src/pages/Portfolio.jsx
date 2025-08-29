@@ -97,6 +97,14 @@ const projects = [
     link: "https://bprpvtiti.vercel.app/v",
     image:"/images/BPRPVTITI - Educational Institute.png",
     category: "Education"
+  },
+  {
+    title: "Dua Pharmacy - Online Healthcare Platform",
+    description:
+      "A comprehensive online pharmacy platform designed for Dua Pharmacy, offering convenient medicine ordering, prescription management, and healthcare products. Features a modern, user-friendly interface with secure payment processing, medicine search functionality, and trusted healthcare services. Built to provide reliable pharmaceutical services with competitive pricing and fast delivery.",
+    link: "#",
+    image: "/images/dua pharmacy.png",
+    category: "Healthcare & Pharmacy"
   }
 ];
 
@@ -250,7 +258,7 @@ const Portfolio = () => {
                         src={project.image}
                         alt={project.title}
                         className={`relative rounded-2xl w-full h-64 lg:h-80 shadow-2xl transform transition-all duration-500 group-hover:scale-105 border border-gray-600/50 group-hover:border-purple-500/50 ${
-                          project.title.includes("Friends Baker") ? "object-contain bg-white" : "object-cover"
+                          project.title.includes("Friends Baker") || project.title.includes("Dua Pharmacy") ? "object-contain bg-white" : "object-cover"
                         }`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
