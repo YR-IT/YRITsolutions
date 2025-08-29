@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'; // match backend port
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'; // match backend port
 
 export interface Blog {
   _id: string;
