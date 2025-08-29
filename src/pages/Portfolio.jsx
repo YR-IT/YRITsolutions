@@ -102,7 +102,7 @@ const projects = [
     title: "Dua Pharmacy - Online Healthcare Platform",
     description:
       "A comprehensive online pharmacy platform designed for Dua Pharmacy, offering convenient medicine ordering, prescription management, and healthcare products. Features a modern, user-friendly interface with secure payment processing, medicine search functionality, and trusted healthcare services. Built to provide reliable pharmaceutical services with competitive pricing and fast delivery.",
-    link: "#",
+    link: "https://e-com-dp-one.vercel.app/",
     image: "/images/dua pharmacy.png",
     category: "Healthcare & Pharmacy"
   }
