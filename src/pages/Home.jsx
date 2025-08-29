@@ -83,12 +83,12 @@ const MarqueeRow = ({ images, direction }) => {
         {images.concat(images).map((src, idx) => (
           <div
             key={idx}
-            className="w-36 sm:w-56 md:w-64 h-44 sm:h-56 md:h-64 overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3 sm:mx-6"
+            className="w-48 sm:w-72 md:w-80 h-32 sm:h-48 md:h-56 overflow-hidden rounded-xl shadow-lg flex-shrink-0 mx-3 sm:mx-6"
           >
             <img
               src={src}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
         ))}
@@ -124,12 +124,25 @@ const Home = () => {
             { number: '24/7', label: 'Support Available' }
           ].map((stat, index) => (
             <div key={index} className="text-center group">
-              <div className="bg-gradient-to-br from-gray-900/70 to-black/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 hover:border-blue-500/70 transition-all duration-300 hover:transform hover:scale-105">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-200 text-sm font-medium">
-                  {stat.label}
+              <div className="relative bg-gradient-to-br from-gray-900/70 to-black/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 hover:border-blue-500/70 transition-all duration-500 hover:transform hover:scale-110 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 overflow-hidden">
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                
+                {/* Animated border */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-500/50 to-purple-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" 
+                     style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'xor' }}></div>
+                
+                {/* Floating particles effect */}
+                <div className="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-all duration-500"></div>
+                <div className="absolute bottom-2 left-2 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent mb-2 group-hover:from-blue-200 group-hover:to-purple-200 transition-all duration-500 group-hover:scale-110">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-200 text-sm font-medium group-hover:text-white transition-colors duration-300">
+                    {stat.label}
+                  </div>
                 </div>
               </div>
             </div>

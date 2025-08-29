@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import ClientReview from './ClientReview';
 
 // Import assets
-import WebImg from '../assets/web_d_gif.gif';
-import AppImg from '../assets/android-app-development-in-lucknow.gif';
-import UIUXImg from '../assets/web-developmen-design-1.gif';
-import DigitalImg from '../assets/Demystifying-The-Role-of-Analytics-1.gif';
+import WebImg from '../assets/web-development.gif';
+import AppImg from '../assets/app-development-1.gif';
+import UIUXImg from '../assets/ui_ux.gif';
+import DigitalImg from '../assets/data-analysis-animation-download-in-lottie-json-gif-static-svg-file-formats--analytics-logo-statistics-computing-pack-business-animations-3479081.gif';
 
 
 const Services = () => {
@@ -19,10 +19,10 @@ const Services = () => {
   };
 
   const services = [
-    { id: 'web', label: 'Web Development', icon: '🌐' },
+    { id: 'web', label: 'Web Development', icon: '💻' },
     { id: 'app', label: 'App Development', icon: '📱' },
-    { id: 'uiux', label: 'UI/UX Development', icon: '🎨' },
-    { id: 'digital', label: 'Digital Marketing', icon: '📊' }
+    { id: 'uiux', label: 'UI/UX Development', icon: '🖥️' },
+    { id: 'digital', label: 'Digital Marketing', icon: '📈' }
   ];
 
   const renderHomeContent = () => {
@@ -287,7 +287,9 @@ const Services = () => {
             
             <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-4 relative z-10">
               <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 shadow-lg group-hover:shadow-blue-500/50 relative">
-                <div className="text-xl">{item.icon}</div>
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl blur-lg group-hover:scale-150 transition-all duration-700"></div>
               </div>
               <div className="space-y-2 flex-1">

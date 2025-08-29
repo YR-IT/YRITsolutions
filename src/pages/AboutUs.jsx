@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Star,
   ChevronDown,
@@ -81,6 +82,8 @@ function CountUp({ end = 0, duration = 1200, startOn = false, className = "" }) 
 }
 
 const AboutPage = () => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     AOS.init({ duration: 1200, once: true });
   }, []);
@@ -279,11 +282,17 @@ const AboutPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <button className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+            <button 
+              onClick={() => navigate('/ourservices')}
+              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold shadow-xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+            >
               Explore Our Services
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm">
+            <button 
+              onClick={() => navigate('/portfolio')}
+              className="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
+            >
               View Our Work
             </button>
           </motion.div>
@@ -560,10 +569,16 @@ const AboutPage = () => {
                 </p>
 
                 <div className="flex justify-center gap-4">
-                  <button className="p-3 bg-purple-600 hover:bg-purple-500 rounded-xl transition-colors group/btn">
+                  <button 
+                    onClick={() => window.open('mailto:yr.itsolutions.pvtltd@gmail.com', '_blank')}
+                    className="p-3 bg-purple-600 hover:bg-purple-500 rounded-xl transition-colors group/btn"
+                  >
                     <Mail className="w-5 h-5 text-white group-hover/btn:scale-110 transition-transform" />
                   </button>
-                  <button className="p-3 bg-blue-600 hover:bg-blue-500 rounded-xl transition-colors group/btn">
+                  <button 
+                    onClick={() => window.open('https://www.linkedin.com/in/yashika-sharma1775/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', '_blank')}
+                    className="p-3 bg-blue-600 hover:bg-blue-500 rounded-xl transition-colors group/btn"
+                  >
                     <Linkedin className="w-5 h-5 text-white group-hover/btn:scale-110 transition-transform" />
                   </button>
                 </div>
@@ -730,6 +745,7 @@ const AboutPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <motion.button
+                onClick={() => navigate('/contactus')}
                 className="group px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-lg shadow-xl hover:shadow-purple-500/25 transition-all duration-300 flex items-center gap-3"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
@@ -740,6 +756,7 @@ const AboutPage = () => {
               </motion.button>
               
               <motion.button
+                onClick={() => navigate('/meetingform')}
                 className="px-10 py-5 border-2 border-gray-600 rounded-2xl font-bold text-lg hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}

@@ -20,9 +20,8 @@ import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Portfolio from './pages/Portfolio'; 
 import Blog from './pages/Blog';
-import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AdminPanel from "./pages/admin/AdminPanel";
-
 
 
 function App() {

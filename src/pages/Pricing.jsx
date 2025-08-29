@@ -46,16 +46,11 @@ const Pricing = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="relative inline-flex items-center gap-2 px-6 py-3 mb-4 border-flow">
-  <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-  <h2 className="text-xl font-extrabold text-white">Our Pricing</h2>
-</div>
-
-
-        <div className="mb-16 text-left">
-          <h3 className="inline-flex items-center text-sm font-semibold text-purple-400 tracking-wider uppercase mb-4 relative">
-      
-          </h3>
+        <div className="text-center mb-16">
+          <div className="relative inline-flex items-center gap-2 px-6 py-3 mb-4 border-flow">
+            <span className="w-3 h-3 rounded-full bg-purple-500"></span>
+            <h2 className="text-xl font-extrabold text-white">Our Pricing</h2>
+          </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
             Transparent Pricing for You
           </h2>
