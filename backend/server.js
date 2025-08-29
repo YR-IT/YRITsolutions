@@ -10,21 +10,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB Connected"))
-.catch((err) => console.error("❌ MongoDB connection error:", err));
+// ✅ MongoDB connection (clean, no deprecated options)
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // Blog Schema
-const blogSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  content: String,
-  image: String, // URL of uploaded image
-}, { timestamps: true });
+const blogSchema = new mongoose.Schema(
+  {
+    title: String,
+    author: String,
+    content: String,
+    image: String, // URL of uploaded image
+  },
+  { timestamps: true }
+);
 
 const Blog = mongoose.model("Blog", blogSchema);
 
