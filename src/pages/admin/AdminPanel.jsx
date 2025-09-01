@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import {
+  createBlogPost,
+  getAllBlogs,
+  deleteBlog,
+} from "../admin/api/blogApi"; // ✅ use your api.js helper
 
 const AdminPanel = () => {
   const [title, setTitle] = useState("");
@@ -10,9 +14,6 @@ const AdminPanel = () => {
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [editingId, setEditingId] = useState(null);
-
-  const API_BASE_URL =
-    process.env.REACT_APP_API_URL || "http://localhost:3001";
 
   // ✅ Create object URL for image preview
   useEffect(() => {
@@ -25,13 +26,13 @@ const AdminPanel = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [image]);
 
-  // ✅ Fetch blogs from backend
+  // ✅ Fetch blogs
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/blogs`);
-      setBlogs(Array.isArray(res.data) ? res.data : []);
+      const data = await getAllBlogs();
+      setBlogs(data);
     } catch (err) {
-      console.error("❌ Error fetching blogs:", err.response?.data || err.message);
+      console.error("❌ Error fetching blogs:", err.message);
       setBlogs([]);
     }
   };
@@ -61,24 +62,19 @@ const AdminPanel = () => {
       formData.append("content", content);
       if (image) formData.append("image", image);
 
-      let res;
       if (editingId) {
-        res = await axios.put(`${API_BASE_URL}/api/blogs/${editingId}`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        // 🔥 PUT request — add updateBlog in api.js
+        await createBlogPost(formData, editingId);
         alert("✅ Blog Updated Successfully!");
       } else {
-        res = await axios.post(`${API_BASE_URL}/api/blogs`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        await createBlogPost(formData);
         alert("✅ Blog Published Successfully!");
       }
 
-      console.log(res.data);
       resetForm();
       fetchBlogs();
     } catch (err) {
-      console.error("❌ Failed to save blog:", err.response?.data || err.message);
+      console.error("❌ Failed to save blog:", err.message);
       alert("❌ Failed to save blog");
     } finally {
       setLoading(false);
@@ -90,11 +86,11 @@ const AdminPanel = () => {
     if (!window.confirm("⚠️ Are you sure you want to delete this blog?")) return;
 
     try {
-      await axios.delete(`${API_BASE_URL}/api/blogs/${id}`);
+      await deleteBlog(id);
       alert("🗑️ Blog Deleted Successfully!");
       fetchBlogs();
     } catch (err) {
-      console.error("❌ Failed to delete blog:", err.response?.data || err.message);
+      console.error("❌ Failed to delete blog:", err.message);
       alert("❌ Failed to delete blog");
     }
   };
@@ -106,7 +102,7 @@ const AdminPanel = () => {
     setAuthor(blog.author);
     setContent(blog.content);
     setImage(null);
-    setImagePreview(blog.image || null); // show existing image
+    setImagePreview(blog.image || null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

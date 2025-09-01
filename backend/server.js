@@ -9,9 +9,8 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000" }));
-app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:3000" }));
+app.use(express.json()); // for parsing JSON
 
 // MongoDB connection
 mongoose
@@ -23,7 +22,8 @@ mongoose
 app.use("/api/blogs", blogRoutes);
 
 // Health check
-app.get("/", (req, res) => res.send("🚀 Blog API running"));
+app.get("/", (req, res) => res.send("🚀 Blog API running with Cloudinary"));
 
+// Start server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));

@@ -1,57 +1,67 @@
 import express from "express";
 import multer from "multer";
 import Blog from "../models/blog.js";
-import { v2 as cloudinary } from "cloudinary";
-import streamifier from "streamifier";
+import cloudinary from "../utils/cloudinary.js";
 
 const router = express.Router();
-const upload = multer(); // memory storage
+const upload = multer({ storage: multer.memoryStorage() });
+
+// Upload helper
+const uploadToCloudinary = (fileBuffer) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: "blogs" },
+      (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      }
+    );
+    stream.end(fileBuffer);
+  });
+};
 
 // ✅ Create Blog
 router.post("/", upload.single("image"), async (req, res) => {
   try {
+    console.log("📥 Incoming body:", req.body);
+    console.log("📸 Incoming file:", req.file?.originalname);
+
     const { title, author, content } = req.body;
     if (!title || !author || !content) {
-      return res.status(400).json({ error: "Title, author, and content are required" });
+      console.log("❌ Missing required fields");
+      return res.status(400).json({
+        error: "Title, author, and content are required",
+      });
     }
 
     let imageUrl = null;
-
     if (req.file) {
-      const streamUpload = (fileBuffer) => {
-        return new Promise((resolve, reject) => {
-          const stream = cloudinary.uploader.upload_stream(
-            { folder: "blogs" },
-            (error, result) => {
-              if (result) resolve(result);
-              else reject(error);
-            }
-          );
-          streamifier.createReadStream(fileBuffer).pipe(stream);
+      try {
+        const result = await uploadToCloudinary(req.file.buffer);
+        imageUrl = result.secure_url;
+        console.log("✅ Uploaded to Cloudinary:", imageUrl);
+      } catch (cloudErr) {
+        console.error("❌ Cloudinary upload error:", cloudErr);
+        return res.status(500).json({
+          error: "Cloudinary upload failed",
+          details: cloudErr.message,
         });
-      };
-
-      const result = await streamUpload(req.file.buffer);
-      imageUrl = result.secure_url;
+      }
     }
 
     const blog = new Blog({ title, author, content, image: imageUrl });
-    const savedBlog = await blog.save();
-    res.status(201).json(savedBlog);
-  } catch (err) {
-    console.error("❌ Error creating blog:", err);
-    res.status(500).json({ error: "Failed to create blog" });
-  }
-});
+    console.log("💾 Attempting to save blog:", blog);
 
-// ✅ Get all blogs
-router.get("/", async (req, res) => {
-  try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
-    res.json(blogs);
+    const savedBlog = await blog.save();
+    console.log("✅ Blog saved:", savedBlog);
+
+    return res.status(201).json(savedBlog);
   } catch (err) {
-    console.error("❌ Error fetching blogs:", err);
-    res.status(500).json({ error: "Failed to fetch blogs" });
+    console.error("❌ Blog save error:", err);
+    return res.status(500).json({
+      error: "Failed to create blog",
+      details: err.message || err,
+    });
   }
 });
 

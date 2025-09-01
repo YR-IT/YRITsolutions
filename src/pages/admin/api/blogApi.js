@@ -1,68 +1,95 @@
 import axios from "axios";
 
-// ✅ CRA only supports REACT_APP_ prefixed env vars
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+// ==========================
+// ✅ Detect Environment & API URL
+// ==========================
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL ||
+  (window.location.hostname === "localhost"
+    ? "http://localhost:3001" // local backend
+    : "https://yritsolutions.onrender.com"); // deployed backend
 
+// ✅ Axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
-// ✅ Create or update a Blog Post
+// ==========================
+// 🔹 Centralized Error Handler
+// ==========================
+const handleError = (error, defaultMsg) => {
+  console.error(
+    `❌ API Error: ${defaultMsg}`,
+    error.response?.data || error.message
+  );
+  throw new Error(error.response?.data?.error || defaultMsg);
+};
+
+// ==========================
+// ✅ Create Blog Post
+// ==========================
 export const createBlogPost = async (formData) => {
   try {
     const res = await api.post("/api/blogs", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    return res.data; // returns the created blog object
+    return res.data;
   } catch (error) {
-    console.error(
-      "❌ Error submitting blog post:",
-      error.response?.data || error.message
-    );
-    throw new Error(
-      error.response?.data?.error || "Failed to submit blog post"
-    );
+    handleError(error, "Failed to create blog post");
   }
 };
 
-// ✅ Get All Blogs (returns array of blogs)
+// ==========================
+// ✅ Update Blog Post
+// ==========================
+export const updateBlogPost = async (id, formData) => {
+  try {
+    const res = await api.put(`/api/blogs/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return res.data;
+  } catch (error) {
+    handleError(error, "Failed to update blog post");
+  }
+};
+
+// ==========================
+// ✅ Get All Blogs
+// ==========================
 export const getAllBlogs = async (page = 1, limit = 50) => {
   try {
-    const res = await api.get("/api/blogs", {
-      params: { page, limit },
-    });
+    const res = await api.get("/api/blogs", { params: { page, limit } });
 
-    // If backend returns { blogs: [...], total, page, totalPages } use res.data.blogs
-    if (Array.isArray(res.data)) {
-      return res.data;
-    } else if (res.data.blogs && Array.isArray(res.data.blogs)) {
-      return res.data.blogs;
-    } else {
-      return [];
-    }
+    // Handle both paginated + plain array response
+    if (Array.isArray(res.data)) return res.data;
+    if (res.data.blogs && Array.isArray(res.data.blogs)) return res.data.blogs;
+
+    return [];
   } catch (error) {
-    console.error(
-      "❌ Error fetching blogs:",
-      error.response?.data || error.message
-    );
-    throw new Error(
-      error.response?.data?.error || "Failed to fetch blogs"
-    );
+    handleError(error, "Failed to fetch blogs");
   }
 };
 
-// ✅ Delete Blog by ID
+// ==========================
+// ✅ Get Single Blog
+// ==========================
+export const getSingleBlog = async (id) => {
+  try {
+    const res = await api.get(`/api/blogs/${id}`);
+    return res.data;
+  } catch (error) {
+    handleError(error, "Failed to fetch blog details");
+  }
+};
+
+// ==========================
+// ✅ Delete Blog
+// ==========================
 export const deleteBlog = async (id) => {
   try {
     const res = await api.delete(`/api/blogs/${id}`);
-    return res.data; // returns { message: "Blog deleted successfully" }
+    return res.data; // { message: "Blog deleted successfully" }
   } catch (error) {
-    console.error(
-      "❌ Error deleting blog:",
-      error.response?.data || error.message
-    );
-    throw new Error(
-      error.response?.data?.error || "Failed to delete blog"
-    );
+    handleError(error, "Failed to delete blog");
   }
 };
