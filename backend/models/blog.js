@@ -5,7 +5,8 @@ const blogSchema = new mongoose.Schema(
     title: { type: String, required: true },
     author: { type: String, required: true },
     content: { type: String, required: true },
-    imageUrl: { type: String }, // Store Cloudinary URL or local file path
+    image: { type: String }, // URL or /uploads/filename
+    category: { type: String, default: "General" }, // optional: category
   },
   { timestamps: true }
 );

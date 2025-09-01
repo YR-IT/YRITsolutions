@@ -1,69 +1,31 @@
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
 import dotenv from "dotenv";
-import multer from "multer";
+import cors from "cors";
+import path from "path";
+import blogRoutes from "./routes/blogRoutes.js";
 
 dotenv.config();
 
 const app = express();
+
+// ✅ Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// ✅ MongoDB connection (clean, no deprecated options)
-mongoose.connect(process.env.MONGO_URI)
+// ✅ Routes
+app.use("/api/blogs", blogRoutes);
+
+// ✅ MongoDB Connection
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: "blogdb", // change if your DB name is different
+  })
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Blog Schema
-const blogSchema = new mongoose.Schema(
-  {
-    title: String,
-    author: String,
-    content: String,
-    image: String, // URL of uploaded image
-  },
-  { timestamps: true }
-);
-
-const Blog = mongoose.model("Blog", blogSchema);
-
-// Multer for image upload (memory storage)
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
-
-// ✅ POST: Create new blog
-app.post("/api/blogs", upload.single("image"), async (req, res) => {
-  try {
-    let imageUrl = "";
-    if (req.file) {
-      // for now just save as base64 (later we can use Cloudinary)
-      imageUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`;
-    }
-
-    const blog = new Blog({
-      title: req.body.title,
-      author: req.body.author,
-      content: req.body.content,
-      image: imageUrl,
-    });
-
-    await blog.save();
-    res.status(201).json(blog);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ✅ GET: Fetch all blogs
-app.get("/api/blogs", async (req, res) => {
-  try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
-    res.json(blogs);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
