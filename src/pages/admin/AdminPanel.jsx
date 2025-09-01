@@ -6,20 +6,33 @@ const AdminPanel = () => {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
-  // ✅ CRA only supports REACT_APP_ env variables
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+  const API_BASE_URL =
+    process.env.REACT_APP_API_URL || "http://localhost:3001";
 
-  // Fetch all blogs
+  // ✅ Create object URL for image preview
+  useEffect(() => {
+    if (!image) {
+      setImagePreview(null);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(image);
+    setImagePreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [image]);
+
+  // ✅ Fetch blogs from backend
   const fetchBlogs = async () => {
     try {
       const res = await axios.get(`${API_BASE_URL}/api/blogs`);
-      setBlogs(res.data);
+      setBlogs(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      console.error("❌ Error fetching blogs:", err);
+      console.error("❌ Error fetching blogs:", err.response?.data || err.message);
+      setBlogs([]);
     }
   };
 
@@ -27,27 +40,34 @@ const AdminPanel = () => {
     fetchBlogs();
   }, []);
 
-  // Submit handler (Create or Update)
+  // ✅ Reset form
+  const resetForm = () => {
+    setTitle("");
+    setAuthor("");
+    setContent("");
+    setImage(null);
+    setEditingId(null);
+  };
+
+  // ✅ Handle create/update blog
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("author", author);
-    formData.append("content", content);
-    if (image) formData.append("image", image);
-
     try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("author", author);
+      formData.append("content", content);
+      if (image) formData.append("image", image);
+
       let res;
       if (editingId) {
-        // Update existing blog
         res = await axios.put(`${API_BASE_URL}/api/blogs/${editingId}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         alert("✅ Blog Updated Successfully!");
       } else {
-        // Create new blog
         res = await axios.post(`${API_BASE_URL}/api/blogs`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
@@ -58,43 +78,36 @@ const AdminPanel = () => {
       resetForm();
       fetchBlogs();
     } catch (err) {
-      console.error("❌ Failed to publish/update blog:", err.response?.data || err.message);
+      console.error("❌ Failed to save blog:", err.response?.data || err.message);
       alert("❌ Failed to save blog");
     } finally {
       setLoading(false);
     }
   };
 
-  // Delete blog
+  // ✅ Handle delete blog
   const handleDelete = async (id) => {
     if (!window.confirm("⚠️ Are you sure you want to delete this blog?")) return;
+
     try {
       await axios.delete(`${API_BASE_URL}/api/blogs/${id}`);
       alert("🗑️ Blog Deleted Successfully!");
       fetchBlogs();
     } catch (err) {
-      console.error("❌ Failed to delete blog:", err);
+      console.error("❌ Failed to delete blog:", err.response?.data || err.message);
       alert("❌ Failed to delete blog");
     }
   };
 
-  // Edit blog (prefill form)
+  // ✅ Prefill form for editing
   const handleEdit = (blog) => {
     setEditingId(blog._id);
     setTitle(blog.title);
     setAuthor(blog.author);
     setContent(blog.content);
-    setImage(null); // Reset image, user can re-upload if needed
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  // Reset form
-  const resetForm = () => {
-    setTitle("");
-    setAuthor("");
-    setContent("");
     setImage(null);
-    setEditingId(null);
+    setImagePreview(blog.image || null); // show existing image
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -159,18 +172,18 @@ const AdminPanel = () => {
         </div>
 
         {/* Preview */}
-        {image && (
+        {imagePreview && (
           <div className="mt-4">
             <p className="text-sm font-medium mb-2">Image Preview:</p>
             <img
-              src={URL.createObjectURL(image)}
+              src={imagePreview}
               alt="Preview"
               className="w-full h-48 object-cover rounded-lg"
             />
           </div>
         )}
 
-        {/* Submit */}
+        {/* Buttons */}
         <div className="flex gap-4">
           <button
             type="submit"
@@ -213,6 +226,13 @@ const AdminPanel = () => {
                 <h4 className="text-lg font-bold text-gray-900">{blog.title}</h4>
                 <p className="text-sm text-gray-600">✍ {blog.author}</p>
                 <p className="text-gray-700 mt-2 line-clamp-2">{blog.content}</p>
+                {blog.image && (
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="mt-2 w-full h-48 object-cover rounded-lg"
+                  />
+                )}
               </div>
               <div className="flex gap-2 mt-4 md:mt-0">
                 <button

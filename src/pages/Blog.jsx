@@ -11,25 +11,20 @@ const BlogPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ CRA uses REACT_APP_API_URL
-  const API_BASE_URL =
-    process.env.REACT_APP_API_URL || "http://localhost:3001";
-
   // Fetch blogs from backend
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        console.log("🔍 Fetching blogs from:", `${API_BASE_URL}/api/blogs`);
-        const res = await axios.get(`${API_BASE_URL}/api/blogs`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs`);
         setBlogPosts(res.data);
       } catch (err) {
-        console.error("❌ Error fetching blogs:", err.message);
+        console.error("❌ Error fetching blogs:", err);
       } finally {
         setLoading(false);
       }
     };
     fetchBlogs();
-  }, [API_BASE_URL]);
+  }, []);
 
   return (
     <div className="bg-black text-white font-sans px-4 py-10 md:px-20">
@@ -102,7 +97,7 @@ const BlogPage = () => {
                 {/* Blog Image */}
                 <div className="relative overflow-hidden h-48">
                   <img
-                    src={post.image ? `${API_BASE_URL}${post.image}` : blogBanner}
+                    src={post.imageUrl || blogBanner}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
@@ -126,12 +121,9 @@ const BlogPage = () => {
                     <span className="text-sm text-gray-400 font-medium flex items-center group-hover:text-gray-300 transition-colors duration-300">
                       ✍ {post.author}
                     </span>
-                    <Link
-                      to={`/blogs/${post._id}`}
-                      className="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-all duration-300 flex items-center group-hover:scale-110 transform"
-                    >
+                    <button className="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-all duration-300 flex items-center group-hover:scale-110 transform">
                       Read more →
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </article>
@@ -139,6 +131,79 @@ const BlogPage = () => {
           </div>
         )}
       </section>
+
+      {/* Section: Trainers */}
+      <section className="mb-20">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 text-white">
+          Meet Our Expert Trainers
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {[
+            {
+              src: trainer1,
+              name: "Vinay Sheoran",
+              role: "Senior Data Science Trainer",
+              desc: "Ex-Data Scientist at Flipkart & Publicis Re:Sources, with 8+ years of expertise in Machine Learning, AI, and Big Data Analytics.",
+            },
+            {
+              src: trainer3,
+              name: "Sumit Kumar",
+              role: "Web Development Instructor",
+              desc: "Former Full Stack Developer at DRDO & PwC. Expert in React.js, Node.js, databases, and scalable web architecture.",
+            },
+            {
+              src: trainer2,
+              name: "Isha",
+              role: "UI/UX Design Specialist",
+              desc: "Professional Designer at MAAC with 6+ years of experience in user-centric interfaces, design systems, and responsive UI.",
+            },
+          ].map((trainer, index) => (
+            <div
+              key={index}
+              className="bg-gray-900 rounded-xl shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 overflow-hidden group border border-gray-800 hover:border-blue-500/50 transform hover:-translate-y-2 hover:scale-105 p-6 text-center"
+            >
+              <div className="w-full h-72 sm:h-80 bg-gray-800 rounded-lg mb-4 overflow-hidden relative">
+                <img
+                  src={trainer.src}
+                  alt={`${trainer.name} - ${trainer.role}`}
+                  className="object-cover w-full h-full hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <h3 className="text-lg sm:text-xl font-semibold text-white hover:text-blue-400 transition-colors duration-300 mb-2">
+                {trainer.name}
+              </h3>
+              <p className="text-sm text-blue-400 mb-3">{trainer.role}</p>
+              <p className="mt-2 text-sm text-gray-300 group-hover:text-gray-200 transition-colors duration-300">
+                {trainer.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Cybersecurity Banner */}
+      <section className="bg-gray-900 py-16 px-4 sm:px-6 rounded-xl text-center shadow-2xl border border-gray-800">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+          🚨 Cybersecurity Course Launching Soon!
+        </h2>
+        <div className="h-56 sm:h-72 bg-gray-800 rounded-lg mb-4 mx-auto w-full max-w-3xl overflow-hidden">
+          <img
+            src={cybersecurity}
+            alt="Cybersecurity Course"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <div className="text-center mt-12">
+        <Link
+          to="/contactus"
+          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-4 px-8 rounded-full text-base sm:text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 border border-blue-500/20 hover:border-blue-400/40 font-semibold"
+        >
+          Join Our Training Programs Today
+        </Link>
+      </div>
     </div>
   );
 };
