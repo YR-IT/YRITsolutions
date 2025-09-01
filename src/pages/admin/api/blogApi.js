@@ -33,6 +33,7 @@ export const createBlogPost = async (formData) => {
     const res = await api.post("/api/blogs", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
+    console.log("✅ Blog created:", res.data);
     return res.data;
   } catch (error) {
     handleError(error, "Failed to create blog post");
@@ -47,6 +48,7 @@ export const updateBlogPost = async (id, formData) => {
     const res = await api.put(`/api/blogs/${id}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
+    console.log("✅ Blog updated:", res.data);
     return res.data;
   } catch (error) {
     handleError(error, "Failed to update blog post");
@@ -59,8 +61,9 @@ export const updateBlogPost = async (id, formData) => {
 export const getAllBlogs = async (page = 1, limit = 50) => {
   try {
     const res = await api.get("/api/blogs", { params: { page, limit } });
+    console.log("📥 Blogs API response:", res.data);
 
-    // Handle both paginated + plain array response
+    // Handle different response shapes
     if (Array.isArray(res.data)) return res.data;
     if (res.data.blogs && Array.isArray(res.data.blogs)) return res.data.blogs;
 
@@ -76,6 +79,7 @@ export const getAllBlogs = async (page = 1, limit = 50) => {
 export const getSingleBlog = async (id) => {
   try {
     const res = await api.get(`/api/blogs/${id}`);
+    console.log("📥 Single blog response:", res.data);
     return res.data;
   } catch (error) {
     handleError(error, "Failed to fetch blog details");
@@ -88,6 +92,7 @@ export const getSingleBlog = async (id) => {
 export const deleteBlog = async (id) => {
   try {
     const res = await api.delete(`/api/blogs/${id}`);
+    console.log("🗑️ Blog deleted:", res.data);
     return res.data; // { message: "Blog deleted successfully" }
   } catch (error) {
     handleError(error, "Failed to delete blog");
