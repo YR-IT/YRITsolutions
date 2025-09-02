@@ -48,7 +48,7 @@ const BlogPage = () => {
     Insights, tutorials, and industry knowledge from our expert team
   </p>
 </motion.div>
->
+
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20">
