@@ -10,7 +10,6 @@ const menuData = {
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Contact us', href: '/contactus' },
     { label: 'Team', href: '/team' },
-    { label: 'Blogs', href: '/blogs' },
     { label: 'Products', href: '/products' },
     { label: 'Careers', href: '/careers' },
   ],
