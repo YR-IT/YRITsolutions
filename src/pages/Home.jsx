@@ -13,6 +13,7 @@ import Effect from "./Effect";
 import Logo from "./Logo";
 import Industries from "./Industries";
 import ContactButton from "../components/ContactButton";
+import ContactWidget from "../components/ContactWidget";
 
 const topImages = [
   "/images/img1.jpg",
@@ -204,6 +205,9 @@ const Home = () => {
           <ContactButton />
         </div>
       </PopInSection>
+
+      {/* Contact Widget */}
+      <ContactWidget />
 
 
 
