@@ -9,7 +9,20 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:3000" }));
+
+
+app.use(
+  cors({
+    origin: [
+      process.env.CLIENT_ORIGIN || "http://localhost:3000",
+      "http://localhost:5173", // for Vite
+      "http://localhost:3002", // for your local React dev
+    ],
+    credentials: true,
+  })
+);
+
+
 app.use(express.json()); // for parsing JSON
 
 // MongoDB connection

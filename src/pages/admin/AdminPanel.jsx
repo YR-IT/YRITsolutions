@@ -3,7 +3,9 @@ import {
   createBlogPost,
   getAllBlogs,
   deleteBlog,
+  updateBlogPost,
 } from "../admin/api/blogApi"; // ✅ use your api.js helper
+
 
 const AdminPanel = () => {
   const [title, setTitle] = useState("");
@@ -54,23 +56,23 @@ const AdminPanel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("author", author);
       formData.append("content", content);
       if (image) formData.append("image", image);
-
+  
       if (editingId) {
-        // 🔥 PUT request — add updateBlog in api.js
-        await createBlogPost(formData, editingId);
+        // ✅ Correct: use updateBlogPost
+        await updateBlogPost(editingId, formData);
         alert("✅ Blog Updated Successfully!");
       } else {
         await createBlogPost(formData);
         alert("✅ Blog Published Successfully!");
       }
-
+  
       resetForm();
       fetchBlogs();
     } catch (err) {
@@ -80,6 +82,7 @@ const AdminPanel = () => {
       setLoading(false);
     }
   };
+  
 
   // ✅ Handle delete blog
   const handleDelete = async (id) => {
