@@ -8,35 +8,45 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-
+// --- CORS setup ---
+const allowedOrigins = [
+  process.env.CLIENT_ORIGIN, // Production (from .env)
+  "http://localhost:5173",   // Vite dev server
+  "http://localhost:3000",   // CRA dev server
+  "http://localhost:3002"    // Any extra local frontend
+];
 
 app.use(
   cors({
-    origin: [
-      process.env.CLIENT_ORIGIN || "http://localhost:3000",
-      "http://localhost:5173", // for Vite
-      "http://localhost:3002", // for your local React dev
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("❌ Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
 
-
 app.use(express.json()); // for parsing JSON
 
-// MongoDB connection
+// --- MongoDB connection ---
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Routes
+// --- Routes ---
 app.use("/api/blogs", blogRoutes);
 
-// Health check
+// --- Health check ---
 app.get("/", (req, res) => res.send("🚀 Blog API running with Cloudinary"));
 
-// Start server
+// --- Start server ---
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`🚀 Server running at http://localhost:${PORT}`)
+);
