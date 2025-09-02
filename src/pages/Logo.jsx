@@ -8,6 +8,8 @@ const logos = [
   "/logos/logo5.png",
   "/logos/logo6.png",
   "/logos/logo7.png",
+  "/images/duapharmacy.svg",
+  "/images/eknowledge.png",
 ];
 
 const LogoMarquee = () => {

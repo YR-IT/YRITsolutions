@@ -101,8 +101,28 @@ const MarqueeRow = ({ images, direction }) => {
 const Home = () => {
   return (
     <>
-      <div className="bg-black text-white flex flex-col items-center pt-2 pb-6 overflow-hidden">
+      <div className="bg-black text-white flex flex-col items-center pt-2 pb-6 overflow-hidden relative">
         <MarqueeRow images={topImages} direction="left" />
+
+        {/* Social Media Icons - Positioned on the left side vertically */}
+        <div className="absolute left-4 sm:left-6 md:left-8 top-1/2 transform -translate-y-1/2 z-10">
+          <div className="flex flex-col gap-2 sm:gap-3">
+            {/* Instagram */}
+            <div className='rounded-full hover:scale-110 transition-transform duration-200 p-1 cursor-pointer' onClick={()=>{window.location.href="https://www.instagram.com/yritsolutions2025?igsh=YXNyaGlvOHYzY3h1&utm_source=ig_contact_invite"}}>
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+
+            {/* LinkedIn */}
+            <div className='rounded-sm hover:scale-110 transition-transform duration-200 p-1 cursor-pointer' onClick={()=>{window.open("https://www.linkedin.com/in/yashika-sharma1775?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", "_blank")}}>
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+
+            {/* Facebook */}
+            <div className='rounded-full hover:scale-110 transition-transform duration-200 p-1 cursor-pointer' onClick={()=>{window.open("https://facebook.com", "_blank")}}>
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="Facebook" className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+          </div>
+        </div>
 
         <div className="text-center max-w-4xl px-6 sm:px-8 md:px-10 my-6 sm:my-10">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold uppercase leading-snug text-white animate-float">
@@ -110,7 +130,6 @@ const Home = () => {
             Software Development Focused on your Success
           </h1>
         </div>
-
 
         <MarqueeRow images={bottomImages} direction="right" />
       </div>
@@ -201,7 +220,7 @@ const Home = () => {
           background: #a855f7 !important;
           opacity: 1;
         }
-        .industry-clip-card {
+.0000        .industry-clip-card {
           clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 0 100%);
           transition: clip-path 0.4s cubic-bezier(0.4,0,0.2,1);
         }

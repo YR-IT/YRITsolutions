@@ -28,7 +28,7 @@ const ServicesSection = () => {
       desc: "Product development is the complete process of bringing a new product to life—from idea to launch. It involves researching market needs, designing the product, building it, testing, and refining based on feedback. Whether it's a digital product like an app or a physical item, the goal is to create something valuable, functional, and aligned with customer expectations.",
     },
     {
-      img: "/images/ig5.jpg",
+      img: "../images/Cloud-Computing.jpeg",
       title: "Cloud Services",
       desc: "Cloud services provide on-demand access to computing resources like storage, servers, databases, and software over the internet.",
     },
@@ -43,12 +43,12 @@ const ServicesSection = () => {
       desc: "Maintenance and support services ensure that websites, apps, or software run smoothly after launch. This includes fixing bugs, updating features, improving security, and providing ongoing technical help. Regular maintenance keeps your digital product secure, up-to-date, and performing at its best for users.",
     },
     {
-      img: "/images/ig8.jpg",
+      img: "/images/ecommerce.jpeg",
       title: "E-commerce Development",
       desc: "E-commerce development is the process of creating online stores where businesses can sell products or services. It includes designing the website, setting up secure payment systems, managing product listings, and optimizing the shopping experience.",
     },
     {
-      img: "/images/ig9.jpg",
+      img: "/images/digitalmarketing.webp",
       title: "Digital Marketing",
       desc: "Digital marketing is the promotion of products or services using online channels like social media, search engines, email, and websites. It helps businesses reach their target audience, build brand awareness, and drive sales through strategies like SEO, content marketing, paid ads, and more. It's a smart way to grow online in today’s digital world.",
     },

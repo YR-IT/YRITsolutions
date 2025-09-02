@@ -70,6 +70,43 @@ const Navbar = ({ state, setState, setshow, show }) => {
           />
         </Link>
 
+        {/* Desktop Navigation Menu */}
+        <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
+          {[
+            { label: 'Home', href: '/' },
+            { label: 'About', href: '/aboutus' },
+            { label: 'Services', href: '/ourservices' },
+            { label: 'Pricing', href: '/pricing' },
+            { label: 'Portfolio', href: '/portfolio' },
+            { label: 'Contact', href: '/contactus' },
+            { label: 'Blog', href: '/blog' }
+          ].map((item) => (
+            <Link
+              key={item.label}
+              to={item.href}
+              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 relative ${
+                location.pathname === item.href
+                  ? 'text-blue-400'
+                  : 'text-white hover:text-blue-300'
+              }`}
+              onClick={() => {
+                if (item.href === '/') setState(0);
+                if (item.href === '/aboutus') setState(1);
+                if (item.href === '/ourservices') setState(2);
+                if (item.href === '/pricing') setState(3);
+                if (item.href === '/contactus') setState(4);
+                if (item.href === '/portfolio') setState(10);
+                if (item.href === '/blog') setState(11);
+              }}
+            >
+              {item.label}
+              {location.pathname === item.href && (
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400"></span>
+              )}
+            </Link>
+          ))}
+        </div>
+
         {/* Right side buttons */}
         <div className="flex items-center gap-8">
           {/* Gradient Button */}
