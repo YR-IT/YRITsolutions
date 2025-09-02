@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import  { getAllBlogs }  from "../pages/admin/api/blogApi";
-import trainer1 from "../assets/trainer1.jpg";
-import trainer2 from "../assets/trainer2.jpg";
-import trainer3 from "../assets/trainer3.jpg";
-import cybersecurity from "../assets/cybersecurity.jpg";
-import blogBanner from "../assets/blog.jpg";
+import { getAllBlogs } from "../pages/admin/api/blogApi";
+import { Clock, User, ArrowRight, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const BlogPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch blogs from backend
+  const blogBanner =
+    "https://images.pexels.com/photos/265667/pexels-photo-265667.jpeg?auto=compress&cs=tinysrgb&w=800";
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const blogs = await getAllBlogs(); // ✅ use API service
+        const blogs = await getAllBlogs();
         setBlogPosts(blogs);
       } catch (err) {
         console.error("❌ Error fetching blogs:", err.message);
@@ -27,75 +25,127 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white font-sans px-4 py-10 md:px-20">
-      {/* Section: Journey */}
-      {/* ... keep your existing journey section ... */}
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+      {/* Animated Gradient Orbs Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-40 right-20 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-pink-500 rounded-full mix-blend-overlay filter blur-3xl opacity-10 animate-spin-slow"></div>
+      </div>
 
-      {/* Section: Latest Articles */}
-      <section className="mb-20">
-        <div className="mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-white">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10">
+        {/* Title */}
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Latest Articles
           </h2>
-          <p className="text-center text-gray-300 text-lg max-w-2xl mx-auto">
-            Insights, tutorials, and industry knowledge from our expert trainers
-            and team
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Insights, tutorials, and industry knowledge from our expert team
           </p>
-        </div>
+        </motion.div>
 
+        {/* Blog Grid */}
         {loading ? (
-          <p className="text-center text-gray-400">⏳ Loading blogs...</p>
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="relative">
+              <div className="w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+              <div className="absolute inset-0 w-16 h-16 border-4 border-purple-500/30 border-b-purple-500 rounded-full animate-spin-reverse"></div>
+            </div>
+            <p className="text-gray-400 mt-6 text-lg font-medium">
+              Loading articles...
+            </p>
+          </div>
         ) : blogPosts.length === 0 ? (
-          <p className="text-center text-gray-400">
-            No blogs found. Please check back later.
-          </p>
+          <div className="text-center py-20">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 max-w-md mx-auto">
+              <p className="text-gray-400 text-xl font-medium">
+                No articles yet. Check back soon for amazing content!
+              </p>
+            </div>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <article
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.2 },
+              },
+            }}
+          >
+            {blogPosts.map((post, index) => (
+              <motion.article
                 key={post._id}
-                className="blog-card bg-gray-900 rounded-xl shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 overflow-hidden group border border-gray-800 hover:border-blue-500/50 transform hover:-translate-y-2 hover:scale-105"
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6 }}
+                className="group relative"
               >
-                {/* Blog Image */}
-                <div className="relative overflow-hidden h-48">
-                  <img
-                    src={post.image || blogBanner} // ✅ fixed field: backend saves as "image"
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-lg transform group-hover:scale-110 transition-transform duration-300">
-                      {post.category || "General"}
-                    </span>
-                  </div>
-                </div>
+                {/* Glow Effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 rounded-2xl blur opacity-0 group-hover:opacity-70 transition-all duration-700 animate-gradient-x"></div>
 
-                {/* Blog Content */}
-                <div className="p-6 relative">
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300 line-clamp-2 relative z-10">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-4 line-clamp-3 relative z-10 group-hover:text-gray-200 transition-colors duration-300">
-                    {post.content?.substring(0, 120)}...
-                  </p>
-                  <div className="flex items-center justify-between relative z-10">
-                    <span className="text-sm text-gray-400 font-medium flex items-center group-hover:text-gray-300 transition-colors duration-300">
-                      ✍ {post.author}
-                    </span>
-                    <button className="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-all duration-300 flex items-center group-hover:scale-110 transform">
-                      Read more →
+                {/* Card Content */}
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transform transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-blue-500/30">
+                  {/* Image */}
+                  <div className="relative overflow-hidden h-48">
+                    <img
+                      src={post.image || blogBanner}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                        {post.category || "Tech"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-500">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                      {post.content?.substring(0, 120)}...
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex items-center justify-between text-sm mb-4">
+                      <div className="flex items-center gap-2 text-gray-500 group-hover:text-blue-400 transition-colors duration-300">
+                        <User className="w-4 h-4" />
+                        <span className="font-medium">{post.author}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-500 group-hover:text-purple-400 transition-colors duration-300">
+                        <Clock className="w-4 h-4" />
+                        <span>5 min read</span>
+                      </div>
+                    </div>
+
+                    {/* Button */}
+                    <button className="w-full bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/40 hover:to-purple-600/40 border border-blue-500/30 hover:border-blue-400/60 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-500 hover:scale-[1.03]">
+                      <span className="flex items-center justify-center gap-2">
+                        Read Article
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
                     </button>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         )}
-      </section>
-
-      {/* Section: Trainers */}
-      {/* ... keep your trainers + cybersecurity sections ... */}
+      </main>
     </div>
   );
 };
