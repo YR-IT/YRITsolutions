@@ -84,7 +84,7 @@ const Pricing = () => {
   className="mt-auto inline-block px-5 py-2 bg-gradient-to-r from-purple-600 to-pink-600 
              hover:from-purple-700 hover:to-pink-700 text-white rounded-lg text-sm 
              font-semibold transition-colors duration-300 shadow-md 
-             mx-auto sm:mx-0"
+             mx-auto"
   onClick={() =>
     navigate("/form", { state: { selectedPlan: plan.title } })
   }

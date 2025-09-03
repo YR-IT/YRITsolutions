@@ -186,15 +186,6 @@ const Portfolio = () => {
         </Link>
       </div>
      
-      {/* Projects Count Display */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-3 bg-gray-800/30 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-600/30">
-          <span className="text-2xl">{categoryIcons[selectedCategory]}</span>
-          <p className="text-lg text-gray-300 font-medium">
-            {filteredProjects.length} {selectedCategory === "All" ? "Projects" : `${selectedCategory} Projects`}
-          </p>
-        </div>
-      </div>
 
       {/* Projects Grid */}
       <div className="max-w-7xl mx-auto">
@@ -234,14 +225,16 @@ const Portfolio = () => {
                     {project.description}
                   </p>
                   
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-                  >
-                    View Project 🚀
-                  </a>
+                  <div className="flex justify-center">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    >
+                      View Project 🚀
+                    </a>
+                  </div>
                 </div>
 
                 {/* Image Section */}

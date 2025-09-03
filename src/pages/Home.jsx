@@ -119,7 +119,7 @@ const Home = () => {
             </div>
 
             {/* Facebook */}
-            <div className='rounded-full hover:scale-110 transition-transform duration-200 p-1 cursor-pointer' onClick={()=>{window.open("https://facebook.com", "_blank")}}>
+            <div className='rounded-full hover:scale-110 transition-transform duration-200 p-1 cursor-pointer' onClick={()=>{window.open("https://www.facebook.com/share/1BKLsRrBDV/", "_blank")}}>
               <img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="Facebook" className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
           </div>

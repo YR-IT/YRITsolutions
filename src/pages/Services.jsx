@@ -22,7 +22,9 @@ const Services = () => {
     { id: 'web', label: 'Web Development', icon: '💻' },
     { id: 'app', label: 'App Development', icon: '📱' },
     { id: 'uiux', label: 'UI/UX Development', icon: '🖥️' },
-    { id: 'digital', label: 'Digital Marketing', icon: '📈' }
+    { id: 'digital', label: 'Digital Marketing', icon: '📈' },
+    { id: 'cybersecurity', label: 'Cybersecurity', icon: '🛡️' },
+    { id: 'datascience', label: 'Data Science', icon: '🧠' }
   ];
 
   const renderHomeContent = () => {
@@ -42,6 +44,14 @@ const Services = () => {
       web: {
         title: "We Build Experiences, Not Just Websites",
         description: "Maximize your business potential with robust and user-friendly web applications from YR IT Solutions. Our professional web app development services experts build solutions to achieve agility and precision."
+      },
+      cybersecurity: {
+        title: "Protecting Your Digital Assets with Advanced Security",
+        description: "Safeguard your business with comprehensive cybersecurity solutions. From threat detection to compliance management, we provide robust security measures to protect your data and systems from evolving cyber threats."
+      },
+      datascience: {
+        title: "Unlock Business Intelligence Through Data Science",
+        description: "Transform raw data into actionable insights with our data science expertise. We leverage machine learning, predictive analytics, and AI to help you make informed decisions and drive innovation."
       }
     };
 
@@ -204,6 +214,50 @@ const Services = () => {
           title: "Account-Based Marketing (ABM)",
           description: "Engage high-value accounts with personalized campaigns and deeper insights."
         }
+      ],
+      cybersecurity: [
+        {
+          title: "Security Assessment & Auditing",
+          description: "Comprehensive security evaluations to identify vulnerabilities and strengthen your defense systems."
+        },
+        {
+          title: "Threat Detection & Response",
+          description: "Advanced monitoring systems to detect, analyze, and respond to security threats in real-time."
+        },
+        {
+          title: "Data Protection & Encryption",
+          description: "Secure your sensitive data with enterprise-grade encryption and access control mechanisms."
+        },
+        {
+          title: "Compliance Management",
+          description: "Ensure regulatory compliance with industry standards like GDPR, HIPAA, and ISO 27001."
+        },
+        {
+          title: "Security Training & Awareness",
+          description: "Educate your team on cybersecurity best practices and threat awareness programs."
+        }
+      ],
+      datascience: [
+        {
+          title: "Machine Learning Solutions",
+          description: "Build intelligent systems that learn and adapt to improve business processes and decision-making."
+        },
+        {
+          title: "Predictive Analytics",
+          description: "Forecast trends and outcomes using advanced statistical models and historical data analysis."
+        },
+        {
+          title: "Data Visualization & Dashboards",
+          description: "Transform complex data into clear, actionable insights through interactive visualizations."
+        },
+        {
+          title: "Big Data Processing",
+          description: "Handle and analyze large datasets efficiently using modern big data technologies and frameworks."
+        },
+        {
+          title: "AI-Powered Automation",
+          description: "Automate repetitive tasks and processes using artificial intelligence and machine learning algorithms."
+        }
       ]
     };
 
@@ -270,6 +324,20 @@ const Services = () => {
         { title: "PPC Marketing", description: "Drive traffic and leads instantly with targeted ad campaigns that optimize ROI.", icon: "💰" },
         { title: "Email Marketing", description: "Send personalized emails to convert leads, retain users, and boost engagement.", icon: "📧" },
         { title: "Website Speed Optimization", description: "Improve load times for better UX, SEO, and higher conversion rates.", icon: "⚡" }
+      ],
+      cybersecurity: [
+        { title: "Penetration Testing", description: "Simulate cyber attacks to identify and fix security vulnerabilities before hackers exploit them.", icon: "🎯" },
+        { title: "Network Security", description: "Implement robust firewalls, intrusion detection systems, and secure network architectures.", icon: "🛡️" },
+        { title: "Identity & Access Management", description: "Control user access with multi-factor authentication and role-based security protocols.", icon: "🔐" },
+        { title: "Incident Response Planning", description: "Develop comprehensive response strategies for security breaches and cyber incidents.", icon: "🚨" },
+        { title: "Cloud Security Solutions", description: "Secure your cloud infrastructure with advanced monitoring and protection mechanisms.", icon: "☁️" }
+      ],
+      datascience: [
+        { title: "Data Mining & Analysis", description: "Extract valuable patterns and insights from large datasets using advanced analytical techniques.", icon: "⛏️" },
+        { title: "Statistical Modeling", description: "Build robust statistical models to understand relationships and predict future outcomes.", icon: "📊" },
+        { title: "Natural Language Processing", description: "Analyze and understand human language data for sentiment analysis and text processing.", icon: "💬" },
+        { title: "Computer Vision Solutions", description: "Implement image and video analysis capabilities for automated visual recognition tasks.", icon: "👁️" },
+        { title: "Business Intelligence Platforms", description: "Create comprehensive BI solutions for data-driven decision making and reporting.", icon: "📈" }
       ]
     };
 
@@ -312,7 +380,9 @@ const Services = () => {
       app: AppImg,
       uiux: UIUXImg,
       digital: DigitalImg,
-      web: WebImg
+      web: WebImg,
+      cybersecurity: '/images/cybersecurity.webp',
+      datascience: '/images/datascience.jpg'
     };
     return images[selectedService];
   };
@@ -343,19 +413,19 @@ const Services = () => {
             <div className="hidden md:flex justify-center">
               <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl border border-gray-700 hover:shadow-blue-500/20 transition-all duration-700 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-all duration-700"></div>
-                <div className="flex space-x-6 relative z-10">
+                <div className="flex flex-wrap justify-center gap-3 relative z-10">
                   {services.map((service) => (
                     <button
                       key={service.id}
                       onClick={() => handleServiceChange(service.id)}
-                      className={`relative px-8 py-5 rounded-2xl font-semibold transition-all duration-700 flex items-center space-x-4 group overflow-hidden ${
+                      className={`relative px-4 py-4 rounded-2xl font-semibold transition-all duration-700 flex items-center space-x-2 group overflow-hidden whitespace-nowrap ${
                         selectedService === service.id
                           ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl transform scale-105 hover:scale-110'
                           : 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 hover:scale-105'
                       }`}
                     >
-                      <span className="text-2xl group-hover:scale-125 transition-transform duration-500">{service.icon}</span>
-                      <span className="font-semibold">{service.label}</span>
+                      <span className="text-xl group-hover:scale-125 transition-transform duration-500">{service.icon}</span>
+                      <span className="font-semibold text-sm">{service.label}</span>
                       {selectedService === service.id && (
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-80 -z-10 animate-pulse"></div>
                       )}

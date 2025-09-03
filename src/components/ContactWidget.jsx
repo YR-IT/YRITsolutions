@@ -4,7 +4,7 @@ const ContactWidget = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleCall = () => {
-    window.location.href = 'tel:+1234567890'; // Replace with your phone number
+    window.location.href = 'tel:+917404890806'; // Replace with your phone number
   };
 
   const handleChatBot = () => {
