@@ -110,7 +110,16 @@ const BlogPage = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-pink-400" />
-                  {selectedArticle.date || "Recent"}
+                  {selectedArticle.date
+                    ? new Date(selectedArticle.date).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )
+                    : "No date available"}
                 </div>
               </div>
             </motion.div>
@@ -163,7 +172,10 @@ const BlogPage = () => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02, boxShadow: "0px 0px 25px rgba(0,255,255,0.2)" }}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: "0px 0px 25px rgba(0,255,255,0.2)",
+                }}
                 className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-xl transition-transform duration-500"
               >
                 <div className="h-72 relative overflow-hidden">
@@ -184,6 +196,18 @@ const BlogPage = () => {
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4" />
                       <span>{post.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>
+                        {post.date
+                          ? new Date(post.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })
+                          : "No date"}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
@@ -235,8 +259,16 @@ const BlogPage = () => {
                       {post.title}
                     </h4>
                     <div className="flex items-center text-xs text-gray-500 gap-3">
-                      <Clock className="w-3 h-3" />
-                      <span>3 min read</span>
+                      <Calendar className="w-3 h-3" />
+                      <span>
+                        {post.date
+                          ? new Date(post.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })
+                          : "No date"}
+                      </span>
                     </div>
                   </motion.div>
                 ))}
@@ -256,7 +288,7 @@ const BlogPage = () => {
               </h3>
               <div className="flex flex-col gap-2">
                 {["Design", "Tech", "AI", "Business", "Startups"].map(
-                  (topic, i) => (
+                  (topic) => (
                     <motion.span
                       key={topic}
                       whileHover={{ scale: 1.05 }}
