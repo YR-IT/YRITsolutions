@@ -23,6 +23,8 @@ import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import { Routes, Route } from 'react-router-dom';
 import AdminPanel from "./pages/admin/AdminPanel";
+import Team from './pages/Team';
+
 
 
 function App() {
@@ -58,6 +60,7 @@ function App() {
             <Route path="/termsandconditions" element={<TermsOfUse />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/team" element={<Team />} />
 
           </Routes>
         </main>
