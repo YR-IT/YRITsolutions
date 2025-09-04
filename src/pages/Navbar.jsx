@@ -87,24 +87,24 @@ const Navbar = ({ state, setState, setshow, show }) => {
             
             {/* Logo with Enhanced Animation */}
             <Link 
-  to="/" 
-  onClick={() => setState(0)}
-  className="group relative z-10 transition-all duration-300 hover:scale-105 flex items-center h-20"
->
-  <div className="relative flex items-center">
-    {/* Logo Image */}
-    <img
-  src={Logo}
-  alt="YR Logo"
-  className="h-12 sm:h-20 w-auto transition-all duration-300 group-hover:scale-105 object-contain transform translate-y-[3px]"
-/>
-
-
-    {/* Glow effect on hover */}
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl scale-110"></div>
-  </div>
-</Link>
-
+              to="/" 
+              onClick={() => setState(0)}
+              className="group relative z-10 transition-all duration-300 hover:scale-105"
+            >
+              <div className="relative">
+                {/* Backdrop blur container for logo visibility */}
+                
+                  <img
+                    src={Logo}
+                    alt="YR Logo"
+                    className="h-12 sm:h-20 w-auto transition-all duration-300 group-hover:scale-105"
+                  />
+             
+                
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl scale-110"></div>
+              </div>
+            </Link>
 
             {/* Desktop Navigation with Enhanced Styling */}
             <div className="hidden lg:flex items-center space-x-1">
@@ -241,16 +241,10 @@ const Navbar = ({ state, setState, setshow, show }) => {
             >
               <div className="relative">
                 {/* Enhanced backdrop blur container for logo */}
-                <div className="relative p-4 rounded-3xl bg-white/10 backdrop-blur-3xl border border-white/20 shadow-2xl shadow-black/30 transition-all duration-500 group-hover:bg-white/15 group-hover:shadow-3xl group-hover:shadow-blue-500/30 group-hover:scale-105">
-                  <img
-                    src={Logo}
-                    alt="YR Logo"
-                    className="h-2 sm:h-20 w-auto transition-all duration-500 group-hover:scale-110"
-                  />
-                </div>
                 
-                {/* Enhanced glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-500/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-2xl scale-125"></div>
+
+                
+
               </div>
             </Link>
 
