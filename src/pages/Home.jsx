@@ -109,7 +109,7 @@ const Home = () => {
         <MarqueeRow images={topImages} direction="left" />
 
         {/* Social Media Icons - Positioned on the left side vertically */}
-        <div className="absolute left-4 sm:left-6 md:left-8 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="absolute left-1 sm:left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-10">
           <div className="flex flex-col gap-2 sm:gap-3">
             {/* Instagram */}
             <div className='rounded-full hover:scale-110 transition-transform duration-200 p-1 cursor-pointer' onClick={()=>{window.location.href="https://www.instagram.com/yritsolutions2025?igsh=YXNyaGlvOHYzY3h1&utm_source=ig_contact_invite"}}>
