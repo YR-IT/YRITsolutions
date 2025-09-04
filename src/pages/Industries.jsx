@@ -269,9 +269,9 @@ const Industries = () => {
             </div>
 
             {/* Last 2 cards centered in same row */}
-            <div className="flex justify-center gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-2xl mx-auto">
               {/* Healthcare & Fitness */}
-              <div className={`p-4 sm:p-6 shadow-lg transform transition-all duration-500 group min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card w-56 sm:w-60 lg:w-64 ${
+              <div className={`p-4 sm:p-6 shadow-lg transform transition-all duration-500 group min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card ${
                 isDarkMode 
                   ? 'bg-black border border-white hover:bg-white' 
                   : 'bg-gray-50 border border-gray-200 hover:bg-black'
@@ -298,7 +298,7 @@ const Industries = () => {
               </div>
 
               {/* Service Expert */}
-              <div className={`p-4 sm:p-6 shadow-lg transform transition-all duration-500 group min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card w-56 sm:w-60 lg:w-64 ${
+              <div className={`p-4 sm:p-6 shadow-lg transform transition-all duration-500 group min-h-[280px] sm:min-h-[320px] lg:min-h-[350px] flex flex-col items-center justify-center overflow-hidden relative industry-card mx-1 sm:mx-2 rounded-2xl sm:rounded-3xl industry-clip-card ${
                 isDarkMode 
                   ? 'bg-black border border-white hover:bg-white' 
                   : 'bg-gray-50 border border-gray-200 hover:bg-black'

@@ -208,7 +208,7 @@ const ContactUs = () => {
                                 </div>
 
                                                       {/* Social Media Card */}
-                                                      <div className="flex flex-col items-center text-center">
+                                                      <div className="flex flex-col items-center text-center mb-12">
     <h3 className={`text-base font-bold mb-2 ${isDarkMode ? 'text-purple-300' : 'text-purple-600'}`}>Follow Us</h3>
     <div className="flex gap-2.5 justify-center">
         <div 

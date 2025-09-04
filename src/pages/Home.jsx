@@ -139,7 +139,7 @@ const Home = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 px-16">
+      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-4 sm:px-8 md:px-16">
           {[
             { number: '50+', label: 'Happy Clients' },
             { number: '300+', label: 'Projects Delivered' },
@@ -147,7 +147,7 @@ const Home = () => {
             { number: '24/7', label: 'Support Available' }
           ].map((stat, index) => (
             <div key={index} className="text-center group">
-              <div className={`relative ${isDarkMode ? 'bg-gradient-to-br from-gray-900/70 to-black/70 border-gray-800/50' : 'bg-gradient-to-br from-white/90 to-gray-100/90 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-6 border hover:border-blue-500/70 transition-all duration-500 hover:transform hover:scale-110 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 overflow-hidden`}>
+              <div className={`relative ${isDarkMode ? 'bg-gradient-to-br from-gray-900/70 to-black/70 border-gray-800/50' : 'bg-gradient-to-br from-white/90 to-gray-100/90 border-gray-200/50'} backdrop-blur-sm rounded-2xl p-3 sm:p-4 md:p-6 border hover:border-blue-500/70 transition-all duration-500 hover:transform hover:scale-110 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 overflow-hidden`}>
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 
@@ -160,10 +160,10 @@ const Home = () => {
                 <div className="absolute bottom-2 left-2 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700"></div>
                 
                 <div className="relative z-10">
-                  <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${isDarkMode ? 'from-blue-300 to-purple-300 group-hover:from-blue-200 group-hover:to-purple-200' : 'from-blue-600 to-purple-600 group-hover:from-blue-500 group-hover:to-purple-500'} bg-clip-text text-transparent mb-2 transition-all duration-500 group-hover:scale-110`}>
+                  <div className={`text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r ${isDarkMode ? 'from-blue-300 to-purple-300 group-hover:from-blue-200 group-hover:to-purple-200' : 'from-blue-600 to-purple-600 group-hover:from-blue-500 group-hover:to-purple-500'} bg-clip-text text-transparent mb-1 sm:mb-2 transition-all duration-500 group-hover:scale-110`}>
                     {stat.number}
                   </div>
-                  <div className={`${isDarkMode ? 'text-gray-200 group-hover:text-white' : 'text-gray-600 group-hover:text-gray-800'} text-sm font-medium transition-colors duration-300`}>
+                  <div className={`${isDarkMode ? 'text-gray-200 group-hover:text-white' : 'text-gray-600 group-hover:text-gray-800'} text-xs sm:text-sm font-medium transition-colors duration-300`}>
                     {stat.label}
                   </div>
                 </div>
