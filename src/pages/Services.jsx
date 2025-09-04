@@ -395,7 +395,8 @@ const Services = () => {
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
-      <section className="pt-12 pb-16 px-4 relative overflow-hidden">
+     <section className="pt-28 pb-16 px-4 relative overflow-hidden">
+
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 space-y-10">

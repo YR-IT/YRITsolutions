@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from '../assets/YRLogo.png';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X, Menu } from "lucide-react";
 import ThemeToggle from '../components/ThemeToggle';
+import Logo from '../assets/YRLogo.png';
 
 // Menu data
 const menuData = {
@@ -34,9 +34,19 @@ const menuData = {
 const Navbar = ({ state, setState, setshow, show }) => {
   const [loc, changeloc] = React.useState('/');
   const [activeSection, setActiveSection] = React.useState('COMPANY');
+  const [isScrolled, setIsScrolled] = React.useState(false);
   const location = useLocation();
 
   const isHome = location.pathname === '/';
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   React.useEffect(() => {
     changeloc(window.location.pathname);
@@ -51,175 +61,393 @@ const Navbar = ({ state, setState, setshow, show }) => {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Enhanced Overlay with Backdrop Blur */}
       <div
-        className={`${show ? 'fixed inset-0 bg-black/40 z-[9999]' : 'hidden'}`}
+        className={`fixed inset-0 transition-all duration-500 z-[9998] ${
+          show 
+            ? 'opacity-100 backdrop-blur-3xl bg-black/30 pointer-events-auto' 
+            : 'opacity-0 pointer-events-none'
+        }`}
         onClick={() => setshow(false)}
-      ></div>
+      />
 
-      {/* -------- Top Navbar -------- */}
-      <div
-        className={`navbar-container z-[10000] w-full h-[100px] flex justify-between items-center 
-        px-8 transition-all duration-300 text-white dark:text-white bg-black/80 dark:bg-black/80 backdrop-blur-sm`}
+      {/* Main Navbar - Floating Glassmorphism Design */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-out ${
+          isScrolled 
+            ? 'bg-slate-900/90 backdrop-blur-4xl shadow-2xl shadow-blue-900/20 border-b border-white/10' 
+            : 'bg-black/60 backdrop-blur-3xl'
+        }`}
+        style={{
+          transform: isScrolled ? 'translateY(0)' : 'translateY(0)',
+        }}
       >
-        {/* Logo */}
-        <Link to="/" onClick={() => setState(0)}>
-          <img
-            src={Logo}
-            alt="logo"
-            className="h-16 sm:h-28 w-auto cursor-pointer max-w-full mt-4 logo-image"
-          />
-        </Link>
-
-        {/* Desktop Navigation Menu */}
-        <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
-          {[
-            { label: 'Home', href: '/' },
-            { label: 'About', href: '/aboutus' },
-            { label: 'Services', href: '/ourservices' },
-            { label: 'Pricing', href: '/pricing' },
-            { label: 'Portfolio', href: '/portfolio' },
-            { label: 'Contact', href: '/contactus' },
-            { label: 'Blog', href: '/blog' }
-          ].map((item) => (
-            <Link
-              key={item.label}
-              to={item.href}
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 relative ${
-                location.pathname === item.href
-                  ? 'text-blue-400'
-                  : 'text-white hover:text-blue-300'
-              }`}
-              onClick={() => {
-                if (item.href === '/') setState(0);
-                if (item.href === '/aboutus') setState(1);
-                if (item.href === '/ourservices') setState(2);
-                if (item.href === '/pricing') setState(3);
-                if (item.href === '/contactus') setState(4);
-                if (item.href === '/portfolio') setState(10);
-                if (item.href === '/blog') setState(11);
-              }}
-            >
-              {item.label}
-              {location.pathname === item.href && (
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400"></span>
-              )}
-            </Link>
-          ))}
-        </div>
-
-        {/* Right side buttons */}
-        <div className="flex items-center gap-4">
-          {/* Theme Toggle */}
-          <ThemeToggle />
-
-          {/* Gradient Button */}
-          <button
-            className="hidden md:block px-6 py-2 bg-gradient-to-r from-[#6C63FF] to-[#3B82F6] text-white rounded-md shadow-md font-medium transition-transform transform hover:scale-105 text-[16px]"
-            onClick={() => (window.location.href = '/meetingform')}
-          >
-            Let&apos;s Discuss
-          </button>
-
-          {/* Hamburger Icon */}
-          <div className="cursor-pointer flex justify-end" onClick={() => setshow(!show)}>
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-              <path d="M14 6H20" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
-              <path d="M8 12H20" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
-              <path d="M10 18H20" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* -------- Full-screen Menu -------- */}
-      <div
-  className={`fixed top-0 left-0 h-full w-full bg-gradient-to-br from-[#163D82] to-[#0B1B3A]  text-white transform transition-transform duration-500 z-[10001] 
-  ${show ? 'translate-y-0' : '-translate-y-full'}`}
+        <div className="max-w-8xl mx-auto">
+          <div className="flex items-center justify-between h-20 px-6 lg:px-8">
+            
+            {/* Logo with Enhanced Animation */}
+            <Link 
+  to="/" 
+  onClick={() => setState(0)}
+  className="group relative z-10 transition-all duration-300 hover:scale-105 flex items-center h-20"
 >
-        {/* Close Btn */}
-        <div className="absolute top-6 right-8 cursor-pointer" onClick={() => setshow(false)}>
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <path d="M6 6L18 18M6 18L18 6" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" />
-          </svg>
-        </div>
+  <div className="relative flex items-center">
+    {/* Logo Image */}
+    <img
+  src={Logo}
+  alt="YR Logo"
+  className="h-12 sm:h-20 w-auto transition-all duration-300 group-hover:scale-105 object-contain transform translate-y-[3px]"
+/>
 
-        {/* Content */}
-        <div className="max-w-full mx-auto h-full px-6">
-          {/* Logo top-left inside menu */}
-          <div className="mb-10">
-            <Link to="/" onClick={() => setshow(false)}>
-              <img src={Logo} alt="logo" className="h-16 sm:h-28 w-auto cursor-pointer max-w-full mt-2" />
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 sm:gap-10 h-[70%]">
-            {/* Left Sections */}
-            <div className="md:col-span-1">
-  <div className="flex flex-col text-xl font-bold uppercase tracking-wide  border-r-0 md:border-r border-white/20">
-    {Object.keys(menuData).map((section, idx) => (
-      <React.Fragment key={section}>
-<button
-  onClick={() => setActiveSection(section)}
-  className={`group w-full text-left py-6 pl-4 pr-6 relative transition flex items-center
-    ${
-      activeSection === section
-        ? 'text-white bg-gradient-to-r from-transparent via-[#0b2a66] to-[#6A1FB0] after:absolute after:top-0 after:right-0 after:h-full after:w-[5px] after:bg-gradient-to-b after:from-purple-500 after:to-red-400'
-        : 'text-gray-300 hover:text-white'
-    }`}
->
-  <span className="relative inline-block">
-    {section}
-    {/* ArrowRight Icon */}
-    <ArrowRight
-      className="absolute w-4 h-4 opacity-0 -right-5 top-1/2 -translate-y-1/2 transform transition-all duration-300 group-hover:opacity-100 group-hover:right-[-1.25rem]"
-    />
-  </span>
-</button>
-
-        {/* Divider line only visible on md+ */}
-        {idx < Object.keys(menuData).length - 1 && (
-          <div className="hidden md:block border-b border-white/10"></div>
-        )}
-      </React.Fragment>
-    ))}
+    {/* Glow effect on hover */}
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl scale-110"></div>
   </div>
-</div>
+</Link>
 
 
-            {/* Right Links */}
-            <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-6 content-start">
-  {menuData[activeSection].map((item) => (
-    <Link
-      key={item.label}
-      to={item.href}
-      onClick={() => setshow(false)}
-      className="group relative inline-flex items-center gap-1 text-gray-400 hover:text-white transition text-base w-fit"
-    >
-      {/* Text wrapper */}
-      <span className="relative inline-block">
-        {item.label}
-        {/* Gradient underline only as wide as text */}
-        <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
-      </span>
+            {/* Desktop Navigation with Enhanced Styling */}
+            <div className="hidden lg:flex items-center space-x-1">
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/aboutus' },
+                { label: 'Services', href: '/ourservices' },
+                { label: 'Pricing', href: '/pricing' },
+                { label: 'Portfolio', href: '/portfolio' },
+                { label: 'Contact', href: '/contactus' },
+                { label: 'Blog', href: '/blog' }
+              ].map((item, index) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className={`group relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    location.pathname === item.href
+                      ? 'text-white bg-white/10 shadow-lg shadow-blue-500/20'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => {
+                    if (item.href === '/') setState(0);
+                    if (item.href === '/aboutus') setState(1);
+                    if (item.href === '/ourservices') setState(2);
+                    if (item.href === '/pricing') setState(3);
+                    if (item.href === '/contactus') setState(4);
+                    if (item.href === '/portfolio') setState(10);
+                    if (item.href === '/blog') setState(11);
+                  }}
+                >
+                  <span className="relative z-10">{item.label}</span>
+                  
+                  {/* Active indicator */}
+                  {location.pathname === item.href && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg animate-pulse"></div>
+                  )}
+                  
+                  {/* Hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </Link>
+              ))}
+            </div>
 
-      {/* Arrow Icon */}
-      <svg
-        className="w-3 h-3 opacity-0 group-hover:opacity-100 translate-x-0.5 -translate-y-0.5 transition"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
+            {/* Right Side Controls */}
+            <div className="flex items-center space-x-4">
+              {/* Theme Toggle with Enhanced Styling */}
+              <div className="hidden md:block">
+                <ThemeToggle />
+              </div>
+
+              {/* CTA Button with Magnetic Effect */}
+              <button
+                className="hidden md:flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105 hover:-translate-y-0.5 group relative overflow-hidden"
+                onClick={() => (window.location.href = '/meetingform')}
+              >
+                {/* Background Animation */}
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <span className="relative z-10">Let's Discuss</span>
+                <ArrowRight className="relative z-10 w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+
+              {/* Enhanced Hamburger Menu */}
+              <button
+                className="relative p-3 rounded-xl bg-white/10 backdrop-blur-3xl transition-all duration-300 hover:bg-white/20 hover:scale-110 group"
+                onClick={() => setshow(!show)}
+                aria-label="Toggle menu"
+              >
+                <div className="relative w-6 h-6">
+                  <div className={`absolute inset-0 transition-all duration-300 ${show ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'}`}>
+                    <Menu className="w-6 h-6 text-white" />
+                  </div>
+                  <div className={`absolute inset-0 transition-all duration-300 ${show ? 'rotate-0 opacity-100' : 'rotate-180 opacity-0'}`}>
+                    <X className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+                
+                {/* Magnetic hover effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-105"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Revolutionary Full-Screen Menu */}
+      <div
+        className={`fixed inset-0 z-[10000] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+          show ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5h10M19 5v10M19 5L5 19" />
-      </svg>
-    </Link>
-  ))}
-</div>
+        {/* Animated Background */}
+        <div 
+          className={`absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 transition-all duration-700 ${
+            show ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)
+            `
+          }}
+        />
 
+        {/* Animated Grid Pattern */}
+        <div 
+          className={`absolute inset-0 opacity-5 transition-all duration-1000 ${
+            show ? 'scale-100 rotate-0' : 'scale-110 rotate-2'
+          }`}
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}
+        />
+
+        {/* Main Content Container */}
+        <div 
+          className={`relative h-full overflow-hidden transition-all duration-700 ease-out ${
+            show ? 'translate-y-0' : '-translate-y-full'
+          }`}
+        >
+          {/* Header Section */}
+          <div className="flex items-center justify-between p-8 border-b border-white/10">
+            
+            {/* Logo with Glow Effect */}
+            <Link 
+              to="/" 
+              onClick={() => setshow(false)}
+              className="group relative transition-transform duration-300 hover:scale-105"
+            >
+              <div className="relative">
+                {/* Enhanced backdrop blur container for logo */}
+                <div className="relative p-4 rounded-3xl bg-white/10 backdrop-blur-3xl border border-white/20 shadow-2xl shadow-black/30 transition-all duration-500 group-hover:bg-white/15 group-hover:shadow-3xl group-hover:shadow-blue-500/30 group-hover:scale-105">
+                  <img
+                    src={Logo}
+                    alt="YR Logo"
+                    className="h-2 sm:h-20 w-auto transition-all duration-500 group-hover:scale-110"
+                  />
+                </div>
+                
+                {/* Enhanced glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-500/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-2xl scale-125"></div>
+              </div>
+            </Link>
+
+            {/* Enhanced Close Button */}
+            <button
+              className="group relative p-4 rounded-2xl bg-white/5 backdrop-blur-3xl border border-white/10 transition-all duration-300 hover:bg-white/10 hover:scale-110 hover:rotate-90"
+              onClick={() => setshow(false)}
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6 text-white transition-transform duration-300 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          </div>
+
+          {/* Main Menu Content */}
+          <div className="flex-1 p-8 overflow-y-auto">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-5 gap-12 h-full">
+                
+                {/* Left Navigation Sections */}
+                <div className="lg:col-span-2">
+                  <h2 className="text-sm uppercase tracking-wider text-gray-400 mb-8 font-semibold">
+                    Navigation
+                  </h2>
+                  
+                  <div className="space-y-2">
+                    {Object.keys(menuData).map((section, idx) => (
+                      <div key={section} 
+                        className={`transition-all duration-300 ${show ? 'animate-fade-in-up' : ''}`}
+                        style={{ animationDelay: `${idx * 0.1 + 0.2}s` }}
+                      >
+                        <button
+                          onClick={() => setActiveSection(section)}
+                          className={`group w-full text-left p-6 rounded-2xl relative transition-all duration-500 ease-out overflow-hidden ${
+                            activeSection === section
+                              ? 'bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 text-white shadow-2xl shadow-blue-500/20 border border-white/20'
+                              : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10'
+                          }`}
+                        >
+                          {/* Background Gradient Animation */}
+                          <div className={`absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 transition-all duration-500 ${
+                            activeSection === section ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                          }`} />
+                          
+                          {/* Active Indicator Bar */}
+                          {activeSection === section && (
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-r-full animate-pulse" />
+                          )}
+
+                          <div className="relative flex items-center justify-between">
+                            <div>
+                              <h3 className="text-lg font-bold uppercase tracking-wide mb-1">
+                                {section}
+                              </h3>
+                              <p className="text-xs text-gray-400 capitalize">
+                                {menuData[section].length} items
+                              </p>
+                            </div>
+                            
+                            <ArrowRight 
+                              className={`w-5 h-5 transition-all duration-300 ${
+                                activeSection === section 
+                                  ? 'translate-x-0 text-white' 
+                                  : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
+                              }`} 
+                            />
+                          </div>
+
+                          {/* Hover Glow Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Content - Menu Items */}
+                <div className="lg:col-span-3">
+                  <h2 className="text-sm uppercase tracking-wider text-gray-400 mb-8 font-semibold">
+                    {activeSection.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                  </h2>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {menuData[activeSection].map((item, index) => (
+                      <div
+                        key={item.label}
+                        className={`transition-all duration-500 ${show ? 'animate-fade-in-up' : ''}`}
+                        style={{ animationDelay: `${index * 0.05 + 0.4}s` }}
+                      >
+                        <Link
+                          to={item.href}
+                          onClick={() => setshow(false)}
+                          className="group relative block p-6 rounded-2xl bg-white/5 backdrop-blur-3xl border border-white/10 transition-all duration-300 hover:bg-white/10 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-white/20"
+                        >
+                          {/* Background Glow */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          
+                          <div className="relative">
+                            <div className="flex items-start justify-between mb-3">
+                              <h3 className="text-white font-semibold text-base group-hover:text-blue-200 transition-colors duration-300">
+                                {item.label}
+                              </h3>
+                              <ArrowRight className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                            </div>
+                            
+                            <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                              Explore our {item.label.toLowerCase()}
+                            </p>
+
+                            {/* Bottom Gradient Line */}
+                            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom Action Section */}
+                  <div className={`mt-16 pt-8 border-t border-white/10 transition-all duration-700 ${show ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.6s' }}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      
+                      {/* Newsletter Signup */}
+                      <div className="group p-8 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/20 backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/30">
+                        <h3 className="text-white font-bold text-lg mb-3">Stay Updated</h3>
+                        <p className="text-gray-300 text-sm mb-4">Get the latest updates and insights.</p>
+                        <div className="flex space-x-2">
+                          <input 
+                            type="email" 
+                            placeholder="Enter your email"
+                            className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all duration-300"
+                          />
+                          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors duration-300">
+                            <ArrowRight className="w-4 h-4 text-white" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Contact Info */}
+                      <div className="group p-8 rounded-3xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-white/20 backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30">
+                        <h3 className="text-white font-bold text-lg mb-3">Get In Touch</h3>
+                        <p className="text-gray-300 text-sm mb-4">Ready to start your project?</p>
+                        <button 
+                          className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30"
+                          onClick={() => {
+                            setshow(false);
+                            window.location.href = '/contactus';
+                          }}
+                        >
+                          Contact Us Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Custom Animations */}
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        /* Smooth scrollbar for menu */
+        .overflow-y-auto::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        .overflow-y-auto::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+        }
+
+        .overflow-y-auto::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, #3B82F6, #8B5CF6);
+          border-radius: 10px;
+        }
+
+        .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, #2563EB, #7C3AED);
+        }
+      `}</style>
     </>
   );
 };

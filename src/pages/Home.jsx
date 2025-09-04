@@ -105,7 +105,8 @@ const Home = () => {
   
   return (
     <>
-      <div className={`${isDarkMode ? 'bg-black text-white' : 'bg-gray-50 text-gray-900'} flex flex-col items-center pt-2 pb-6 overflow-hidden relative`}>
+      <div className={`${isDarkMode ? 'bg-black text-white' : 'bg-gray-50 text-gray-900'} flex flex-col items-center pt-24 pb-6 overflow-hidden relative`}>
+
         <MarqueeRow images={topImages} direction="left" />
 
         {/* Social Media Icons - Positioned on the left side vertically */}
