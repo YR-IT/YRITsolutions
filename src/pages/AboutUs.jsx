@@ -25,6 +25,9 @@ import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
 import img4 from "../assets/img4.jpg";
+import img5 from "../assets/img5.jpg";
+import img6 from "../assets/img6.jpg";
+import img7 from "../assets/img7.jpg";
 import founderImg from "../assets/founder.jpg";
 
 
@@ -179,7 +182,28 @@ const AboutPage = () => {
       title: "Industry Recognition",
       description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
     
-    }
+    },
+    {
+      id: 5,
+      image: img5,
+      title: "Industry",
+      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
+    
+    },
+    {
+      id: 6,
+      image: img6,
+      title: "Industry Recognition",
+      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
+    
+    },
+    {
+      id: 7,
+      image: img7,
+      title: "Industry Recognition",
+      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
+    
+    },
   ];
   
 
