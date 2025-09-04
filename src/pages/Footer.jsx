@@ -96,7 +96,7 @@ export const Footer = ({ state, setState }) => {
                     </div>
                     
                     {/* Mobile Social Media Icons */}
-                    <div className='flex sm:hidden items-center justify-center gap-6 mt-8'>
+                    <div className='flex sm:hidden items-center justify-center gap-6 mt-16 pt-8 border-t border-gray-300 dark:border-gray-600'>
                         <div className='rounded-sm hover:scale-110 transition-transform duration-200 p-1' onClick={()=>{window.open("https://www.linkedin.com/in/yashika-sharma1775?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", "_blank")}}>
                             <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" className="w-8 h-8" />
                         </div>
