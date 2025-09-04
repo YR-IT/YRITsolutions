@@ -138,10 +138,10 @@ const Portfolio = () => {
       {/* Hero Section */}
       <div className="pt-16 mb-12">
         <div className="text-center">
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6 animate-pulse">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6 animate-pulse">
             Our Portfolio
           </h1>
-          <p className={`text-xl md:text-2xl mb-4 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+          <p className={`text-lg md:text-xl lg:text-2xl mb-4 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Crafting Digital Excellence, One Project at a Time
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
@@ -150,7 +150,7 @@ const Portfolio = () => {
       
       {/* Category Filter Buttons */}
       <div className="mb-12">
-        <h3 className={`text-2xl font-semibold text-center mb-8 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+        <h3 className={`text-xl md:text-2xl font-semibold text-center mb-8 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
           Explore by Category
         </h3>
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-6xl mx-auto">
@@ -221,11 +221,11 @@ const Portfolio = () => {
                     </div>
                   </div>
                   
-                  <h2 className={`text-3xl lg:text-4xl font-bold mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                     {project.title}
                   </h2>
                   
-                  <p className={`text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
+                  <p className={`text-sm md:text-base lg:text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
                     {project.description}
                   </p>
                   

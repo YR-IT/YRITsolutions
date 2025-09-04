@@ -70,7 +70,7 @@ const Form = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <div className={`backdrop-blur-sm rounded-3xl pt-4 lg:p-10 shadow-2xl border transform hover:scale-[1.02] transition-all duration-500 animate-slide-in-right ${isDarkMode ? 'bg-gray-900/90 border-purple-500/20' : 'bg-white/90 border-purple-200/30'}`}>
+      <div className={`backdrop-blur-sm rounded-3xl pt-4 px-6 lg:p-10 shadow-2xl border transform hover:scale-[1.02] transition-all duration-500 animate-slide-in-right ${isDarkMode ? 'bg-gray-900/90 border-purple-500/20' : 'bg-white/90 border-purple-200/30'}`}>
         {/* Enhanced Header */}
         <div className="text-center mb-4 animate-fade-in">
           <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-all duration-300">
