@@ -9,8 +9,10 @@ import {
   Tags,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTheme } from "../contexts/ThemeContext";
 
 const BlogPage = () => {
+  const { isDarkMode } = useTheme();
   const [blogPosts, setBlogPosts] = useState([]);
   const [recentPosts, setRecentPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +53,11 @@ const BlogPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-black to-black text-gray-400">
+      <div className={`min-h-screen flex flex-col items-center justify-center theme-bg-primary theme-text-secondary transition-all duration-300 ${
+        isDarkMode 
+          ? 'bg-gradient-to-br from-slate-900 via-black to-black' 
+          : 'bg-gradient-to-br from-blue-50 via-white to-gray-50'
+      }`}>
         <div className="w-16 h-16 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin"></div>
         <p className="mt-6 text-lg font-medium">Loading articles...</p>
       </div>
@@ -67,7 +73,11 @@ const BlogPage = () => {
       .replace(/<\/p><p>/g, "</p><p>&nbsp;</p><p>");
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 via-black to-black text-white">
+      <div className={`min-h-screen theme-bg-primary theme-text-primary transition-all duration-300 ${
+        isDarkMode 
+          ? 'bg-gradient-to-b from-slate-900 via-black to-black text-white' 
+          : 'bg-gradient-to-b from-blue-50 via-white to-gray-50 text-gray-900'
+      }`}>
         {/* Hero Section */}
         <div className="relative h-[70vh] sm:h-[60vh] w-full">
           <img
@@ -80,7 +90,11 @@ const BlogPage = () => {
           <div className="absolute top-4 left-8 z-10">
             <button
               onClick={backToBlog}
-              className="flex items-center gap-2 bg-white/90 text-gray-900 hover:bg-white/70 font-medium px-4 py-2 rounded-full backdrop-blur-sm shadow-md transition"
+              className={`flex items-center gap-2 font-medium px-4 py-2 rounded-full backdrop-blur-sm shadow-md transition ${
+                isDarkMode 
+                  ? 'bg-white/90 text-gray-900 hover:bg-white/70' 
+                  : 'bg-gray-900/90 text-white hover:bg-gray-900/70'
+              }`}
             >
               <ArrowRight className="w-4 h-4 rotate-180" />
               Back
@@ -89,20 +103,36 @@ const BlogPage = () => {
 
           {/* Hero Content */}
           <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-4xl text-center shadow-xl">
-              <span className="inline-block mb-4 px-4 py-1 text-xs font-semibold rounded-full bg-cyan-500/80 text-white shadow-sm">
+            <div className={`backdrop-blur-md rounded-3xl p-8 max-w-4xl text-center shadow-xl ${
+              isDarkMode 
+                ? 'bg-white/10 border border-white/20' 
+                : 'bg-black/10 border border-black/20'
+            }`}>
+              <span className={`inline-block mb-4 px-4 py-1 text-xs font-semibold rounded-full shadow-sm ${
+                isDarkMode 
+                  ? 'bg-cyan-500/80 text-white' 
+                  : 'bg-cyan-600 text-white'
+              }`}>
                 Featured Article
               </span>
-              <h1 className="text-white text-xl sm:text-3xl md:text-4xl font-bold leading-tight drop-shadow-lg">
+              <h1 className={`text-xl sm:text-3xl md:text-4xl font-bold leading-tight drop-shadow-lg ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>
                 {selectedArticle.title}
               </h1>
-              <div className="flex flex-wrap justify-center items-center gap-4 mt-6 text-sm text-slate-200 font-medium">
+              <div className={`flex flex-wrap justify-center items-center gap-4 mt-6 text-sm font-medium ${
+                isDarkMode ? 'text-slate-200' : 'text-gray-700'
+              }`}>
                 <div className="flex items-center gap-1">
-                  <User className="w-4 h-4 text-cyan-300" />
+                  <User className={`w-4 h-4 ${
+                    isDarkMode ? 'text-cyan-300' : 'text-cyan-600'
+                  }`} />
                   {selectedArticle.author}
                 </div>
                 <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4 text-cyan-300" />
+                  <Calendar className={`w-4 h-4 ${
+                    isDarkMode ? 'text-cyan-300' : 'text-cyan-600'
+                  }`} />
                   {selectedArticle.date
                     ? new Date(selectedArticle.date).toLocaleDateString(
                         "en-US",
@@ -121,7 +151,9 @@ const BlogPage = () => {
 
        <section className="max-w-4xl mx-auto px-4 py-12">
   <article
-    className="prose prose-lg md:prose-xl prose-invert max-w-none leading-relaxed text-justify"
+    className={`prose prose-lg md:prose-xl max-w-none leading-relaxed text-justify ${
+      isDarkMode ? 'prose-invert' : 'prose-gray'
+    }`}
     style={{
       wordBreak: "break-word",
       textWrap: "pretty",
@@ -134,7 +166,11 @@ const BlogPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-black text-white mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20">
+    <div className={`min-h-screen theme-bg-primary theme-text-primary transition-all duration-300 mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 ${
+      isDarkMode 
+        ? 'bg-gradient-to-br from-slate-900 via-black to-black text-white' 
+        : 'bg-gradient-to-br from-blue-50 via-white to-gray-50 text-gray-900'
+    }`}>
       {/* Hero Heading */}
       <motion.div
           className="mb-12 text-center"
@@ -149,7 +185,9 @@ const BlogPage = () => {
           >
             ✨ Latest Articles
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className={`text-lg max-w-2xl mx-auto ${
+            isDarkMode ? 'text-gray-300' : 'text-gray-600'
+          }`}>
             Insights, tutorials, and industry knowledge from our expert team
           </p>
         </motion.div>
@@ -162,7 +200,11 @@ const BlogPage = () => {
             {blogPosts.map((post) => (
               <div
                 key={post._id}
-                className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg overflow-hidden"
+                className={`backdrop-blur-lg rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-white/5 border border-white/10' 
+                    : 'bg-white/80 border border-gray-200 hover:shadow-xl'
+                }`}
               >
                 <div className="relative">
                   <img
@@ -173,15 +215,21 @@ const BlogPage = () => {
                 </div>
 
                 <div className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-4 leading-tight">
+                  <h2 className={`text-2xl font-bold mb-4 leading-tight ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
                     {post.title}
                   </h2>
-                  <p className="text-gray-300 text-base leading-relaxed mb-6">
+                  <p className={`text-base leading-relaxed mb-6 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
                     {post.content?.substring(0, 180)}...
                   </p>
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex items-center space-x-6 text-sm text-gray-400">
+                    <div className={`flex items-center space-x-6 text-sm ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                    }`}>
                       <div className="flex items-center gap-2">
                       <User className="w-4 h-4" />
                       <span>{post.author}</span>
@@ -212,7 +260,11 @@ const BlogPage = () => {
                       boxShadow: "0px 0px 20px rgba(236,72,153,0.4)",
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-gradient-to-r from-cyan-600/20 to-pink-600/20 border border-cyan-500/30 text-white py-2 px-5 rounded-lg font-semibold transition-all duration-500"
+                    className={`py-2 px-5 rounded-lg font-semibold transition-all duration-500 ${
+                      isDarkMode 
+                        ? 'bg-gradient-to-r from-cyan-600/20 to-pink-600/20 border border-cyan-500/30 text-white' 
+                        : 'bg-gradient-to-r from-cyan-500 to-pink-500 text-white border border-transparent hover:shadow-lg'
+                    }`}
                   >
                     <span className="flex items-center gap-2">
                       Read More
@@ -230,11 +282,19 @@ const BlogPage = () => {
   {/* Sticky wrapper */}
   <aside className="space-y-8 sticky top-24 self-start">
     {/* Contact Box */}
-    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-      <h3 className="text-lg font-bold mb-3 text-white">
+    <div className={`backdrop-blur-lg rounded-2xl p-6 transition-all duration-300 ${
+      isDarkMode 
+        ? 'bg-white/5 border border-white/10' 
+        : 'bg-white/80 border border-gray-200 shadow-lg'
+    }`}>
+      <h3 className={`text-lg font-bold mb-3 ${
+        isDarkMode ? 'text-white' : 'text-gray-900'
+      }`}>
         FEEL FREE TO TEXT & <br /> GET ALL THE ANSWERS YOU NEED
       </h3>
-      <p className="text-sm text-gray-300 mb-4">
+      <p className={`text-sm mb-4 ${
+        isDarkMode ? 'text-gray-300' : 'text-gray-600'
+      }`}>
         We are a clock-knit team of 100+ developers to transform your
         business with enhanced tech capabilities.
       </p>
@@ -246,9 +306,17 @@ const BlogPage = () => {
     </div>
 
     {/* Recent Posts */}
-    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-      <h3 className="text-xl font-bold text-white mb-6 flex items-center space-x-2">
-        <BookOpen className="w-6 h-6 text-cyan-400" />
+    <div className={`backdrop-blur-lg rounded-2xl p-6 transition-all duration-300 ${
+      isDarkMode 
+        ? 'bg-white/5 border border-white/10' 
+        : 'bg-white/80 border border-gray-200 shadow-lg'
+    }`}>
+      <h3 className={`text-xl font-bold mb-6 flex items-center space-x-2 ${
+        isDarkMode ? 'text-white' : 'text-gray-900'
+      }`}>
+        <BookOpen className={`w-6 h-6 ${
+          isDarkMode ? 'text-cyan-400' : 'text-cyan-600'
+        }`} />
         <span>Recent Posts</span>
       </h3>
       <div className="space-y-6">
@@ -258,19 +326,28 @@ const BlogPage = () => {
             className="group cursor-pointer"
             onClick={() => openArticle(post)}
           >
-            <h4 className="text-white font-medium leading-tight mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+            <h4 className={`font-medium leading-tight mb-2 transition-colors duration-300 ${
+              isDarkMode 
+                ? 'text-white group-hover:text-cyan-400' 
+                : 'text-gray-900 group-hover:text-cyan-600'
+            }`}>
               {post.title}
             </h4>
-            <div className="flex items-center space-x-4 text-sm text-gray-400">
+            <div className={`h-px mt-4 ${
+              isDarkMode ? 'bg-white/10' : 'bg-gray-200'
+            }`}></div>
+            <div className={`flex items-center space-x-4 text-sm ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-500'
+            }`}>
               <div className="flex items-center space-x-1">
                 <Calendar className="w-3 h-3" />
                 <span>
                   {post.date
                     ? new Date(post.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
                     : "No date"}
                 </span>
               </div>
@@ -279,23 +356,34 @@ const BlogPage = () => {
                 <span>5 min read</span>
               </div>
             </div>
-            <div className="h-px bg-white/10 mt-4"></div>
           </div>
         ))}
       </div>
     </div>
 
     {/* Popular Topics */}
-    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-      <h3 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
-        <Tags className="w-5 h-5 text-cyan-400" />
+    <div className={`backdrop-blur-lg rounded-2xl p-6 transition-all duration-300 ${
+      isDarkMode 
+        ? 'bg-white/5 border border-white/10' 
+        : 'bg-white/80 border border-gray-200 shadow-lg'
+    }`}>
+      <h3 className={`text-xl font-bold mb-4 flex items-center space-x-2 ${
+        isDarkMode ? 'text-white' : 'text-gray-900'
+      }`}>
+        <Tags className={`w-5 h-5 ${
+          isDarkMode ? 'text-cyan-400' : 'text-cyan-600'
+        }`} />
         <span>Popular Topics</span>
       </h3>
       <div className="flex flex-col gap-3">
         {["Design", "Tech", "AI", "Business", "Startups"].map((topic) => (
           <span
             key={topic}
-            className="w-full bg-cyan-500/20 text-cyan-300 text-sm font-medium px-4 py-2 rounded-full hover:bg-cyan-500/40 transition text-center cursor-pointer"
+            className={`w-full text-sm font-medium px-4 py-2 rounded-full transition text-center cursor-pointer ${
+              isDarkMode 
+                ? 'bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/40' 
+                : 'bg-cyan-100 text-cyan-700 hover:bg-cyan-200'
+            }`}
           >
             {topic}
           </span>

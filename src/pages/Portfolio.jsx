@@ -4,6 +4,7 @@ import project2 from '../assets/project2.png';
 import project3 from '../assets/law.png';
 import project4 from '../assets/project4.png';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 
 // Category icons mapping
 const categoryIcons = {
@@ -111,6 +112,7 @@ const projects = [
 const categories = ["All", "Architecture", "Legal Firms", "Healthcare & Pharmacy", "Bakery", "Government Official Websites", "Education", "Ecommerce"];
 
 const Portfolio = () => {
+  const { isDarkMode } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredProjects, setFilteredProjects] = useState(projects);
   
@@ -132,14 +134,14 @@ const Portfolio = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen px-6 py-12 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+    <div className={`min-h-screen px-6 py-12 ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white' : 'bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900'}`}>
       {/* Hero Section */}
       <div className="pt-16 mb-12">
         <div className="text-center">
           <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6 animate-pulse">
             Our Portfolio
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl md:text-2xl mb-4 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Crafting Digital Excellence, One Project at a Time
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
@@ -148,7 +150,7 @@ const Portfolio = () => {
       
       {/* Category Filter Buttons */}
       <div className="mb-12">
-        <h3 className="text-2xl font-semibold text-center mb-8 text-gray-200">
+        <h3 className={`text-2xl font-semibold text-center mb-8 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
           Explore by Category
         </h3>
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-6xl mx-auto">
@@ -159,7 +161,9 @@ const Portfolio = () => {
               className={`group relative px-4 md:px-6 py-3 md:py-4 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 ${
                 selectedCategory === category
                   ? "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-2xl shadow-purple-500/25 scale-105"
-                  : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/70 hover:text-white border border-gray-600/50 backdrop-blur-sm"
+                  : isDarkMode 
+                    ? "bg-gray-800/50 text-gray-300 hover:bg-gray-700/70 hover:text-white border border-gray-600/50 backdrop-blur-sm"
+                    : "bg-gray-100/80 text-gray-700 hover:bg-gray-200/80 hover:text-gray-900 border border-gray-300/50 backdrop-blur-sm"
               }`}
             >
               <div className="flex items-center gap-2">
@@ -193,7 +197,7 @@ const Portfolio = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-800/40 via-gray-900/60 to-black/80 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10"
+              className={`group relative overflow-hidden rounded-3xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 ${isDarkMode ? 'bg-gradient-to-br from-gray-800/40 via-gray-900/60 to-black/80 border border-gray-700/50 hover:border-purple-500/50' : 'bg-gradient-to-br from-white/80 via-gray-50/60 to-white/80 border border-gray-200/50 hover:border-purple-400/50'}`}
             >
               {/* Background Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -205,23 +209,23 @@ const Portfolio = () => {
                     <div className="flex flex-wrap gap-2">
                       {Array.isArray(project.category) ? (
                         project.category.map((cat, idx) => (
-                          <span key={idx} className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
+                          <span key={idx} className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r rounded-full text-sm font-medium border ${isDarkMode ? 'from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30' : 'from-blue-100/60 to-purple-100/60 text-blue-700 border-blue-300/50'}`}>
                             {categoryIcons[cat]} {cat}
                           </span>
                         ))
                       ) : (
-                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
+                        <span className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r rounded-full text-sm font-medium border ${isDarkMode ? 'from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30' : 'from-blue-100/60 to-purple-100/60 text-blue-700 border-blue-300/50'}`}>
                           {categoryIcons[project.category]} {project.category}
                         </span>
                       )}
                     </div>
                   </div>
                   
-                  <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
+                  <h2 className={`text-3xl lg:text-4xl font-bold mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                     {project.title}
                   </h2>
                   
-                  <p className="text-lg text-gray-300 leading-relaxed mb-6 group-hover:text-gray-200 transition-colors duration-300">
+                  <p className={`text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
                     {project.description}
                   </p>
                   

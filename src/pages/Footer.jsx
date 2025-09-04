@@ -1,11 +1,13 @@
 import React from 'react';
 import "../styles/Footer.css";
 import Logo from "../assets/10logo-nobg.png";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 // import F1 from "../assets/fb1.png"
 // import X from "../assets/Xlogo.png"
 export const Footer = ({ state, setState }) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { isDarkMode } = useTheme();
     const goto = (link) => {
         navigate(link)
         window.scrollTo(0, 0);
@@ -16,8 +18,8 @@ export const Footer = ({ state, setState }) => {
                 {/* Company Info Section */}
                 <div className='w-full lg:w-auto lg:max-w-[350px]'>
                     <div className='flex flex-col items-center lg:items-start'>
-                        <img src={Logo} alt='Logo' className='h-16 sm:h-20 mb-8 brightness-0 invert' />
-                        <div className='footer-content text-center lg:text-left mb-8 max-w-[320px]'>
+                        <img src={Logo} alt='Logo' className={`h-16 sm:h-20 mb-8 ${isDarkMode ? 'brightness-0 invert' : ''}`} />
+                        <div className={`text-center lg:text-left mb-8 max-w-[320px] text-sm font-normal leading-relaxed ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                             We built an elegant solution. Our team believe that the success of our company is a result of our clients growth.
                         </div>
                         {/* Social Media Icons - Desktop */}
@@ -41,19 +43,19 @@ export const Footer = ({ state, setState }) => {
                         <div>
                             <div className="text-purple-500 mb-5 font-semibold text-base">Explore</div>
                             <div className='space-y-3'>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(0); goto("/") }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(0); goto("/") }}>
                                     Home
                                 </div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(1); goto("/aboutus") }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(1); goto("/aboutus") }}>
                                     About Us
                                 </div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(2); goto("/ourservices") }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(2); goto("/ourservices") }}>
                                     Services
                                 </div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(3); goto("/pricing") }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(3); goto("/pricing") }}>
                                     Pricing
                                 </div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(4); goto("/contactus") }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(4); goto("/contactus") }}>
                                     Contact Us
                                 </div>
                             </div>
@@ -63,10 +65,10 @@ export const Footer = ({ state, setState }) => {
                         <div>
                             <div className='text-purple-500 mb-5 font-semibold text-base'>Services</div>
                             <div className='space-y-3'>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>Web Development</div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>App Development</div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>UI/UX Development</div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(-1) }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Web Development</div>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>App Development</div>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>UI/UX Development</div>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(-1) }}>
                                     <Link to="/privacy">Digital Marketing</Link>
                                 </div>
                             </div>
@@ -76,15 +78,15 @@ export const Footer = ({ state, setState }) => {
                         <div className='ml-0 sm:ml-8 lg:ml-12'>
                             <div className='text-purple-500 mb-5 font-semibold text-base'>Help Center</div>
                             <div className='space-y-3'>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>Community</div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>Knowledge</div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Community</div>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Knowledge</div>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                                     <Link to="/termsandconditions">Terms and Conditions</Link>
                                 </div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors' onClick={() => { setState(-1) }}>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`} onClick={() => { setState(-1) }}>
                                     <Link to="/privacy">Privacy</Link>
                                 </div>
-                                <div className='text-white cursor-pointer text-sm hover:text-[var(--theme)] transition-colors'>Support</div>
+                                <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Support</div>
                             </div>
                         </div>
                         

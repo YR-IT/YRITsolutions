@@ -4,8 +4,11 @@ import { Autoplay, Pagination, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
+import { useTheme } from '../contexts/ThemeContext';
 
 const ServicesSection = () => {
+  const { isDarkMode } = useTheme();
+  
   const services = [
     {
       img: "/images/ig1.jpg",
@@ -57,25 +60,25 @@ const ServicesSection = () => {
   const [activeIndex, setActiveIndex] = useState(3);
 
   return (
-    <section className="relative w-full bg-black py-16 px-4 md:px-12 text-center mt-15 overflow-hidden">
+    <section className={`relative w-full ${isDarkMode ? 'bg-black' : 'bg-gray-50'} py-16 px-4 md:px-12 text-center mt-15 overflow-hidden`}>
       {/* Label */}
       <div className="relative inline-flex items-center gap-2 px-6 py-3 mb-4 border-flow">
   <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-  <h2 className="text-xl font-extrabold text-white">Services</h2>
+  <h2 className={`text-xl font-extrabold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Services</h2>
 </div>
 
 
       {/* Heading */}
-      <h2 className="text-3xl md:text-6xl font-extrabold leading-tight mb-10 text-white">
+      <h2 className={`text-3xl md:text-6xl font-extrabold leading-tight mb-10 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         A RANGE OF IT SERVICES <br /> DESIGNED FOR IMPACT
       </h2>
 
       {/* Active Service Title + Desc */}
       <div className="mb-10">
-        <h3 className="text-4xl font-bold mb-2 text-purple-400">
+        <h3 className={`text-4xl font-bold mb-2 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`}>
           {services[activeIndex].title}
         </h3>
-        <p className="text-gray-300 max-w-lg mx-auto">
+        <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} max-w-lg mx-auto`}>
           {services[activeIndex].desc}
         </p>
       </div>
@@ -144,7 +147,7 @@ const ServicesSection = () => {
 
 
       {/* Custom Progress Bar */}
-      <div className="custom-progressbar w-full max-w-4xl mx-auto mt-6 h-1 bg-gray-200 rounded-full relative">
+      <div className={`custom-progressbar w-full max-w-4xl mx-auto mt-6 h-1 ${isDarkMode ? 'bg-gray-200' : 'bg-gray-300'} rounded-full relative`}>
         <span className="swiper-pagination-progressbar-fill block h-1 bg-purple-600 rounded-full"></span>
       </div>
     </section>

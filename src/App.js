@@ -24,6 +24,7 @@ import Blog from './pages/Blog';
 import { Routes, Route } from 'react-router-dom';
 import AdminPanel from "./pages/admin/AdminPanel";
 import Team from './pages/Team';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 
 
@@ -32,8 +33,7 @@ function App() {
   const [show, setshow] = React.useState(false);
 
   return (
-    <>
-    
+    <ThemeProvider>
       {/* Fixed Navbar */}
       <Navbar 
         state={state} 
@@ -74,7 +74,7 @@ function App() {
           <CopyrightBanner />
         </footer>
       </div>
-    </>
+    </ThemeProvider>
   );
 }
 

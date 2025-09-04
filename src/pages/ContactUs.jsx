@@ -3,9 +3,10 @@ import { FaYoutube, FaInstagram, FaLinkedin, FaPhone, FaEnvelope, FaMapMarkerAlt
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from './Form';
-
+import { useTheme } from '../contexts/ThemeContext';
 
 const ContactUs = () => {
+    const { isDarkMode } = useTheme();
     return (
         <>
             <ToastContainer
@@ -20,7 +21,7 @@ const ContactUs = () => {
                 pauseOnHover
                 theme="dark"
             />
-            <div className='w-full min-h-screen bg-black text-white relative overflow-hidden'>
+            <div className={`w-full min-h-screen relative overflow-hidden ${isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
                 {/* Enhanced Animated background */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full blur-3xl animate-pulse"></div>
@@ -43,7 +44,7 @@ const ContactUs = () => {
                                     Get In Touch
                                 </div>
                             </div>
-                            <div className='text-gray-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed animate-slide-up'>
+                            <div className={`text-sm md:text-base max-w-2xl mx-auto leading-relaxed animate-slide-up ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                 Ready to transform your digital presence? Let's discuss how we can help you achieve your goals. 
                                 Our team is here to turn your vision into reality.
                             </div>
@@ -58,11 +59,11 @@ const ContactUs = () => {
                             {/* Left Column - Contact Information & Why Choose Us */}
                             <div className='xl:col-span-1 space-y-6'>
                                 {/* Let's Connect Card */}
-                                <div className='bg-gradient-to-br from-gray-900 via-purple-900/50 to-gray-800 text-white rounded-3xl p-6 shadow-2xl transform hover:scale-[1.02] transition-all duration-500 animate-slide-in-left border border-purple-500/20'>
-                                    <h2 className='text-xl md:text-2xl font-bold mb-3 leading-tight bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent'>
+                                <div className={`rounded-3xl p-6 shadow-2xl transform hover:scale-[1.02] transition-all duration-500 animate-slide-in-left border ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-purple-900/50 to-gray-800 text-white border-purple-500/20' : 'bg-gradient-to-br from-white via-purple-50/30 to-gray-50 text-gray-900 border-purple-200/30'}`}>
+                                    <h2 className={`text-xl md:text-2xl font-bold mb-3 leading-tight ${isDarkMode ? 'bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent' : 'text-gray-900'}`}>
                                         Let's Connect
                                     </h2>
-                                    <p className='text-gray-300 text-sm leading-relaxed mb-6'>
+                                    <p className={`text-sm leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                         We're here to help and answer any questions you might have. 
                                         We look forward to hearing from you!
                                     </p>
@@ -71,25 +72,25 @@ const ContactUs = () => {
                                         {/* Phone */}
                                         <div className='group flex items-center gap-4 p-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20'>
                                             <div className='p-2 bg-purple-500/20 rounded-lg'>
-                                                <FaPhone size={16} className='text-purple-300' />
+                                                <FaPhone size={16} className={isDarkMode ? 'text-purple-300' : 'text-purple-600'} />
                                             </div>
                                             <div>
-                                                <div className='text-xs text-purple-300 font-medium'>Phone</div>
-                                                <a href="tel:+917404890806" className='text-sm font-semibold hover:text-purple-200 transition-colors'>
+                                                <div className={`text-xs font-medium ${isDarkMode ? 'text-purple-300' : 'text-purple-600'}`}>Phone</div>
+                                                <a href="tel:+917404890806" className={`text-sm font-semibold transition-colors ${isDarkMode ? 'hover:text-purple-200' : 'hover:text-purple-700'}`}>
                                                     +91 7404890806 
                                                 </a>
                                             </div>
                                         </div>
                                         
                                         {/* Email */}
-                                        <div className='group flex items-center gap-4 p-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20'>
-                                            <div className='p-2 bg-purple-500/20 rounded-lg'>
-                                                <FaEnvelope size={16} className='text-purple-300' />
+                                        <div className={`group flex items-center gap-4 p-3 rounded-xl transition-all duration-300 border ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50 border-purple-200/30'}`}>
+                                            <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-purple-500/20' : 'bg-purple-200/40'}`}>
+                                                <FaEnvelope size={16} className={isDarkMode ? 'text-purple-300' : 'text-purple-600'} />
                                             </div>
                                             <div>
-                                                <div className='text-xs text-purple-300 font-medium'>Email</div>
+                                                <div className={`text-xs font-medium ${isDarkMode ? 'text-purple-300' : 'text-purple-600'}`}>Email</div>
                                                 <div 
-                                                    className='text-sm font-semibold cursor-pointer hover:text-purple-200 transition-colors break-all'
+                                                    className={`text-sm font-semibold cursor-pointer transition-colors break-all ${isDarkMode ? 'hover:text-purple-200' : 'hover:text-purple-700'}`}
                                                     onClick={() => {window.location.href="mailto:yr.itsolutions.pvtltd@gmail.com"}}
                                                 >
                                                     yr.itsolutions.pvtltd@gmail.com
@@ -98,12 +99,12 @@ const ContactUs = () => {
                                         </div>
 
                                         {/* Location */}
-                                        <div className='group flex items-center gap-4 p-3 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20'>
-                                            <div className='p-2 bg-purple-500/20 rounded-lg'>
-                                                <FaMapMarkerAlt size={16} className='text-purple-300' />
+                                        <div className={`group flex items-center gap-4 p-3 rounded-xl transition-all duration-300 border ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50 border-purple-200/30'}`}>
+                                            <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-purple-500/20' : 'bg-purple-200/40'}`}>
+                                                <FaMapMarkerAlt size={16} className={isDarkMode ? 'text-purple-300' : 'text-purple-600'} />
                                             </div>
                                             <div>
-                                                <div className='text-xs text-purple-300 font-medium'>Location</div>
+                                                <div className={`text-xs font-medium ${isDarkMode ? 'text-purple-300' : 'text-purple-600'}`}>Location</div>
                                                 <div className='text-sm font-semibold'>
                                                     Gurugram, Haryana, India
                                                 </div>
@@ -128,36 +129,36 @@ const ContactUs = () => {
           
 
                                 {/* Our Services Preview Card */}
-                                <div className='bg-gradient-to-br from-gray-900 via-purple-900/50 to-gray-800 text-white rounded-3xl p-6 shadow-2xl border border-purple-500/20'>
-                                    <h3 className='text-lg font-bold mb-3 text-purple-300'>Our Services</h3>
+                                <div className={`rounded-3xl p-6 shadow-2xl border ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-purple-900/50 to-gray-800 text-white border-purple-500/20' : 'bg-gradient-to-br from-white via-purple-50/30 to-gray-50 text-gray-900 border-purple-200/30'}`}>
+                                    <h3 className={`text-lg font-bold mb-3 ${isDarkMode ? 'text-purple-300' : 'text-purple-600'}`}>Our Services</h3>
                                     <div className='space-y-3'>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>Web Development</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Web Development</span>
                                         </div>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>Mobile App Development</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Mobile App Development</span>
                                         </div>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>UI/UX Design</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>UI/UX Design</span>
                                         </div>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>Digital Marketing</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Digital Marketing</span>
                                         </div>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>SEO Services</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>SEO Services</span>
                                         </div>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>Data Science</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Data Science</span>
                                         </div>
-                                        <div className='flex items-center gap-3 p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300'>
+                                        <div className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-300 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50'}`}>
                                             <div className='w-2 h-2 bg-purple-400 rounded-full'></div>
-                                            <span className='text-sm text-gray-300'>Cyber Security</span>
+                                            <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Cyber Security</span>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +166,7 @@ const ContactUs = () => {
                                 
 
                                 {/* Why Choose Us - Now in Left Column */}
-                                <div className='bg-gradient-to-br from-gray-900/90 via-purple-900/30 to-gray-800/90 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-purple-500/30'>
+                                <div className={`backdrop-blur-sm rounded-3xl p-6 shadow-2xl border ${isDarkMode ? 'bg-gradient-to-br from-gray-900/90 via-purple-900/30 to-gray-800/90 border-purple-500/30' : 'bg-gradient-to-br from-white/90 via-purple-50/30 to-gray-50/90 border-purple-200/30'}`}>
                                     <div className='text-center mb-6'>
                                         <h3 className='text-xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent mb-3'>
                                             Why Choose YRIT Solutions?
@@ -174,33 +175,33 @@ const ContactUs = () => {
                                     </div>
                                     
                                     <div className='space-y-4'>
-                                        <div className='group flex items-start gap-4 p-4 rounded-xl bg-purple-500/5 hover:bg-purple-500/10 transition-all duration-300 border border-purple-500/20 hover:border-purple-400/40'>
+                                        <div className={`group flex items-start gap-4 p-4 rounded-xl transition-all duration-300 border ${isDarkMode ? 'bg-purple-500/5 hover:bg-purple-500/10 border-purple-500/20 hover:border-purple-400/40' : 'bg-purple-100/20 hover:bg-purple-100/40 border-purple-200/30 hover:border-purple-300/50'}`}>
                                             <div className='w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-violet-600 group-hover:scale-110 transition-transform duration-300 shadow-lg flex-shrink-0'>
                                                 <FaGlobe size={18} className='text-white' />
                                             </div>
                                             <div>
-                                                <h4 className='font-bold text-white mb-1 group-hover:text-purple-200 transition-colors'>Global Expertise</h4>
-                                                <p className='text-gray-300 text-sm leading-relaxed'>World-class solutions with local understanding</p>
+                                                <h4 className={`font-bold mb-1 transition-colors ${isDarkMode ? 'text-white group-hover:text-purple-200' : 'text-gray-900 group-hover:text-purple-700'}`}>Global Expertise</h4>
+                                                <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>World-class solutions with local understanding</p>
                                             </div>
                                         </div>
 
-                                        <div className='group flex items-start gap-4 p-4 rounded-xl bg-purple-500/5 hover:bg-purple-500/10 transition-all duration-300 border border-purple-500/20 hover:border-purple-400/40'>
+                                        <div className={`group flex items-start gap-4 p-4 rounded-xl transition-all duration-300 border ${isDarkMode ? 'bg-purple-500/5 hover:bg-purple-500/10 border-purple-500/20 hover:border-purple-400/40' : 'bg-purple-100/20 hover:bg-purple-100/40 border-purple-200/30 hover:border-purple-300/50'}`}>
                                             <div className='w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 group-hover:scale-110 transition-transform duration-300 shadow-lg flex-shrink-0'>
                                                 <FaClock size={18} className='text-white' />
                                             </div>
                                             <div>
-                                                <h4 className='font-bold text-white mb-1 group-hover:text-purple-200 transition-colors'>24/7 Support</h4>
-                                                <p className='text-gray-300 text-sm leading-relaxed'>Round-the-clock assistance with dedicated support</p>
+                                                <h4 className={`font-bold mb-1 transition-colors ${isDarkMode ? 'text-white group-hover:text-purple-200' : 'text-gray-900 group-hover:text-purple-700'}`}>24/7 Support</h4>
+                                                <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Round-the-clock assistance with dedicated support</p>
                                             </div>
                                         </div>
 
-                                        <div className='group flex items-start gap-4 p-4 rounded-xl bg-purple-500/5 hover:bg-purple-500/10 transition-all duration-300 border border-purple-500/20 hover:border-purple-400/40'>
+                                        <div className={`group flex items-start gap-4 p-4 rounded-xl transition-all duration-300 border ${isDarkMode ? 'bg-purple-500/5 hover:bg-purple-500/10 border-purple-500/20 hover:border-purple-400/40' : 'bg-purple-100/20 hover:bg-purple-100/40 border-purple-200/30 hover:border-purple-300/50'}`}>
                                             <div className='w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-violet-500 group-hover:scale-110 transition-transform duration-300 shadow-lg flex-shrink-0'>
                                                 <FaRocket size={18} className='text-white' />
                                             </div>
                                             <div>
-                                                <h4 className='font-bold text-white mb-1 group-hover:text-purple-200 transition-colors'>Quick Response</h4>
-                                                <p className='text-gray-300 text-sm leading-relaxed'>Fast turnaround and efficient communication</p>
+                                                <h4 className={`font-bold mb-1 transition-colors ${isDarkMode ? 'text-white group-hover:text-purple-200' : 'text-gray-900 group-hover:text-purple-700'}`}>Quick Response</h4>
+                                                <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Fast turnaround and efficient communication</p>
                                             </div>
                                         </div>
                                     </div>
@@ -208,25 +209,25 @@ const ContactUs = () => {
 
                                                       {/* Social Media Card */}
                                                       <div className="flex flex-col items-center text-center">
-    <h3 className="text-base font-bold mb-2 text-purple-300">Follow Us</h3>
+    <h3 className={`text-base font-bold mb-2 ${isDarkMode ? 'text-purple-300' : 'text-purple-600'}`}>Follow Us</h3>
     <div className="flex gap-2.5 justify-center">
         <div 
-            className="p-4 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110" 
+            className={`p-4 rounded-xl cursor-pointer transition-all duration-300 border hover:scale-110 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50 border-purple-200/30'}`}
             onClick={() => {window.location.href="https://www.linkedin.com/in/yrit-solutions-755549371"}}
         >
-            <FaLinkedin size={24} className="text-purple-300" />
+            <FaLinkedin size={24} className={isDarkMode ? 'text-purple-300' : 'text-purple-600'} />
         </div>
         <div 
-            className="p-4 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110" 
+            className={`p-4 rounded-xl cursor-pointer transition-all duration-300 border hover:scale-110 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50 border-purple-200/30'}`}
             onClick={() => {window.location.href="https://www.instagram.com/yritsolutions2025"}}
         >
-            <FaInstagram size={24} className="text-purple-300" />
+            <FaInstagram size={24} className={isDarkMode ? 'text-purple-300' : 'text-purple-600'} />
         </div>
         <div 
-            className="p-4 rounded-xl bg-purple-500/10 cursor-pointer hover:bg-purple-500/20 transition-all duration-300 border border-purple-500/20 hover:scale-110" 
+            className={`p-4 rounded-xl cursor-pointer transition-all duration-300 border hover:scale-110 ${isDarkMode ? 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/20' : 'bg-purple-100/30 hover:bg-purple-100/50 border-purple-200/30'}`}
             onClick={() => {window.location.href="https://youtube.com/@yritsolutions"}}
         >
-            <FaYoutube size={24} className="text-purple-300" />
+            <FaYoutube size={24} className={isDarkMode ? 'text-purple-300' : 'text-purple-600'} />
         </div>
     </div>
 </div>

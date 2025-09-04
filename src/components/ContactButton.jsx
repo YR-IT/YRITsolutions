@@ -1,17 +1,19 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 
 function Contact() {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
 
   return (
-    <section className="py-16 px-6 sm:px-10 bg-black">
+    <section className={`py-16 px-6 sm:px-10 ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       <div className="text-center max-w-xl mx-auto">
         {/* Quote Section */}
-        <blockquote className="text-lg sm:text-xl md:text-2xl font-light text-gray-200 mb-6 leading-relaxed italic">
+        <blockquote className={`text-lg sm:text-xl md:text-2xl font-light mb-6 leading-relaxed italic ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
           "Great things in business are never done by one person. 
-          <span className="text-blue-400 font-medium"> They're done by a team of people.</span>"
+          <span className={`font-medium ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}> They're done by a team of people.</span>"
         </blockquote>
 
         {/* Contact Button */}
@@ -37,7 +39,7 @@ function Contact() {
           <div className="absolute inset-0 bg-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
         </div>
 
-        <p className="text-gray-400 mt-4 text-sm sm:text-base">
+        <p className={`mt-4 text-sm sm:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
           Ready to bring your vision to life? Let's start the conversation.
         </p>
       </div>

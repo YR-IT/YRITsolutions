@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 import ClientReview from './ClientReview';
 
 // Import assets
@@ -11,6 +12,7 @@ import DigitalImg from '../assets/data-analysis-animation-download-in-lottie-jso
 
 const Services = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   const [selectedService, setSelectedService] = useState('web');
   const [isNavigating, setIsNavigating] = useState(false);
 
@@ -62,12 +64,12 @@ const Services = () => {
       <div className="space-y-6 animate-fadeIn">
         <div className="space-y-8">
           <div className="relative">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight animate-slideInLeft relative z-10">
+            <h2 className={`text-4xl lg:text-5xl font-bold leading-tight animate-slideInLeft relative z-10 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {current.title}
             </h2>
             <div className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft animation-delay-200"></div>
           </div>
-          <p className="text-lg text-gray-300 leading-relaxed max-w-2xl animate-slideInLeft animation-delay-200">
+          <p className={`text-lg leading-relaxed max-w-2xl animate-slideInLeft animation-delay-200 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             {current.description}
           </p>
         </div>
@@ -115,7 +117,11 @@ const Services = () => {
                 setIsNavigating(false);
               }, 400);
             }}
-            className={`group relative bg-transparent hover:bg-gray-800/50 text-white px-10 py-4 border-2 border-blue-600 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 shadow-2xl hover:shadow-blue-500/25 hover:border-purple-600 overflow-hidden button-click ${isNavigating ? 'opacity-75 cursor-not-allowed navigation-loading' : ''}`}
+            className={`group relative bg-transparent px-10 py-4 border-2 border-blue-600 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 shadow-2xl hover:shadow-blue-500/25 hover:border-purple-600 overflow-hidden button-click ${
+              isDarkMode 
+                ? 'text-white hover:bg-gray-800/50' 
+                : 'text-gray-900 hover:bg-gray-100/50'
+            } ${isNavigating ? 'opacity-75 cursor-not-allowed navigation-loading' : ''}`}
           >
             <span className="relative z-10 transition-all duration-300 group-hover:text-purple-400">Contact Us</span>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
@@ -266,7 +272,7 @@ const Services = () => {
         {serviceDetails[selectedService].map((item, index) => (
           <div 
             key={index} 
-            className="group relative p-6 bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 transform hover:-translate-y-3 hover:scale-[1.02] text-center lg:text-left cursor-pointer overflow-hidden"
+            className={`group relative p-6 backdrop-blur-sm rounded-3xl transition-all duration-700 transform hover:-translate-y-3 hover:scale-[1.02] text-center lg:text-left cursor-pointer overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 border border-gray-700/50 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20' : 'bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200/50 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10'}`}
             style={{ animationDelay: `${index * 150}ms` }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
@@ -279,10 +285,10 @@ const Services = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl animate-ping opacity-20"></div>
               </div>
                              <div className="space-y-2 flex-1">
-                 <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-700">
+                 <h3 className={`text-xl font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-700 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                    {item.title}
                  </h3>
-                 <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-500">
+                 <p className={`leading-relaxed transition-colors duration-500 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
                    {item.description}
                  </p>
                </div>
@@ -346,7 +352,7 @@ const Services = () => {
         {rightContent[selectedService].map((item, index) => (
           <div 
             key={index} 
-            className="group relative p-6 bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl shadow-2xl hover:shadow-blue-500/30 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-700 transform hover:-translate-y-4 hover:scale-[1.03] text-center lg:text-left cursor-pointer overflow-hidden"
+            className={`group relative p-6 backdrop-blur-sm rounded-3xl shadow-2xl transition-all duration-700 transform hover:-translate-y-4 hover:scale-[1.03] text-center lg:text-left cursor-pointer overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-gray-900/80 hover:shadow-blue-500/30 border border-gray-700/50 hover:border-blue-500/50' : 'bg-gradient-to-br from-white via-gray-50 to-white hover:shadow-blue-500/20 border border-gray-200/50 hover:border-blue-500/50'}`}
             style={{ animationDelay: `${index * 200}ms` }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
@@ -361,10 +367,10 @@ const Services = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl blur-lg group-hover:scale-150 transition-all duration-700"></div>
               </div>
               <div className="space-y-2 flex-1">
-                <h3 className="text-lg font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 uppercase tracking-wide transition-all duration-700">
+                <h3 className={`text-lg font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 uppercase tracking-wide transition-all duration-700 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   {item.title}
                 </h3>
-                <p className="text-gray-300 text-sm group-hover:text-gray-200 transition-colors duration-500">{item.description}</p>
+                <p className={`text-sm transition-colors duration-500 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>{item.description}</p>
               </div>
             </div>
             
@@ -388,13 +394,13 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       <section className="pt-12 pb-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 space-y-10">
             <div className="relative">
-              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight animate-fadeIn">
+              <h1 className={`text-5xl lg:text-7xl font-bold leading-tight animate-fadeIn ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 We Strive To Deliver
                 <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-gradient">
                   Development Services
@@ -402,7 +408,7 @@ const Services = () => {
               </h1>
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft animation-delay-300"></div>
             </div>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fadeIn animation-delay-300">
+            <p className={`text-xl max-w-4xl mx-auto leading-relaxed animate-fadeIn animation-delay-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               We specialize in creating visually appealing, high-quality, and user-friendly applications that drive business growth.
             </p>
           </div>
@@ -411,7 +417,7 @@ const Services = () => {
           <div className="mb-12">
             
             <div className="hidden md:flex justify-center">
-              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-3 shadow-2xl border border-gray-700 hover:shadow-blue-500/20 transition-all duration-700 relative overflow-hidden">
+              <div className={`rounded-3xl p-3 shadow-2xl transition-all duration-700 relative overflow-hidden ${isDarkMode ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border border-gray-700 hover:shadow-blue-500/20' : 'bg-gradient-to-r from-gray-100 via-white to-gray-100 border border-gray-200 hover:shadow-blue-500/10'}`}>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-all duration-700"></div>
                 <div className="flex flex-wrap justify-center gap-3 relative z-10">
                   {services.map((service) => (
@@ -421,7 +427,7 @@ const Services = () => {
                       className={`relative px-4 py-4 rounded-2xl font-semibold transition-all duration-700 flex items-center space-x-2 group overflow-hidden whitespace-nowrap ${
                         selectedService === service.id
                           ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl transform scale-105 hover:scale-110'
-                          : 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700 hover:scale-105'
+                          : `${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gradient-to-r hover:from-gray-200 hover:to-gray-100'} hover:scale-105`
                       }`}
                     >
                       <span className="text-xl group-hover:scale-125 transition-transform duration-500">{service.icon}</span>
@@ -437,10 +443,10 @@ const Services = () => {
 
             
             <div className="md:hidden flex justify-center">
-              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700 w-full hover:shadow-blue-500/20 transition-all duration-700">
-                <label className="block text-sm font-semibold text-gray-300 mb-3">Choose Service:</label>
+              <div className={`rounded-3xl p-6 shadow-2xl w-full transition-all duration-700 ${isDarkMode ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border border-gray-700 hover:shadow-blue-500/20' : 'bg-gradient-to-r from-gray-100 via-white to-gray-100 border border-gray-200 hover:shadow-blue-500/10'}`}>
+                <label className={`block text-sm font-semibold mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Choose Service:</label>
                 <select
-                  className="w-full p-4 text-base border border-gray-600 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-500 hover:border-blue-400 bg-gray-800 text-white"
+                  className={`w-full p-4 text-base border rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-500 hover:border-blue-400 ${isDarkMode ? 'border-gray-600 bg-gray-800 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
                   onChange={(e) => handleServiceChange(e.target.value)}
                   value={selectedService}
                 >
@@ -464,7 +470,7 @@ const Services = () => {
             <div className="order-1 lg:order-2 flex justify-center">
               <div className="relative group w-full max-w-lg animate-fadeIn animation-delay-500">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-all duration-1000 animate-pulse"></div>
-                <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-8 shadow-2xl border border-gray-700 hover:shadow-blue-500/30 transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2 overflow-hidden">
+                <div className={`relative rounded-3xl p-8 shadow-2xl transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2 overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-gray-700 hover:shadow-blue-500/30' : 'bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 hover:shadow-blue-500/20'}`}>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                   <img
                     src={getHeroImage()}
@@ -479,17 +485,17 @@ const Services = () => {
       </section>
 
       
-             <section className="pt-0 pb-16 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+             <section className={`pt-0 pb-16 px-4 relative overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900' : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="bg-gradient-to-br from-gray-800/50 via-gray-900/50 to-black/50 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-700/50 hover:shadow-blue-500/20 transition-all duration-700 relative overflow-hidden">
+          <div className={`backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl transition-all duration-700 relative overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-gray-800/50 via-gray-900/50 to-black/50 border border-gray-700/50 hover:shadow-blue-500/20' : 'bg-gradient-to-br from-white/80 via-gray-50/80 to-white/80 border border-gray-200/50 hover:shadow-blue-500/10'}`}>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-all duration-700"></div>
             <div className="grid lg:grid-cols-2 gap-12 relative z-10">
               
               <div className="space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left">
                 <div className="space-y-6 animate-fadeIn">
                   <div className="relative">
-                    <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                    <h2 className={`text-4xl lg:text-5xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                       We work with you for
                       <span className="block gradient-text">growth</span>
                     </h2>
@@ -501,7 +507,7 @@ const Services = () => {
               
                              <div className="space-y-6 py-4 text-center lg:text-left animate-fadeIn animation-delay-300">
                 <div className="relative">
-                  <h3 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Specializations</h3>
+                  <h3 className={`text-4xl lg:text-5xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Our Specializations</h3>
                   <div className="absolute -bottom-2 left-0 w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-slideInLeft animation-delay-200"></div>
                 </div>
                 {renderServiceRightContent()}

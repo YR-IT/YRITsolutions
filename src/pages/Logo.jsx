@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from '../contexts/ThemeContext';
 
 const logos = [
   "/logos/logo1.png",
@@ -13,8 +14,10 @@ const logos = [
 ];
 
 const LogoMarquee = () => {
+  const { isDarkMode } = useTheme();
+  
   return (
-    <section className="w-full bg-black py-12 overflow-hidden relative">
+    <section className={`w-full ${isDarkMode ? 'bg-black' : 'bg-white'} py-12 overflow-hidden relative`}>
       {/* Inline CSS for animation */}
       <style>{`
         @keyframes logo-marquee {

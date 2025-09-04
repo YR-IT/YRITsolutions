@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ClientReview = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const { isDarkMode } = useTheme();
 
   const testimonials = [
     {
@@ -101,10 +103,10 @@ const ClientReview = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-black relative overflow-hidden">
+    <section className={`py-20 px-4 relative overflow-hidden ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-70">
-      <div className="absolute inset-0 bg-black/20"></div>
+      <div className={`absolute inset-0 ${isDarkMode ? 'bg-black/20' : 'bg-white/20'}`}></div>
 
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 30px 30px, rgba(59, 130, 246, 0.08) 2px, transparent 2px)`,
@@ -113,21 +115,21 @@ const ClientReview = () => {
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-black"></div>
+      <div className={`absolute inset-0 ${isDarkMode ? 'bg-black' : 'bg-white'}`}></div>
 
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 space-y-6">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-full border border-blue-500/50 mb-6 backdrop-blur-sm">
-            <span className="text-blue-300 text-sm font-medium"> Clients Review</span>
+          <div className={`inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-full border border-blue-500/50 mb-6 backdrop-blur-sm`}>
+            <span className={`text-sm font-medium ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}> Clients Review</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+          <h2 className={`text-3xl lg:text-4xl font-bold leading-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             What Our Clients Say
-            <span className="block bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+            <span className={`block bg-gradient-to-r bg-clip-text text-transparent ${isDarkMode ? 'from-blue-300 to-purple-300' : 'from-blue-600 to-purple-600'}`}>
               About Us
             </span>
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-gray-200' : 'text-gray-600'}`}>
           Don't just take our word for it - hear from our satisfied clients who have experienced success with our services
           </p>
         </div>
@@ -144,31 +146,31 @@ const ClientReview = () => {
                   <div className="grid md:grid-cols-2 gap-8 lg:gap-12 px-4">
                     {testimonials.slice(slideIndex * 2, slideIndex * 2 + 2).map((testimonial, index) => (
                       <div key={index} className="group">
-                        <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-3xl p-8 border border-gray-800/70 hover:border-blue-500/70 transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-500/30">
+                        <div className={`relative backdrop-blur-sm rounded-3xl p-8 transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-500/30 ${isDarkMode ? 'bg-gradient-to-br from-gray-900/90 to-black/90 border border-gray-800/70 hover:border-blue-500/70' : 'bg-white border border-gray-200 hover:border-blue-300 shadow-lg'}`}>
                           {/* Glow Effect */}
                           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                           
                           {/* Content */}
                           <div className="relative z-10 space-y-6">
                             {/* Quote Icon */}
-                            <div className="text-4xl text-blue-300/70 mb-4">"</div>
+                            <div className={`text-4xl mb-4 ${isDarkMode ? 'text-blue-300/70' : 'text-blue-600/70'}`}>"</div>
                             
-                            <p className="text-gray-100 text-lg leading-relaxed">
+                            <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
                               {testimonial.text}
                             </p>
 
                             <StarRating rating={testimonial.rating} />
 
                             {/* Author */}
-                            <div className="pt-6 border-t border-gray-800/70">
+                            <div className={`pt-6 border-t ${isDarkMode ? 'border-gray-800/70' : 'border-gray-200'}`}>
                               <div className="flex items-center space-x-4">
                                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center text-2xl">
                                   {testimonial.avatar}
                                 </div>
                                 <div>
-                                  <h4 className="text-xl font-bold text-white">{testimonial.name}</h4>
-                                  <p className="text-blue-300 font-medium">{testimonial.role}</p>
-                                  <p className="text-gray-300 text-sm">{testimonial.company}</p>
+                                  <h4 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{testimonial.name}</h4>
+                                  <p className={`font-medium ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{testimonial.role}</p>
+                                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{testimonial.company}</p>
                                 </div>
                               </div>
                             </div>
@@ -185,7 +187,7 @@ const ClientReview = () => {
           {/* Navigation Arrows */}
           <button 
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-900/90 hover:bg-gray-800/90 text-blue-300 hover:text-blue-200 rounded-full p-4 backdrop-blur-sm border border-gray-700/70 hover:border-blue-500/70 transition-all duration-300 group"
+            className={`absolute left-4 top-1/2 transform -translate-y-1/2 rounded-full p-4 backdrop-blur-sm transition-all duration-300 group ${isDarkMode ? 'bg-gray-900/90 hover:bg-gray-800/90 text-blue-300 hover:text-blue-200 border border-gray-700/70 hover:border-blue-500/70' : 'bg-white/90 hover:bg-gray-100/90 text-blue-600 hover:text-blue-700 border border-gray-300 hover:border-blue-400 shadow-lg'}`}
           >
             <svg className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -194,7 +196,7 @@ const ClientReview = () => {
           
           <button 
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-900/90 hover:bg-gray-800/90 text-blue-300 hover:text-blue-200 rounded-full p-4 backdrop-blur-sm border border-gray-700/70 hover:border-blue-500/70 transition-all duration-300 group"
+            className={`absolute right-4 top-1/2 transform -translate-y-1/2 rounded-full p-4 backdrop-blur-sm transition-all duration-300 group ${isDarkMode ? 'bg-gray-900/90 hover:bg-gray-800/90 text-blue-300 hover:text-blue-200 border border-gray-700/70 hover:border-blue-500/70' : 'bg-white/90 hover:bg-gray-100/90 text-blue-600 hover:text-blue-700 border border-gray-300 hover:border-blue-400 shadow-lg'}`}
           >
             <svg className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -212,31 +214,31 @@ const ClientReview = () => {
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="w-full flex-shrink-0 px-4">
                   <div className="group">
-                    <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-3xl p-8 border border-gray-800/70">
+                    <div className={`relative backdrop-blur-sm rounded-3xl p-8 ${isDarkMode ? 'bg-gradient-to-br from-gray-900/90 to-black/90 border border-gray-800/70' : 'bg-white border border-gray-200 shadow-lg'}`}>
                       {/* Glow Effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Content */}
                       <div className="relative z-10 space-y-6">
                         {/* Quote Icon */}
-                        <div className="text-3xl text-blue-300/70 mb-4">"</div>
+                        <div className={`text-3xl mb-4 ${isDarkMode ? 'text-blue-300/70' : 'text-blue-600/70'}`}>"</div>
                         
-                        <p className="text-gray-100 text-base leading-relaxed">
+                        <p className={`text-base leading-relaxed ${isDarkMode ? 'text-gray-100' : 'text-gray-700'}`}>
                           {testimonial.text}
                         </p>
 
                         <StarRating rating={testimonial.rating} />
 
                         {/* Author */}
-                        <div className="pt-6 border-t border-gray-800/70">
+                        <div className={`pt-6 border-t ${isDarkMode ? 'border-gray-800/70' : 'border-gray-200'}`}>
                           <div className="flex items-center space-x-4">
                             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center text-xl">
                               {testimonial.avatar}
                             </div>
                             <div>
-                              <h4 className="text-lg font-bold text-white">{testimonial.name}</h4>
-                              <p className="text-blue-300 font-medium text-sm">{testimonial.role}</p>
-                              <p className="text-gray-300 text-xs">{testimonial.company}</p>
+                              <h4 className={`text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{testimonial.name}</h4>
+                              <p className={`font-medium text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{testimonial.role}</p>
+                              <p className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{testimonial.company}</p>
                             </div>
                           </div>
                         </div>
@@ -258,7 +260,7 @@ const ClientReview = () => {
               className={`transition-all duration-300 ${
                 currentSlide === index 
                   ? 'w-8 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full' 
-                  : 'w-3 h-3 bg-gray-700 hover:bg-gray-600 rounded-full'
+                  : `w-3 h-3 rounded-full ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-400'}`
               }`}
             />
           ))}
@@ -266,7 +268,7 @@ const ClientReview = () => {
 
         {/* Auto-slide progress bar */}
         <div className="mt-8 max-w-md mx-auto">
-          <div className="bg-gray-800/70 rounded-full h-1 overflow-hidden backdrop-blur-sm">
+          <div className={`rounded-full h-1 overflow-hidden backdrop-blur-sm ${isDarkMode ? 'bg-gray-800/70' : 'bg-gray-200'}`}>
             <div 
               className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all ease-linear"
               style={{

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from '../contexts/ThemeContext';
 import {
   Star,
   ChevronDown,
@@ -83,6 +84,7 @@ function CountUp({ end = 0, duration = 1200, startOn = false, className = "" }) 
 
 const AboutPage = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
   
   useEffect(() => {
     AOS.init({ duration: 1200, once: true });
@@ -198,7 +200,7 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+    <div className={`min-h-screen overflow-x-hidden relative ${isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
       {/* Geometric Background Pattern */}
       <div className="fixed inset-0 opacity-10 pointer-events-none">
         <div className="absolute inset-0" style={{
@@ -255,7 +257,7 @@ const AboutPage = () => {
   animate={{ opacity: 1, scale: 1 }}
   transition={{ duration: 0.8, delay: 0.2 }}
 >
-  <span className="block bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
+  <span className={`block bg-gradient-to-r ${isDarkMode ? 'from-white via-purple-200 to-white' : 'from-gray-900 via-purple-600 to-gray-900'} bg-clip-text text-transparent`}>
     CRAFTING
   </span>
   <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent">
@@ -265,7 +267,7 @@ const AboutPage = () => {
 
 
           <motion.p
-           className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12"
+           className={`text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed mb-12 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -291,7 +293,7 @@ const AboutPage = () => {
             </button>
             <button 
               onClick={() => navigate('/portfolio')}
-              className="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
+              className={`px-8 py-4 border rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm ${isDarkMode ? 'border-gray-600 hover:bg-gray-800/50' : 'border-gray-300 hover:bg-gray-100/50'}`}
             >
               View Our Work
             </button>
@@ -322,7 +324,7 @@ const AboutPage = () => {
               <span className="text-purple-300 font-semibold text-lg">OUR MISSION</span>
             </div>
 
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto">
+            <h2 className={`text-2xl md:text-4xl font-bold leading-tight mb-8 max-w-5xl mx-auto ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               We are committed to empowering businesses and idividuals with {" "}
               <span className="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
                 INNOVATIVE SOFTWARE SOLUTIONS
@@ -382,7 +384,7 @@ const AboutPage = () => {
       {/* Statistics Section */}
       <motion.section
         ref={statsRef}
-        className="py-20 bg-gray-950/50"
+        className={`py-20 ${isDarkMode ? 'bg-gray-950/50' : 'bg-gray-50'}`}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -390,7 +392,7 @@ const AboutPage = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2
-            className="text-center text-4xl md:text-5xl font-bold mb-16"
+            className={`text-center text-4xl md:text-5xl font-bold mb-16 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -409,7 +411,7 @@ const AboutPage = () => {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="relative bg-gray-900/50 border border-gray-800 rounded-2xl p-8 text-center backdrop-blur-sm hover:bg-gray-900/80 transition-all duration-300 group-hover:scale-105">
+                <div className={`relative rounded-2xl p-8 text-center backdrop-blur-sm transition-all duration-300 group-hover:scale-105 ${isDarkMode ? 'bg-gray-900/50 border border-gray-800 hover:bg-gray-900/80' : 'bg-white border border-gray-200 hover:bg-gray-50 shadow-lg'}`}>
                   <div className="text-5xl md:text-6xl font-black mb-4">
                     <CountUp
                       end={stat.num}
@@ -419,7 +421,7 @@ const AboutPage = () => {
                     />
                     <span className="text-purple-400">{stat.suffix}</span>
                   </div>
-                  <p className="text-gray-300 text-lg font-medium">{stat.label}</p>
+                  <p className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{stat.label}</p>
                   
                   {/* Animated border */}
                   <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-purple-500/50 to-pink-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" 
@@ -432,7 +434,7 @@ const AboutPage = () => {
       </motion.section>
 
       {/* Core Values */}
-      <section className="py-12 bg-gradient-to-b from-black via-gray-950 to-black">
+      <section className={`py-12 ${isDarkMode ? 'bg-gradient-to-b from-black via-gray-950 to-black' : 'bg-gradient-to-b from-gray-50 via-white to-gray-50'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -444,7 +446,7 @@ const AboutPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Our Core <span className="text-purple-400">Values</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className={`text-xl max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               These principles guide everything we do and shape the way we work with our clients and each other.
             </p>
           </motion.div>
@@ -459,7 +461,7 @@ const AboutPage = () => {
       transition={{ duration: 0.8, delay: idx * 0.2 }}
       viewport={{ once: true }}
     >
-      <div className="relative bg-gray-900/50 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm hover:bg-gray-900/80 transition-all duration-500 group-hover:scale-[1.02] h-full text-center md:text-left">
+      <div className={`relative rounded-3xl p-8 backdrop-blur-sm transition-all duration-500 group-hover:scale-[1.02] h-full text-center md:text-left ${isDarkMode ? 'bg-gray-900/50 border border-gray-800 hover:bg-gray-900/80' : 'bg-white border border-gray-200 hover:bg-gray-50 shadow-lg'}`}>
         
         {/* Icon */}
         <div
@@ -469,12 +471,12 @@ const AboutPage = () => {
         </div>
 
         {/* Title */}
-        <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
+        <h3 className={`text-2xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white group-hover:text-purple-300' : 'text-gray-900 group-hover:text-purple-600'}`}>
           {value.title}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-300 text-lg leading-relaxed">
+        <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
           {value.description}
         </p>
 
@@ -500,7 +502,7 @@ const AboutPage = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Why Choose <span className="text-purple-400">Us?</span>
             </h2>
           </motion.div>
@@ -509,7 +511,7 @@ const AboutPage = () => {
             {achievements.map((achievement, idx) => (
               <motion.div
                 key={idx}
-                className="flex items-center gap-4 p-6 rounded-2xl bg-gray-900/30 border border-gray-800 backdrop-blur-sm hover:bg-gray-900/50 transition-all duration-300"
+                className={`flex items-center gap-4 p-6 rounded-2xl backdrop-blur-sm transition-all duration-300 ${isDarkMode ? 'bg-gray-900/30 border border-gray-800 hover:bg-gray-900/50' : 'bg-white border border-gray-200 hover:bg-gray-50 shadow-lg'}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -518,7 +520,7 @@ const AboutPage = () => {
                 <div className="flex-shrink-0">
                   <CheckCircle className="w-6 h-6 text-green-400" />
                 </div>
-                <p className="text-gray-300 font-medium">{achievement}</p>
+                <p className={`font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{achievement}</p>
               </motion.div>
             ))}
           </div>
@@ -526,7 +528,7 @@ const AboutPage = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gray-950/30">
+      <section className={`py-20 ${isDarkMode ? 'bg-gray-950/30' : 'bg-gray-100/50'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -535,10 +537,10 @@ const AboutPage = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Meet Our <span className="text-purple-400">Founder</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className={`text-xl text-gray-300 max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Driven by passion and powered by innovation, our leadership shapes the future of digital excellence.
             </p>
           </motion.div>
@@ -551,7 +553,7 @@ const AboutPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="relative bg-gray-900/50 border border-gray-800 rounded-3xl p-8 backdrop-blur-sm max-w-md text-center group-hover:bg-gray-900/80 transition-all duration-500">
+              <div className={`relative rounded-3xl p-8 backdrop-blur-sm max-w-md text-center transition-all duration-500 ${isDarkMode ? 'bg-gray-900/50 border border-gray-800 group-hover:bg-gray-900/80' : 'bg-white border border-gray-200 group-hover:bg-gray-50 shadow-lg'}`}>
                 <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-purple-500/50 group-hover:border-purple-400 transition-colors">
                 <img
   src={founderImg}
@@ -562,9 +564,9 @@ const AboutPage = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-2 text-white">Yashika Sharma</h3>
+                <h3 className={`text-2xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Yashika Sharma</h3>
                 <p className="text-purple-400 font-semibold mb-4 text-lg">CEO & Founder</p>
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className={`mb-6 leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Visionary leader driving innovation in digital transformation with over 5 years of experience in cutting-edge technology solutions.
                 </p>
 
@@ -592,7 +594,7 @@ const AboutPage = () => {
       </section>
 
       {/* Founder Achievements Section */}
-      <section className="py-10 md:py-20 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
+      <section className={`py-10 md:py-20 relative overflow-hidden ${isDarkMode ? 'bg-gradient-to-b from-gray-950 to-black' : 'bg-gradient-to-b from-gray-100 to-white'}`}>
 
         {/* Geometric shapes background */}
         <div className="absolute inset-0 opacity-10">
@@ -614,7 +616,7 @@ const AboutPage = () => {
               <span className="text-purple-300 font-semibold">FOUNDER'S JOURNEY</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">
+            <h2 className={`text-4xl md:text-6xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               LEADERSHIP <span className="text-purple-400">ACHIEVEMENTS</span>
             </h2>
           </motion.div>
@@ -631,7 +633,7 @@ const AboutPage = () => {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="w-full"
                 >
-                  <div className="bg-gray-900/50 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm">
+                  <div className={`rounded-3xl overflow-hidden backdrop-blur-sm ${isDarkMode ? 'bg-gray-900/50 border border-gray-800' : 'bg-white border border-gray-200 shadow-xl'}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                     
                      {/* Image Section */}
@@ -653,11 +655,11 @@ const AboutPage = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                          <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+                          <h3 className={`text-3xl lg:text-4xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                             {founderAchievements[currentSlide].title}
                           </h3>
                           
-                          <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                          <p className={`text-lg mb-8 leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                             {founderAchievements[currentSlide].description}
                           </p>
 
@@ -736,10 +738,10 @@ const AboutPage = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">
+            <h2 className={`text-4xl md:text-6xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Ready to Start Your <span className="text-purple-400">Journey?</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className={`text-xl max-w-3xl mx-auto mb-12 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Let's transform your vision into reality with innovative solutions that drive real results.
             </p>
 
@@ -757,7 +759,7 @@ const AboutPage = () => {
               
               <motion.button
                 onClick={() => navigate('/meetingform')}
-                className="px-10 py-5 border-2 border-gray-600 rounded-2xl font-bold text-lg hover:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
+                className={`px-10 py-5 border-2 rounded-2xl font-bold text-lg transition-all duration-300 backdrop-blur-sm ${isDarkMode ? 'border-gray-600 hover:bg-gray-800/50' : 'border-gray-300 hover:bg-gray-100/50'}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >

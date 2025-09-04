@@ -6,8 +6,10 @@ import IMG from "../assets/image11.png"
 import NOK from "../assets/Vector2.png"
 import ClientReview from './ClientReview'
 import { Link } from 'react-router-dom'
+import { useTheme } from '../contexts/ThemeContext'
 
 const PricingMain = () => {
+    const { isDarkMode } = useTheme();
     const datad = [
         {
             heading: "Maximize your potential with our tailored solutions.",
@@ -49,7 +51,7 @@ const PricingMain = () => {
 
     return (
         <>
-            <div className='bg-black text-white min-h-screen'>
+            <div className={`min-h-screen ${isDarkMode ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
                 <Pricing />
 
                 {/* Contact CTA */}
@@ -65,7 +67,7 @@ const PricingMain = () => {
                 {/* Subheading */}
 <div className='w-full flex justify-center items-center mt-6 sm:mt-12 px-4'>
   <div className='max-w-4xl mx-auto'>
-    <div className='text-center text-2xl sm:text-3xl lg:text-4xl leading-relaxed font-medium text-white drop-shadow-lg px-4' style={{fontFamily: 'Space Grotesk, sans-serif'}}>
+    <div className={`text-center text-2xl sm:text-3xl lg:text-4xl leading-relaxed font-medium drop-shadow-lg px-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} style={{fontFamily: 'Space Grotesk, sans-serif'}}>
       We took the best parts of an agency and freelance marketplace
     </div>
   </div>
@@ -73,19 +75,21 @@ const PricingMain = () => {
                 {/* Table with Horizontal Scroll for Mobile */}
                 <div className='mt-8 sm:mt-16 overflow-x-auto w-full py-6 sm:py-8 lg:py-12 relative'>
                     {/* Background gradient effect */}
-                    <div className='absolute inset-0 bg-gradient-to-r from-transparent via-purple-900/10 to-transparent opacity-50'></div>
+                    <div className={`absolute inset-0 opacity-50 ${isDarkMode ? 'bg-gradient-to-r from-transparent via-purple-900/10 to-transparent' : 'bg-gradient-to-r from-transparent via-purple-100/20 to-transparent'}`}></div>
                     
                     <div className='min-w-[320px] sm:min-w-[768px] lg:min-w-[1200px] w-fit mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
                         <div className='flex gap-4 sm:gap-6 lg:gap-8 justify-center'>
                             {allColumns.map((column, colIdx) => (
                                 <div
                                     key={colIdx}
-                                    className={`w-[280px] sm:w-[280px] lg:w-[325px] ${colIdx === 0 ? 'pt-20 sm:pt-28' : 'pt-8 sm:pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20
-                                                ${colIdx === 0 ? 'bg-gradient-to-b from-gray-900/50 to-gray-800/30 border border-gray-700' : 
-                                                  colIdx === 1 ? 'bg-gradient-to-b from-purple-900/40 to-gray-900/60 border border-gray-700 relative overflow-hidden' :
-                                                  'bg-gradient-to-b from-gray-900/60 to-gray-800/40 border border-gray-700 hover:border-gray-600'}
-                                                block
-                                                backdrop-blur-sm`}
+                                    className={`w-[280px] sm:w-[280px] lg:w-[325px] ${colIdx === 0 ? 'pt-20 sm:pt-28' : 'pt-8 sm:pt-10'} rounded-2xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 block backdrop-blur-sm
+                                                ${isDarkMode ? 
+                                                    (colIdx === 0 ? 'bg-gradient-to-b from-gray-900/50 to-gray-800/30 border border-gray-700' : 
+                                                     colIdx === 1 ? 'bg-gradient-to-b from-purple-900/40 to-gray-900/60 border border-gray-700 relative overflow-hidden' :
+                                                     'bg-gradient-to-b from-gray-900/60 to-gray-800/40 border border-gray-700 hover:border-gray-600') :
+                                                    (colIdx === 0 ? 'bg-gradient-to-b from-gray-100/80 to-white/60 border border-gray-200' : 
+                                                     colIdx === 1 ? 'bg-gradient-to-b from-purple-100/60 to-white/80 border border-gray-200 relative overflow-hidden' :
+                                                     'bg-gradient-to-b from-gray-50/80 to-white/60 border border-gray-200 hover:border-gray-300')}`}
                                 >
 
                                     {/* Animated background for popular column */}
@@ -97,7 +101,8 @@ const PricingMain = () => {
                                         <div className='text-center mb-6 sm:mb-8 relative z-10 px-2'>
                                             <h3 className={`text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-300
                                                 ${colIdx === 1 ? 'text-[var(--theme)] drop-shadow-lg' : 
-                                                  colIdx === 0 ? 'text-[var(--theme)] drop-shadow-lg' : 'text-white'}`}>
+                                                  colIdx === 0 ? 'text-[var(--theme)] drop-shadow-lg' : 
+                                                  isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                                                 {headings[colIdx]}
                                             </h3>
                                         </div>
@@ -108,7 +113,9 @@ const PricingMain = () => {
                                             <div 
                                                 key={rowIdx} 
                                                 className={`flex items-start pl-2 sm:pl-4 gap-2 sm:gap-4 group p-2 sm:p-3 rounded-xl transition-all duration-300 hover:transform hover:translateX-2
-                                                    ${colIdx === 1 ? 'hover:bg-purple-800/30 hover:shadow-lg' : 'hover:bg-gray-700/50'}
+                                                    ${colIdx === 1 ? 
+                                                        (isDarkMode ? 'hover:bg-purple-800/30 hover:shadow-lg' : 'hover:bg-purple-100/50 hover:shadow-lg') :
+                                                        (isDarkMode ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100/50')}
                                                     ${item.ok ? 'border-l-2 sm:border-l-4 border-green-500/50' : 'border-l-2 sm:border-l-4 border-red-500/50'}`}
                                             >
                                                 <div className='w-5 h-5 sm:w-6 sm:h-6 mt-0.5 flex-shrink-0 relative flex items-center justify-center'>
@@ -128,7 +135,9 @@ const PricingMain = () => {
                                                     <div className={`absolute inset-0 rounded-full scale-0 group-hover:scale-150 transition-transform duration-300 ${item.ok ? 'bg-green-400/20' : 'bg-red-400/20'}`}></div>
                                                 </div>
                                                 <div className={`text-xs sm:text-sm leading-relaxed transition-colors duration-300 font-medium
-                                                    ${item.ok ? 'text-gray-200 group-hover:text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>
+                                                    ${item.ok ? 
+                                                        (isDarkMode ? 'text-gray-200 group-hover:text-white' : 'text-gray-700 group-hover:text-gray-900') :
+                                                        (isDarkMode ? 'text-gray-400 group-hover:text-gray-300' : 'text-gray-500 group-hover:text-gray-600')}`}>
                                                     {item.name}
                                                 </div>
                                             </div>
@@ -146,9 +155,9 @@ const PricingMain = () => {
                 </div>
 
                 {/* Bottom CTA Section - Modern Card Design */}
-                <div className='mt-4 sm:mt-24 mb-8 sm:mb-32 relative'>
+                <div className='mt-4 sm:mt-12 mb-8 sm:mb-16 relative'>
                     {/* Subtle Background */}
-                    <div className='absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900'></div>
+                    <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900' : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'}`}></div>
                     
                     {/* Floating Elements */}
                     <div className='absolute inset-0 overflow-hidden pointer-events-none'>
@@ -158,14 +167,14 @@ const PricingMain = () => {
                     </div>
                     
                     {/* Main Content */}
-                    <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20'>
+                    <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12'>
                         {/* Header Card */}
-                        <div className='bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-lg border border-gray-700/50 rounded-3xl px-6 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20 mb-8 sm:mb-16 text-center group hover:border-[var(--theme)]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--theme)]/10'>
+                        <div className={`backdrop-blur-lg rounded-3xl px-6 py-8 sm:px-8 sm:py-12 lg:px-12 lg:py-16 mb-6 sm:mb-10 text-center group hover:border-[var(--theme)]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--theme)]/10 ${isDarkMode ? 'bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50' : 'bg-gradient-to-br from-white/80 to-gray-50/50 border border-gray-200/50'}`}>
                             <div className='relative max-w-4xl mx-auto'>
-                                <h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-relaxed mb-8 group-hover:scale-105 transition-transform duration-500' style={{lineHeight: '1.3', paddingBottom: '8px'}}>
+                                <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-relaxed mb-8 group-hover:scale-105 transition-transform duration-500 ${isDarkMode ? 'bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent' : 'text-gray-900'}`} style={{lineHeight: '1.3', paddingBottom: '8px'}}>
                                     Ready to get started?
                                 </h2>
-                                <p className='text-gray-300 max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed mb-8 group-hover:text-gray-200 transition-colors duration-500'>
+                                <p className={`max-w-3xl mx-auto text-lg sm:text-xl leading-relaxed mb-8 transition-colors duration-500 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
                                     Choose the perfect plan for your business needs and take the first step towards success
                                 </p>
                                 <div className='w-24 h-1 bg-gradient-to-r from-[var(--theme)] to-purple-600 mx-auto rounded-full group-hover:w-32 transition-all duration-500'></div>
@@ -173,11 +182,11 @@ const PricingMain = () => {
                         </div>
                         
                         {/* Content Cards */}
-                        <div className='space-y-12'>
+                        <div className='space-y-8'>
                             {datad.map((item, index) => (
                                 <div
                                     key={index}
-                                    className={`flex ${index % 2 === 1 ? 'flex-row-reverse' : ''} gap-8 lg:gap-16 w-full max-[780px]:flex-col max-[780px]:items-center group bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm border border-gray-700/30 rounded-2xl p-6 sm:p-8 lg:p-12 hover:border-[var(--theme)]/20 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--theme)]/5`}
+                                    className={`flex ${index % 2 === 1 ? 'flex-row-reverse' : ''} gap-8 lg:gap-16 w-full max-[780px]:flex-col max-[780px]:items-center group backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-12 hover:border-[var(--theme)]/20 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--theme)]/5 ${isDarkMode ? 'bg-gradient-to-br from-gray-800/30 to-gray-900/30 border border-gray-700/30' : 'bg-gradient-to-br from-white/60 to-gray-50/30 border border-gray-200/30'}`}
                                 >
                                     {/* Image Container */}
                                     <div className='flex-shrink-0 w-full sm:w-[450px] lg:w-[500px] h-[300px] sm:h-[350px] lg:h-[400px] relative overflow-hidden rounded-2xl group-hover:scale-105 transition-transform duration-500'>
@@ -194,10 +203,10 @@ const PricingMain = () => {
                                         <div className='text-xl sm:text-2xl lg:text-[25px] text-[var(--theme)] font-medium'>
                                             Own an App? Grow like Crazy with us.
                                         </div>
-                                        <div className='text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent leading-tight'>
+                                        <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight ${isDarkMode ? 'bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent' : 'text-gray-900'}`}>
                                             <p>{item.heading}</p>
                                         </div>
-                                        <div className='text-gray-300 leading-relaxed text-base sm:text-lg pricingM-subpart3'>
+                                        <div className={`leading-relaxed text-base sm:text-lg pricingM-subpart3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                             {item.desc}
                                         </div>
                                         <div className='flex gap-4 sm:gap-6 flex-wrap justify-center lg:justify-start max-[780px]:justify-center pt-4'>

@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../assets/YRLogo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from "lucide-react";
+import ThemeToggle from '../components/ThemeToggle';
 
 // Menu data
 const menuData = {
@@ -59,14 +60,14 @@ const Navbar = ({ state, setState, setshow, show }) => {
       {/* -------- Top Navbar -------- */}
       <div
         className={`navbar-container z-[10000] w-full h-[100px] flex justify-between items-center 
-        px-8 transition-all duration-300 text-white`}
+        px-8 transition-all duration-300 text-white dark:text-white bg-black/80 dark:bg-black/80 backdrop-blur-sm`}
       >
         {/* Logo */}
         <Link to="/" onClick={() => setState(0)}>
           <img
             src={Logo}
             alt="logo"
-            className="h-16 sm:h-28 w-auto cursor-pointer max-w-full mt-4"
+            className="h-16 sm:h-28 w-auto cursor-pointer max-w-full mt-4 logo-image"
           />
         </Link>
 
@@ -108,7 +109,10 @@ const Navbar = ({ state, setState, setshow, show }) => {
         </div>
 
         {/* Right side buttons */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4">
+          {/* Theme Toggle */}
+          <ThemeToggle />
+
           {/* Gradient Button */}
           <button
             className="hidden md:block px-6 py-2 bg-gradient-to-r from-[#6C63FF] to-[#3B82F6] text-white rounded-md shadow-md font-medium transition-transform transform hover:scale-105 text-[16px]"

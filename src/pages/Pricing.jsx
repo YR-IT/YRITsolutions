@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Pricing = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,18 +42,18 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="relative bg-black py-20 px-10 overflow-hidden">
+    <section className={`relative py-20 px-10 overflow-hidden ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       {/* Soft glow at bottom for depth */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[200px] bg-gradient-to-t from-red-900/30 via-purple-900/20 rounded-full blur-3xl"></div>
+      <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[200px] rounded-full blur-3xl ${isDarkMode ? 'bg-gradient-to-t from-red-900/30 via-purple-900/20 to-transparent' : 'bg-gradient-to-t from-red-50 via-purple-50 to-transparent'}`}></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <div className="relative inline-flex items-center gap-2 px-6 py-3 mb-4 border-flow">
+          <div className={`relative inline-flex items-center gap-2 px-6 py-3 mb-4 rounded-full border transition-colors duration-300 ${isDarkMode ? 'border-gray-700 bg-gray-900/50' : 'border-gray-200 bg-gray-50'}`}>
             <span className="w-3 h-3 rounded-full bg-purple-500"></span>
-            <h2 className="text-xl font-extrabold text-white">Our Pricing</h2>
+            <h2 className={`text-xl font-extrabold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Our Pricing</h2>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+          <h2 className={`text-4xl md:text-5xl font-extrabold ${isDarkMode ? 'text-white' : 'text-gray-900'} leading-tight`}>
             Transparent Pricing for You
           </h2>
         </div>
@@ -61,16 +63,16 @@ const Pricing = () => {
           {plans.map((plan, index) => (
            <div
            key={index}
-           className="relative bg-[#111] rounded-2xl p-8 flex flex-col items-start sm:items-start md:items-start lg:items-start xl:items-start sm:text-left text-center shadow-[0_0_30px_rgba(255,255,255,0.05)] transition duration-500 hover:scale-105"
+           className={`relative rounded-2xl p-8 flex flex-col items-start sm:items-start md:items-start lg:items-start xl:items-start sm:text-left text-center shadow-lg transition duration-500 hover:scale-105 ${isDarkMode ? 'bg-[#111] shadow-[0_0_30px_rgba(255,255,255,0.05)]' : 'bg-white shadow-lg'}`}
          >
          
               {/* Title */}
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-6`}>
                 {plan.title}
               </h3>
 
               {/* Features */}
-              <ul className="space-y-4 text-gray-300 text-sm mb-8">
+              <ul className={`space-y-4 text-sm mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start">
                     <span className="w-2 h-2 mt-2 rounded-full bg-purple-500 mr-3"></span>
