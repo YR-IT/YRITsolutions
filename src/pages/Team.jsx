@@ -46,7 +46,7 @@ const teamMembers = [
     role: 'Web Developer',
     type: 'employee',
     bio: 'Enthusiastic Web Developer with a solid foundation in HTML, CSS, JavaScript, and ReactJS for frontend development. Proficient in NodeJS, ExpressJs, and MongoDB for backend solutions.',
-    image: '/team/hanumant.jpg',
+    image: '/team/Hanumant.jpg',
     skills: ['MongoDB', 'HTML', 'Express.JS', 'Tailwind CSS', 'Node.JS', 'CSS', 'React.JS'],
     social: { linkedin: '#', twitter: '#', email: 'aisha@techcorp.com' },
     location: 'Latur (Maharashtra)',
