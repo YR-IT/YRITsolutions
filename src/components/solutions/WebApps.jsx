@@ -196,7 +196,7 @@ const WebApps = () => {
     cardBorder: isDarkMode ? 'border-white/10' : 'border-gray-200',
     cardHover: isDarkMode ? 'hover:bg-white/10' : 'hover:bg-gray-200/80',
     gradient: isDarkMode ? 'from-blue-600/20 to-purple-600/20' : 'from-blue-100/50 to-purple-100/50',
-    particleColor: isDarkMode ? 'bg-blue-400/30' : 'bg-blue-600/40'
+    particleColor: isDarkMode ? 'bg-blue-400/30' : 'bg-blue-600/60'
   };
 
   return (
@@ -493,7 +493,7 @@ const WebApps = () => {
                   </motion.h3>
                   
                   <motion.p 
-                    className={`${themeStyles.textSecondary} leading-relaxed ${isDarkMode ? 'group-hover:text-gray-200' : 'group-hover:text-gray-700'} transition-colors duration-300`}
+                    className={`${themeStyles.textSecondary} leading-relaxed ${isDarkMode ? 'group-hover:text-gray-200' : 'group-hover:text-gray-800'} transition-colors duration-300`}
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: index * 0.1 + 0.3 }}
@@ -573,13 +573,13 @@ const WebApps = () => {
                     {stack.techs.map((tech, techIndex) => (
                       <motion.div 
                         key={techIndex}
-                        className={`${isDarkMode ? 'group-hover/stack:text-gray-200' : 'group-hover/stack:text-gray-700'} transition-colors duration-300`}
+                        className={`${isDarkMode ? 'group-hover/stack:text-gray-200' : 'group-hover/stack:text-gray-800'} transition-colors duration-300`}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 + techIndex * 0.05 }}
                         whileHover={{ 
                           scale: 1.1,
-                          color: "#60A5FA",
+                          color: isDarkMode ? "#60A5FA" : "#2563EB",
                           x: 5
                         }}
                       >
@@ -703,13 +703,13 @@ const WebApps = () => {
                   </motion.h4>
                   
                   <motion.p 
-                    className={`${themeStyles.textSecondary} text-sm ${isDarkMode ? 'group-hover/process:text-gray-200' : 'group-hover/process:text-gray-700'}`}
+                    className={`${themeStyles.textSecondary} text-sm ${isDarkMode ? 'group-hover/process:text-gray-200' : 'group-hover/process:text-gray-800'}`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.5 }}
                     whileHover={{ 
                       scale: 1.05,
-                      color: "#E5E7EB"
+                      color: isDarkMode ? "#E5E7EB" : "#374151"
                     }}
                   >
                     {process.desc}
@@ -812,13 +812,13 @@ const WebApps = () => {
                   </motion.h4>
                   
                   <motion.p 
-                    className={`${themeStyles.textSecondary} text-sm ${isDarkMode ? 'group-hover/feature:text-gray-200' : 'group-hover/feature:text-gray-700'} transition-colors duration-300`}
+                    className={`${themeStyles.textSecondary} text-sm ${isDarkMode ? 'group-hover/feature:text-gray-200' : 'group-hover/feature:text-gray-800'} transition-colors duration-300`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.3 }}
                     whileHover={{ 
                       scale: 1.02,
-                      color: "#E5E7EB"
+                      color: isDarkMode ? "#E5E7EB" : "#374151"
                     }}
                   >
                     {feature.desc}
