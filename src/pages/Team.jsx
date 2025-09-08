@@ -23,7 +23,7 @@ const teamMembers = [
     type: 'employee',
     bio: 'Web Developer | Passionate about building responsive, user-friendly, and scalable web applications.',
     image: '/team/harshit.jpg',
-    skills: ['Web Developer', 'React.JS', 'Tailwind CSS'],
+    skills: ['Frontend Web Developer', 'React.JS', 'Tailwind CSS'],
     social: { linkedin: '#', twitter: '#', email: 'emily@techcorp.com' },
     location: 'Ghaziabad',
     joinedDate: '2025-09-02'
@@ -53,16 +53,40 @@ const teamMembers = [
     joinedDate: '2025-06-02'
   },
   {
-    id: 6,
-    name: 'James Thompson',
-    role: 'Product Manager',
+    id: 5,
+    name: 'Anant Gambhir',
+    role: 'Web Developer',
     type: 'employee',
-    bio: 'Product strategist with a knack for turning complex ideas into simple, delightful user experiences. Former PM at Microsoft.',
-    image: 'https://images.pexels.com/photos/2182975/pexels-photo-2182975.jpeg?auto=compress&cs=tinysrgb&w=400',
-    skills: ['Product Strategy', 'User Analytics', 'Agile Methodologies', 'Stakeholder Management'],
+    bio: 'Full-stack developer and game developer experienced in both 2D and 3D projects. Skilled in app and website development, covering both front-end and back-end solutions. Passionate problem-solver and researcher who thrives on making things happen. Currently learning automation to enhance my skill set.',
+    image: '/team/Anant.jpg',
+    skills: ['Full Stack Developer '],
     social: { linkedin: '#', email: 'james@techcorp.com' },
-    location: 'Chicago, IL',
-    joinedDate: '2022-02-28'
+    location: 'Rohtak, Haryana',
+    joinedDate: '2025-08-15'
+  },
+  {
+    id: 6,
+    role: 'Web Developer',
+    name: 'Aryan Kumar',
+    type: 'employee',
+    bio: "I'm recent btech graduate from rd engineering college",
+    image: '/team/aryan.png',
+    skills: ['Mern Stack'],
+    social: { linkedin: '#', email: 'james@techcorp.com' },
+    location: 'Remote',
+    joinedDate: '2025-08-6'
+  },
+  {
+    id: 7,
+    role: 'Web Developer',
+    name: 'Vineet Singh',
+    type: 'employee',
+    bio: "I am a passionate Frontend Developer with hands-on experience in building modern, responsive, and user-friendly web applications. Skilled in HTML, CSS, JavaScript, React.js, Tailwind CSS, and responsive web design, I specialize in creating intuitive user interfaces with a strong focus on UI/UX principles. ",
+    image: '/team/vineetSingh.jpg',
+    skills: ['HTML' , 'CSS' , 'JavaScript' , 'React.js' , 'Tailwind' ,'CSS' , 'responsive', 'web design' ],
+    social: { linkedin: '#', email: 'james@techcorp.com' },
+    location: 'Remote',
+    joinedDate: '2025-08-6'
   }
 ];
 
