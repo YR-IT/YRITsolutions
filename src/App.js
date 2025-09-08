@@ -25,6 +25,7 @@ import { Routes, Route } from 'react-router-dom';
 import AdminPanel from "./pages/admin/AdminPanel";
 import Team from './pages/Team';
 import { ThemeProvider } from './contexts/ThemeContext';
+import WebApps from './components/solutions/WebApps';
 
 
 
@@ -59,6 +60,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/termsandconditions" element={<TermsOfUse />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/webapps" element={<WebApps />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
 

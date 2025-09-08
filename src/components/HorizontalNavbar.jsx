@@ -8,6 +8,7 @@ const HorizontalNavbar = () => {
     { label: 'Home', href: '/' },
     { label: 'About', href: '/aboutus' },
     { label: 'Services', href: '/ourservices' },
+    { label: 'Web Apps', href: '/webapps' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Contact', href: '/contactus' },

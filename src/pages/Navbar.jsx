@@ -20,7 +20,7 @@ const menuData = {
     { label: 'Blog', href: '/blog' },
   ],
   SOLUTIONS: [
-    { label: 'Web Apps', href: '/ourservices#web' },
+    { label: 'Web Apps', href: '/webapps' },
     { label: 'Mobile Apps', href: '/ourservices#mobile' },
     { label: 'UI/UX', href: '/ourservices#uiux' },
   ],
