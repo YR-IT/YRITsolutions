@@ -21,7 +21,7 @@ const menuData = {
   ],
   SOLUTIONS: [
     { label: 'Web Apps', href: '/webapps' },
-    { label: 'Mobile Apps', href: '/ourservices#mobile' },
+    { label: 'Mobile Apps', href: '/mobileapps' },
     { label: 'UI/UX', href: '/ourservices#uiux' },
   ],
   'HIRE RESOURCE': [

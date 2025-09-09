@@ -26,6 +26,7 @@ import AdminPanel from "./pages/admin/AdminPanel";
 import Team from './pages/Team';
 import { ThemeProvider } from './contexts/ThemeContext';
 import WebApps from './components/solutions/WebApps';
+import MobileApps from './components/solutions/MobileApps';
 
 
 
@@ -61,6 +62,7 @@ function App() {
             <Route path="/termsandconditions" element={<TermsOfUse />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/webapps" element={<WebApps />} />
+            <Route path="/mobileapps" element={<MobileApps />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
 
