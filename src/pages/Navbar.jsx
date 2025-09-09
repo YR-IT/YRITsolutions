@@ -21,7 +21,7 @@ const menuData = {
   ],
   SOLUTIONS: [
     { label: 'Web Apps', href: '/webapps' },
-    { label: 'Mobile Apps', href: '/mobileapps' },
+    { label: 'Mobile Apps', href: '/ourservices#mobile' },
     { label: 'UI/UX', href: '/ourservices#uiux' },
   ],
   'HIRE RESOURCE': [
@@ -232,19 +232,12 @@ const Navbar = ({ state, setState, setshow, show }) => {
           <div className="flex items-center justify-between p-4 sm:p-6 lg:p-8 border-b border-white/10">
             
             {/* Logo with Glow Effect */}
-            <Link 
-              to="/" 
-              onClick={() => setshow(false)}
-              className="group relative transition-transform duration-300 hover:scale-105"
-            >
+          
+          
               <div className="relative">
-                <img
-                  src={Logo}
-                  alt="YR Logo"
-                  className="h-10 sm:h-12 lg:h-16 w-auto transition-all duration-300 group-hover:scale-105"
-                />
+             
               </div>
-            </Link>
+       
 
             {/* Enhanced Close Button */}
             <button
