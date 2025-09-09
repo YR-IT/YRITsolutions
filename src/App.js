@@ -27,6 +27,7 @@ import Team from './pages/Team';
 import { ThemeProvider } from './contexts/ThemeContext';
 import WebApps from './components/solutions/WebApps';
 import MobileApps from './components/solutions/MobileApps';
+import UIUXDesign from './components/solutions/UIUXDesign';
 
 
 
@@ -63,6 +64,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/webapps" element={<WebApps />} />
             <Route path="/mobileapps" element={<MobileApps />} />
+            <Route path="/uiuxdesign" element={<UIUXDesign />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
 
