@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, X, Menu } from "lucide-react";
 import ThemeToggle from '../components/ThemeToggle';
+import { useTheme } from '../contexts/ThemeContext';
 import Logo from '../assets/YRLogo.png';
 
 // Menu data
@@ -36,6 +37,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
   const [activeSection, setActiveSection] = React.useState('COMPANY');
   const [isScrolled, setIsScrolled] = React.useState(false);
   const location = useLocation();
+  const { isDarkMode } = useTheme();
 
   const isHome = location.pathname === '/';
 
@@ -197,13 +199,20 @@ const Navbar = ({ state, setState, setshow, show }) => {
       >
         {/* Animated Background */}
         <div 
-          className={`absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 transition-all duration-700 ${
+          className={`absolute inset-0 transition-all duration-700 ${
             show ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          } ${
+            isDarkMode 
+              ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900'
+              : 'bg-gradient-to-br from-white via-blue-50 to-purple-50'
           }`}
           style={{
-            backgroundImage: `
+            backgroundImage: isDarkMode ? `
               radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
               radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)
+            ` : `
+              radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)
             `
           }}
         />
@@ -257,7 +266,9 @@ const Navbar = ({ state, setState, setshow, show }) => {
                 
                 {/* Left Navigation Sections */}
                 <div className="lg:col-span-2 mb-8 lg:mb-0">
-                  <h2 className="text-xs sm:text-sm uppercase tracking-wider text-gray-400 mb-4 sm:mb-6 lg:mb-8 font-semibold">
+                  <h2 className={`text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-6 lg:mb-8 font-semibold ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
                     Navigation
                   </h2>
                   
@@ -271,8 +282,12 @@ const Navbar = ({ state, setState, setshow, show }) => {
                           onClick={() => setActiveSection(section)}
                           className={`group w-full text-left p-4 sm:p-6 rounded-2xl relative transition-all duration-500 ease-out overflow-hidden min-h-[60px] ${
                             activeSection === section
-                              ? 'bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 text-white shadow-2xl shadow-blue-500/20 border border-white/20'
-                              : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10'
+                              ? isDarkMode
+                                ? 'bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 text-white shadow-2xl shadow-blue-500/20 border border-white/20'
+                                : 'bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 text-gray-900 shadow-2xl shadow-blue-500/10 border border-gray-300'
+                              : isDarkMode
+                                ? 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10'
+                                : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 border border-transparent hover:border-gray-200'
                           }`}
                         >
                           {/* Background Gradient Animation */}
@@ -290,7 +305,9 @@ const Navbar = ({ state, setState, setshow, show }) => {
                               <h3 className="text-base sm:text-lg font-bold uppercase tracking-wide mb-1">
                                 {section}
                               </h3>
-                              <p className="text-xs text-gray-400 capitalize">
+                              <p className={`text-xs capitalize ${
+                                isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                              }`}>
                                 {menuData[section].length} items
                               </p>
                             </div>
@@ -298,7 +315,9 @@ const Navbar = ({ state, setState, setshow, show }) => {
                             <ArrowRight 
                               className={`w-4 sm:w-5 h-4 sm:h-5 transition-all duration-300 ${
                                 activeSection === section 
-                                  ? 'translate-x-0 text-white' 
+                                  ? isDarkMode
+                                    ? 'translate-x-0 text-white'
+                                    : 'translate-x-0 text-gray-900'
                                   : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
                               }`} 
                             />
@@ -314,7 +333,9 @@ const Navbar = ({ state, setState, setshow, show }) => {
 
                 {/* Right Content - Menu Items */}
                 <div className="lg:col-span-3 mb-8 lg:mb-0">
-                  <h2 className="text-xs sm:text-sm uppercase tracking-wider text-gray-400 mb-4 sm:mb-6 lg:mb-8 font-semibold">
+                  <h2 className={`text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-6 lg:mb-8 font-semibold ${
+                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
                     {activeSection.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
                   </h2>
                   
@@ -328,20 +349,34 @@ const Navbar = ({ state, setState, setshow, show }) => {
                         <Link
                           to={item.href}
                           onClick={() => setshow(false)}
-                          className="group relative block p-4 sm:p-6 rounded-2xl bg-white/5 backdrop-blur-3xl border border-white/10 transition-all duration-300 hover:bg-white/10 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-white/20 min-h-[100px]"
+                          className={`group relative block p-4 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl min-h-[100px] ${
+                            isDarkMode
+                              ? 'bg-white/5 border border-white/10 hover:bg-white/10 hover:shadow-blue-500/20 hover:border-white/20'
+                              : 'bg-gray-900/5 border border-gray-200 hover:bg-gray-100/50 hover:shadow-blue-500/10 hover:border-gray-300'
+                          }`}
                         >
                           {/* Background Glow */}
                           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                           
                           <div className="relative">
                             <div className="flex items-start justify-between mb-3">
-                              <h3 className="text-white font-semibold text-sm sm:text-base group-hover:text-blue-200 transition-colors duration-300">
+                              <h3 className={`font-semibold text-sm sm:text-base transition-colors duration-300 ${
+                                isDarkMode
+                                  ? 'text-white group-hover:text-blue-200'
+                                  : 'text-gray-900 group-hover:text-blue-600'
+                              }`}>
                                 {item.label}
                               </h3>
-                              <ArrowRight className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                              <ArrowRight className={`w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 ${
+                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                              }`} />
                             </div>
                             
-                            <p className="text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300">
+                            <p className={`text-xs sm:text-sm transition-colors duration-300 ${
+                              isDarkMode
+                                ? 'text-gray-400 group-hover:text-gray-300'
+                                : 'text-gray-600 group-hover:text-gray-700'
+                            }`}>
                               Explore our {item.label.toLowerCase()}
                             </p>
 
@@ -354,18 +389,32 @@ const Navbar = ({ state, setState, setshow, show }) => {
                   </div>
 
                   {/* Bottom Action Section */}
-                  <div className={`mt-8 sm:mt-12 lg:mt-16 pt-6 sm:pt-8 border-t border-white/10 transition-all duration-700 pb-8 ${show ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.6s' }}>
+                  <div className={`mt-8 sm:mt-12 lg:mt-16 pt-6 sm:pt-8 transition-all duration-700 pb-8 ${show ? 'animate-fade-in-up' : ''} ${
+                    isDarkMode ? 'border-t border-white/10' : 'border-t border-gray-200'
+                  }`} style={{ animationDelay: '0.6s' }}>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                       
                       {/* Newsletter Signup */}
-                      <div className="group p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/20 backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/30">
-                        <h3 className="text-white font-bold text-base sm:text-lg mb-3">Stay Updated</h3>
-                        <p className="text-gray-300 text-xs sm:text-sm mb-4">Get the latest updates and insights.</p>
+                      <div className={`group p-6 sm:p-8 rounded-3xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+                        isDarkMode
+                          ? 'bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/20 hover:shadow-blue-500/30'
+                          : 'bg-gradient-to-br from-blue-600/10 to-purple-600/10 border border-gray-200 hover:shadow-blue-500/15'
+                      }`}>
+                        <h3 className={`font-bold text-base sm:text-lg mb-3 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>Stay Updated</h3>
+                        <p className={`text-xs sm:text-sm mb-4 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        }`}>Get the latest updates and insights.</p>
                         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                           <input 
                             type="email" 
                             placeholder="Enter your email"
-                            className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/20 transition-all duration-300 text-sm"
+                            className={`flex-1 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-400 transition-all duration-300 text-sm ${
+                              isDarkMode
+                                ? 'bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:bg-white/20'
+                                : 'bg-gray-100 border border-gray-300 text-gray-900 placeholder-gray-500 focus:bg-white focus:border-blue-500'
+                            }`}
                           />
                           <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors duration-300 min-h-[44px] flex items-center justify-center">
                             <ArrowRight className="w-4 h-4 text-white" />
@@ -374,9 +423,17 @@ const Navbar = ({ state, setState, setshow, show }) => {
                       </div>
 
                       {/* Contact Info */}
-                      <div className="group p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-white/20 backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30">
-                        <h3 className="text-white font-bold text-base sm:text-lg mb-3">Get In Touch</h3>
-                        <p className="text-gray-300 text-xs sm:text-sm mb-4">Ready to start your project?</p>
+                      <div className={`group p-6 sm:p-8 rounded-3xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+                        isDarkMode
+                          ? 'bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-white/20 hover:shadow-purple-500/30'
+                          : 'bg-gradient-to-br from-purple-600/10 to-pink-600/10 border border-gray-200 hover:shadow-purple-500/15'
+                      }`}>
+                        <h3 className={`font-bold text-base sm:text-lg mb-3 ${
+                          isDarkMode ? 'text-white' : 'text-gray-900'
+                        }`}>Get In Touch</h3>
+                        <p className={`text-xs sm:text-sm mb-4 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        }`}>Ready to start your project?</p>
                         <button 
                           className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30 min-h-[44px] text-sm"
                           onClick={() => {
