@@ -124,7 +124,7 @@ const UIUXDesign = () => {
           }}
         />
         
-        <div className="relative max-w-7xl mx-auto text-center">
+        <div className="relative max-w-7xl mx-auto text-center pt-16">
           <motion.h1 
             className={`text-6xl md:text-8xl font-bold ${themeStyles.text} mb-8`}
             initial={{ y: 100, opacity: 0, scale: 0.5 }}

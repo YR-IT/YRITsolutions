@@ -260,7 +260,7 @@ const WebApps = () => {
           }}
         />
         
-        <div className="relative max-w-7xl mx-auto text-center">
+        <div className="relative max-w-7xl mx-auto text-center pt-16">
           <motion.h1 
             className={`text-6xl md:text-8xl font-bold ${themeStyles.text} mb-8`}
             initial={{ y: 100, opacity: 0, scale: 0.5 }}
@@ -507,6 +507,33 @@ const WebApps = () => {
 
           {/* Technology Stack */}
           <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.h3 
+              className={`text-3xl font-bold ${themeStyles.text} mb-4`}
+              whileHover={{ 
+                scale: 1.05,
+                textShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
+              }}
+            >
+              Our Technology Stack
+            </motion.h3>
+            <motion.p 
+              className={`text-lg ${themeStyles.textSecondary} max-w-2xl mx-auto mb-12`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Cutting-edge technologies and frameworks we use to build robust, scalable web applications.
+            </motion.p>
+          </motion.div>
+
+          <motion.div 
             className={`${themeStyles.cardBg} backdrop-blur-sm border ${themeStyles.cardBorder} rounded-2xl p-8 mb-16 relative overflow-hidden group`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -524,16 +551,6 @@ const WebApps = () => {
               whileHover={{ scale: 1.1, rotate: 180 }}
               transition={{ duration: 1.2 }}
             />
-            
-            <motion.h3 
-              className={`text-3xl font-bold ${themeStyles.text} mb-8 text-center relative z-10`}
-              whileHover={{ 
-                scale: 1.05,
-                textShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
-              }}
-            >
-              Our Technology Stack
-            </motion.h3>
             <div className="grid md:grid-cols-4 gap-8 relative z-10">
               {[
                 { icon: Monitor, title: "Frontend", color: "blue", techs: ["React.js", "Vue.js", "Angular", "Next.js"] },
@@ -601,7 +618,7 @@ const WebApps = () => {
             viewport={{ once: true }}
           >
             <motion.h3 
-              className={`text-3xl font-bold ${themeStyles.text} mb-8`}
+              className={`text-3xl font-bold ${themeStyles.text} mb-4`}
               whileHover={{ 
                 scale: 1.05,
                 textShadow: "0 0 20px rgba(168, 85, 247, 0.5)"
@@ -609,6 +626,15 @@ const WebApps = () => {
             >
               Our Development Process
             </motion.h3>
+            <motion.p 
+              className={`text-lg ${themeStyles.textSecondary} max-w-2xl mx-auto mb-8`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Our proven 5-step development methodology ensures quality delivery and client satisfaction.
+            </motion.p>
             <div className="grid md:grid-cols-5 gap-6">
               {[
                 { step: "01", title: "Discovery", desc: "Understanding your requirements", icon: Target, color: "blue" },

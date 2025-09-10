@@ -24,6 +24,8 @@ const menuData = {
     { label: 'Web Apps', href: '/webapps' },
     { label: 'Mobile Apps', href: '/mobileapps' },
     { label: 'UI/UX', href: '/uiuxdesign' },
+    { label: 'Digital Marketing', href: '/digitalmarketing' },
+    { label: 'Cyber Security', href: '/cybersecurity' },
   ],
   'HIRE RESOURCE': [
     { label: 'Hire Developers', href: '/ourservices#hire-dev' },
@@ -339,17 +341,17 @@ const Navbar = ({ state, setState, setshow, show }) => {
                     {activeSection.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
                   </h2>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 items-stretch">
                     {menuData[activeSection].map((item, index) => (
                       <div
                         key={item.label}
-                        className={`transition-all duration-500 ${show ? 'animate-fade-in-up' : ''}`}
+                        className={`transition-all duration-500 flex ${show ? 'animate-fade-in-up' : ''}`}
                         style={{ animationDelay: `${index * 0.05 + 0.4}s` }}
                       >
                         <Link
                           to={item.href}
                           onClick={() => setshow(false)}
-                          className={`group relative block p-4 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl min-h-[100px] ${
+                          className={`group relative flex flex-col justify-between p-4 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl h-[120px] w-full ${
                             isDarkMode
                               ? 'bg-white/5 border border-white/10 hover:bg-white/10 hover:shadow-blue-500/20 hover:border-white/20'
                               : 'bg-gray-900/5 border border-gray-200 hover:bg-gray-100/50 hover:shadow-blue-500/10 hover:border-gray-300'
@@ -377,7 +379,9 @@ const Navbar = ({ state, setState, setshow, show }) => {
                                 ? 'text-gray-400 group-hover:text-gray-300'
                                 : 'text-gray-600 group-hover:text-gray-700'
                             }`}>
-                              Explore our {item.label.toLowerCase()}
+                              {item.label === 'Cyber Security' 
+                                ? 'Explore our cybersecurity solutions' 
+                                : `Explore our ${item.label.toLowerCase()}`}
                             </p>
 
                             {/* Bottom Gradient Line */}

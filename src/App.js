@@ -28,6 +28,8 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import WebApps from './components/solutions/WebApps';
 import MobileApps from './components/solutions/MobileApps';
 import UIUXDesign from './components/solutions/UIUXDesign';
+import DigitalMarketing from './components/solutions/DigitalMarketing';
+import CyberSecurity from './components/solutions/CyberSecurity';
 
 
 
@@ -65,6 +67,8 @@ function App() {
             <Route path="/webapps" element={<WebApps />} />
             <Route path="/mobileapps" element={<MobileApps />} />
             <Route path="/uiuxdesign" element={<UIUXDesign />} />
+            <Route path="/digitalmarketing" element={<DigitalMarketing />} />
+            <Route path="/cybersecurity" element={<CyberSecurity />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
 
