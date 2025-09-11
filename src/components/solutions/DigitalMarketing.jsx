@@ -130,9 +130,9 @@ const DigitalMarketing = () => {
           }}
         />
         
-        <div className="relative max-w-7xl mx-auto text-center pt-16">
+        <div className="relative max-w-7xl mx-auto text-center pt-8 sm:pt-12 md:pt-16 px-4">
           <motion.h1 
-            className={`text-6xl md:text-8xl font-bold ${themeStyles.text} mb-8`}
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold ${themeStyles.text} mb-6 sm:mb-8`}
             initial={{ y: 100, opacity: 0, scale: 0.5 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             transition={{ 
@@ -169,7 +169,7 @@ const DigitalMarketing = () => {
           </motion.h1>
           
           <motion.p 
-            className={`text-xl ${themeStyles.textSecondary} mb-12 max-w-4xl mx-auto`}
+            className={`text-base sm:text-lg md:text-xl ${themeStyles.textSecondary} mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto px-4`}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -204,7 +204,7 @@ const DigitalMarketing = () => {
             viewport={{ once: true }}
           >
             <motion.h2 
-              className={`text-5xl font-bold ${themeStyles.text} mb-6`}
+              className={`text-3xl sm:text-4xl md:text-5xl font-bold ${themeStyles.text} mb-4 sm:mb-6`}
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
@@ -239,7 +239,7 @@ const DigitalMarketing = () => {
           </motion.div>
 
           {/* Marketing Services Categories */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 px-4">
             {[
               {
                 icon: Search,
