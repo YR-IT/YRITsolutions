@@ -31,6 +31,7 @@ import UIUXDesign from './components/solutions/UIUXDesign';
 import DigitalMarketing from './components/solutions/DigitalMarketing';
 import CyberSecurity from './components/solutions/CyberSecurity';
 import DataScience from './components/solutions/DataScience';
+import Career from './pages/Carrer';
 
 
 
@@ -73,6 +74,7 @@ function App() {
             <Route path="/datascience" element={<DataScience />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/careers" element={<Career/>} />
 
           </Routes>
         </main>
