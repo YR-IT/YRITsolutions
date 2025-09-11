@@ -128,19 +128,22 @@ const steps = [
 const JobCard = ({ date, title, location, type, id, link }) => {
   return (
     <motion.div
-      className="group bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl shadow-lg p-8 w-auto h-auto 
+        className="group bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl shadow-lg p-8 w-auto h-auto 
         transition-transform duration-300 transform hover:-translate-y-2"
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: false, amount: 0.2 }}
+ 
+        transition={{ duration: 0.6, ease: "easeOut" }}
     >
+
       {/* Date */}
       <motion.p
         className="text-gray-800 text-lg font-bold p-4"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
+
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         {date}
@@ -151,7 +154,8 @@ const JobCard = ({ date, title, location, type, id, link }) => {
         className="font-bold text-4xl mt-12 px-4 transition-colors duration-300 group-hover:text-black"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
+
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         {title}
@@ -162,7 +166,8 @@ const JobCard = ({ date, title, location, type, id, link }) => {
         className="flex items-center gap-2 text-lg"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
+
         transition={{ duration: 0.5, delay: 0.4 }}
       >
         <a href={link} className="text-blue-700 p-4 font-bold hover:underline">
@@ -179,7 +184,8 @@ const JobCard = ({ date, title, location, type, id, link }) => {
         className="text-gray-900 text-lg mt-12 font-bold p-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
+
         transition={{ duration: 0.5, delay: 0.5 }}
       >
         {id}
@@ -201,8 +207,9 @@ const Career = () => {
             </span>
           </h1>
           <div className="pt-16 text-center">
-            <p className="text-xl max-w-3xl text-center mx-auto leading-relaxed">
-              WE ARE HIRING ON <br />
+            <p className="text-4xl max-w-3xl text-center font-bold mx-auto leading-relaxed" >
+              WE ARE HIRING ON </p >
+              <p className="text-xl max-w-3xl text-center mx-auto leading-relaxed">
               Explore job opportunities that speak to your journey.
             </p>
           </div>
