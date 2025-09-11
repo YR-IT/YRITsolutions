@@ -30,6 +30,7 @@ import MobileApps from './components/solutions/MobileApps';
 import UIUXDesign from './components/solutions/UIUXDesign';
 import DigitalMarketing from './components/solutions/DigitalMarketing';
 import CyberSecurity from './components/solutions/CyberSecurity';
+import DataScience from './components/solutions/DataScience';
 
 
 
@@ -69,6 +70,7 @@ function App() {
             <Route path="/uiuxdesign" element={<UIUXDesign />} />
             <Route path="/digitalmarketing" element={<DigitalMarketing />} />
             <Route path="/cybersecurity" element={<CyberSecurity />} />
+            <Route path="/datascience" element={<DataScience />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
 

@@ -26,6 +26,7 @@ const menuData = {
     { label: 'UI/UX', href: '/uiuxdesign' },
     { label: 'Digital Marketing', href: '/digitalmarketing' },
     { label: 'Cyber Security', href: '/cybersecurity' },
+    { label: 'Data Science', href: '/datascience' },
   ],
   'HIRE RESOURCE': [
     { label: 'Hire Developers', href: '/ourservices#hire-dev' },
