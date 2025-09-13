@@ -8,9 +8,11 @@ const ContactWidget = () => {
   };
 
   const handleChatBot = () => {
-    // You can integrate with your chatbot service (Tawk.to, Intercom, etc.)
-    console.log('Opening chatbot...');
-    // Example: window.Tawk_API.toggle();
+    // Open WhatsApp chat
+    const phoneNumber = '+917404890806'; // Replace with your WhatsApp business number
+    const message = 'Hi! I would like to know more about your services.';
+    const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (

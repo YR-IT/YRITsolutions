@@ -160,7 +160,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
 
               {/* CTA Button with Magnetic Effect */}
               <button
-                className="hidden md:flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105 hover:-translate-y-0.5 group relative overflow-hidden text-sm"
+                className="hidden md:flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 group relative overflow-hidden text-sm"
                 onClick={() => (window.location.href = '/meetingform')}
               >
                 {/* Background Animation */}
