@@ -31,7 +31,8 @@ import img6 from "../assets/img6.jpg";
 import img7 from "../assets/img7.jpg";
 import img8 from "../assets/img8.jpg";
 import img9 from "../assets/img9.jpg";
-import founderImg from "../assets/founder.jpg";
+import photo1 from "../assets/photo1.jpeg";
+import founderImg from "../assets/founderimage.jpg";
 
 
 // Utility hook for intersection observer
@@ -176,7 +177,7 @@ const AboutPage = () => {
     },
     {
       id: 3,
-      image: img3,
+      image: photo1,
       title: "Revenue Growth",
       description: "Achieved 300% year-over-year growth through strategic innovation and client satisfaction",
     },
