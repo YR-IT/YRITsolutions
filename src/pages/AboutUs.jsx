@@ -163,67 +163,69 @@ const AboutPage = () => {
  
   
   const founderAchievements = [
+   {
+    id: 1,
+    image: img1,
+    title: "Outstanding Student Excellence Award",
+    description:
+      "Yashika Sharma receiving an academic excellence award on stage, applauded by dignitaries for her remarkable achievements in technology and leadership.",
+  },
+  {
+    id: 2,
+    image: img2,
+    title: "Campus Recognition at PIET",
+    description:
+      "Honoured at PIET campus for innovative contributions, Yashika Sharma proudly displays a certificate celebrating her creative work and entrepreneurial spirit.",
+  },
+  {
+    id: 3,
+    image: img3,
+    title: "AICTE IDEA Lab Innovation Trophy",
+    description:
+      "Team YRIT Solutions led by Yashika Sharma wins the AICTE IDEA Lab challenge, showcasing a working prototype and outstanding teamwork.",
+  },
+  {
+    id: 4,
+    image: img4,
+    title: "Business Leadership Honour",
+    description:
+      "Yashika Sharma receiving an industry plaque at a national event, representing YRIT Solution's growth and influence in the start-up ecosystem.",
+  },
+  {
+    id: 5,
+    image: img5,
+    title: "Inspiring Talk at YRIT Solutions Workshop",
+    description:
+      "As founder of YRIT Solutions, Yashika Sharma speaks at a professional workshop, sharing insights on innovation, strategy, and building impactful tech solutions.",
+  },
+  {
+    id: 6,
+    image: img6,
+    title: "Networking with Emerging Leaders",
+    description:
+      "Yashika Sharma with young professionals during a leadership meet, fostering collaboration and inspiring future innovators.",
+  },
     {
-      id: 1,
-      image: img1,
-      title: "Tech Innovation Awards",
-      description: "Recognized as 'Young Innovator of the Year' for breakthrough AI solutions",
-    },
+  id: 7,
+  image: img7,
+  title: "Fireside Chat at E-Summit",
+  description:
+    "Yashika Sharma, Founder of YRIT Solutions, engaged in a powerful conversation on entrepreneurship during an E-Summit Fireside Chat session. Her journey and insights served as an inspiration to budding innovators and startup enthusiasts.",
+  },
     {
-      id: 2,
-      image: img2,
-      title: "Global Leadership",
-      description: "Led international teams across 10+ countries to deliver world-class solutions",
-    },
+    id: 8,
+    image: img8,
+    title: "Empowering the Next Generation",
+    description:
+      "In an interactive session with young minds, Yashika Sharma shared her entrepreneurial journey and the vision behind YRIT Solutions. Her impactful storytelling and authenticity sparked motivation and curiosity in the attendees.",
+  },
     {
-      id: 3,
-      image: photo1,
-      title: "Revenue Growth",
-      description: "Achieved 300% year-over-year growth through strategic innovation and client satisfaction",
-    },
-    {
-      id: 4,
-      image: img4,
-      title: "Industry Recognition",
-      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
-    
-    },
-    {
-      id: 5,
-      image: img5,
-      title: "Industry",
-      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
-    
-    },
-    {
-      id: 6,
-      image: img6,
-      title: "Industry Recognition",
-      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
-    
-    },
-    {
-      id: 7,
-      image: img7,
-      title: "Industry Recognition",
-      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
-    
-    },
-    {
-      id: 8,
-      image: img8,
-      title: "Industry Recognition",
-      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
-    
-    },
-
-    {
-      id: 9,
-      image: img9,
-      title: "Industry Recognition",
-      description: "Featured in Forbes 30 Under 30 and multiple tech publications for innovative leadership",
-    
-    },
+    id: 9,
+    image: img9,
+    title: "Commanding the Stage with Vision",
+    description:
+      "Delivering a keynote to a packed audience, Yashika Sharma confidently addressed challenges in tech entrepreneurship and the future roadmap of YRIT Solutions. Her dynamic presence and clarity captivated the audience.",
+  },
   ];
   
 
