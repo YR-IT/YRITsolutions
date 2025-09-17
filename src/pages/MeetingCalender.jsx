@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from 'react-calendar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/MeetingCalender.css';
 import { 
   CalendarDays, 
   Clock, 
@@ -75,7 +76,7 @@ const MeetingCalendar = () => {
     }
   );
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -152,7 +153,7 @@ const MeetingCalendar = () => {
 
   const timeSlotVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: (i: number) => ({
+    visible: (i) => ({
       opacity: 1,
       y: 0,
       transition: { delay: i * 0.05, duration: 0.3 }
@@ -181,7 +182,7 @@ const MeetingCalendar = () => {
 
       {/* Hero Section */}
       <motion.div 
-        className="relative overflow-hidden py-16 px-4"
+        className="relative overflow-hidden pt-24 pb-16 px-4"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

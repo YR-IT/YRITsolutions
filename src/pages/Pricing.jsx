@@ -39,6 +39,22 @@ const Pricing = () => {
         "Meta & Google Ads",
       ],
     },
+    {
+      title: "Cyber Security",
+      features: [
+        "Security Assessment & Auditing",
+        "Penetration Testing & Vulnerability Analysis",
+        "Security Implementation & Monitoring",
+      ],
+    },
+    {
+      title: "Data Structure",
+      features: [
+        "Algorithm Design & Optimization",
+        "Database Design & Management",
+        "Data Analysis & Visualization",
+      ],
+    },
   ];
 
   return (
@@ -63,7 +79,7 @@ const Pricing = () => {
           {plans.map((plan, index) => (
            <div
            key={index}
-           className={`relative rounded-2xl p-8 flex flex-col items-start sm:items-start md:items-start lg:items-start xl:items-start sm:text-left text-center shadow-lg transition duration-500 hover:scale-105 ${isDarkMode ? 'bg-[#111] shadow-[0_0_30px_rgba(255,255,255,0.05)]' : 'bg-white shadow-lg'}`}
+           className={`relative rounded-2xl p-8 flex flex-col items-start sm:items-start md:items-start lg:items-start xl:items-start sm:text-left text-center shadow-lg transition duration-500 hover:scale-105 ${isDarkMode ? 'bg-[#111] shadow-[0_0_30px_rgba(255,255,255,0.05)]' : 'bg-white shadow-lg'} ${index === 4 ? 'lg:col-start-2' : index === 5 ? 'lg:col-start-3' : ''}`}
          >
          
               {/* Title */}

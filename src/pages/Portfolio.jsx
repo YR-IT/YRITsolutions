@@ -95,7 +95,7 @@ const projects = [
     title: "BPRPVTITI - Educational Institute",
     description:
       "Professional educational institute website showcasing academic programs, courses, and training opportunities. Built with modern design principles, responsive layout, and optimized performance to attract students and provide comprehensive information about educational services.",
-    link: "https://bprpvtiti.vercel.app/v",
+    link: "https://www.bprpvtiti.com/",
     image:"/images/BPRPVTITI - Educational Institute.png",
     category: "Education"
   },
