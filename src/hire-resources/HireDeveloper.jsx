@@ -174,7 +174,7 @@ const HireDeveloper = () => {
       
       {/* Enhanced Hero Section */}
       <motion.section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 mt-16"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 mt-12 sm:mt-16 px-4 sm:px-6 lg:px-8"
         style={{ y: heroY, opacity: heroOpacity }}
       >
         {/* Enhanced Background Elements */}
@@ -190,18 +190,18 @@ const HireDeveloper = () => {
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
-          <div className="absolute top-10 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl opacity-30" />
-          <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-purple-500/8 rounded-full blur-3xl opacity-20" />
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-pink-500/5 rounded-full blur-2xl opacity-15" />
-          <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl opacity-15" />
+          <div className="absolute top-5 sm:top-10 left-5 sm:left-10 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/10 rounded-full blur-3xl opacity-30" />
+          <div className="absolute bottom-5 sm:bottom-10 right-5 sm:right-10 w-64 sm:w-[500px] h-64 sm:h-[500px] bg-purple-500/8 rounded-full blur-3xl opacity-20" />
+          <div className="absolute top-1/3 right-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-pink-500/5 rounded-full blur-2xl opacity-15" />
+          <div className="absolute bottom-1/3 left-1/4 w-40 sm:w-80 h-40 sm:h-80 bg-cyan-500/5 rounded-full blur-3xl opacity-15" />
           
           {/* Static Floating Elements - No animation for performance */}
-          <div className="absolute top-20 right-1/4 w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl opacity-10" />
-          <div className="absolute bottom-32 left-1/3 w-12 h-12 bg-gradient-to-r from-pink-400 to-red-500 rounded-full opacity-15" />
+          <div className="absolute top-16 sm:top-20 right-1/4 w-8 sm:w-16 h-8 sm:h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl opacity-10" />
+          <div className="absolute bottom-20 sm:bottom-32 left-1/3 w-6 sm:w-12 h-6 sm:h-12 bg-gradient-to-r from-pink-400 to-red-500 rounded-full opacity-15" />
         </div>
 
         <motion.div 
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="relative z-10 max-w-7xl mx-auto text-center w-full"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -216,13 +216,13 @@ const HireDeveloper = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-500/40 mb-8 backdrop-blur-sm"
+              className="inline-flex items-center px-3 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-500/40 mb-6 sm:mb-8 backdrop-blur-sm"
             >
-              <Trophy className="w-5 h-5 mr-3 text-yellow-400" />
-              <span className="text-sm font-semibold">Award-Winning Development Team</span>
-              <div className="ml-3 flex space-x-1">
+              <Trophy className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-yellow-400" />
+              <span className="text-xs sm:text-sm font-semibold">Award-Winning Development Team</span>
+              <div className="ml-2 sm:ml-3 flex space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                  <Star key={i} className="w-2 sm:w-3 h-2 sm:h-3 text-yellow-400 fill-current" />
                 ))}
               </div>
             </motion.div>
@@ -231,7 +231,7 @@ const HireDeveloper = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight px-2 sm:px-0"
             >
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Hire Elite
@@ -248,7 +248,7 @@ const HireDeveloper = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className={`text-xl md:text-2xl mb-10 max-w-4xl mx-auto leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
             >
               Transform your vision into reality with our handpicked team of senior developers. 
               <span className="text-blue-400 font-semibold"> Vetted talent</span>, 
@@ -263,7 +263,7 @@ const HireDeveloper = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.1 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto px-4 sm:px-0"
           >
             {[
               { number: "50+", label: "Projects Delivered", icon: <Briefcase className="w-8 h-8" />, color: "text-blue-400" },
@@ -276,22 +276,24 @@ const HireDeveloper = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
-                className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 ${
+                className={`text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 ${
                   isDarkMode ? 'bg-gray-800/20 border border-gray-700/50' : 'bg-white/10 border border-white/20'
                 }`}
               >
-                <div className={`${stat.color} mb-3 flex justify-center`}>
-                  {stat.icon}
+                <div className={`${stat.color} mb-2 sm:mb-3 flex justify-center`}>
+                  <div className="w-6 h-6 sm:w-8 sm:h-8">
+                    {React.cloneElement(stat.icon, { className: "w-full h-full" })}
+                  </div>
                 </div>
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 1.5 + index * 0.1 }}
-                  className={`text-4xl md:text-5xl font-bold ${stat.color} mb-2`}
+                  className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${stat.color} mb-1 sm:mb-2`}
                 >
                   {stat.number}
                 </motion.div>
-                <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <div className={`text-xs sm:text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -302,14 +304,14 @@ const HireDeveloper = () => {
 
       {/* Enhanced Category Navigation */}
       <motion.section 
-        className="py-8 sticky top-0 z-40 backdrop-blur-lg border-b border-gray-200/20"
+        className="py-4 sm:py-6 md:py-8 sticky top-0 z-40 backdrop-blur-lg border-b border-gray-200/20"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="flex flex-wrap justify-center gap-3"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -325,7 +327,7 @@ const HireDeveloper = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 relative overflow-hidden ${
+                className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-1 sm:gap-2 relative overflow-hidden text-sm sm:text-base whitespace-nowrap ${
                   activeCategory === category.id
                     ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
                     : isDarkMode
@@ -385,7 +387,7 @@ const HireDeveloper = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -405,19 +407,21 @@ const HireDeveloper = () => {
                   y: -5,
                   boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
                 }}
-                className={`text-center p-6 rounded-2xl ${
+                className={`text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl ${
                   isDarkMode ? 'bg-gray-800/30' : 'bg-white/50'
                 } backdrop-blur-sm border border-gray-200/20 hover:border-gray-300/30 transition-all duration-300 cursor-pointer group`}
               >
                 <motion.div 
-                  className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2 flex items-center justify-center gap-2`}
+                  className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold ${stat.color} mb-1 sm:mb-2 flex items-center justify-center gap-1 sm:gap-2`}
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  {stat.icon}
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
+                    {React.cloneElement(stat.icon, { className: "w-full h-full" })}
+                  </div>
                   {stat.number}
                 </motion.div>
-                <div className={`text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} group-hover:text-gray-300 transition-colors duration-300`}>
+                <div className={`text-xs sm:text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} group-hover:text-gray-300 transition-colors duration-300`}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -432,16 +436,16 @@ const HireDeveloper = () => {
       {activeCategory === 'all' && (
         <>
           {/* iPhone Development Section */}
-          <section className="py-20">
+          <section className="py-12 sm:py-16 md:py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-16"
+                className="text-center mb-12 sm:mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">iPhone Development Excellence</h2>
-                <p className={`text-lg max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4 sm:px-0">iPhone Development Excellence</h2>
+                <p className={`text-base sm:text-lg max-w-3xl mx-auto px-4 sm:px-0 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Create stunning iOS applications with native performance and seamless App Store integration
                 </p>
               </motion.div>
@@ -453,11 +457,11 @@ const HireDeveloper = () => {
                   transition={{ duration: 0.8 }}
                   className={`p-8 rounded-3xl ${isDarkMode ? 'bg-gray-800/30 border border-gray-700' : 'bg-white/50 border border-gray-200'} backdrop-blur-sm`}
                 >
-                  <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mr-4">
-                      <Smartphone className="w-8 h-8 text-white" />
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4">
+                      <Smartphone className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold">Native iOS Development</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold">Native iOS Development</h3>
                   </div>
                   <p className={`text-lg mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     Expert iPhone app development using Swift and Objective-C for optimal performance and user experience.
@@ -466,22 +470,22 @@ const HireDeveloper = () => {
                     <div className="flex items-start">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-1">Swift & Objective-C Mastery</h4>
-                        <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Expert developers proficient in both modern Swift and legacy Objective-C codebases</p>
+                        <h4 className="font-semibold mb-1 text-sm sm:text-base">Swift & Objective-C Mastery</h4>
+                        <p className={`text-xs sm:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Expert developers proficient in both modern Swift and legacy Objective-C codebases</p>
                       </div>
                     </div>
                     <div className="flex items-start">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-1">iOS Ecosystem Integration</h4>
-                        <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Deep integration with Apple services, Core Data, CloudKit, and Apple Watch</p>
+                        <h4 className="font-semibold mb-1 text-sm sm:text-base">iOS Ecosystem Integration</h4>
+                        <p className={`text-xs sm:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Deep integration with Apple services, Core Data, CloudKit, and Apple Watch</p>
                       </div>
                     </div>
                     <div className="flex items-start">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold mb-1">App Store Optimization</h4>
-                        <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Complete App Store submission process and optimization for maximum visibility</p>
+                        <h4 className="font-semibold mb-1 text-sm sm:text-base">App Store Optimization</h4>
+                        <p className={`text-xs sm:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Complete App Store submission process and optimization for maximum visibility</p>
                       </div>
                     </div>
                   </div>
@@ -2667,11 +2671,11 @@ const HireDeveloper = () => {
                   <span className="text-sm font-medium">Ready to Transform Your Ideas?</span>
                 </div>
                 
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent px-4 sm:px-0">
                   Let's Build Something Amazing Together
                 </h2>
                 
-                <p className={`text-lg mb-6 max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <p className={`text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Join hundreds of successful companies who have transformed their business with our expert developers. 
                   Your next breakthrough is just one conversation away.
                 </p>
@@ -2681,30 +2685,30 @@ const HireDeveloper = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0"
               >
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate('/contactus')}
-                  className="px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
                 >
-                  <Rocket className="mr-3 w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" />
                   Start Your Project Now
-                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </motion.button>
                 
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate('/schedule-meeting')}
-                  className={`px-8 py-3 rounded-xl font-semibold text-base border-2 transition-all duration-300 flex items-center justify-center group ${
+                  className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group ${
                     isDarkMode 
                       ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
                       : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
                   } backdrop-blur-sm`}
                 >
-                  <Calendar className="mr-3 w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                  <Calendar className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
                   Schedule Free Consultation
                 </motion.button>
               </motion.div>
