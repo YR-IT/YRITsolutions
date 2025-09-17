@@ -28,7 +28,7 @@ const menuData = {
     { label: 'Data Science', href: '/datascience' },
   ],
   'HIRE RESOURCE': [
-    { label: 'Hire Developers', href: '/ourservices#hire-dev' },
+    { label: 'Hire Developers', href: '/hire-developer' },
     { label: 'Hire Designers', href: '/ourservices#hire-design' },
     { label: 'Schedule Meeting', href: '/meetingform' },
   ],

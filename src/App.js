@@ -32,6 +32,8 @@ import DigitalMarketing from './components/solutions/DigitalMarketing';
 import CyberSecurity from './components/solutions/CyberSecurity';
 import DataScience from './components/solutions/DataScience';
 import Career from './pages/Carrer';
+import HireDeveloper from './hire-resources/HireDeveloper';
+import MeetingCalendar from './pages/MeetingCalender';
 
 
 
@@ -75,6 +77,8 @@ function App() {
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
             <Route path="/careers" element={<Career/>} />
+            <Route path="/hire-developer" element={<HireDeveloper />} />
+            <Route path="/schedule-meeting" element={<MeetingCalendar />} />
 
           </Routes>
         </main>
