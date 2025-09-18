@@ -35,6 +35,7 @@ import Career from './pages/Carrer';
 import HireDeveloper from './hire-resources/HireDeveloper';
 import MeetingCalendar from './pages/MeetingCalender';
 import ScrollToTop from './components/ScrollToTop';
+import HireFrontendDev from './hire-resources/HireFrontendDev';
 
 
 
@@ -80,6 +81,7 @@ function App() {
             <Route path="/careers" element={<Career/>} />
             <Route path="/hire-developer" element={<HireDeveloper />} />
             <Route path="/schedule-meeting" element={<MeetingCalendar />} />
+            <Route path="/hire-frontend" element={<HireFrontendDev />} />
 
           </Routes>
         </main>

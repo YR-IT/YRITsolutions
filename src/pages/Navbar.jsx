@@ -31,6 +31,7 @@ const menuData = {
     { label: 'Hire Developers', href: '/hire-developer' },
     { label: 'Hire Designers', href: '/ourservices#hire-design' },
     { label: 'Schedule Meeting', href: '/meetingform' },
+    { label: 'Hire Front-end Developers', href: '/hire-frontend' },
   ],
 };
 
