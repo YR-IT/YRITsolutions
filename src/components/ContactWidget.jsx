@@ -19,17 +19,17 @@ const ContactWidget = () => {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Expanded Options */}
       {isExpanded && (
-        <div className="absolute bottom-16 right-0 flex flex-col gap-3 mb-2">
+        <div className="absolute bottom-0 right-20 flex flex-row gap-3 mr-2">
           {/* Call Button */}
           <button
             onClick={handleCall}
-            className="group relative bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-slideInRight"
+            className="group relative bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-slideInLeft"
             title="Call Us"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
             </svg>
-            <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               Call Us
             </div>
           </button>
@@ -37,13 +37,13 @@ const ContactWidget = () => {
           {/* Chat Bot Button */}
           <button
             onClick={handleChatBot}
-            className="group relative bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-slideInRight animation-delay-100"
+            className="group relative bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-slideInLeft animation-delay-100"
             title="Chat Bot"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7v-2h10v2zm0-3H7V9h10v2zm0-3H7V6h10v2z"/>
             </svg>
-            <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               Chat Bot
             </div>
           </button>
@@ -77,10 +77,10 @@ const ContactWidget = () => {
 
       {/* Custom CSS for animations */}
       <style jsx>{`
-        @keyframes slideInRight {
+        @keyframes slideInLeft {
           from {
             opacity: 0;
-            transform: translateX(20px);
+            transform: translateX(-20px);
           }
           to {
             opacity: 1;
@@ -88,8 +88,8 @@ const ContactWidget = () => {
           }
         }
         
-        .animate-slideInRight {
-          animation: slideInRight 0.3s ease-out forwards;
+        .animate-slideInLeft {
+          animation: slideInLeft 0.3s ease-out forwards;
         }
         
         .animation-delay-100 {

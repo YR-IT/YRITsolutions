@@ -34,6 +34,7 @@ import DataScience from './components/solutions/DataScience';
 import Career from './pages/Carrer';
 import HireDeveloper from './hire-resources/HireDeveloper';
 import MeetingCalendar from './pages/MeetingCalender';
+import ScrollToTop from './components/ScrollToTop';
 
 
 
@@ -92,6 +93,9 @@ function App() {
           <CopyrightBanner />
         </footer>
       </div>
+      
+      {/* Scroll to Top Button - Available on all pages */}
+      <ScrollToTop />
     </ThemeProvider>
   );
 }
