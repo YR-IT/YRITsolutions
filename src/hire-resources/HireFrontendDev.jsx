@@ -1,5 +1,6 @@
 import React from 'react';
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, CheckCircle, Star, Users, Code, Globe, Smartphone, Database, Brain, Shield, Search, Filter, MapPin, Clock, DollarSign, Zap, Award, Headphones, Cpu, Target, Monitor, TrendingUp, MessageSquare, Calendar, Briefcase, Trophy, Rocket, Heart, ThumbsUp, Sparkles, MousePointer, Settings } from 'lucide-react';
 
 const dev = [
   {
@@ -79,25 +80,30 @@ const data = [
 
 const FrontendCard = ({ dev }) => {
   return (
+
+    
     <motion.div
       className="relative group bg-gradient-to-b from-blue-400 to-purple-800 
                  text-white p-4 sm:p-6 w-full 
                  h-auto min-h-[420px] sm:min-h-[480px] 
                  flex flex-col justify-between
                  rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-none 
-                 shadow-lg overflow-hidden"
+                 shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
+      whileHover={{ y: -5 }}
     >
       {/* Profile */}
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-4 sm:mb-6 z-10">
-        <img
+        <motion.img
           src={dev.img}
           alt={dev.name}
           className="w-16 h-16 sm:w-20 md:w-24 sm:h-20 md:h-24 
                      rounded-full border-2 border-white object-cover flex-shrink-0"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ duration: 0.3 }}
         />
         <div className="text-center sm:text-left">
           <h3 className="text-lg sm:text-xl font-bold">{dev.name}</h3>
@@ -110,15 +116,17 @@ const FrontendCard = ({ dev }) => {
       {dev.skills.length > 0 && (
         <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 z-10 justify-center sm:justify-start">
           {dev.skills.map((skill, i) => (
-            <span
+            <motion.span
               key={i}
               className="px-2 sm:px-3 py-1 border border-white text-xs sm:text-sm 
                          transition-all duration-300 ease-in-out 
                          hover:shadow-md hover:bg-gradient-to-r 
-                         from-blue-400 to-purple-800 rounded-md"
+                         from-blue-400 to-purple-800 rounded-md cursor-pointer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
               {skill}
-            </span>
+            </motion.span>
           ))}
         </div>
       )}
@@ -158,17 +166,23 @@ const EssentialCard = ({ data }) => {
           key={index}
           className="group relative bg-gradient-to-b from-blue-400 to-purple-800 
                      text-white rounded-bl-2xl rounded-t-2xl p-4 sm:p-6 
-                     shadow-lg overflow-hidden min-h-[280px] sm:min-h-[320px]"
+                     shadow-lg overflow-hidden min-h-[280px] sm:min-h-[320px] 
+                     transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.1 }}
+          whileHover={{ y: -5 }}
         >
           {/* Logo */}
           <div className="w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center relative z-10 mx-auto">
-            <div className="w-14 h-14 sm:w-20 sm:h-20 group-hover:animate-bounce">
+            <motion.div 
+              className="w-14 h-14 sm:w-20 sm:h-20 group-hover:animate-bounce"
+              whileHover={{ scale: 1.1, rotate: 10 }}
+              transition={{ duration: 0.3 }}
+            >
               {item.logo}
-            </div>
+            </motion.div>
           </div>
 
           {/* Title */}
@@ -196,38 +210,218 @@ const EssentialCard = ({ data }) => {
 };
 
 const HireFrontendDev = () => {
+  const { scrollY } = useScroll();
+  
+  // Parallax transforms
+  const heroY = useTransform(scrollY, [0, 500], [0, 50]);
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0.8]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-32 overflow-hidden px-4 sm:px-6 lg:px-8">
-        <div className="relative max-w-7xl mx-auto text-center">
-          <motion.h1 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Hire
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-2">
-              Front-end Developer
-            </span>
-          </motion.h1>
-          
+    
+    <div className="min-h-screen transition-all duration-500 bg-gray-50 text-gray-900">
+      
+      {/* Enhanced Hero Section */}
+      <motion.section 
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 mt-12 sm:mt-16 px-4 sm:px-6 lg:px-8"
+        style={{ y: heroY, opacity: heroOpacity }}
+      >
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
           <motion.div 
-            className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 space-y-3 sm:space-y-4"
-            initial={{ opacity: 0, y: 30 }}
+            className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600"
+            animate={{
+              background: [
+                "linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.3))",
+                "linear-gradient(45deg, rgba(236, 72, 153, 0.3), rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.3))",
+                "linear-gradient(45deg, rgba(147, 51, 234, 0.3), rgba(236, 72, 153, 0.2), rgba(59, 130, 246, 0.3))"
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <div className="absolute top-5 sm:top-10 left-5 sm:left-10 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/10 rounded-full blur-3xl opacity-30" />
+          <div className="absolute bottom-5 sm:bottom-10 right-5 sm:right-10 w-64 sm:w-[500px] h-64 sm:h-[500px] bg-purple-500/8 rounded-full blur-3xl opacity-20" />
+          <div className="absolute top-1/3 right-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-pink-500/5 rounded-full blur-2xl opacity-15" />
+          <div className="absolute bottom-1/3 left-1/4 w-40 sm:w-80 h-40 sm:h-80 bg-cyan-500/5 rounded-full blur-3xl opacity-15" />
+          
+          {/* Floating Elements */}
+          <div className="absolute top-16 sm:top-20 right-1/4 w-8 sm:w-16 h-8 sm:h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl opacity-10" />
+          <div className="absolute bottom-20 sm:bottom-32 left-1/3 w-6 sm:w-12 h-6 sm:h-12 bg-gradient-to-r from-pink-400 to-red-500 rounded-full opacity-15" />
+        </div>
+
+        {/* Hero Content Container - Added text-center here */}
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="mb-8"
           >
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-relaxed px-2 sm:px-0">
-              Hire Front-end developers from our global talent pool to meet your project needs.
-            </p>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed text-gray-600 px-2 sm:px-4">
-              Our Front-end developers have extensive experience creating captivating designs in HTML, CSS, JavaScript, and modern frameworks.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="inline-flex text-center px-3 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-500/40 mb-6 sm:mb-8 backdrop-blur-sm"
+            >
+              <Trophy className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-yellow-400" />
+              <span className="text-xs sm:text-sm font-semibold">Award-Winning Frontend Team</span>
+              <div className="ml-2 sm:ml-3 flex space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-2 sm:w-3 h-2 sm:h-3 text-yellow-400 fill-current" />
+                ))}
+              </div>
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight text-center"
+            >
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Hire Elite
+              </span>
+              <br />
+              <span className="text-gray-900 drop-shadow-2xl">Frontend Developers</span>
+              <br />
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent text-2xl md:text-3xl lg:text-4xl">
+                On Demand
+              </span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed text-center text-gray-600"
+            >
+              Transform your vision into reality with our handpicked team of senior frontend developers. 
+              <span className="text-blue-400 font-semibold"> Vetted talent</span>, 
+              <span className="text-purple-400 font-semibold"> proven results</span>, and 
+              <span className="text-pink-400 font-semibold"> unmatched expertise</span> - all at your fingertips.
+            </motion.p>
+          </motion.div>
+
+          {/* Enhanced Stats with animations */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.1 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto"
+          >
+            {[
+              { number: "50+", label: "Projects Delivered", icon: <Briefcase className="w-8 h-8" />, color: "text-blue-400" },
+              { number: "25+", label: "Expert Developers", icon: <Users className="w-8 h-8" />, color: "text-purple-400" },
+              { number: "98%", label: "Client Satisfaction", icon: <Heart className="w-8 h-8" />, color: "text-pink-400" },
+              { number: "24/7", label: "Global Support", icon: <Globe className="w-8 h-8" />, color: "text-cyan-400" }
+            ].map((stat, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl backdrop-blur-sm transition-all duration-300 bg-white/10 border border-white/20 cursor-pointer"
+              >
+                <div className={`${stat.color} mb-2 sm:mb-3 flex justify-center`}>
+                  <div className="w-6 h-6 sm:w-8 sm:h-8">
+                    {React.cloneElement(stat.icon, { className: "w-full h-full" })}
+                  </div>
+                </div>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 1.5 + index * 0.1 }}
+                  className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${stat.color} mb-1 sm:mb-2`}
+                >
+                  {stat.number}
+                </motion.div>
+                <div className="text-xs sm:text-sm font-medium text-gray-600">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* Enhanced Stats Section */}
+      <motion.section 
+        className="py-16 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              { number: "25+", label: "Expert Developers", icon: <Users className="w-6 h-6" />, color: "text-blue-500" },
+              { number: "50+", label: "Projects Completed", icon: <CheckCircle className="w-6 h-6" />, color: "text-green-500" },
+              { number: "98%", label: "Success Rate", icon: <Star className="w-6 h-6" />, color: "text-yellow-500" },
+              { number: "24/7", label: "Support Available", icon: <Clock className="w-6 h-6" />, color: "text-purple-500" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
+                }}
+                className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-200/20 hover:border-gray-300/30 transition-all duration-300 cursor-pointer group"
+              >
+                <motion.div 
+                  className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold ${stat.color} mb-1 sm:mb-2 flex items-center justify-center gap-1 sm:gap-2`}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
+                    {React.cloneElement(stat.icon, { className: "w-full h-full" })}
+                  </div>
+                  {stat.number}
+                </motion.div>
+                <div className="text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
 
       {/* White Container with Cards */}
       <motion.div 
@@ -242,7 +436,13 @@ const HireFrontendDev = () => {
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-center space-y-3 sm:space-y-4">
+        <motion.div 
+          className="text-center space-y-3 sm:space-y-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
             Looking Front-End Developers?
           </h1>
@@ -251,9 +451,15 @@ const HireFrontendDev = () => {
                          bg-clip-text text-transparent">
             Hire Best front-end developers today!
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="mt-4 sm:mt-6 space-y-2 text-center">
+        <motion.div 
+          className="mt-4 sm:mt-6 space-y-2 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed px-2 sm:px-0">
             Get skilled front-end developers to create responsive, user-friendly, and high-performance web applications.
           </p>
@@ -263,16 +469,201 @@ const HireFrontendDev = () => {
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed px-2 sm:px-0">
             Build stunning and interactive web experiences with our professionals!
           </p>
-        </div>
+        </motion.div>
 
         {/* Developer Cards */}
-        <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 lg:gap-8 
-                        grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+        <motion.div 
+          className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 lg:gap-8 
+                      grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {dev.map((developer, idx) => (
             <FrontendCard key={idx} dev={developer} />
           ))}
-        </div>
+        </motion.div>
       </motion.div>
+
+      {/* Frontend Development Excellence Section */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4 sm:px-0">Frontend Development Excellence</h2>
+            <p className="text-base sm:text-lg max-w-3xl mx-auto px-4 sm:px-0 text-gray-600">
+              Create stunning web applications with modern frameworks and cutting-edge technologies
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="p-8 rounded-3xl bg-white/50 border border-gray-200 backdrop-blur-sm"
+            >
+              <div className="flex items-center mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4">
+                  <Code className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold">Modern Frontend Development</h3>
+              </div>
+              <p className="text-lg mb-6 text-gray-600">
+                Expert frontend development using React, Vue.js, and Angular for optimal performance and user experience.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">React & Vue.js Mastery</h4>
+                    <p className="text-xs sm:text-sm text-gray-600">Expert developers proficient in modern JavaScript frameworks and libraries</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Responsive Design</h4>
+                    <p className="text-xs sm:text-sm text-gray-600">Mobile-first approach with CSS Grid, Flexbox, and modern layout techniques</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Performance Optimization</h4>
+                    <p className="text-xs sm:text-sm text-gray-600">Code splitting, lazy loading, and optimization for maximum performance</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="p-8 rounded-3xl bg-white/50 border border-gray-200 backdrop-blur-sm"
+            >
+              <h3 className="text-2xl font-bold mb-6">Frontend Technology Stack</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { name: "React", desc: "Modern UI library" },
+                  { name: "Vue.js", desc: "Progressive framework" },
+                  { name: "Angular", desc: "Full-featured framework" },
+                  { name: "TypeScript", desc: "Type-safe JavaScript" },
+                  { name: "Tailwind CSS", desc: "Utility-first CSS" },
+                  { name: "Next.js", desc: "React framework" },
+                  { name: "Nuxt.js", desc: "Vue.js framework" },
+                  { name: "Webpack", desc: "Module bundler" }
+                ].map((tech, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="p-4 rounded-xl bg-gray-100/50"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <h4 className="font-semibold text-sm mb-1">{tech.name}</h4>
+                    <p className="text-xs text-gray-600">{tech.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Frontend Development Services */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">Frontend Development Services</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <Code className="w-8 h-8" />,
+                  title: "React Development",
+                  description: "Custom React applications with modern hooks, context API, and performance optimization",
+                  features: ["React Hooks", "Context API", "Redux/Zustand", "Performance Optimization"],
+                  color: "from-blue-500 to-cyan-500"
+                },
+                {
+                  icon: <Globe className="w-8 h-8" />,
+                  title: "Vue.js Development",
+                  description: "Progressive Vue.js applications with Composition API and modern tooling",
+                  features: ["Composition API", "Vuex/Pinia", "Vue Router", "Nuxt.js"],
+                  color: "from-green-500 to-emerald-500"
+                },
+                {
+                  icon: <Settings className="w-8 h-8" />,
+                  title: "Angular Development",
+                  description: "Enterprise Angular applications with TypeScript and modern architecture",
+                  features: ["TypeScript", "RxJS", "Angular Material", "NgRx"],
+                  color: "from-red-500 to-pink-500"
+                },
+                {
+                  icon: <Smartphone className="w-8 h-8" />,
+                  title: "Responsive Design",
+                  description: "Mobile-first responsive designs that work perfectly on all devices",
+                  features: ["Mobile-First", "CSS Grid", "Flexbox", "Media Queries"],
+                  color: "from-purple-500 to-indigo-500"
+                },
+                {
+                  icon: <Zap className="w-8 h-8" />,
+                  title: "Performance Optimization",
+                  description: "Speed optimization techniques for lightning-fast web applications",
+                  features: ["Code Splitting", "Lazy Loading", "Bundle Optimization", "Caching"],
+                  color: "from-yellow-500 to-orange-500"
+                },
+                {
+                  icon: <Shield className="w-8 h-8" />,
+                  title: "Testing & QA",
+                  description: "Comprehensive testing strategies for reliable frontend applications",
+                  features: ["Unit Testing", "Integration Testing", "E2E Testing", "Accessibility"],
+                  color: "from-teal-500 to-cyan-500"
+                }
+              ].map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="p-6 rounded-2xl transition-all duration-300 bg-white/50 border border-gray-200 shadow-md backdrop-blur-sm cursor-pointer group"
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
+                    {service.icon}
+                  </div>
+                  <h4 className="text-lg font-semibold mb-3">{service.title}</h4>
+                  <p className="text-sm mb-4 text-gray-600">
+                    {service.description}
+                  </p>
+                  <div>
+                    <h5 className="font-semibold text-xs mb-2">Key Features:</h5>
+                    <ul className="space-y-1">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="text-xs flex items-center text-gray-600">
+                          <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Essential Section */}
       <div className="py-12 sm:py-16 md:py-20 lg:py-24">
@@ -308,7 +699,93 @@ const HireFrontendDev = () => {
           </div>
         </div>
       </div>
-    </>
+
+      {/* Enhanced Call to Action Section */}
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative p-8 rounded-2xl overflow-hidden bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border border-blue-200 backdrop-blur-sm"
+          >
+            {/* Background decorations */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-pink-500/10 to-blue-500/10 rounded-full blur-2xl"></div>
+            
+            <div className="relative z-10 text-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-6"
+              >
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 mb-4">
+                  <Rocket className="w-4 h-4 mr-2 text-blue-600" />
+                  <span className="text-sm font-medium">Ready to Transform Your Ideas?</span>
+                </div>
+                
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent px-4 sm:px-0">
+                  Let's Build Something Amazing Together
+                </h2>
+                
+                <p className="text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 text-gray-600">
+                  Join hundreds of successful companies who have transformed their business with our expert frontend developers. 
+                  Your next breakthrough is just one conversation away.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
+                >
+                  <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" />
+                  Start Your Project Now
+                  <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.button>
+                
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 backdrop-blur-sm"
+                >
+                  <Calendar className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
+                  Schedule Free Consultation
+                </motion.button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="flex items-center justify-center space-x-8 text-sm mt-6"
+              >
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <span className="text-gray-600">Free Consultation</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <span className="text-gray-600">No Hidden Costs</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <span className="text-gray-600">24/7 Support</span>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 };
 
