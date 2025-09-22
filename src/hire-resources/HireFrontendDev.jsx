@@ -548,7 +548,11 @@ const HireFrontendDev = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="p-8 rounded-3xl bg-white/50 border border-gray-200 backdrop-blur-sm"
+              className={`p-8 rounded-3xl backdrop-blur-sm border ${
+                isDarkMode 
+                  ? 'bg-gray-800/30 border-gray-700' 
+                  : 'bg-white/50 border-gray-200'
+              }`}
             >
               <div className="flex items-center mb-4 sm:mb-6">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4">
@@ -567,7 +571,9 @@ const HireFrontendDev = () => {
                 <div className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold mb-1 text-sm sm:text-base">React & Vue.js Mastery</h4>
+                    <h4 className={`font-semibold mb-1 text-sm sm:text-base ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>React & Vue.js Mastery</h4>
                     <p className={`text-xs sm:text-sm ${
                       isDarkMode ? 'text-gray-400' : 'text-gray-600'
                     }`}>Expert developers proficient in modern JavaScript frameworks and libraries</p>
@@ -576,7 +582,9 @@ const HireFrontendDev = () => {
                 <div className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Responsive Design</h4>
+                    <h4 className={`font-semibold mb-1 text-sm sm:text-base ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>Responsive Design</h4>
                     <p className={`text-xs sm:text-sm ${
                       isDarkMode ? 'text-gray-400' : 'text-gray-600'
                     }`}>Mobile-first approach with CSS Grid, Flexbox, and modern layout techniques</p>
@@ -585,7 +593,9 @@ const HireFrontendDev = () => {
                 <div className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Performance Optimization</h4>
+                    <h4 className={`font-semibold mb-1 text-sm sm:text-base ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>Performance Optimization</h4>
                     <p className={`text-xs sm:text-sm ${
                       isDarkMode ? 'text-gray-400' : 'text-gray-600'
                     }`}>Code splitting, lazy loading, and optimization for maximum performance</p>
