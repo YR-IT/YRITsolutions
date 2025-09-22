@@ -842,7 +842,7 @@ const HireFrontendDev = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0"
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0 mb-6 sm:mb-8"
               >
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -872,7 +872,7 @@ const HireFrontendDev = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex items-center justify-center space-x-8 text-sm mt-6"
+                className="flex items-center justify-center space-x-8 text-sm pt-12 sm:pt-16"
               >
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
