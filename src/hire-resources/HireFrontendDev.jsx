@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CheckCircle, Star, Users, Code, Globe, Smartphone, Database, Brain, Shield, Search, Filter, MapPin, Clock, DollarSign, Zap, Award, Headphones, Cpu, Target, Monitor, TrendingUp, MessageSquare, Calendar, Briefcase, Trophy, Rocket, Heart, ThumbsUp, Sparkles, MousePointer, Settings } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const dev = [
   {
@@ -79,16 +80,18 @@ const data = [
 ];
 
 const FrontendCard = ({ dev }) => {
+  const { isDarkMode } = useTheme();
+  
   return (
-
-    
     <motion.div
-      className="relative group bg-gradient-to-b from-blue-400 to-purple-800 
+      className={`relative group bg-gradient-to-b from-blue-400 to-purple-800 
                  text-white p-4 sm:p-6 w-full 
                  h-auto min-h-[420px] sm:min-h-[480px] 
                  flex flex-col justify-between
                  rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-none 
-                 shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                 shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+                   isDarkMode ? 'shadow-gray-900/50' : 'shadow-gray-500/20'
+                 }`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
@@ -159,15 +162,19 @@ const FrontendCard = ({ dev }) => {
 };
 
 const EssentialCard = ({ data }) => {
+  const { isDarkMode } = useTheme();
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
       {data.map((item, index) => (
         <motion.div
           key={index}
-          className="group relative bg-gradient-to-b from-blue-400 to-purple-800 
+          className={`group relative bg-gradient-to-b from-blue-400 to-purple-800 
                      text-white rounded-bl-2xl rounded-t-2xl p-4 sm:p-6 
                      shadow-lg overflow-hidden min-h-[280px] sm:min-h-[320px] 
-                     transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                     transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer ${
+                       isDarkMode ? 'shadow-gray-900/50' : 'shadow-gray-500/20'
+                     }`}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
@@ -210,6 +217,7 @@ const EssentialCard = ({ data }) => {
 };
 
 const HireFrontendDev = () => {
+  const { isDarkMode } = useTheme();
   const { scrollY } = useScroll();
   
   // Parallax transforms
@@ -243,7 +251,9 @@ const HireFrontendDev = () => {
 
   return (
     
-    <div className="min-h-screen transition-all duration-500 bg-gray-50 text-gray-900">
+    <div className={`min-h-screen transition-all duration-500 ${
+      isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
+    }`}>
       
       {/* Enhanced Hero Section */}
       <motion.section 
@@ -306,7 +316,9 @@ const HireFrontendDev = () => {
                 Hire Elite
               </span>
               <br />
-              <span className="text-gray-900 drop-shadow-2xl">Frontend Developers</span>
+              <span className={`drop-shadow-2xl ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>Frontend Developers</span>
               <br />
               <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent text-2xl md:text-3xl lg:text-4xl">
                 On Demand
@@ -317,7 +329,9 @@ const HireFrontendDev = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed text-center text-gray-600"
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed text-center ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}
             >
               Transform your vision into reality with our handpicked team of senior frontend developers. 
               <span className="text-blue-400 font-semibold"> Vetted talent</span>, 
@@ -345,7 +359,9 @@ const HireFrontendDev = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl backdrop-blur-sm transition-all duration-300 bg-white/10 border border-white/20 cursor-pointer"
+                className={`text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl backdrop-blur-sm transition-all duration-300 cursor-pointer ${
+                  isDarkMode ? 'bg-gray-800/20 border border-gray-700/50' : 'bg-white/10 border border-white/20'
+                }`}
               >
                 <div className={`${stat.color} mb-2 sm:mb-3 flex justify-center`}>
                   <div className="w-6 h-6 sm:w-8 sm:h-8">
@@ -360,7 +376,9 @@ const HireFrontendDev = () => {
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600">
+                <div className={`text-xs sm:text-sm font-medium ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                }`}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -378,7 +396,9 @@ const HireFrontendDev = () => {
         transition={{ duration: 0.8 }}
       >
         {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50"></div>
+        <div className={`absolute inset-0 ${
+          isDarkMode ? 'bg-gradient-to-r from-blue-900/10 to-purple-900/10' : 'bg-gradient-to-r from-blue-50/50 to-purple-50/50'
+        }`}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
@@ -402,7 +422,11 @@ const HireFrontendDev = () => {
                   y: -5,
                   boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
                 }}
-                className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-200/20 hover:border-gray-300/30 transition-all duration-300 cursor-pointer group"
+                className={`text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl backdrop-blur-sm border transition-all duration-300 cursor-pointer group ${
+                  isDarkMode 
+                    ? 'bg-gray-800/30 border-gray-700/20 hover:border-gray-600/30' 
+                    : 'bg-white/50 border-gray-200/20 hover:border-gray-300/30'
+                }`}
               >
                 <motion.div 
                   className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold ${stat.color} mb-1 sm:mb-2 flex items-center justify-center gap-1 sm:gap-2`}
@@ -414,7 +438,11 @@ const HireFrontendDev = () => {
                   </div>
                   {stat.number}
                 </motion.div>
-                <div className="text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                <div className={`text-xs sm:text-sm font-medium transition-colors duration-300 ${
+                  isDarkMode 
+                    ? 'text-gray-400 group-hover:text-gray-300' 
+                    : 'text-gray-600 group-hover:text-gray-800'
+                }`}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -423,14 +451,14 @@ const HireFrontendDev = () => {
         </div>
       </motion.section>
 
-      {/* White Container with Cards */}
+      {/* Theme-responsive Container with Cards */}
       <motion.div 
-        className="max-w-7xl mx-auto mt-8 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-24 
-                   mx-4 sm:mx-6 lg:mx-auto
+        className={`max-w-7xl mx-auto mt-8 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-24 
                    px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 
                    py-6 sm:py-8 md:py-10 lg:py-12 
-                   rounded-2xl sm:rounded-3xl 
-                   bg-white shadow-md"
+                   rounded-2xl sm:rounded-3xl shadow-md ${
+                     isDarkMode ? 'bg-gray-800/50 border border-gray-700' : 'bg-white'
+                   }`}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.1 }}
@@ -443,7 +471,9 @@ const HireFrontendDev = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
+          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
+            isDarkMode ? 'text-white' : 'text-gray-900'
+          }`}>
             Looking Front-End Developers?
           </h1>
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold 
@@ -460,13 +490,19 @@ const HireFrontendDev = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed px-2 sm:px-0">
+          <p className={`text-sm sm:text-base leading-relaxed px-2 sm:px-0 ${
+            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+          }`}>
             Get skilled front-end developers to create responsive, user-friendly, and high-performance web applications.
           </p>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed px-2 sm:px-0">
+          <p className={`text-sm sm:text-base leading-relaxed px-2 sm:px-0 ${
+            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+          }`}>
             Our experts specialize in React, Angular, and Vue.js for seamless UI/UX. Tailored solutions to match your specific project requirements.
           </p>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed px-2 sm:px-0">
+          <p className={`text-sm sm:text-base leading-relaxed px-2 sm:px-0 ${
+            isDarkMode ? 'text-gray-300' : 'text-gray-700'
+          }`}>
             Build stunning and interactive web experiences with our professionals!
           </p>
         </motion.div>
@@ -496,8 +532,12 @@ const HireFrontendDev = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4 sm:px-0">Frontend Development Excellence</h2>
-            <p className="text-base sm:text-lg max-w-3xl mx-auto px-4 sm:px-0 text-gray-600">
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 px-4 sm:px-0 ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>Frontend Development Excellence</h2>
+            <p className={`text-base sm:text-lg max-w-3xl mx-auto px-4 sm:px-0 ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}>
               Create stunning web applications with modern frameworks and cutting-edge technologies
             </p>
           </motion.div>
@@ -514,9 +554,13 @@ const HireFrontendDev = () => {
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4">
                   <Code className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold">Modern Frontend Development</h3>
+                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${
+                  isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}>Modern Frontend Development</h3>
               </div>
-              <p className="text-lg mb-6 text-gray-600">
+              <p className={`text-lg mb-6 ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 Expert frontend development using React, Vue.js, and Angular for optimal performance and user experience.
               </p>
               <div className="space-y-4">
@@ -524,21 +568,27 @@ const HireFrontendDev = () => {
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold mb-1 text-sm sm:text-base">React & Vue.js Mastery</h4>
-                    <p className="text-xs sm:text-sm text-gray-600">Expert developers proficient in modern JavaScript frameworks and libraries</p>
+                    <p className={`text-xs sm:text-sm ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}>Expert developers proficient in modern JavaScript frameworks and libraries</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold mb-1 text-sm sm:text-base">Responsive Design</h4>
-                    <p className="text-xs sm:text-sm text-gray-600">Mobile-first approach with CSS Grid, Flexbox, and modern layout techniques</p>
+                    <p className={`text-xs sm:text-sm ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}>Mobile-first approach with CSS Grid, Flexbox, and modern layout techniques</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold mb-1 text-sm sm:text-base">Performance Optimization</h4>
-                    <p className="text-xs sm:text-sm text-gray-600">Code splitting, lazy loading, and optimization for maximum performance</p>
+                    <p className={`text-xs sm:text-sm ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}>Code splitting, lazy loading, and optimization for maximum performance</p>
                   </div>
                 </div>
               </div>
@@ -549,9 +599,15 @@ const HireFrontendDev = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="p-8 rounded-3xl bg-white/50 border border-gray-200 backdrop-blur-sm"
+              className={`p-8 rounded-3xl backdrop-blur-sm border ${
+                isDarkMode 
+                  ? 'bg-gray-800/30 border-gray-700' 
+                  : 'bg-white/50 border-gray-200'
+              }`}
             >
-              <h3 className="text-2xl font-bold mb-6">Frontend Technology Stack</h3>
+              <h3 className={`text-2xl font-bold mb-6 ${
+                isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>Frontend Technology Stack</h3>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { name: "React", desc: "Modern UI library" },
@@ -565,12 +621,18 @@ const HireFrontendDev = () => {
                 ].map((tech, index) => (
                   <motion.div 
                     key={index} 
-                    className="p-4 rounded-xl bg-gray-100/50"
+                    className={`p-4 rounded-xl ${
+                      isDarkMode ? 'bg-gray-700/50' : 'bg-gray-100/50'
+                    }`}
                     whileHover={{ scale: 1.05, y: -2 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <h4 className="font-semibold text-sm mb-1">{tech.name}</h4>
-                    <p className="text-xs text-gray-600">{tech.desc}</p>
+                    <h4 className={`font-semibold text-sm mb-1 ${
+                      isDarkMode ? 'text-white' : 'text-gray-900'
+                    }`}>{tech.name}</h4>
+                    <p className={`text-xs ${
+                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}>{tech.desc}</p>
                   </motion.div>
                 ))}
               </div>
@@ -585,7 +647,9 @@ const HireFrontendDev = () => {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">Frontend Development Services</h3>
+            <h3 className={`text-2xl md:text-3xl font-bold text-center mb-12 ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>Frontend Development Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
@@ -638,20 +702,32 @@ const HireFrontendDev = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="p-6 rounded-2xl transition-all duration-300 bg-white/50 border border-gray-200 shadow-md backdrop-blur-sm cursor-pointer group"
+                  className={`p-6 rounded-2xl transition-all duration-300 backdrop-blur-sm cursor-pointer group border ${
+                    isDarkMode 
+                      ? 'bg-gray-800/30 border-gray-700 shadow-lg' 
+                      : 'bg-white/50 border-gray-200 shadow-md'
+                  }`}
                 >
                   <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
                     {service.icon}
                   </div>
-                  <h4 className="text-lg font-semibold mb-3">{service.title}</h4>
-                  <p className="text-sm mb-4 text-gray-600">
+                  <h4 className={`text-lg font-semibold mb-3 ${
+                    isDarkMode ? 'text-white' : 'text-gray-900'
+                  }`}>{service.title}</h4>
+                  <p className={`text-sm mb-4 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
                     {service.description}
                   </p>
                   <div>
-                    <h5 className="font-semibold text-xs mb-2">Key Features:</h5>
+                    <h5 className={`font-semibold text-xs mb-2 ${
+                      isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                    }`}>Key Features:</h5>
                     <ul className="space-y-1">
                       {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-xs flex items-center text-gray-600">
+                        <li key={featureIndex} className={`text-xs flex items-center ${
+                          isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
                           <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                           {feature}
                         </li>
@@ -669,7 +745,9 @@ const HireFrontendDev = () => {
       <div className="py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <motion.h1 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 text-center lg:text-left"
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 text-center lg:text-left ${
+              isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
@@ -679,7 +757,9 @@ const HireFrontendDev = () => {
           </motion.h1>
 
           <motion.div 
-            className="space-y-3 sm:space-y-4 text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed text-center lg:text-left"
+            className={`space-y-3 sm:space-y-4 text-sm sm:text-base lg:text-lg leading-relaxed text-center lg:text-left ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
@@ -708,7 +788,11 @@ const HireFrontendDev = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative p-8 rounded-2xl overflow-hidden bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border border-blue-200 backdrop-blur-sm"
+            className={`relative p-8 rounded-2xl overflow-hidden backdrop-blur-sm border ${
+              isDarkMode 
+                ? 'bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 border-gray-600' 
+                : 'bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border-blue-200'
+            }`}
           >
             {/* Background decorations */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
@@ -721,16 +805,24 @@ const HireFrontendDev = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mb-6"
               >
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 mb-4">
-                  <Rocket className="w-4 h-4 mr-2 text-blue-600" />
-                  <span className="text-sm font-medium">Ready to Transform Your Ideas?</span>
+                <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border mb-4 ${
+                  isDarkMode ? 'border-blue-400/30' : 'border-blue-500/30'
+                }`}>
+                  <Rocket className={`w-4 h-4 mr-2 ${
+                    isDarkMode ? 'text-blue-400' : 'text-blue-600'
+                  }`} />
+                  <span className={`text-sm font-medium ${
+                    isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                  }`}>Ready to Transform Your Ideas?</span>
                 </div>
                 
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent px-4 sm:px-0">
                   Let's Build Something Amazing Together
                 </h2>
                 
-                <p className="text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 text-gray-600">
+                <p className={`text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
                   Join hundreds of successful companies who have transformed their business with our expert frontend developers. 
                   Your next breakthrough is just one conversation away.
                 </p>
@@ -755,7 +847,11 @@ const HireFrontendDev = () => {
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 backdrop-blur-sm"
+                  className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group backdrop-blur-sm ${
+                    isDarkMode 
+                      ? 'border-gray-500 text-gray-200 hover:bg-gray-700/50 hover:border-gray-400' 
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                  }`}
                 >
                   <Calendar className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
                   Schedule Free Consultation
@@ -770,15 +866,15 @@ const HireFrontendDev = () => {
               >
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className="text-gray-600">Free Consultation</span>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Free Consultation</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className="text-gray-600">No Hidden Costs</span>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>No Hidden Costs</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className="text-gray-600">24/7 Support</span>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>24/7 Support</span>
                 </div>
               </motion.div>
             </div>
