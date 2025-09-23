@@ -165,7 +165,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
             {/* Right Side Controls */}
             <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Theme Toggle with Enhanced Styling */}
-              <div className="hidden md:block">
+              <div>
                 <ThemeToggle />
               </div>
 

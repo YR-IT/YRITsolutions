@@ -526,18 +526,18 @@ const HireSoftwareDeveloper = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex items-center justify-center space-x-8 text-sm pt-12 sm:pt-16"
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm pt-8 sm:pt-12 md:pt-16 px-4"
               >
                 <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2" />
                   <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Free Consultation</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2" />
                   <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>No Hidden Costs</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2" />
                   <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>24/7 Support</span>
                 </div>
               </motion.div>

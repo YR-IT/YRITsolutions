@@ -75,7 +75,7 @@ export const Footer = ({ state, setState }) => {
                         </div>
                         
                         {/* Help Center Column */}
-                        <div className='text-center'>
+                        <div>
                             <div className='text-purple-500 mb-5 font-semibold text-base'>Help Center</div>
                             <div className='space-y-3'>
                                 <div className={`cursor-pointer text-sm hover:text-[var(--theme)] transition-colors ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Community</div>
