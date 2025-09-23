@@ -251,10 +251,10 @@ const Career = () => {
           <div>
             <p className="text-gray-400 text-sm sm:text-base">Phone</p>
             <a
-              href="tel:+919999999999"
+              href="tel:+91 7404890806"
               className="text-white text-lg sm:text-2xl font-medium hover:underline"
             >
-              +91 99999 99999
+              +91 7404890806
             </a>
           </div>
         </div>

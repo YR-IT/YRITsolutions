@@ -40,6 +40,8 @@ import HireAndroidDeveloper from './hire-resources/HireAndroidDeveloper';
 import HireFlutterDeveloper from './hire-resources/HireFlutterDeveloper';
 import HireMobileDeveloper from './hire-resources/HireMobileDeveloper';
 import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
+import HireBackend from './hire-resources/HireBackend';
+
 
 
 
@@ -90,6 +92,7 @@ function App() {
             <Route path="/hire-flutter-developer" element={<HireFlutterDeveloper />} />
             <Route path="/hire-mobile-developer" element={<HireMobileDeveloper />} />
             <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
+            <Route path="/hire-backend" element={<HireBackend />} />
 
           </Routes>
         </main>

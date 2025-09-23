@@ -40,6 +40,7 @@ const menuData = {
     },
     { label: 'Schedule Meeting', href: '/meetingform' },
     { label: 'Hire Front-end Developers', href: '/hire-frontend' },
+    { label: 'Hire Back-end Developers', href: '/hire-backend' },
   ],
 };
 
