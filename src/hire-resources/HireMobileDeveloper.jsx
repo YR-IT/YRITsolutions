@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, CheckCircle, Star, Users, Code, Globe, Smartphone, Database, Shield, Clock, DollarSign, Award, Headphones, Target, Trophy, Heart, ThumbsUp, Sparkles, MousePointer, Settings, Rocket, Zap, Cpu, Monitor } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, Users, Code, Globe, Smartphone, Database, Shield, Clock, DollarSign, Award, Headphones, Target, Trophy, Heart, ThumbsUp, Sparkles, MousePointer, Settings, Rocket, Zap, Cpu, Monitor, Calendar } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 const HireMobileDeveloper = () => {
   const { isDarkMode } = useTheme();
   const { scrollY } = useScroll();
+  const navigate = useNavigate();
+  const [isNavigating, setIsNavigating] = useState(false);
   
   // Reduced parallax transforms for better performance
   const heroY = useTransform(scrollY, [0, 500], [0, 50]);
@@ -426,96 +429,112 @@ const HireMobileDeveloper = () => {
               ? 'bg-gray-900/40 border-white/10 shadow-2xl shadow-violet-500/10' 
               : 'bg-white/40 border-white/20 shadow-2xl shadow-violet-500/20'
           }`}>
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent"
-            >
-              Ready to Build Your Mobile App?
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className={`text-base sm:text-lg mb-10 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-            >
-              Get started with our expert mobile developers and bring your app idea to life on iOS and Android platforms.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-            >
-              <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-5 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-violet-500/30 transition-all duration-300 overflow-hidden min-w-[200px]"
-                onClick={() => window.location.href = '/meetingform'}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-6"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative z-10 flex items-center justify-center">
-                  Schedule Consultation
-                  <motion.div 
-                    className="ml-2"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.div>
-                </span>
-              </motion.button>
-              
-              <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className={`group relative px-10 py-5 rounded-2xl font-semibold text-lg transition-all duration-300 border-2 backdrop-blur-sm min-w-[200px] ${
-                  isDarkMode 
-                    ? 'border-white/30 text-white hover:bg-white/10 hover:border-white/50 shadow-lg hover:shadow-white/20' 
-                    : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 shadow-lg hover:shadow-gray-500/20'
-                }`}
-                onClick={() => window.location.href = '/portfolio'}
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  View Portfolio
-                  <motion.div 
-                    className="ml-2"
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity, delay: 0.3 }}
-                  >
-                    ↗
-                  </motion.div>
-                </span>
-              </motion.button>
-            </motion.div>
+                <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/20 to-purple-500/20 border mb-4 ${
+                  isDarkMode ? 'border-violet-400/30' : 'border-violet-500/30'
+                }`}>
+                  <Rocket className={`w-4 h-4 mr-2 ${
+                    isDarkMode ? 'text-violet-400' : 'text-violet-600'
+                  }`} />
+                  <span className={`text-sm font-medium ${
+                    isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                  }`}>Ready to Transform Your Ideas?</span>
+                </div>
+                
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent px-4 sm:px-0">
+                  Let's Build Something Amazing Together
+                </h2>
+                
+                <p className={`text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  Join hundreds of successful companies who have transformed their business with our expert mobile developers. 
+                  Your next breakthrough is just one conversation away.
+                </p>
+              </motion.div>
 
-            {/* Additional Trust Elements */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-12 pt-8 border-t border-white/10"
-            >
-              <div className="flex flex-wrap justify-center items-center gap-8 text-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Free Consultation</span>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0 mb-6 sm:mb-8"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
+                  onClick={(event) => {
+                    if (isNavigating) return; 
+                    setIsNavigating(true);
+                    
+                    const button = event.target.closest('button');
+                    button.style.transform = 'scale(0.95)';
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    setTimeout(() => {
+                      navigate('/contactus');
+                      setIsNavigating(false);
+                    }, 400);
+                  }}
+                >
+                  <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" />
+                  Start Your Project Now
+                  <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.button>
+                
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group backdrop-blur-sm ${
+                    isDarkMode 
+                      ? 'border-gray-500 text-gray-200 hover:bg-gray-700/50 hover:border-gray-400' 
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                  }`}
+                  onClick={(event) => {
+                    if (isNavigating) return; 
+                    setIsNavigating(true);
+                    
+                    const button = event.target.closest('button');
+                    button.style.transform = 'scale(0.95)';
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    setTimeout(() => {
+                      navigate('/meetingform');
+                      setIsNavigating(false);
+                    }, 400);
+                  }}
+                >
+                  <Calendar className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
+                  Schedule Free Consultation
+                </motion.button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="flex items-center justify-center space-x-8 text-sm pt-12 sm:pt-16"
+              >
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Free Consultation</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full animate-pulse"></div>
-                  <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Cross-Platform</span>
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Cross-Platform</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                  <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Mobile Experts</span>
+                <div className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Mobile Experts</span>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
           </div>
         </div>
       </motion.section>

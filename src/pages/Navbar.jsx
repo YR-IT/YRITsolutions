@@ -38,9 +38,9 @@ const menuData = {
         { label: 'Software Developers', href: '/hire-software-developer' },
       ]
     },
-    { label: 'Schedule Meeting', href: '/meetingform' },
     { label: 'Hire Front-end Developers', href: '/hire-frontend' },
     { label: 'Hire Back-end Developers', href: '/hire-backend' },
+    { label: 'Schedule Meeting', href: '/meetingform' },
   ],
 };
 
@@ -406,7 +406,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
                             to={item.href}
                             onClick={() => setshow(false)}
                             className={`group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl ${
-                              (item.label === 'Schedule Meeting' || item.label === 'Hire Front-end Developers') 
+                              (item.label === 'Schedule Meeting' || item.label === 'Hire Front-end Developers' || item.label === 'Hire Back-end Developers') 
                                 ? 'h-[160px]' 
                                 : 'h-[120px]'
                             } w-full ${
