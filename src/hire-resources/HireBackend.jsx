@@ -1,8 +1,8 @@
-import React from 'react'
+import React ,{ useState }from 'react'
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CheckCircle,Server, Cog, Cloud, Star, Users, Code, Globe, Smartphone, Database, Brain, Shield, Search, Filter, MapPin, Clock, DollarSign, Zap, Award, Headphones, Cpu, Target, Monitor, TrendingUp, MessageSquare, Calendar, Briefcase, Trophy, Rocket, Heart, ThumbsUp, Sparkles, MousePointer, Settings } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -98,6 +98,10 @@ const EssentialCard = ({ data }) => {
 const HireBackend = () => {
   const { isDarkMode } = useTheme();
   const { scrollY } = useScroll();
+  const [isNavigating, setIsNavigating] = useState(false);
+  
+  const [isNavigat, setIsNavigat] = useState(false);
+  const navigate = useNavigate();
   
   // Parallax transforms
   const heroY = useTransform(scrollY, [0, 500], [0, 50]);
@@ -541,105 +545,139 @@ const HireBackend = () => {
 
       {/* Enhanced Call to Action Section */}
       <section className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className={`relative p-8 rounded-2xl overflow-hidden backdrop-blur-sm border ${
-              isDarkMode 
-                ? 'bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 border-gray-600' 
-                : 'bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border-blue-200'
-            }`}
-          >
-            {/* Background decorations */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-pink-500/10 to-blue-500/10 rounded-full blur-2xl"></div>
-            
-            <div className="relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mb-6"
-              >
-                <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border mb-4 ${
-                  isDarkMode ? 'border-blue-400/30' : 'border-blue-500/30'
-                }`}>
-                  <Rocket className={`w-4 h-4 mr-2 ${
-                    isDarkMode ? 'text-blue-400' : 'text-blue-600'
-                  }`} />
-                  <span className={`text-sm font-medium ${
-                    isDarkMode ? 'text-gray-200' : 'text-gray-800'
-                  }`}>Ready to Transform Your Ideas?</span>
-                </div>
-                
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent px-4 sm:px-0">
-                  Let's Build Something Amazing Together
-                </h2>
-                
-                <p className={`text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                  Join hundreds of successful companies who have transformed their business with our expert frontend developers. 
-                  Your next breakthrough is just one conversation away.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0 mb-6 sm:mb-8"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
-                >
-                  <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" />
-                  Start Your Project Now
-                  <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.button>
-                
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group backdrop-blur-sm ${
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className={`relative p-8 rounded-2xl overflow-hidden backdrop-blur-sm border ${
                     isDarkMode 
-                      ? 'border-gray-500 text-gray-200 hover:bg-gray-700/50 hover:border-gray-400' 
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                      ? 'bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 border-gray-600' 
+                      : 'bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border-blue-200'
                   }`}
                 >
-                  <Calendar className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
-                  Schedule Free Consultation
-                </motion.button>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex items-center justify-center space-x-8 text-sm pt-12 sm:pt-16"
-              >
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Free Consultation</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>No Hidden Costs</span>
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>24/7 Support</span>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                  {/* Background decorations */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-pink-500/10 to-blue-500/10 rounded-full blur-2xl"></div>
+                  
+                  <div className="relative z-10 text-center">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="mb-6"
+                    >
+                      <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border mb-4 ${
+                        isDarkMode ? 'border-blue-400/30' : 'border-blue-500/30'
+                      }`}>
+                        <Rocket className={`w-4 h-4 mr-2 ${
+                          isDarkMode ? 'text-blue-400' : 'text-blue-600'
+                        }`} />
+                        <span className={`text-sm font-medium ${
+                          isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                        }`}>Ready to Transform Your Ideas?</span>
+                      </div>
+                      
+                      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent px-4 sm:px-0">
+                        Let's Build Something Amazing Together
+                      </h2>
+                      
+                      <p className={`text-base sm:text-lg mb-6 max-w-2xl mx-auto px-4 sm:px-0 ${
+                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                      }`}>
+                        Join hundreds of successful companies who have transformed their business with our expert frontend developers. 
+                        Your next breakthrough is just one conversation away.
+                      </p>
+                    </motion.div>
+      
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0 mb-6 sm:mb-8"
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(event) => {
+                    if (isNavigating) return; 
+                    setIsNavigating(true);
+                    
+                    
+                    const button = event.target.closest('button');
+                    button.style.transform = 'scale(0.95)';
+                    
+                  
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    
+                    setTimeout(() => {
+                      navigate('/contactus');
+                      setIsNavigating(false);
+                    }, 400);
+                  }}
+                        className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
+                      >
+                        <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" />
+                        Start Your Project Now
+                        <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                      </motion.button>
+                      
+                      <motion.button 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(event) => {
+                                      if (isNavigating) return; 
+                                      setIsNavigating(true);
+                                      
+                                      
+                                      const button = event.target.closest('button');
+                                      button.style.transform = 'scale(0.95)';
+                                      
+                                    
+                                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                                      
+                                      
+                                      setTimeout(() => {
+                                        navigate('/meetingform');
+                                        setIsNavigating(false);
+                                      }, 400);
+                                    }}
+                        className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group backdrop-blur-sm ${
+                          isDarkMode 
+                            ? 'border-gray-500 text-gray-200 hover:bg-gray-700/50 hover:border-gray-400' 
+                            : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                        }`}
+                      >
+                        <Calendar className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
+                        Schedule Free Consultation
+                      </motion.button>
+                    </motion.div>
+      
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                      className="flex items-center justify-center space-x-8 text-sm pt-12 sm:pt-16"
+                    >
+                      <div className="flex items-center">
+                        <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                        <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Free Consultation</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                        <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>No Hidden Costs</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                        <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>24/7 Support</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
+            </section>
     </div>
   );
 };

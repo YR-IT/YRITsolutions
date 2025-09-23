@@ -1,7 +1,8 @@
-import React from 'react';
+import React ,{ useState } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CheckCircle, Star, Users, Code, Globe, Smartphone, Database, Brain, Shield, Search, Filter, MapPin, Clock, DollarSign, Zap, Award, Headphones, Cpu, Target, Monitor, TrendingUp, MessageSquare, Calendar, Briefcase, Trophy, Rocket, Heart, ThumbsUp, Sparkles, MousePointer, Settings } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -38,90 +39,11 @@ const data = [
   }
 ];
 
-const FrontendCard = ({ dev }) => {
-  const { isDarkMode } = useTheme();
-  
-  return (
-    <motion.div
-      className={`relative group bg-gradient-to-b from-blue-400 to-purple-800 
-                 text-white p-4 sm:p-6 w-full 
-                 h-auto min-h-[420px] sm:min-h-[480px] 
-                 flex flex-col justify-between
-                 rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-none 
-                 shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
-                   isDarkMode ? 'shadow-gray-900/50' : 'shadow-gray-500/20'
-                 }`}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      whileHover={{ y: -5 }}
-    >
-      {/* Profile */}
-      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-4 sm:mb-6 z-10">
-        <motion.img
-          src={dev.img}
-          alt={dev.name}
-          className="w-16 h-16 sm:w-20 md:w-24 sm:h-20 md:h-24 
-                     rounded-full border-2 border-white object-cover flex-shrink-0"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          transition={{ duration: 0.3 }}
-        />
-        <div className="text-center sm:text-left">
-          <h3 className="text-lg sm:text-xl font-bold">{dev.name}</h3>
-          <p className="text-sm sm:text-base">{dev.role}</p>
-          <p className="text-xs sm:text-sm text-gray-200">{dev.experience}</p>
-        </div>
-      </div>
 
-      {/* Skills */}
-      {dev.skills.length > 0 && (
-        <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6 z-10 justify-center sm:justify-start">
-          {dev.skills.map((skill, i) => (
-            <motion.span
-              key={i}
-              className="px-2 sm:px-3 py-1 border border-white text-xs sm:text-sm 
-                         transition-all duration-300 ease-in-out 
-                         hover:shadow-md hover:bg-gradient-to-r 
-                         from-blue-400 to-purple-800 rounded-md cursor-pointer"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {skill}
-            </motion.span>
-          ))}
-        </div>
-      )}
-
-      {/* Description */}
-      <p className="text-xs sm:text-sm text-gray-200 mb-4 sm:mb-6 z-10 
-                    text-center sm:text-left leading-relaxed flex-grow">
-        {dev.desc}
-      </p>
-
-      {/* Salary Info */}
-      {(dev.monthly || dev.hourly) && (
-        <div className="flex flex-col sm:flex-row justify-between text-xs sm:text-sm font-semibold 
-                        border-t border-gray-300 pt-4 z-10 gap-2 sm:gap-0">
-          <span className="text-center sm:text-left">Monthly: {dev.monthly}</span>
-          <span className="text-center sm:text-right">Hourly: {dev.hourly}</span>
-        </div>
-      )}
-
-      {/* Hover Layer Effect */}
-      <div
-        className="absolute left-0 bottom-0 w-full h-0 
-                   bg-gradient-to-b from-black/70 to-purple-800 
-                   rounded-2xl flex items-center justify-center flex-col 
-                   text-center px-4 sm:px-6 overflow-hidden 
-                   transition-all duration-700 ease-in-out group-hover:h-full"
-      />
-    </motion.div>
-  );
-};
 
 const EssentialCard = ({ data }) => {
   const { isDarkMode } = useTheme();
+  
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
@@ -178,6 +100,9 @@ const EssentialCard = ({ data }) => {
 const HireFrontendDev = () => {
   const { isDarkMode } = useTheme();
   const { scrollY } = useScroll();
+  const navigate = useNavigate();
+
+  const [isNavigating, setIsNavigating] = useState(false);
   
   // Parallax transforms
   const heroY = useTransform(scrollY, [0, 500], [0, 50]);
@@ -675,6 +600,23 @@ const HireFrontendDev = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={(event) => {
+              if (isNavigating) return; 
+              setIsNavigating(true);
+              
+              
+              const button = event.target.closest('button');
+              button.style.transform = 'scale(0.95)';
+              
+            
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              
+              
+              setTimeout(() => {
+                navigate('/contactus');
+                setIsNavigating(false);
+              }, 400);
+            }}
                   className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white rounded-xl font-semibold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center group"
                 >
                   <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" />
@@ -685,6 +627,23 @@ const HireFrontendDev = () => {
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={(event) => {
+                                if (isNavigating) return; 
+                                setIsNavigating(true);
+                                
+                                
+                                const button = event.target.closest('button');
+                                button.style.transform = 'scale(0.95)';
+                                
+                              
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                
+                                
+                                setTimeout(() => {
+                                  navigate('/meetingform');
+                                  setIsNavigating(false);
+                                }, 400);
+                              }}
                   className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-xl font-semibold text-sm sm:text-base border-2 transition-all duration-300 flex items-center justify-center group backdrop-blur-sm ${
                     isDarkMode 
                       ? 'border-gray-500 text-gray-200 hover:bg-gray-700/50 hover:border-gray-400' 
