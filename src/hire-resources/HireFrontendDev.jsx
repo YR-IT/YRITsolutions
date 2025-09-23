@@ -3,48 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CheckCircle, Star, Users, Code, Globe, Smartphone, Database, Brain, Shield, Search, Filter, MapPin, Clock, DollarSign, Zap, Award, Headphones, Cpu, Target, Monitor, TrendingUp, MessageSquare, Calendar, Briefcase, Trophy, Rocket, Heart, ThumbsUp, Sparkles, MousePointer, Settings } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
-const dev = [
-  {
-    name: "M. Sharma",
-    role: "Senior Front-end Developer",
-    experience: "10 Years of Experience",
-    skills: ["JavaScript", "React", "HTML/CSS", "jQuery", "Vue.js", "Angular JS"],
-    desc: "Experienced Front-end developer with 10 years of expertise in JavaScript, React, and CSS. Passionate about creating seamless, responsive user interfaces. Proven track record of delivering high-quality web applications for diverse industries.",
-    monthly: "$7000 Above",
-    hourly: "$15 - $25",
-    img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    name: "Emily Johnson",
-    role: "Senior Front-end Developer",
-    experience: "12 Years of Experience",
-    skills: ["TypeScript", "Angular JS", "Vue.js", "Next.js", "React.js"],
-    desc: "Front-end developer with 12+ years of experience specializing in Angular, Vue, and TypeScript. Skilled in building dynamic and accessible web applications with a strong background in UI/UX design.",
-    monthly: "$8500 Above",
-    hourly: "$15 - $25",
-    img: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    name: "A. Verma",
-    role: "Senior Front-end Developer",
-    experience: "15 Years of Experience",
-    skills: ["React JS", "HTML/CSS", "TypeScript", "Vue.js", "Next.js", "Angular JS"],
-    desc: "With 15 years of experience in Front-end development, A. Verma excels in React, JavaScript, and HTML/CSS. Adept at turning design mockups into interactive, high-performance web pages.",
-    monthly: "$9000 Above",
-    hourly: "$15 - $25",
-    img: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    name: "Hire Front-end Developer",
-    role: "",
-    experience: "10 years of Experience",
-    skills: ["JavaScript", "React", "HTML/CSS", "jQuery", "Vue.js", "Angular JS"],
-    desc: "Hire skilled front-end developers to build stunning and high-performance web applications tailored to your needs. Adept at turning design mockups into interactive, high-performance web pages.",
-    monthly: "$9000 Above",
-    hourly: "$15 - $25",
-    img: "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-];
+
 
 const data = [
   {
@@ -401,7 +360,8 @@ const HireFrontendDev = () => {
         }`}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div 
+          <div className="text-center pt-12  sm:pt-12 md:pt-12 lg:pt-12">
+            <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
             variants={containerVariants}
             initial="hidden"
@@ -448,82 +408,14 @@ const HireFrontendDev = () => {
               </motion.div>
             ))}
           </motion.div>
+          </div>
         </div>
       </motion.section>
 
-      {/* Theme-responsive Container with Cards */}
-      <motion.div 
-        className={`max-w-7xl mx-auto mt-8 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-24 
-                   px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 
-                   py-6 sm:py-8 md:py-10 lg:py-12 
-                   rounded-2xl sm:rounded-3xl shadow-md ${
-                     isDarkMode ? 'bg-gray-800/50 border border-gray-700' : 'bg-white'
-                   }`}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.div 
-          className="text-center space-y-3 sm:space-y-4"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}>
-            Looking Front-End Developers?
-          </h1>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold 
-                         bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 
-                         bg-clip-text text-transparent">
-            Hire Best front-end developers today!
-          </h2>
-        </motion.div>
-
-        <motion.div 
-          className="mt-4 sm:mt-6 space-y-2 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <p className={`text-sm sm:text-base leading-relaxed px-2 sm:px-0 ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-700'
-          }`}>
-            Get skilled front-end developers to create responsive, user-friendly, and high-performance web applications.
-          </p>
-          <p className={`text-sm sm:text-base leading-relaxed px-2 sm:px-0 ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-700'
-          }`}>
-            Our experts specialize in React, Angular, and Vue.js for seamless UI/UX. Tailored solutions to match your specific project requirements.
-          </p>
-          <p className={`text-sm sm:text-base leading-relaxed px-2 sm:px-0 ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-700'
-          }`}>
-            Build stunning and interactive web experiences with our professionals!
-          </p>
-        </motion.div>
-
-        {/* Developer Cards */}
-        <motion.div 
-          className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 lg:gap-8 
-                      grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {dev.map((developer, idx) => (
-            <FrontendCard key={idx} dev={developer} />
-          ))}
-        </motion.div>
-      </motion.div>
+      
 
       {/* Frontend Development Excellence Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="py-8 sm:py-8 md:py-8 lg:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -752,7 +644,7 @@ const HireFrontendDev = () => {
       </section>
 
       {/* Essential Section */}
-      <div className="py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="pb-6 sm:pb-6 md:pb-6 lg:pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <motion.h1 
             className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 text-center lg:text-left ${
