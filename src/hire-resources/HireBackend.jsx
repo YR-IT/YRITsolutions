@@ -266,76 +266,12 @@ const HireBackend = () => {
         </div>
       </motion.section>
 
-      {/* Enhanced Stats Section */}
-      <motion.section 
-        className="py-16 relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Background decoration */}
-        <div className={`absolute inset-0 ${
-          isDarkMode ? 'bg-gradient-to-r from-blue-900/10 to-purple-900/10' : 'bg-gradient-to-r from-blue-50/50 to-purple-50/50'
-        }`}></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center pt-12  sm:pt-12 md:pt-12 lg:pt-12">
-            <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {[
-              { number: "25+", label: "Expert Developers", icon: <Users className="w-6 h-6" />, color: "text-blue-500" },
-              { number: "50+", label: "Projects Completed", icon: <CheckCircle className="w-6 h-6" />, color: "text-green-500" },
-              { number: "98%", label: "Success Rate", icon: <Star className="w-6 h-6" />, color: "text-yellow-500" },
-              { number: "24/7", label: "Support Available", icon: <Clock className="w-6 h-6" />, color: "text-purple-500" }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
-                }}
-                className={`text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl backdrop-blur-sm border transition-all duration-300 cursor-pointer group ${
-                  isDarkMode 
-                    ? 'bg-gray-800/30 border-gray-700/20 hover:border-gray-600/30' 
-                    : 'bg-white/50 border-gray-200/20 hover:border-gray-300/30'
-                }`}
-              >
-                <motion.div 
-                  className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold ${stat.color} mb-1 sm:mb-2 flex items-center justify-center gap-1 sm:gap-2`}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
-                    {React.cloneElement(stat.icon, { className: "w-full h-full" })}
-                  </div>
-                  {stat.number}
-                </motion.div>
-                <div className={`text-xs sm:text-sm font-medium transition-colors duration-300 ${
-                  isDarkMode 
-                    ? 'text-gray-400 group-hover:text-gray-300' 
-                    : 'text-gray-600 group-hover:text-gray-800'
-                }`}>
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-          </div>
-        </div>
-      </motion.section>
+    
 
       
 
       {/* Frontend Development Excellence Section */}
-      <section className="py-8 sm:py-8 md:py-8 lg:py-8">
+      <section className="py-16 sm:py-16 md:py-24 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
