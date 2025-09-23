@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, X, Menu } from "lucide-react";
 import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../contexts/ThemeContext';
@@ -49,6 +49,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
   const [activeSection, setActiveSection] = React.useState('COMPANY');
   const [isScrolled, setIsScrolled] = React.useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { isDarkMode } = useTheme();
 
   const isHome = location.pathname === '/';
@@ -171,7 +172,7 @@ const Navbar = ({ state, setState, setshow, show }) => {
               {/* CTA Button with Magnetic Effect */}
               <button
                 className="hidden md:flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 group relative overflow-hidden text-sm"
-                onClick={() => (window.location.href = '/meetingform')}
+                onClick={() => navigate('/meetingform')}
               >
                 {/* Background Animation */}
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

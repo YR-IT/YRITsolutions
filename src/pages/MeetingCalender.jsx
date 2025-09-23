@@ -48,7 +48,7 @@ const MeetingCalendar = () => {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: "dark",
+      theme: isDarkMode ? "dark" : "light",
     }
   );
 
@@ -61,7 +61,7 @@ const MeetingCalendar = () => {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: "dark",
+      theme: isDarkMode ? "dark" : "light",
     }
   );
 
@@ -74,7 +74,7 @@ const MeetingCalendar = () => {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: "dark",
+      theme: isDarkMode ? "dark" : "light",
     }
   );
 
@@ -84,7 +84,7 @@ const MeetingCalendar = () => {
 
   const handleContinue = () => {
     if (selectedTimeIndex === -1) {
-      toast.warning("Please select a time slot first!", { theme: "dark" });
+      toast.warning("Please select a time slot first!", { theme: isDarkMode ? "dark" : "light" });
       return;
     }
     setCurrentStep(2);
@@ -100,7 +100,7 @@ const MeetingCalendar = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      toast.error("Please enter a valid email address.", { theme: "dark" });
+      toast.error("Please enter a valid email address.", { theme: isDarkMode ? "dark" : "light" });
       return;
     }
 
@@ -170,7 +170,7 @@ const MeetingCalendar = () => {
     <div className={`min-h-screen relative overflow-hidden transition-colors duration-300 ${
       isDarkMode 
         ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white' 
-        : 'bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900'
+        : 'bg-white text-gray-900'
     }`}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -202,7 +202,7 @@ const MeetingCalendar = () => {
           className={`absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl ${
             isDarkMode 
               ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20' 
-              : 'bg-gradient-to-r from-blue-300/30 to-purple-300/30'
+              : 'bg-gradient-to-r from-blue-300/10 to-purple-300/10'
           }`}
           animate={{
             scale: [1, 1.2, 1],
@@ -218,7 +218,7 @@ const MeetingCalendar = () => {
           className={`absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl ${
             isDarkMode 
               ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20' 
-              : 'bg-gradient-to-r from-purple-300/30 to-pink-300/30'
+              : 'bg-gradient-to-r from-purple-300/10 to-pink-300/10'
           }`}
           animate={{
             scale: [1.2, 1, 1.2],
@@ -242,8 +242,8 @@ const MeetingCalendar = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
-        toastClassName="bg-gray-800 text-white"
+        theme={isDarkMode ? "dark" : "light"}
+        toastClassName={isDarkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}
       />
 
       {/* Hero Section */}
@@ -253,17 +253,17 @@ const MeetingCalendar = () => {
         animate="visible"
         variants={containerVariants}
       >
-        <div className={`absolute inset-0 backdrop-blur-sm ${
+        <div className={`absolute inset-0 ${
           isDarkMode 
-            ? 'bg-gradient-to-r from-blue-600/10 to-purple-600/10' 
-            : 'bg-gradient-to-r from-blue-200/20 to-purple-200/20'
+            ? 'backdrop-blur-sm bg-gradient-to-r from-blue-600/10 to-purple-600/10' 
+            : 'bg-transparent'
         }`}></div>
         
         {/* Glowing Border Effect */}
-        <div className={`absolute inset-0 blur-xl opacity-50 ${
+        <div className={`absolute inset-0 blur-xl ${
           isDarkMode 
-            ? 'bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20' 
-            : 'bg-gradient-to-r from-blue-300/30 via-purple-300/30 to-pink-300/30'
+            ? 'opacity-50 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20' 
+            : 'opacity-0'
         }`}></div>
         <div className="relative max-w-4xl mx-auto text-center">
           <motion.div
