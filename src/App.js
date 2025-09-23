@@ -32,10 +32,14 @@ import DigitalMarketing from './components/solutions/DigitalMarketing';
 import CyberSecurity from './components/solutions/CyberSecurity';
 import DataScience from './components/solutions/DataScience';
 import Career from './pages/Carrer';
-import HireDeveloper from './hire-resources/HireDeveloper';
 import MeetingCalendar from './pages/MeetingCalender';
 import ScrollToTop from './components/ScrollToTop';
 import HireFrontendDev from './hire-resources/HireFrontendDev';
+import HireIOSDeveloper from './hire-resources/HireIOSDeveloper';
+import HireAndroidDeveloper from './hire-resources/HireAndroidDeveloper';
+import HireFlutterDeveloper from './hire-resources/HireFlutterDeveloper';
+import HireMobileDeveloper from './hire-resources/HireMobileDeveloper';
+import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
 
 
 
@@ -79,9 +83,13 @@ function App() {
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/team" element={<Team />} />
             <Route path="/careers" element={<Career/>} />
-            <Route path="/hire-developer" element={<HireDeveloper />} />
             <Route path="/schedule-meeting" element={<MeetingCalendar />} />
             <Route path="/hire-frontend" element={<HireFrontendDev />} />
+            <Route path="/hire-ios-developer" element={<HireIOSDeveloper />} />
+            <Route path="/hire-android-developer" element={<HireAndroidDeveloper />} />
+            <Route path="/hire-flutter-developer" element={<HireFlutterDeveloper />} />
+            <Route path="/hire-mobile-developer" element={<HireMobileDeveloper />} />
+            <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
 
           </Routes>
         </main>

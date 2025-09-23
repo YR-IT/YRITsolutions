@@ -28,8 +28,16 @@ const menuData = {
     { label: 'Data Science', href: '/datascience' },
   ],
   'HIRE RESOURCE': [
-    { label: 'Hire Developers', href: '/hire-developer' },
-    { label: 'Hire Designers', href: '/ourservices#hire-design' },
+    { 
+      label: 'Hire Developers', 
+      submenu: [
+        { label: 'Mobile Developers', href: '/hire-mobile-developer' },
+        { label: 'iPhone Developers', href: '/hire-ios-developer' },
+        { label: 'Android Developers', href: '/hire-android-developer' },
+        { label: 'Flutter Developers', href: '/hire-flutter-developer' },
+        { label: 'Software Developers', href: '/hire-software-developer' },
+      ]
+    },
     { label: 'Schedule Meeting', href: '/meetingform' },
     { label: 'Hire Front-end Developers', href: '/hire-frontend' },
   ],
@@ -346,49 +354,98 @@ const Navbar = ({ state, setState, setshow, show }) => {
                     {menuData[activeSection].map((item, index) => (
                       <div
                         key={item.label}
-                        className={`transition-all duration-500 flex ${show ? 'animate-fade-in-up' : ''}`}
+                        className={`transition-all duration-500 flex ${show ? 'animate-fade-in-up' : ''} ${item.submenu ? 'col-span-full' : ''}`}
                         style={{ animationDelay: `${index * 0.05 + 0.4}s` }}
                       >
-                        <Link
-                          to={item.href}
-                          onClick={() => setshow(false)}
-                          className={`group relative flex flex-col justify-between p-4 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl h-[120px] w-full ${
+                        {/* Check if item has submenu */}
+                        {item.submenu ? (
+                          <div className={`group relative flex flex-col p-4 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl w-full ${
                             isDarkMode
                               ? 'bg-white/5 border border-white/10 hover:bg-white/10 hover:shadow-blue-500/20 hover:border-white/20'
                               : 'bg-gray-900/5 border border-gray-200 hover:bg-gray-100/50 hover:shadow-blue-500/10 hover:border-gray-300'
-                          }`}
-                        >
-                          {/* Background Glow */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                          
-                          <div className="relative">
-                            <div className="flex items-start justify-between mb-3">
-                              <h3 className={`font-semibold text-sm sm:text-base transition-colors duration-300 ${
-                                isDarkMode
-                                  ? 'text-white group-hover:text-blue-200'
-                                  : 'text-gray-900 group-hover:text-blue-600'
-                              }`}>
-                                {item.label}
-                              </h3>
-                              <ArrowRight className={`w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                              }`} />
-                            </div>
+                          }`}>
+                            {/* Background Glow */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             
-                            <p className={`text-xs sm:text-sm transition-colors duration-300 ${
-                              isDarkMode
-                                ? 'text-gray-400 group-hover:text-gray-300'
-                                : 'text-gray-600 group-hover:text-gray-700'
-                            }`}>
-                              {item.label === 'Cyber Security' 
-                                ? 'Explore our cybersecurity solutions' 
-                                : `Explore our ${item.label.toLowerCase()}`}
-                            </p>
+                            <div className="relative">
+                              <div className="flex items-start justify-between mb-4">
+                                <h3 className={`font-semibold text-lg sm:text-xl transition-colors duration-300 ${
+                                  isDarkMode
+                                    ? 'text-white group-hover:text-blue-200'
+                                    : 'text-gray-900 group-hover:text-blue-600'
+                                }`}>
+                                  {item.label}
+                                </h3>
+                              </div>
 
-                            {/* Bottom Gradient Line */}
-                            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                              {/* Submenu Items in Grid Layout */}
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                {item.submenu.map((subItem, subIndex) => (
+                                  <Link
+                                    key={subItem.label}
+                                    to={subItem.href}
+                                    onClick={() => setshow(false)}
+                                    className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 border ${
+                                      isDarkMode
+                                        ? 'text-gray-300 hover:text-white hover:bg-white/10 border-white/10 hover:border-white/20'
+                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 border-gray-200 hover:border-gray-300'
+                                    }`}
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                ))}
+                              </div>
+
+                              {/* Bottom Gradient Line */}
+                              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
                           </div>
-                        </Link>
+                        ) : (
+                          <Link
+                            to={item.href}
+                            onClick={() => setshow(false)}
+                            className={`group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl backdrop-blur-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl ${
+                              (item.label === 'Schedule Meeting' || item.label === 'Hire Front-end Developers') 
+                                ? 'h-[160px]' 
+                                : 'h-[120px]'
+                            } w-full ${
+                              isDarkMode
+                                ? 'bg-white/5 border border-white/10 hover:bg-white/10 hover:shadow-blue-500/20 hover:border-white/20'
+                                : 'bg-gray-900/5 border border-gray-200 hover:bg-gray-100/50 hover:shadow-blue-500/10 hover:border-gray-300'
+                            }`}
+                          >
+                            {/* Background Glow */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            
+                            <div className="relative">
+                              <div className="flex items-start justify-between mb-4">
+                                <h3 className={`font-semibold text-lg transition-colors duration-300 ${
+                                  isDarkMode
+                                    ? 'text-white group-hover:text-blue-200'
+                                    : 'text-gray-900 group-hover:text-blue-600'
+                                }`}>
+                                  {item.label}
+                                </h3>
+                                <ArrowRight className={`w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 ${
+                                  isDarkMode ? 'text-gray-400' : 'text-gray-600'
+                                }`} />
+                              </div>
+                              
+                              <p className={`text-sm transition-colors duration-300 ${
+                                isDarkMode
+                                  ? 'text-gray-400 group-hover:text-gray-300'
+                                  : 'text-gray-600 group-hover:text-gray-700'
+                              }`}>
+                                {item.label === 'Cyber Security' 
+                                  ? 'Explore our cybersecurity solutions' 
+                                  : `Explore our ${item.label.toLowerCase()}`}
+                              </p>
+
+                              {/* Bottom Gradient Line */}
+                              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
+                          </Link>
+                        )}
                       </div>
                     ))}
                   </div>

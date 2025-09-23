@@ -262,39 +262,194 @@ const Career = () => {
 
       {/* Hiring Process */}
        <div className="px-4 sm:px-8 lg:px-20 py-12">
-  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8">
+  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12">
     HIRING PROCESS ⇓
   </h1>
-  <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-8">
+  
+  {/* Desktop Layout - Horizontal Flow with Curved Arrows */}
+  <div className="hidden lg:flex justify-center items-center max-w-7xl mx-auto relative">
     {steps.map((step, index) => (
-      <motion.div
-  key={index}
-  className={`w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center text-center text-white text-sm sm:text-base md:text-lg font-semibold shadow-2xl ${step.color}`}
-  initial={{ opacity: 0, scale: 0, rotate: -180 }}
-  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-  viewport={{ once: false, amount: 0.2 }}
-  transition={{
-    type: "spring",
-    stiffness: 100,
-    damping: 15,
-    duration: 1.2,
-    delay: index * 0.25,
-  }}
-  whileHover={{
-    rotate: [0, -10, 10, -8, 8, -5, 5, 0],  // 👈 juggle motion
-    transition: {
-      duration: 1.2,
-      ease: "easeInOut",
-      repeat: 1,  // ek baar juggle kare
-    },
-    scale: 1.1,
-    boxShadow: "0 0 30px rgba(255,255,255,0.7)",
-  }}
->
-  <span className="animate-pulse">{step.title}</span>
-</motion.div>
+      <React.Fragment key={index}>
+        {/* Step Circle */}
+        <motion.div
+          className={`w-48 h-48 rounded-full flex items-center justify-center text-center text-white text-base font-semibold shadow-2xl relative z-10 ${step.color}`}
+          initial={{ opacity: 0, scale: 0, rotate: -180 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            duration: 1.2,
+            delay: index * 0.25,
+          }}
+          whileHover={{
+            rotate: [0, -10, 10, -8, 8, -5, 5, 0],
+            transition: {
+              duration: 1.2,
+              ease: "easeInOut",
+              repeat: 1,
+            },
+            scale: 1.1,
+            boxShadow: "0 0 30px rgba(255,255,255,0.7)",
+          }}
+        >
+          {/* Step Number */}
+          <div className="absolute -top-4 -right-4 w-8 h-8 bg-white text-black rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+            {index + 1}
+          </div>
+          <span className="animate-pulse px-4">{step.title}</span>
+        </motion.div>
 
+        {/* Curved Arrow Connector - Between circles */}
+        {index < steps.length - 1 && (
+          <motion.div 
+            className="flex items-center justify-center mx-2 relative"
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false }}
+            transition={{ duration: 1, delay: index * 0.25 + 0.5 }}
+          >
+            {/* Curved Arrow SVG - Between step circles */}
+            <svg 
+              width="120" 
+              height="100" 
+              viewBox="0 0 120 100" 
+              className="overflow-visible"
+            >
+              {/* Curved Arrow Path - Alternating curves */}
+              <motion.path
+                d={index % 2 === 0 
+                  ? "M 10 50 Q 60 20 110 50"  // Curve up for even indices (0, 2, 4...)
+                  : "M 10 50 Q 60 80 110 50"  // Curve down for odd indices (1, 3...)
+                }
+                stroke="#3b82f6"
+                strokeWidth="3"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ 
+                  pathLength: 1, 
+                  opacity: 1,
+                  stroke: ["#3b82f6", "#8b5cf6", "#3b82f6"]
+                }}
+                transition={{ 
+                  pathLength: { duration: 1.5, delay: index * 0.25 + 0.8 },
+                  opacity: { duration: 0.5, delay: index * 0.25 + 0.8 },
+                  stroke: { duration: 3, repeat: Infinity }
+                }}
+              />
+              
+              {/* Arrow Head - Positioned at the end of curve */}
+              <motion.polygon
+                points={index % 2 === 0 
+                  ? "105,45 115,50 105,55"  // Arrow pointing right for upward curves
+                  : "105,45 115,50 105,55"  // Arrow pointing right for downward curves
+                }
+                fill="#8b5cf6"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: [0, 1.2, 1],
+                  fill: ["#8b5cf6", "#3b82f6", "#8b5cf6"]
+                }}
+                transition={{ 
+                  opacity: { duration: 0.5, delay: index * 0.25 + 1.5 },
+                  scale: { duration: 0.8, delay: index * 0.25 + 1.5 },
+                  fill: { duration: 3, repeat: Infinity }
+                }}
+              />
+              
+            </svg>
+          </motion.div>
+        )}
+      </React.Fragment>
+    ))}
+  </div>
 
+  {/* Mobile/Tablet Layout - Vertical Flow */}
+  <div className="lg:hidden flex flex-col items-center space-y-8 max-w-md mx-auto">
+    {steps.map((step, index) => (
+      <div key={index} className="flex flex-col items-center">
+        {/* Step Circle */}
+        <motion.div
+          className={`w-40 h-40 sm:w-48 sm:h-48 rounded-full flex items-center justify-center text-center text-white text-sm sm:text-base font-semibold shadow-2xl relative ${step.color}`}
+          initial={{ opacity: 0, scale: 0, rotate: -180 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            duration: 1.2,
+            delay: index * 0.25,
+          }}
+          whileHover={{
+            rotate: [0, -10, 10, -8, 8, -5, 5, 0],
+            transition: {
+              duration: 1.2,
+              ease: "easeInOut",
+              repeat: 1,
+            },
+            scale: 1.1,
+            boxShadow: "0 0 30px rgba(255,255,255,0.7)",
+          }}
+        >
+          {/* Step Number */}
+          <div className="absolute -top-3 -right-3 w-7 h-7 bg-white text-black rounded-full flex items-center justify-center text-xs font-bold shadow-lg">
+            {index + 1}
+          </div>
+          <span className="animate-pulse px-3">{step.title}</span>
+        </motion.div>
+
+        {/* Vertical Arrow Connector */}
+        {index < steps.length - 1 && (
+          <motion.div 
+            className="flex flex-col items-center my-4"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.8, delay: index * 0.25 + 0.5 }}
+          >
+            {/* Vertical Arrow Line */}
+            <div className="relative">
+              <motion.div 
+                className="w-1 h-12 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
+                animate={{
+                  background: [
+                    "linear-gradient(180deg, #3b82f6, #8b5cf6)",
+                    "linear-gradient(180deg, #8b5cf6, #3b82f6)",
+                    "linear-gradient(180deg, #3b82f6, #8b5cf6)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              
+              {/* Moving Dot Animation */}
+              <motion.div
+                className="absolute left-1/2 w-2 h-2 bg-white rounded-full shadow-lg"
+                style={{ x: "-50%" }}
+                animate={{ y: [0, 40, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
+            
+            {/* Arrow Head */}
+            <motion.div 
+              className="mt-2"
+              animate={{ 
+                y: [0, 5, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-blue-500">
+                <path d="M12 5v14m-7-7l7 7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
     ))}
   </div>
 </div>
@@ -302,4 +457,4 @@ const Career = () => {
   );
 };
 
-export default Career;
+export default Career; 
