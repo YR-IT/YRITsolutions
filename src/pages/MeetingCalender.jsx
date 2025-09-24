@@ -362,7 +362,7 @@ const MeetingCalendar = () => {
               {/* Calendar Section */}
               <motion.div
                 variants={cardVariants}
-                className={`relative backdrop-blur-xl rounded-3xl p-8 border shadow-2xl group overflow-hidden ${
+                className={`relative backdrop-blur-xl rounded-3xl p-4 sm:p-6 lg:p-8 border shadow-2xl group overflow-hidden ${
                   isDarkMode 
                     ? 'bg-gradient-to-br from-gray-800/60 via-gray-900/60 to-black/60 border-gray-600/30' 
                     : 'bg-gradient-to-br from-white/80 via-gray-50/60 to-white/80 border-gray-200/50'
@@ -456,7 +456,7 @@ const MeetingCalendar = () => {
               {/* Time Slots Section */}
               <motion.div
                 variants={cardVariants}
-                className={`relative backdrop-blur-xl rounded-3xl p-8 border shadow-2xl group overflow-hidden ${
+                className={`relative backdrop-blur-xl rounded-3xl p-4 sm:p-6 lg:p-8 border shadow-2xl group overflow-hidden ${
                   isDarkMode 
                     ? 'bg-gradient-to-br from-gray-800/60 via-gray-900/60 to-black/60 border-gray-600/30' 
                     : 'bg-gradient-to-br from-white/80 via-gray-50/60 to-white/80 border-gray-200/50'
@@ -599,7 +599,7 @@ const MeetingCalendar = () => {
               </div>
 
               {/* Meeting Summary */}
-              <div className={`rounded-xl p-6 mb-8 border ${
+              <div className={`rounded-xl p-4 sm:p-6 mb-6 sm:mb-8 border ${
                 isDarkMode 
                   ? 'bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-blue-500/30' 
                   : 'bg-gradient-to-r from-blue-100/50 to-purple-100/50 border-blue-300/50'
