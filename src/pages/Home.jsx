@@ -17,20 +17,20 @@ import ContactWidget from "../components/ContactWidget";
 import { useTheme } from '../contexts/ThemeContext';
 
 const topImages = [
-  "/images/hero section images/image1.jpg",
-  "/images/hero section images/image2.jpg",
-  "/images/hero section images/image3.jpg",
-  "/images/hero section images/image4.jpg",
-  "/images/hero section images/image5.jpg",
-  "/images/hero section images/image6.jpg",
+  "/images/hero section images/images1.jpg",
+  "/images/hero section images/images2.jpg",
+  "/images/hero section images/images3.jpg",
+  "/images/hero section images/images4.jpg",
+  "/images/hero section images/images5.jpg",
+  "/images/hero section images/images6.jpg",
 ];
 
 const bottomImages = [
-  "/images/hero section images/image7.jpg",
-  "/images/hero section images/image8.jpg",
-  "/images/hero section images/image9.jpg",
-  "/images/hero section images/image10.png",
-  "/images/hero section images/image11.png",
+  "/images/hero section images/images7.jpg",
+  "/images/hero section images/images8.jpg",
+  "/images/hero section images/images9.jpg",
+  "/images/hero section images/images10.jpg",
+  "/images/hero section images/images11.jpg",
 ];
 
 const services = [
