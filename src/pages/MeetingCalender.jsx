@@ -98,9 +98,15 @@ const MeetingCalendar = () => {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       toast.error("Please enter a valid email address.", { theme: isDarkMode ? "dark" : "light" });
+      return;
+    }
+
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/; 
+    if (!phoneRegex.test(formData.phone)) {
+      toast.error("Please enter a valid phone number (e.g., +15551234567).", { theme: isDarkMode ? "dark" : "light" });
       return;
     }
 
@@ -671,7 +677,9 @@ const MeetingCalendar = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
                     <Mail className="w-4 h-4 inline mr-2" />
                     Email Address *
                   </label>
@@ -679,14 +687,20 @@ const MeetingCalendar = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="w-full p-4 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-gray-700/50 transition-all duration-300 backdrop-blur-sm"
+                    className={`w-full p-4 border rounded-xl transition-all duration-300 backdrop-blur-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 ${
+                      isDarkMode 
+                        ? 'bg-gray-800/50 border-gray-600/50 text-white placeholder-gray-400 focus:bg-gray-700/50' 
+                        : 'bg-white/80 border-gray-300/50 text-gray-900 placeholder-gray-500 focus:bg-white'
+                    }`}
                     placeholder="your.email@company.com"
                     whileFocus={{ scale: 1.02 }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
                     <Phone className="w-4 h-4 inline mr-2" />
                     Phone Number *
                   </label>
@@ -694,14 +708,20 @@ const MeetingCalendar = () => {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className="w-full p-4 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-gray-700/50 transition-all duration-300 backdrop-blur-sm"
+                    className={`w-full p-4 border rounded-xl transition-all duration-300 backdrop-blur-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 ${
+                      isDarkMode 
+                        ? 'bg-gray-800/50 border-gray-600/50 text-white placeholder-gray-400 focus:bg-gray-700/50' 
+                        : 'bg-white/80 border-gray-300/50 text-gray-900 placeholder-gray-500 focus:bg-white'
+                    }`}
                     placeholder="+1 (555) 123-4567"
                     whileFocus={{ scale: 1.02 }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
                     <Building className="w-4 h-4 inline mr-2" />
                     Company Name *
                   </label>
@@ -709,7 +729,11 @@ const MeetingCalendar = () => {
                     type="text"
                     value={formData.company}
                     onChange={(e) => handleInputChange('company', e.target.value)}
-                    className="w-full p-4 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:bg-gray-700/50 transition-all duration-300 backdrop-blur-sm"
+                    className={`w-full p-4 border rounded-xl transition-all duration-300 backdrop-blur-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 ${
+                      isDarkMode 
+                        ? 'bg-gray-800/50 border-gray-600/50 text-white placeholder-gray-400 focus:bg-gray-700/50' 
+                        : 'bg-white/80 border-gray-300/50 text-gray-900 placeholder-gray-500 focus:bg-white'
+                    }`}
                     placeholder="Your Company Name"
                     whileFocus={{ scale: 1.02 }}
                   />

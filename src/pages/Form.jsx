@@ -34,10 +34,19 @@ const Form = () => {
     }
 
     // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       toast.error('Please enter a valid email address');
       return;
+    }
+
+    // Phone number validation (optional)
+    if (formData.phone) {
+      const phoneRegex = /^\+?[1-9]\d{1,14}$/; // E.164 format
+      if (!phoneRegex.test(formData.phone)) {
+        toast.error('Please enter a valid phone number (e.g., +15551234567)');
+        return;
+      }
     }
 
     setIsLoading(true);
