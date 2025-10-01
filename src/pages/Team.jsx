@@ -353,16 +353,17 @@ const TeamPage = () => {
           <p className="text-xl text-blue-100 mb-8">
             We're always looking for passionate, talented individuals who share our vision and want to make a meaningful impact.
           </p>
-          <button
-            className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-            type="button"
+          <a
+            href="https://www.linkedin.com/in/yashika-sharma1775?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
           >
             View Open Positions
-          </button>
+          </a>
         </div>
       </section>
     </div>
   );
 };
-
 export default TeamPage;
