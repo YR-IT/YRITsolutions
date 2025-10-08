@@ -22,7 +22,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Portfolio from './pages/Portfolio'; 
 import Blog from './pages/Blog';
 import { Routes, Route } from 'react-router-dom';
-import AdminPanel from "./pages/admin/AdminPanel";
+import AddBlog from "./pages/admin/AddBlog";
 import Team from './pages/Team';
 import { ThemeProvider } from './contexts/ThemeContext';
 import WebApps from './components/solutions/WebApps';
@@ -41,7 +41,7 @@ import HireFlutterDeveloper from './hire-resources/HireFlutterDeveloper';
 import HireMobileDeveloper from './hire-resources/HireMobileDeveloper';
 import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
 import HireBackend from './hire-resources/HireBackend';
-
+import ManageBlog  from './pages/admin/manageblogs';
 
 
 
@@ -82,7 +82,7 @@ function App() {
             <Route path="/digitalmarketing" element={<DigitalMarketing />} />
             <Route path="/cybersecurity" element={<CyberSecurity />} />
             <Route path="/datascience" element={<DataScience />} />
-            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/admin" element={<AddBlog />} />
             <Route path="/team" element={<Team />} />
             <Route path="/careers" element={<Career/>} />
             <Route path="/schedule-meeting" element={<MeetingCalendar />} />
@@ -93,6 +93,7 @@ function App() {
             <Route path="/hire-mobile-developer" element={<HireMobileDeveloper />} />
             <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
             <Route path="/hire-backend" element={<HireBackend />} />
+            <Route path='/manageblogs' element ={<ManageBlog/>}/>
 
           </Routes>
         </main>
