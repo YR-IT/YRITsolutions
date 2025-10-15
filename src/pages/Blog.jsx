@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllBlogs } from "../pages/admin/api/blogApi";
+
 import {
   Clock,
   User,
@@ -26,9 +26,10 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const blogs = await getAllBlogs();
-        setBlogPosts(blogs);
-        setRecentPosts(blogs.slice(0, 5));
+        const response = await fetch('https://yrmainbackend.vercel.app/api/product/getblogs');
+        const data = await response.json();
+        setBlogPosts(data);
+        setRecentPosts(data.slice(0, 5));
       } catch (err) {
         console.error("❌ Error fetching blogs:", err.message);
       } finally {
