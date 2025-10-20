@@ -42,7 +42,7 @@ import HireMobileDeveloper from './hire-resources/HireMobileDeveloper';
 import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
 import HireBackend from './hire-resources/HireBackend';
 import ManageBlog  from './pages/admin/manageblogs';
-
+import ManageCareer from './pages/admin/managecareer';
 
 
 function App() {
@@ -94,6 +94,7 @@ function App() {
             <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
             <Route path="/hire-backend" element={<HireBackend />} />
             <Route path='/manageblogs' element ={<ManageBlog/>}/>
+            <Route path='/managecareers' element ={<ManageCareer/>}/>
 
           </Routes>
         </main>

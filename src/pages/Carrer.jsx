@@ -1,120 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const jobs = [
-  {
-    id: "6569-JOB",
-    date: "August 22, 2025",
-    title: "Sales Executive",
-    location: "Jaipur",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/sales-executive/",
-  },
-  {
-    id: "6567-JOB",
-    date: "August 21, 2025",
-    title: "Flutter Developer",
-    location: "Jaipur",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/flutter-developer/",
-  },
-  {
-    id: "6565-JOB",
-    date: "August 21, 2025",
-    title: "PHP Developer",
-    location: "Jaipur",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/php-developer/",
-  },
-  {
-    id: "6563-JOB",
-    date: "August 21, 2025",
-    title: "Content Writer Interns",
-    location: "Jaipur",
-    type: "Internship",
-    link: "https://telepathyinfotech.com/careers/content-writer/",
-  },
-  {
-    id: "6561-JOB",
-    date: "August 21, 2025",
-    title: "Digital Marketing Interns",
-    location: "Jaipur",
-    type: "Internship",
-    link: "https://telepathyinfotech.com/careers/digital-marketing-intern/",
-  },
-  {
-    id: "6559-JOB",
-    date: "August 21, 2025",
-    title: "Digital Marketing Manager",
-    location: "Jaipur",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/digital-marketing-manager/",
-  },
-  {
-    id: "6558-JOB",
-    date: "August 20, 2025",
-    title: "ReactJS Developer",
-    location: "Bangalore",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/react-developer/",
-  },
-  {
-    id: "6557-JOB",
-    date: "August 20, 2025",
-    title: "NodeJS Backend Engineer",
-    location: "Remote",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/node-developer/",
-  },
-  {
-    id: "6556-JOB",
-    date: "August 19, 2025",
-    title: "HR Intern",
-    location: "Delhi",
-    type: "Internship",
-    link: "https://telepathyinfotech.com/careers/hr-intern/",
-  },
-  {
-    id: "6555-JOB",
-    date: "August 19, 2025",
-    title: "Graphic Designer",
-    location: "Mumbai",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/graphic-designer/",
-  },
-  {
-    id: "6554-JOB",
-    date: "August 18, 2025",
-    title: "Business Development Executive",
-    location: "Pune",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/business-development/",
-  },
-  {
-    id: "6553-JOB",
-    date: "August 18, 2025",
-    title: "SEO Specialist",
-    location: "Jaipur",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/seo-specialist/",
-  },
-  {
-    id: "6552-JOB",
-    date: "August 17, 2025",
-    title: "UI/UX Designer",
-    location: "Remote",
-    type: "Full Time",
-    link: "https://telepathyinfotech.com/careers/ui-ux-designer/",
-  },
-  {
-    id: "6551-JOB",
-    date: "August 17, 2025",
-    title: "Data Analyst Intern",
-    location: "Hyderabad",
-    type: "Internship",
-    link: "https://telepathyinfotech.com/careers/data-analyst-intern/",
-  },
-];
 const steps = [
   { title: "Job Opportunities & Application Submission", color: "bg-[#033347]" },
   { title: "Shortlisting Candidates", color: "bg-[#560505]" },
@@ -124,7 +10,7 @@ const steps = [
 ];
 
 // 🎬 Job Card
-const JobCard = ({ date, title, location, type, id, link }) => {
+const JobCard = ({ date, title, type, id }) => {
   return (
     <motion.div
       className="group bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl shadow-lg p-6 sm:p-8 w-full 
@@ -156,7 +42,7 @@ const JobCard = ({ date, title, location, type, id, link }) => {
         {title}
       </motion.h2>
 
-      {/* Location & Type */}
+      {/* Type */}
       <motion.div
         className="flex flex-wrap items-center gap-2 text-sm sm:text-base md:text-lg mt-4"
         initial={{ opacity: 0, y: 20 }}
@@ -164,13 +50,9 @@ const JobCard = ({ date, title, location, type, id, link }) => {
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <a href={link} className="text-blue-700 font-bold hover:underline">
-          {location}
-        </a>
-        <span className="text-gray-600 font-bold">•</span>
-        <a href={link} className="text-blue-700 font-bold hover:underline">
+        <p className="text-blue-700 font-bold">
           {type}
-        </a>
+        </p>
       </motion.div>
 
       {/* Job ID */}
@@ -188,6 +70,25 @@ const JobCard = ({ date, title, location, type, id, link }) => {
 };
 
 const Career = () => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await fetch('https://yrmainbackend.vercel.app/api/product/getcareers');
+        const data = await response.json();
+        setJobs(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -212,19 +113,21 @@ const Career = () => {
 
       {/* Job Cards Grid */}
       <div className="flex items-center justify-center px-4 sm:px-6 lg:px-12 py-12 sm:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full max-w-7xl">
-          {jobs.map((job) => (
-            <JobCard
-              key={job.id}
-              date={job.date}
-              title={job.title}
-              location={job.location}
-              type={job.type}
-              id={job.id}
-              link={job.link}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <p>Loading jobs...</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 w-full max-w-7xl">
+            {jobs.map((job) => (
+              <JobCard
+                key={job.job_number}
+                date={job.date}
+                title={job.hiring_role}
+                type={job.job_type}
+                id={job.job_number}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Career Inquiry */}
@@ -457,4 +360,4 @@ const Career = () => {
   );
 };
 
-export default Career; 
+export default Career;

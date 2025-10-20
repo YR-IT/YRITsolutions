@@ -148,7 +148,7 @@ const ManageBlog = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-10">
       <h1 className="text-3xl font-bold mb-6 text-purple-800">Manage Blog Posts</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {blogs.map((blog) => (
