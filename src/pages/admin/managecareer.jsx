@@ -84,7 +84,7 @@ const ManageCareer = () => {
     };
 
     return (
-        <div className="container mx-auto p-10">
+        <div className="container mx-auto p-10 text-black">
             <h1 className="text-2xl font-bold mb-4">Manage Careers</h1>
 
             <div className="mb-8">

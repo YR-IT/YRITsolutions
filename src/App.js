@@ -43,8 +43,8 @@ import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
 import HireBackend from './hire-resources/HireBackend';
 import ManageBlog  from './pages/admin/manageblogs';
 import ManageCareer from './pages/admin/managecareer';
-
-
+import AdminPanel from './pages/admin/adminpanel';
+import Login from './pages/login';
 function App() {
   const [state, setState] = React.useState(0);
   const [show, setshow] = React.useState(false);
@@ -82,7 +82,7 @@ function App() {
             <Route path="/digitalmarketing" element={<DigitalMarketing />} />
             <Route path="/cybersecurity" element={<CyberSecurity />} />
             <Route path="/datascience" element={<DataScience />} />
-            <Route path="/admin" element={<AddBlog />} />
+            <Route path="/addblog" element={<AddBlog />} />
             <Route path="/team" element={<Team />} />
             <Route path="/careers" element={<Career/>} />
             <Route path="/schedule-meeting" element={<MeetingCalendar />} />
@@ -93,9 +93,12 @@ function App() {
             <Route path="/hire-mobile-developer" element={<HireMobileDeveloper />} />
             <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
             <Route path="/hire-backend" element={<HireBackend />} />
-            <Route path='/manageblogs' element ={<ManageBlog/>}/>
-            <Route path='/managecareers' element ={<ManageCareer/>}/>
-
+            <Route path="/adminpanel" element={<AdminPanel />}>
+              <Route path="manageblog" element={<ManageBlog />} />
+              <Route path="managecareers" element={<ManageCareer />} />
+              <Route path="addblog" element={<AddBlog />} />
+            </Route>
+             <Route path="/login" element={<Login />} />
           </Routes>
         </main>
 
