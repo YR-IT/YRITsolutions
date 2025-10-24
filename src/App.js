@@ -98,7 +98,7 @@ function App() {
               <Route path="managecareers" element={<ManageCareer />} />
               <Route path="addblog" element={<AddBlog />} />
             </Route>
-             <Route path="/login" element={<Login />} />
+             <Route path="/login" element={<Login/>} />
           </Routes>
         </main>
 
