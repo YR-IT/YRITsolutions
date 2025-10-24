@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const getBlogs = async () => {
-  const response = await fetch('https://yrmainbackend.vercel.app/api/getblogs');
+  const response = await fetch('https://yrmainbackend.vercel.app/api/product/getblogs');
   if (!response.ok) {
     throw new Error('Failed to fetch blogs');
   }
