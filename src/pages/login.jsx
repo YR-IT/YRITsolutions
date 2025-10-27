@@ -23,7 +23,7 @@ export default function Login({ SetIsAuthenticated }) {
     try {
       // TODO: Replace with real API call
       const response = await fetch(
-        "https://yrmainbackend.vercel.app/api/auth/login",
+        "https://yrmainbackend.onrender.com/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -39,10 +39,10 @@ export default function Login({ SetIsAuthenticated }) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data._id));
         localStorage.setItem("role", data.role);
-        console.log("Login successful:", data);
+        
         // Redirect to dashboard
         SetIsAuthenticated(true);
-        navigate("/dashboard");
+        navigate("/adminpanel");
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Login failed. Please try again.");

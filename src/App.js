@@ -43,11 +43,13 @@ import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
 import HireBackend from './hire-resources/HireBackend';
 import ManageBlog  from './pages/admin/manageblogs';
 import ManageCareer from './pages/admin/managecareer';
+import ProtectedRoute from './components/ProtectedRoute';
 import AdminPanel from './pages/admin/adminpanel';
 import Login from './pages/login';
 function App() {
   const [state, setState] = React.useState(0);
   const [show, setshow] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   return (
     <ThemeProvider>
@@ -93,12 +95,19 @@ function App() {
             <Route path="/hire-mobile-developer" element={<HireMobileDeveloper />} />
             <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
             <Route path="/hire-backend" element={<HireBackend />} />
-            <Route path="/adminpanel" element={<AdminPanel />}>
+            <Route 
+              path="/adminpanel" 
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <AdminPanel />
+                </ProtectedRoute>
+              }
+            >
               <Route path="manageblog" element={<ManageBlog />} />
               <Route path="managecareers" element={<ManageCareer />} />
               <Route path="addblog" element={<AddBlog />} />
             </Route>
-             <Route path="/login" element={<Login/>} />
+            <Route path="/login" element={<Login SetIsAuthenticated={setIsAuthenticated} />} />
           </Routes>
         </main>
 
