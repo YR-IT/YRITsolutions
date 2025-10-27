@@ -23,6 +23,7 @@ const AdminPanel = () => {
             <Link to="manageblog" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-600">Manage Blog</Link>
             <Link to="managecareers" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-600">Manage Career</Link>
             <Link to="addblog" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-600">Add Blog</Link>
+            <Link to="manageportfolios" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-gray-600">Manage Portfolios</Link>
           </nav>
         </div>
 
