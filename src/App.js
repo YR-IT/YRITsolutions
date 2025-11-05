@@ -97,7 +97,7 @@ function App() {
             <Route path="/hire-software-developer" element={<HireSoftwareDeveloper />} />
             <Route path="/hire-backend" element={<HireBackend />} />
             <Route path ="/login" element ={<Login/>}/>
-            <Route path="/adminpanel" element={<ProtectedRoute/>} >
+            <Route path="/adminpanel" element={<AdminPanel/>} >
     
               <Route path="manageblog" element={<ManageBlog />} />
               <Route path="managecareers" element={<ManageCareer />} />
