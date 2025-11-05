@@ -43,7 +43,7 @@ import HireSoftwareDeveloper from './hire-resources/HireSoftwareDeveloper';
 import HireBackend from './hire-resources/HireBackend';
 import ManageBlog  from './pages/admin/manageblogs';
 import ManageCareer from './pages/admin/managecareer';
-import ProtectedRoute from './components/ProtectedRoute';
+
 import AdminPanel from './pages/admin/adminpanel';
 import Login from './pages/login';
 import ManagePortfolios from './pages/admin/manageportfolios';

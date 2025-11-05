@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export default function Login({ SetIsAuthenticated }) {
+export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Login({ SetIsAuthenticated }) {
         localStorage.setItem("role", data.role);
         
         // Redirect to dashboard
-        SetIsAuthenticated(true);
+        
         navigate("/adminpanel");
       } else {
         const errorData = await response.json();
