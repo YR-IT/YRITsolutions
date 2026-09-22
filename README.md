@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Keep the Render backend awake
+
+The GitHub Actions workflow at `.github/workflows/render-wake.yml` pings the backend every
+5 minutes. GitHub Actions does not support scheduled workflows every 1-2 minutes.
+
+Add a repository secret named `RENDER_URL` with the Render backend URL, for example:
+`https://your-service.onrender.com/`. Then enable Actions for the repository. The workflow
+can also be started manually from the **Actions** tab.
+
+For a true 1-2 minute interval, use an external scheduler such as UptimeRobot or
+cron-job.org and monitor the same backend URL.
