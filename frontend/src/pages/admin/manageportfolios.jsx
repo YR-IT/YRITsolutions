@@ -95,13 +95,10 @@ const ManagePortfolios = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this portfolio item?')) {
       try {
-        const token = localStorage.getItem('token');
         const response = await fetch(`${API_BASE_URL}/api/product/deleteportfolio/${id}`,
          {
           method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
+          headers: getAuthHeaders(),
         });
 
         if (response.ok) {
