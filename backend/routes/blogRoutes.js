@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import Blog from "../models/Blog.js";
+import Blog from "../models/blog.js";
 import requireAuth from "../middleware/auth.js";
 import uploadToCloudinary from "../utils/uploadToCloudinary.js";
 
