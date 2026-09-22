@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
+import { API_BASE_URL } from "../config/api";
 
 const BlogPage = () => {
   const { isDarkMode } = useTheme();
@@ -26,7 +27,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('https://yrmainbackend.vercel.app/api/product/getblogs');
+        const response = await fetch(`${API_BASE_URL}/api/product/getblogs`);
         const data = await response.json();
         setBlogPosts(data);
         setRecentPosts(data.slice(0, 5));

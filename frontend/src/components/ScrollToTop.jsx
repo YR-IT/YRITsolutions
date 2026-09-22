@@ -29,6 +29,11 @@ const ScrollToTop = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    setIsVisible(false);
+  }, [location.pathname, location.search]);
+
   // Scroll to top smoothly
   const scrollToTop = () => {
     window.scrollTo({

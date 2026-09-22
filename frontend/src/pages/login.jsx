@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { API_BASE_URL, saveAuthSession, getStoredToken } from "../config/api";
 
 export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (getStoredToken()) {
       navigate("/adminpanel");
     }
   }, [navigate]);
@@ -26,38 +26,46 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const email = formData.email.trim();
+    const password = formData.password;
+
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Please provide a valid email address.");
+      return;
+    }
+
     setLoading(true);
     try {
-      // TODO: Replace with real API call
-      const response = await fetch(
-        "https://yrmainbackend.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.toLowerCase(),
+          password,
+        }),
+      });
 
       if (response.ok) {
         const data = await response.json();
-        // Store token or user data in localStorage/sessionStorage
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data._id));
-        localStorage.setItem("role", data.role);
-        
-        // Redirect to dashboard
-        
+        saveAuthSession({
+          token: data.token,
+          _id: data._id,
+          role: data.role,
+        });
         navigate("/adminpanel");
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Login failed. Please try again.");
-        console.log("Login error in else block:", errorData);
       }
     } catch (err) {
       setError("Network error. Please check your connection.");
-      console.log("Login error catched:", err);
     } finally {
       setLoading(false);
     }

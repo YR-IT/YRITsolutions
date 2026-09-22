@@ -1,12 +1,13 @@
-// src/helper/emailService.js
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration
-const EMAILJS_SERVICE_ID = 'service_uo4i8rf';   //service_uo4i8rf
-const EMAILJS_TEMPLATE_ID = 'template_uy2yf0g'  //'template_a93tv4p'; 
-const EMAILJS_PUBLIC_KEY =  'EouVdx4XMhlZcbMyl'      //'Z3UkvHzlu-sxbuKfZ'; //EouVdx4XMhlZcbMyl
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-// Initialize EmailJS
+if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+  console.error('EmailJS configuration is missing. Check the root .env file.');
+}
+
 emailjs.init(EMAILJS_PUBLIC_KEY);
 
 /**
@@ -22,9 +23,8 @@ emailjs.init(EMAILJS_PUBLIC_KEY);
  */
 export const sendClientRequest = async (formData) => {
   try {
-    // Prepare the email template parameters to match your working test
     const templateParams = {
-      name: formData.name || 'Not provided', // Added this field as shown in your test
+      name: formData.name || 'Not provided',
       client_name: formData.name || 'Not provided',
       client_email: formData.email || 'Not provided',
       client_phone: formData.phone || 'Not provided',
@@ -34,19 +34,15 @@ export const sendClientRequest = async (formData) => {
       submission_date: new Date().toLocaleString(),
     };
 
-    console.log('Sending email with params:', templateParams); // Debug log
-
-    // Send email via EmailJS
-    const response = await emailjs.send(
+    await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
       templateParams
     );
 
-    console.log('Email sent successfully:', response);
     return { success: true, message: 'Email sent successfully!' };
   } catch (error) {
     console.error('Failed to send email:', error);
-    return { success: false, message: 'Failed to send email. Please try again.' };
+    return { success: false, message: error?.text || error?.message || 'Failed to send email. Please try again.' };
   }
 };

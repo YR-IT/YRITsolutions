@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/MeetingCalender.css';
 import { useTheme } from '../contexts/ThemeContext';
+import { sendMeetingRequest } from '../helper/emailMeeting';
 import { 
   CalendarDays, 
   Clock, 
@@ -91,8 +92,7 @@ const MeetingCalendar = () => {
   };
 
   const handleSubmit = async () => {
-    // Validation
-    if (!formData.firstName.trim() || !formData.lastName.trim() || 
+    if (!formData.firstName.trim() || !formData.lastName.trim() ||
         !formData.phone.trim() || !formData.email.trim() || !formData.company.trim()) {
       notifyValidation();
       return;
@@ -104,7 +104,7 @@ const MeetingCalendar = () => {
       return;
     }
 
-    const phoneRegex = /^\+?[1-9]\d{1,14}$/; 
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
     if (!phoneRegex.test(formData.phone)) {
       toast.error("Please enter a valid phone number (e.g., +15551234567).", { theme: isDarkMode ? "dark" : "light" });
       return;
@@ -113,26 +113,37 @@ const MeetingCalendar = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      notifySuccess();
-      
-      // Reset form after success
-      setTimeout(() => {
-        setFormData({
-          firstName: "",
-          lastName: "",
-          phone: "",
-          email: "",
-          company: ""
-        });
-        setSelectedTimeIndex(-1);
-        setDuration("30 minutes");
-        setDate(new Date());
-        setCurrentStep(1);
-      }, 2000);
-      
+      const meetingPayload = {
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        company: formData.company.trim(),
+        timing: timeSlots[selectedTimeIndex] || 'Not specified',
+        date: date.toISOString().split('T')[0],
+        duration,
+      };
+
+      const result = await sendMeetingRequest(meetingPayload);
+
+      if (result.success) {
+        notifySuccess();
+        setTimeout(() => {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            phone: "",
+            email: "",
+            company: ""
+          });
+          setSelectedTimeIndex(-1);
+          setDuration("30 minutes");
+          setDate(new Date());
+          setCurrentStep(1);
+        }, 1500);
+      } else {
+        toast.error(result.message, { theme: isDarkMode ? "dark" : "light" });
+      }
     } catch (error) {
       console.error("Error submitting meeting request:", error);
       notifyError();

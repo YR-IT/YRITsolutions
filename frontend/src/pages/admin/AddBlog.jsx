@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { API_BASE_URL, getAuthHeaders } from '../../config/api';
+import { useTheme } from '../../contexts/ThemeContext';
 
 
 const AddBlog = () => {
+  const { isDarkMode } = useTheme();
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [description, setDescription] = useState('');
@@ -33,29 +36,6 @@ const AddBlog = () => {
     }
   };
 
-  const uploadImageToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', "chljaabhai");
-    
-    try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dym4aeuyu/image/upload`,
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
-      
-      const data = await response.json();
-      console.log(data)
-      return data.secure_url; // This is the image URL
-    } catch (error) {
-      console.error('Cloudinary upload error:', error);
-      throw error;
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !subtitle || !description || !content || !image || !date || !author) {
@@ -66,28 +46,19 @@ const AddBlog = () => {
     setIsLoading(true);
 
     try {
-      const token = localStorage.getItem('token');
-      let imageUrl = '';
-      if (image) {
-        imageUrl = await uploadImageToCloudinary(image);
-        console.log(imageUrl)
-      }
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('subtitle', subtitle);
+      formData.append('description', description);
+      formData.append('content', content);
+      formData.append('date', date);
+      formData.append('author', author);
+      formData.append('image', image);
 
-      const response = await fetch('https://yrmainbackend.onrender.com/api/product/addblogs', {
+      const response = await fetch(`${API_BASE_URL}/api/product/addblogs`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          title,
-          subtitle,
-          description,
-          content,
-          image: imageUrl,
-          date,
-          author,
-        }),
+        headers: getAuthHeaders(),
+        body: formData,
       });
 
       if (response.ok) {
@@ -112,71 +83,71 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-purple-800">Add Blog Post</h1>
-      <form onSubmit={handleSubmit} className="bg-white text-black p-8 rounded-xl shadow-2xl w-full max-w-lg mx-auto">
+    <div className={`container mx-auto p-4 ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>
+      <h1 className={`text-3xl font-bold mb-6 ${isDarkMode ? 'text-purple-300' : 'text-purple-800'}`}>Add Blog Post</h1>
+      <form onSubmit={handleSubmit} className={`p-8 rounded-xl shadow-2xl w-full max-w-lg mx-auto ${isDarkMode ? 'bg-slate-800 text-white border border-slate-700' : 'bg-white text-black'}`}>
         <div className="mb-4">
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+            <label htmlFor="title" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Title</label>
           <input
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+            className={`w-full px-4 py-2 rounded-lg border focus:ring-purple-500 focus:border-purple-500 ${isDarkMode ? 'bg-slate-900 border-slate-600 text-white' : 'border-gray-300'}`}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="subtitle" className="block text-sm font-medium text-gray-700 mb-1">Subtitle</label>
+            <label htmlFor="subtitle" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Subtitle</label>
           <input
             type="text"
             id="subtitle"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+            className={`w-full px-4 py-2 rounded-lg border focus:ring-purple-500 focus:border-purple-500 ${isDarkMode ? 'bg-slate-900 border-slate-600 text-white' : 'border-gray-300'}`}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <label htmlFor="description" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Description</label>
           <textarea
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+            className={`w-full px-4 py-2 rounded-lg border focus:ring-purple-500 focus:border-purple-500 ${isDarkMode ? 'bg-slate-900 border-slate-600 text-white' : 'border-gray-300'}`}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+          <label htmlFor="content" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Content</label>
           <textarea
             id="content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={6}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+            className={`w-full px-4 py-2 rounded-lg border focus:ring-purple-500 focus:border-purple-500 ${isDarkMode ? 'bg-slate-900 border-slate-600 text-white' : 'border-gray-300'}`}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+          <label htmlFor="date" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Date</label>
           <input
             type="date"
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+            className={`w-full px-4 py-2 rounded-lg border focus:ring-purple-500 focus:border-purple-500 ${isDarkMode ? 'bg-slate-900 border-slate-600 text-white' : 'border-gray-300'}`}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-1">Author</label>
+          <label htmlFor="author" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Author</label>
           <input
             type="text"
             id="author"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+            className={`w-full px-4 py-2 rounded-lg border focus:ring-purple-500 focus:border-purple-500 ${isDarkMode ? 'bg-slate-900 border-slate-600 text-white' : 'border-gray-300'}`}
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="image" className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
             Blog Image (Max 5MB)
           </label>
           <input
@@ -185,16 +156,16 @@ const AddBlog = () => {
             name='image'
             accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
             onChange={handleFileChange}
-            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
+            className={`w-full text-sm ${isDarkMode ? 'text-slate-300 file:bg-purple-900 file:text-purple-200 hover:file:bg-purple-800' : 'text-gray-500 file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold`}
           />
         </div>
         {imagePreview && (
           <div className="mt-4">
-            <p className="text-sm font-medium text-gray-700">Image Preview:</p>
+            <p className={`text-sm font-medium ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Image Preview:</p>
             <img 
               src={imagePreview} 
               alt="Blog preview" 
-              className="mt-2 h-48 w-auto object-cover rounded-lg border border-gray-300 shadow-sm" 
+              className={`mt-2 h-48 w-auto object-cover rounded-lg border shadow-sm ${isDarkMode ? 'border-slate-600' : 'border-gray-300'}`} 
             />
           </div>
         )}

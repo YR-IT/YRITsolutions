@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL, getAuthHeaders } from '../../config/api';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const ManageCareer = () => {
+    const { isDarkMode } = useTheme();
     const [careers, setCareers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({
@@ -14,8 +17,7 @@ const ManageCareer = () => {
     const fetchCareers = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('token');
-            const response = await fetch('https://yrmainbackend.vercel.app/api/product/getcareers', {
+            const response = await fetch(`${API_BASE_URL}/api/product/getcareers`, {
             });
             const data = await response.json();
             setCareers(data);
@@ -37,12 +39,11 @@ const ManageCareer = () => {
     const handleAddCareer = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
-            const response = await fetch('https://yrmainbackend.vercel.app/api/product/addcareer', {
+            const response = await fetch(`${API_BASE_URL}/api/product/addcareer`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    ...getAuthHeaders(),
                 },
                 body: JSON.stringify(formData),
             });
@@ -65,13 +66,9 @@ const ManageCareer = () => {
 
     const handleDeleteCareer = async (id) => {
         try {
-            const token = localStorage.getItem('token');
-            const response = await fetch(`https://yrmainbackend.vercel.app/api/product/deletecareer/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/product/deletecareer/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    
-                    'Authorization': `Bearer ${token}`
-                }
+                headers: getAuthHeaders()
             });
             if (response.ok) {
                 fetchCareers();
@@ -84,7 +81,7 @@ const ManageCareer = () => {
     };
 
     return (
-        <div className="container mx-auto p-10 text-black">
+        <div className={`container mx-auto p-4 sm:p-10 ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>
             <h1 className="text-2xl font-bold mb-4">Manage Careers</h1>
 
             <div className="mb-8">
@@ -96,7 +93,7 @@ const ManageCareer = () => {
                         value={formData.job_number}
                         onChange={handleInputChange}
                         placeholder="Job Number"
-                        className="p-2 border rounded text-black"
+                        className={`p-2 border rounded ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-400' : 'bg-white border-gray-300 text-black'}`}
                         required
                     />
                     <input
@@ -105,7 +102,7 @@ const ManageCareer = () => {
                         value={formData.date}
                         onChange={handleInputChange}
                         placeholder="Date"
-                        className="p-2 border rounded text-black"
+                        className={`p-2 border rounded ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-400' : 'bg-white border-gray-300 text-black'}`}
                         required
                     />
                     <input
@@ -114,7 +111,7 @@ const ManageCareer = () => {
                         value={formData.hiring_role}
                         onChange={handleInputChange}
                         placeholder="Hiring Role"
-                        className="p-2 border rounded text-black"
+                        className={`p-2 border rounded ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-400' : 'bg-white border-gray-300 text-black'}`}
                         required
                     />
                     <input
@@ -123,7 +120,7 @@ const ManageCareer = () => {
                         value={formData.job_type}
                         onChange={handleInputChange}
                         placeholder="Job Type"
-                        className="p-2 border rounded text-black"
+                        className={`p-2 border rounded ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-400' : 'bg-white border-gray-300 text-black'}`}
                         required
                     />
                     <input
@@ -132,7 +129,7 @@ const ManageCareer = () => {
                         value={formData.location}
                         onChange={handleInputChange}
                         placeholder="Location"
-                        className="p-2 border rounded text-black"
+                        className={`p-2 border rounded ${isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder:text-slate-400' : 'bg-white border-gray-300 text-black'}`}
                         required
                     />
                     <button type="submit" className="bg-blue-500 text-white p-2 rounded">
@@ -148,10 +145,10 @@ const ManageCareer = () => {
                 ) : (
                     <ul className="flex flex-col gap-2">
                         {careers.map((career) => (
-                            <li key={career._id} className="flex justify-between items-center p-2 border rounded">
+                            <li key={career._id} className={`flex justify-between items-center p-2 border rounded ${isDarkMode ? 'border-slate-700 bg-slate-800/60' : 'border-gray-200 bg-white'}`}>
                                 <div>
                                     <p className="font-bold">{career.hiring_role}</p>
-                                    <p>{career.job_type} - {career.location}</p>
+                                    <p className={isDarkMode ? 'text-slate-300' : 'text-gray-700'}>{career.job_type} - {career.location}</p>
                                 </div>
                                 <button
                                     onClick={() => handleDeleteCareer(career._id)}

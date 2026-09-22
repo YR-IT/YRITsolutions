@@ -1,141 +1,121 @@
-// routes/blogRoutes.js
 import express from "express";
 import multer from "multer";
-import Blog from "../models/blog.js";
-import { v2 as cloudinary } from "cloudinary";
-import streamifier from "streamifier";
+import Blog from "../models/Blog.js";
+import requireAuth from "../middleware/auth.js";
+import uploadToCloudinary from "../utils/uploadToCloudinary.js";
 
 const router = express.Router();
 
-/* ============================
-   ✅ Cloudinary Config
-============================ */
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+const storage = multer.memoryStorage();
+const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB, matches frontend validation
+
+/* ============================================================
+   GET /api/product/getblogs — list all blogs (public)
+============================================================ */
+router.get("/getblogs", async (req, res) => {
+  try {
+    const blogs = await Blog.find().sort({ createdAt: -1 });
+    res.json(blogs);
+  } catch (error) {
+    console.error("❌ Failed to fetch blogs:", error);
+    res.status(500).json({ message: "Failed to fetch blogs" });
+  }
 });
 
-/* ============================
-   ✅ Multer Setup
-============================ */
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
-
-/* ============================
-   📌 Helper: Upload to Cloudinary
-============================ */
-const uploadToCloudinary = (fileBuffer, folder = "blogs") => {
-  return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream(
-      { folder },
-      (error, result) => {
-        if (result) resolve(result);
-        else reject(error);
-      }
-    );
-    streamifier.createReadStream(fileBuffer).pipe(stream);
-  });
-};
-
-/* ============================
-   📌 Create Blog
-============================ */
-router.post("/", upload.single("image"), async (req, res) => {
+/* ============================================================
+   GET /api/product/getblog/:id — single blog (public)
+============================================================ */
+router.get("/getblog/:id", async (req, res) => {
   try {
-    let imageUrl = "";
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) return res.status(404).json({ message: "Blog not found" });
+    res.json(blog);
+  } catch (error) {
+    console.error("❌ Failed to fetch blog:", error);
+    res.status(500).json({ message: "Failed to fetch blog" });
+  }
+});
 
+/* ============================================================
+   POST /api/product/addblogs — create blog (protected)
+   Accepts EITHER:
+   - JSON body with `image` already a URL (frontend uploads to
+     Cloudinary directly before calling this), or
+   - multipart/form-data with an `image` file (uploaded here)
+============================================================ */
+router.post("/addblogs", requireAuth, upload.single("image"), async (req, res) => {
+  try {
+    const { title, subtitle, description, content, author, date } = req.body;
+
+    if (!title || !content || !author) {
+      return res.status(400).json({ message: "title, content and author are required" });
+    }
+
+    let imageUrl = req.body.image || "";
     if (req.file) {
-      const result = await uploadToCloudinary(req.file.buffer);
+      const result = await uploadToCloudinary(req.file.buffer, "blogs");
       imageUrl = result.secure_url;
     }
 
     const newBlog = new Blog({
-      title: req.body.title,
-      author: req.body.author,
-      content: req.body.content,
+      title,
+      subtitle,
+      description,
+      content,
+      author,
       image: imageUrl,
+      date: date || Date.now(),
     });
 
     await newBlog.save();
     res.status(201).json(newBlog);
   } catch (error) {
     console.error("❌ Failed to create blog:", error);
-    res.status(500).json({ error: "Failed to create blog" });
+    res.status(500).json({ message: "Failed to create blog" });
   }
 });
 
-/* ============================
-   📌 Get All Blogs
-============================ */
-router.get("/", async (req, res) => {
+/* ============================================================
+   PUT /api/product/updateblogs/:id — update blog (protected)
+============================================================ */
+router.put("/updateblogs/:id", requireAuth, upload.single("image"), async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
-    res.json(blogs);
-  } catch (error) {
-    console.error("❌ Failed to fetch blogs:", error);
-    res.status(500).json({ error: "Failed to fetch blogs" });
-  }
-});
-
-/* ============================
-   📌 Get Single Blog
-============================ */
-router.get("/:id", async (req, res) => {
-  try {
-    const blog = await Blog.findById(req.params.id);
-    if (!blog) return res.status(404).json({ error: "Blog not found" });
-    res.json(blog);
-  } catch (error) {
-    console.error("❌ Failed to fetch blog:", error);
-    res.status(500).json({ error: "Failed to fetch blog" });
-  }
-});
-
-/* ============================
-   📌 Update Blog
-============================ */
-router.put("/:id", upload.single("image"), async (req, res) => {
-  try {
-    let updateData = {
-      title: req.body.title,
-      author: req.body.author,
-      content: req.body.content,
-    };
+    const updateData = { ...req.body };
 
     if (req.file) {
-      const result = await uploadToCloudinary(req.file.buffer);
+      const result = await uploadToCloudinary(req.file.buffer, "blogs");
       updateData.image = result.secure_url;
     }
 
     const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
+      runValidators: true,
     });
 
     if (!updatedBlog) {
-      return res.status(404).json({ error: "Blog not found" });
+      return res.status(404).json({ message: "Blog not found" });
     }
 
     res.json(updatedBlog);
   } catch (error) {
     console.error("❌ Failed to update blog:", error);
-    res.status(500).json({ error: "Failed to update blog" });
+    res.status(500).json({ message: "Failed to update blog" });
   }
 });
 
-/* ============================
-   📌 Delete Blog
-============================ */
-router.delete("/:id", async (req, res) => {
+/* ============================================================
+   DELETE /api/product/deleteblog/:id — delete blog (protected)
+============================================================ */
+router.delete("/deleteblog/:id", requireAuth, async (req, res) => {
   try {
     const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
     if (!deletedBlog) {
-      return res.status(404).json({ error: "Blog not found" });
+      return res.status(404).json({ message: "Blog not found" });
     }
     res.json({ message: "Blog deleted successfully" });
   } catch (error) {
     console.error("❌ Failed to delete blog:", error);
-    res.status(500).json({ error: "Failed to delete blog" });
+    res.status(500).json({ message: "Failed to delete blog" });
   }
 });
 

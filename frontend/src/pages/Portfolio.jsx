@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+import { API_BASE_URL } from '../config/api';
 
 // Category icons mapping
 const categoryIcons = {
@@ -26,7 +27,7 @@ const Portfolio = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('https://yrmainbackend.vercel.app/api/product/getportfolio');
+        const response = await fetch(`${API_BASE_URL}/api/product/getportfolio`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

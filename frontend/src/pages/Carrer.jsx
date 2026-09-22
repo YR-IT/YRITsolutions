@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { API_BASE_URL } from "../config/api";
 
 const steps = [
   { title: "Job Opportunities & Application Submission", color: "bg-[#033347]" },
@@ -76,7 +77,7 @@ const Career = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('https://yrmainbackend.vercel.app/api/product/getcareers');
+        const response = await fetch(`${API_BASE_URL}/api/product/getcareers`);
         const data = await response.json();
         setJobs(data);
         setLoading(false);

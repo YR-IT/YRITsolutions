@@ -1,13 +1,18 @@
 // src/helper/emailMeeting.js
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration for meeting requests
-const EMAILJS_SERVICE_ID = 'service_uo4i8rf';
-const EMAILJS_TEMPLATE_ID = 'template_6lfvhx9'; 
-const EMAILJS_PUBLIC_KEY = 'EouVdx4XMhlZcbMyl';
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_MEETING_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+const EMAILJS_TO_EMAIL = process.env.REACT_APP_EMAILJS_TO_EMAIL || 'yrut@gmail.com';
 
-// Initialize EmailJS
-emailjs.init(EMAILJS_PUBLIC_KEY);
+if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+  console.error('EmailJS meeting configuration is missing. Check the root .env file.');
+}
+
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 /**
  * Send meeting request email
@@ -24,42 +29,44 @@ emailjs.init(EMAILJS_PUBLIC_KEY);
  */
 export const sendMeetingRequest = async (meetingData) => {
   try {
-    // Prepare the email template parameters
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      return {
+        success: false,
+        message: 'EmailJS is not configured. Please add the EmailJS environment variables.',
+      };
+    }
+
     const templateParams = {
       client_first_name: meetingData.firstName || 'Not provided',
       client_last_name: meetingData.lastName || 'Not provided',
-      client_full_name: `${meetingData.firstName} ${meetingData.lastName}`,
+      client_full_name: `${(meetingData.firstName || '').trim()} ${(meetingData.lastName || '').trim()}`.trim() || 'Not provided',
       client_email: meetingData.email || 'Not provided',
       client_phone: meetingData.phone || 'Not provided',
       client_company: meetingData.company || 'Not provided',
       meeting_time: meetingData.timing || 'Not specified',
       meeting_date: meetingData.date || 'Not specified',
       meeting_duration: meetingData.duration || 'Not specified',
-      submission_date: new Date().toLocaleString('en-IN', { 
+      submission_date: new Date().toLocaleString('en-IN', {
         timeZone: 'Asia/Kolkata',
         dateStyle: 'full',
         timeStyle: 'medium'
       }),
-      to_email: 'yrut@gmail.com', // Your email
+      to_email: EMAILJS_TO_EMAIL,
       to_name: 'YR IT Solutions Team'
     };
 
-    console.log('Sending meeting request email with params:', templateParams);
-
-    // Send email via EmailJS
     const response = await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
       templateParams
     );
 
-    console.log('Meeting request email sent successfully:', response);
-    return { success: true, message: 'Meeting request sent successfully!' };
+    return { success: true, message: 'Meeting request sent successfully!', response };
   } catch (error) {
     console.error('Failed to send meeting request email:', error);
-    return { 
-      success: false, 
-      message: 'Failed to send meeting request. Please try again or contact us directly.' 
+    return {
+      success: false,
+      message: error?.text || error?.message || 'Failed to send meeting request. Please try again or contact us directly.'
     };
   }
 };
