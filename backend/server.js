@@ -76,6 +76,7 @@ app.use("/api/product", careerRoutes);
 app.use("/api/contact", contactRoutes);
 
 // --- Health check ---
+app.get("/health", (req, res) => res.status(200).json({ status: "ok" }));
 app.get("/", (req, res) => res.send("🚀 YR-IT Solutions API is running"));
 
 // --- 404 handler ---
