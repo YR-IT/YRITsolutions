@@ -23,6 +23,15 @@ const Portfolio = () => {
   const [categories, setCategories] = useState(["All"]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toggleDescription = (projectIndex) => {
+    setExpandedDescriptions((current) => ({
+      ...current,
+      [projectIndex]: !current[projectIndex],
+    }));
+  };
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -47,17 +56,23 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedCategory === "All") {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(projects.filter(project => {
-        if (Array.isArray(project.category)) {
-          return project.category.includes(selectedCategory);
-        }
-        return project.category === selectedCategory;
-      }));
-    }
-  }, [selectedCategory, projects]);
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+
+    setFilteredProjects(projects.filter(project => {
+      const matchesCategory = selectedCategory === "All" || (
+        Array.isArray(project.category)
+          ? project.category.includes(selectedCategory)
+          : project.category === selectedCategory
+      );
+      const matchesSearch = !normalizedQuery || [
+        project.title,
+        project.description,
+        ...(Array.isArray(project.category) ? project.category : [project.category]),
+      ].some(value => String(value || '').toLowerCase().includes(normalizedQuery));
+
+      return matchesCategory && matchesSearch;
+    }));
+  }, [selectedCategory, searchQuery, projects]);
 
   return (
     <div className={`min-h-screen px-6 py-12 ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white' : 'bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900'}`}>
@@ -74,33 +89,32 @@ const Portfolio = () => {
         </div>
       </div>
       
-      {/* Category Filter Buttons */}
-      <div className="mb-12">
-        <h3 className={`text-xl md:text-2xl font-semibold text-center mb-8 ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
-          Explore by Category
+      {/* Portfolio Search and Filter */}
+      <div className="mx-auto mb-12 max-w-4xl">
+        <h3 className={`mb-5 text-center text-xl font-semibold md:text-2xl ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+          Find a Project
         </h3>
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-6xl mx-auto">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`group relative px-4 md:px-6 py-3 md:py-4 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 ${
-                selectedCategory === category
-                  ? "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-2xl shadow-purple-500/25 scale-105"
-                  : isDarkMode 
-                    ? "bg-gray-800/50 text-gray-300 hover:bg-gray-700/70 hover:text-white border border-gray-600/50 backdrop-blur-sm"
-                    : "bg-gray-100/80 text-gray-700 hover:bg-gray-200/80 hover:text-gray-900 border border-gray-300/50 backdrop-blur-sm"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-lg">{categoryIcons[category]}</span>
-                <span className="text-sm md:text-base">{category}</span>
-              </div>
-              {selectedCategory === category && (
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              )}
-            </button>
-          ))}
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            placeholder="Search projects..."
+            aria-label="Search projects"
+            className={`min-w-0 flex-1 rounded-xl border px-4 py-3 outline-none transition focus:ring-2 focus:ring-purple-500 ${isDarkMode ? 'border-gray-700 bg-gray-900/80 text-white placeholder:text-gray-500' : 'border-gray-300 bg-white text-gray-900 placeholder:text-gray-400'}`}
+          />
+          <select
+            value={selectedCategory}
+            onChange={(event) => setSelectedCategory(event.target.value)}
+            aria-label="Filter projects by category"
+            className={`rounded-xl border px-4 py-3 outline-none transition focus:ring-2 focus:ring-purple-500 sm:min-w-52 ${isDarkMode ? 'border-gray-700 bg-gray-900/80 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category === 'All' ? 'All categories' : category}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -125,7 +139,10 @@ const Portfolio = () => {
           <div className="text-center text-red-500">{error}</div>
         ) : (
           <div className="grid gap-8 lg:gap-12">
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project, index) => {
+              const isDescriptionExpanded = Boolean(expandedDescriptions[index]);
+
+              return (
               <div
                 key={index}
                 className={`group relative overflow-hidden rounded-3xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 ${isDarkMode ? 'bg-gradient-to-br from-gray-800/40 via-gray-900/60 to-black/80 border border-gray-700/50 hover:border-purple-500/50' : 'bg-gradient-to-br from-white/80 via-gray-50/60 to-white/80 border border-gray-200/50 hover:border-purple-400/50'}`}
@@ -135,9 +152,9 @@ const Portfolio = () => {
                 
                 <div className="relative flex flex-col lg:flex-row items-center p-8 lg:p-12">
                   {/* Content Section */}
-                  <div className={`w-full lg:w-1/2 z-10 ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8 lg:order-2'}`}>
+                  <div className={`order-2 mt-8 w-full z-10 text-center lg:mt-0 lg:w-1/2 lg:text-left ${index % 2 === 0 ? 'lg:order-1 lg:pr-8' : 'lg:order-2 lg:pl-8'}`}>
                     <div className="mb-4">
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
                         {Array.isArray(project.category) ? (
                           project.category.map((cat, idx) => (
                             <span key={idx} className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r rounded-full text-sm font-medium border ${isDarkMode ? 'from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30' : 'from-blue-100/60 to-purple-100/60 text-blue-700 border-blue-300/50'}`}>
@@ -156,9 +173,18 @@ const Portfolio = () => {
                       {project.title}
                     </h2>
                     
-                    <p className={`text-sm md:text-base lg:text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
+                    <p className={`text-sm md:text-base lg:text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDescriptionExpanded ? 'block' : 'hidden sm:block'} ${isDarkMode ? 'text-gray-300 group-hover:text-gray-200' : 'text-gray-600 group-hover:text-gray-700'}`}>
                       {project.description}
                     </p>
+
+                    <button
+                      type="button"
+                      onClick={() => toggleDescription(index)}
+                      className={`mb-6 rounded-md border px-2.5 py-1 text-xs font-semibold transition-colors sm:hidden ${isDarkMode ? 'border-gray-600 text-blue-300 hover:bg-gray-800' : 'border-blue-200 text-blue-700 hover:bg-blue-50'}`}
+                      aria-expanded={isDescriptionExpanded}
+                    >
+                      {isDescriptionExpanded ? 'Read less' : 'Read more'}
+                    </button>
                     
                     <div className="flex justify-center">
                       <a
@@ -173,7 +199,7 @@ const Portfolio = () => {
                   </div>
 
                   {/* Image Section */}
-                  <div className={`w-full lg:w-1/2 mt-8 lg:mt-0 ${index % 2 === 0 ? '' : 'lg:order-1'}`}>
+                  <div className={`order-1 w-full lg:mt-0 lg:w-1/2 ${index % 2 === 0 ? 'lg:order-2 lg:mt-0' : 'lg:order-1 lg:mt-0'}`}>
                     <div className="relative group/image">
                       <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"></div>
                       <a
@@ -195,7 +221,8 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

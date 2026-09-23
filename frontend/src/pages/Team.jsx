@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Twitter, Mail, MapPin, Calendar } from 'lucide-react';
+import { MapPin, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 
@@ -100,7 +101,7 @@ const TeamMemberCard = ({ member, index }) => {
 
   return (
     <div
-      className={`group relative z-0 rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 animate-fade-in-up ${
+      className={`group relative z-0 min-w-0 rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 md:hover:-translate-y-2 md:hover:shadow-blue-500/20 animate-fade-in-up ${
         isDarkMode ? 'bg-gray-900 border border-gray-800' : 'bg-white border border-gray-200'
       }`}
       style={{ animationDelay: `${index * 150}ms` }}
@@ -120,7 +121,7 @@ const TeamMemberCard = ({ member, index }) => {
       <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Image */}
-      <div className="relative z-10 h-64 overflow-hidden">
+      <div className="relative z-10 h-56 sm:h-64 overflow-hidden">
         <img
           src={member.image}
           alt={member.name}
@@ -129,7 +130,7 @@ const TeamMemberCard = ({ member, index }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6 relative z-20">
+      <div className="p-5 sm:p-6 relative z-20">
         <div className="mb-4">
           <h3
             className={`text-xl font-bold mb-1 group-hover:text-blue-400 transition-colors ${
@@ -195,9 +196,9 @@ const TeamMemberCard = ({ member, index }) => {
             isDarkMode ? 'text-gray-400 border-gray-800' : 'text-gray-500 border-gray-200'
           }`}
         >
-          <div className="flex items-center gap-1">
+          <div className="flex min-w-0 items-center gap-1">
             <MapPin size={12} />
-            <span>{member.location}</span>
+            <span className="truncate">{member.location}</span>
           </div>
           <div className="flex items-center gap-1">
             <Calendar size={12} />
@@ -217,20 +218,20 @@ const TeamPage = () => {
   return (
     <div className={`min-h-screen transition-all duration-300 ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative overflow-hidden px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <div className="relative mx-auto max-w-7xl text-center">
           <h1
-            className={`text-5xl md:text-6xl font-bold mb-6 ${
+            className={`mb-5 text-4xl font-bold leading-tight sm:text-5xl md:mb-6 md:text-6xl ${
               isDarkMode ? 'text-white' : 'text-gray-900'
             }`}
           >
             Meet Our
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-4">
+            <span className="mt-1 block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent sm:mt-0 md:inline md:ml-4">
               Amazing Team
             </span>
           </h1>
           <p
-            className={`text-xl max-w-3xl mx-auto leading-relaxed ${
+            className={`mx-auto max-w-3xl text-base leading-relaxed sm:text-xl ${
               isDarkMode ? 'text-gray-300' : 'text-gray-600'
             }`}
           >
@@ -241,19 +242,19 @@ const TeamPage = () => {
       </section>
 
       {/* Founders */}
-      <section className="py-20 relative">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     {/* Section Header */}
-    <div className="text-center mb-16">
+    <div className="mb-10 text-center sm:mb-16">
       <h2
-        className={`text-4xl font-extrabold tracking-tight mb-4 ${
+        className={`mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl ${
           isDarkMode ? "text-white" : "text-gray-900"
         }`}
       >
         Our Founder
       </h2>
       <p
-        className={`max-w-2xl mx-auto text-lg ${
+        className={`mx-auto max-w-2xl text-base sm:text-lg ${
           isDarkMode ? "text-gray-400" : "text-gray-600"
         }`}
       >
@@ -263,18 +264,20 @@ const TeamPage = () => {
     </div>
 
     {/* Two-column layout */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+    <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
       {/* Left - Founder Card */}
       <div className="flex justify-center">
         {founders.map((member, index) => (
-          <TeamMemberCard key={member.id} member={member} index={index} />
+          <div key={member.id} className="w-full max-w-md">
+            <TeamMemberCard member={member} index={index} />
+          </div>
         ))}
       </div>
 
       {/* Right - Quotes / Vision */}
-      <div className="space-y-6 md:pl-6 border-l border-gray-700">
+      <div className="space-y-5 border-t border-gray-700 pt-8 lg:space-y-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
         <h3
-          className={`text-3xl font-bold leading-snug ${
+          className={`text-2xl font-bold leading-snug sm:text-3xl ${
             isDarkMode ? "text-white" : "text-gray-900"
           }`}
         >
@@ -285,7 +288,7 @@ const TeamPage = () => {
         </h3>
 
         <p
-          className={`text-lg leading-relaxed ${
+          className={`text-base leading-relaxed sm:text-lg ${
             isDarkMode ? "text-gray-300" : "text-gray-700"
           }`}
         >
@@ -295,7 +298,7 @@ const TeamPage = () => {
         </p>
 
         <p
-          className={`text-lg italic leading-relaxed ${
+          className={`text-base italic leading-relaxed sm:text-lg ${
             isDarkMode ? "text-gray-400" : "text-gray-500"
           }`}
         >
@@ -304,7 +307,7 @@ const TeamPage = () => {
         </p>
 
         <p
-          className={`text-lg leading-relaxed ${
+          className={`text-base leading-relaxed sm:text-lg ${
             isDarkMode ? "text-gray-300" : "text-gray-600"
           }`}
         >
@@ -314,9 +317,9 @@ const TeamPage = () => {
 
         {/* Call-to-action */}
         <div>
-          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium shadow-lg hover:shadow-xl transition-all">
+          <Link to="/aboutus" className="inline-flex rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 font-medium text-white shadow-lg transition-all hover:shadow-xl">
             Learn More About Us
-          </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -326,17 +329,17 @@ const TeamPage = () => {
       
 
       {/* Team */}
-      <section className={`py-16 backdrop-blur-sm border-y ${isDarkMode ? 'bg-gray-900/30 border-gray-800' : 'bg-gray-100/30 border-gray-200'}`}>
+      <section className={`border-y py-14 backdrop-blur-sm sm:py-16 ${isDarkMode ? 'bg-gray-900/30 border-gray-800' : 'bg-gray-100/30 border-gray-200'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className={`text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <div className="mb-10 text-center sm:mb-12">
+            <h2 className={`mb-4 text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Our Team
             </h2>
-            <p className={`max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`mx-auto max-w-2xl text-sm sm:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Talented professionals from around the world, each bringing unique perspectives and expertise to help us achieve our goals.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {employees.map((member, index) => (
               <TeamMemberCard key={member.id} member={member} index={index + 2} />
             ))}
@@ -345,19 +348,19 @@ const TeamPage = () => {
       </section>
 
       {/* Join Us */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 relative overflow-hidden">
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+      <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 py-14 sm:py-20">
+        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-5 text-3xl font-bold text-white sm:mb-6 sm:text-4xl">
             Want to Join Our Team?
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="mb-7 text-base text-blue-100 sm:mb-8 sm:text-xl">
             We're always looking for passionate, talented individuals who share our vision and want to make a meaningful impact.
           </p>
           <a
             href="https://www.linkedin.com/in/yashika-sharma1775?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            className="inline-block rounded-lg bg-white px-7 py-3.5 text-base font-semibold text-blue-600 transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl sm:px-8 sm:py-4 sm:text-lg"
           >
             View Open Positions
           </a>
