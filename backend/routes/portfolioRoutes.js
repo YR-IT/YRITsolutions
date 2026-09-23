@@ -57,6 +57,34 @@ router.post("/addportfolio", requireAuth, upload.single("image"), async (req, re
 });
 
 /* ============================================================
+   PUT /api/product/updateportfolio/:id — update item (protected)
+============================================================ */
+router.put("/updateportfolio/:id", requireAuth, upload.single("image"), async (req, res) => {
+  try {
+    const updateData = { ...req.body };
+
+    if (req.file) {
+      const result = await uploadToCloudinary(req.file.buffer, "portfolio");
+      updateData.image = result.secure_url;
+    }
+
+    const updated = await Portfolio.findByIdAndUpdate(req.params.id, updateData, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updated) {
+      return res.status(404).json({ message: "Portfolio item not found" });
+    }
+
+    res.json(updated);
+  } catch (error) {
+    console.error("❌ Failed to update portfolio item:", error);
+    res.status(500).json({ message: "Failed to update portfolio item" });
+  }
+});
+
+/* ============================================================
    DELETE /api/product/deleteportfolio/:id — delete (protected)
 ============================================================ */
 router.delete("/deleteportfolio/:id", requireAuth, async (req, res) => {
