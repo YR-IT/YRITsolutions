@@ -69,14 +69,45 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Keep the Render backend awake
+## Keep the Render backend awake (Prevent 15-min Sleep / Cold Starts)
 
-The GitHub Actions workflow at `.github/workflows/render-wake.yml` pings the backend every
-10 minutes.
+Render's free tier spins down web services after 15 minutes of inactivity. When a request comes in after spin-down, it takes 40–60 seconds to boot up.
 
-Add a repository secret named `RENDER_URL` with the Render backend URL, for example:
-`https://your-service.onrender.com/`. The workflow appends `/health` automatically. Then enable Actions for the repository. The workflow
-can also be started manually from the **Actions** tab.
+We have set up multiple mechanisms to keep your backend awake 24/7:
 
-For a true 1-2 minute interval, use an external scheduler such as UptimeRobot or
-cron-job.org and monitor the same backend URL.
+### Option 1: Standalone Script (Local or CI)
+You can ping or keep the service awake anytime using the included script:
+
+```bash
+# Single ping to wake up the backend (tries /health and falls back to /)
+node scripts/ping-render.js https://yritsolutions.onrender.com
+
+# From backend directory:
+cd backend
+npm run ping
+
+# Run continuously as a background daemon (pings every 10 minutes)
+node scripts/ping-render.js --continuous --interval 10
+# OR:
+cd backend && npm run keep-alive
+```
+
+### Option 2: GitHub Actions Workflow
+The workflow at `.github/workflows/render-wake.yml` automatically executes the ping script every 10 minutes.
+
+1. Go to your GitHub repository: **Settings** → **Secrets and variables** → **Actions**.
+2. Under **Repository secrets** (or **Repository variables**), click **New repository secret**.
+3. Name: `RENDER_URL`
+4. Value: `https://yritsolutions.onrender.com` (or your active Render backend URL).
+5. In the **Actions** tab of GitHub, ensure Actions are enabled. You can click **"Wake Render service"** → **"Run workflow"** to trigger a test run anytime.
+
+### Option 3: Free 24/7 External Pinger (Recommended for 100% Zero-Downtime)
+GitHub Actions cron schedules are subject to GitHub runner queues and may occasionally be delayed by 15–30 minutes, and GitHub pauses scheduled workflows if a repository has no commits for 60 days.
+
+For guaranteed 24/7 uptime with zero maintenance:
+1. Create a free account at [cron-job.org](https://cron-job.org) or [uptimerobot.com](https://uptimerobot.com).
+2. Create a new monitor / cronjob:
+   - **URL**: `https://yritsolutions.onrender.com/` (or `/health`)
+   - **Execution interval**: Every 5 or 10 minutes.
+   - **Request Method**: `GET`
+3. Save. This pings your Render server reliably around the clock for free.

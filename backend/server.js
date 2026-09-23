@@ -92,4 +92,22 @@ app.use((err, req, res, next) => {
 
 // --- Start server ---
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+
+  // Auto-ping own public Render URL every 10 minutes to prevent free-tier spin-down
+  const selfExternalUrl = process.env.RENDER_EXTERNAL_URL || process.env.BACKEND_URL;
+  if (selfExternalUrl) {
+    const PING_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
+    setInterval(async () => {
+      try {
+        const pingUrl = `${selfExternalUrl.replace(/\/+$/, "")}/health`;
+        const res = await fetch(pingUrl);
+        console.log(`[KeepAlive] Self-ping to ${pingUrl} status: ${res.status}`);
+      } catch (err) {
+        console.warn(`[KeepAlive] Self-ping failed: ${err.message}`);
+      }
+    }, PING_INTERVAL_MS);
+    console.log(`⏱️ Keep-alive self-ping scheduled for ${selfExternalUrl} every 10 minutes`);
+  }
+});

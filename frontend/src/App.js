@@ -47,10 +47,22 @@ import ManageCareer from './pages/admin/managecareer';
 import AdminPanel from './pages/admin/adminpanel';
 import Login from './pages/login';
 import ManagePortfolios from './pages/admin/manageportfolios';
+import { API_BASE_URL } from './config/api';
 
 function App() {
   const [state, setState] = React.useState(0);
   const [show, setshow] = React.useState(false);
+
+  // Silently wake up the backend if it went to sleep on Render free tier
+  React.useEffect(() => {
+    try {
+      const cleanUrl = (API_BASE_URL || "").replace(/\/+$/, "");
+      if (cleanUrl && !cleanUrl.includes("localhost")) {
+        fetch(`${cleanUrl}/health`, { mode: "no-cors" }).catch(() => {});
+        fetch(`${cleanUrl}/`, { mode: "no-cors" }).catch(() => {});
+      }
+    } catch (_) {}
+  }, []);
 
   return (
     <ThemeProvider>

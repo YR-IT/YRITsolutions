@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "create-admin": "node scripts/createAdmin.js"
+    "create-admin": "node scripts/createAdmin.js",
+    "ping": "node scripts/ping-render.js",
+    "keep-alive": "node scripts/ping-render.js --continuous"
   },
   "author": "",
   "license": "ISC",

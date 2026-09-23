@@ -2,19 +2,33 @@ name: Wake Render service
 
 on:
   schedule:
+    # Run every 10 minutes to prevent Render free-tier from idling (15-min spin-down)
     - cron: "*/10 * * * *"
   workflow_dispatch:
+    inputs:
+      render_url:
+        description: "Target Render service URL (leave blank to use secret or default)"
+        required: false
+        default: ""
 
 jobs:
   wake-render:
+    name: Keep Render Awake
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 5
     steps:
-      - name: Ping Render health endpoint
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Ping Render Backend
         env:
-          RENDER_URL: ${{ secrets.RENDER_URL }}
+          RENDER_URL: ${{ github.event.inputs.render_url || secrets.RENDER_URL || vars.RENDER_URL || 'https://yritsolutions.onrender.com' }}
+          PING_TIMEOUT_MS: "80000"
         run: |
-          set -euo pipefail
-          test -n "$RENDER_URL"
-          curl --fail --silent --show-error --max-time 30 "${RENDER_URL%/}/health" > /dev/null
-          echo "Render service is awake: ${RENDER_URL%/}/health"
+          echo "Target service: $RENDER_URL"
+          node scripts/ping-render.js "$RENDER_URL"
