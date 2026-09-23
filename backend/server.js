@@ -60,9 +60,13 @@ app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 
 // --- MongoDB connection ---
+const dbName = process.env.DB_NAME || "yr_it";
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
+  .connect(process.env.MONGO_URI, { dbName })
+  .then((conn) => {
+    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    console.log(`📂 Active Database: ${conn.connection.name}`);
+  })
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err.message);
     process.exit(1);

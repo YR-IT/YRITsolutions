@@ -24,8 +24,9 @@ if (!process.env.MONGO_URI) {
 }
 
 try {
-  await mongoose.connect(process.env.MONGO_URI);
-  console.log("✅ Connected to MongoDB");
+  const dbName = process.env.DB_NAME || "yr_it";
+  await mongoose.connect(process.env.MONGO_URI, { dbName });
+  console.log(`✅ Connected to MongoDB (Database: ${mongoose.connection.name})`);
 
   const existing = await Admin.findOne({ email: email.toLowerCase().trim() });
   if (existing) {
